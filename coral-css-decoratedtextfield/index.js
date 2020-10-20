@@ -15,8 +15,8 @@ import '../coral-theme-spectrum';
 import '../coral-externals';
 import '../coral-compat';
 
+import '../coral-component-button';
 import './src/styles/index.css';
 
 import '../coral-component-textfield';
-import '../coral-component-button';
 
