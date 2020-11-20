@@ -14,7 +14,7 @@ import {BaseComponent} from '../../../coral-base-component';
 import {commons, transform} from '../../../coral-utils';
 
 const CLASSNAME = '_coral-Table-cell';
-
+const CORAL_NAME = 'Coral.Component.TableCell';
 /**
  @class Coral.Table.Cell
  @classdesc A Table cell component
@@ -85,14 +85,14 @@ class TableCell extends BaseComponent(HTMLTableCellElement) {
   
   /** @private */
   _setHandle(handle) {
-    requestAnimationFrame(() => {
+    commons.addCallbackInRequestAnimationFrameQueue(() => {
       // Specify handle directly on the cell if none found
       if (!this.querySelector(`[${handle}]`)) {
         this.setAttribute(handle, '');
       }
       this._syncAriaSelectedState();
       this._syncSelectHandle();
-    });
+    }, this, CORAL_NAME + "._setHandle" + ".0");
   }
 
   /** @private */

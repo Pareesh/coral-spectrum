@@ -19,6 +19,7 @@ import swatchesHeader from '../templates/swatchesHeader';
 import {commons, i18n} from '../../../coral-utils';
 
 const CLASSNAME = '_coral-ColorInput-swatches';
+const CORAL_NAME = 'Coral.Component.ColorInputSwatches';
 
 /**
  @class Coral.ColorInput.Swatches
@@ -244,9 +245,9 @@ class ColorInputSwatches extends BaseColorInputAbstractSubview(BaseComponent(HTM
       // return
       case 13:
         // Wait a frame before closing so that focus is restored correctly
-        window.requestAnimationFrame(() => {
+        commons.addCallbackInRequestAnimationFrameQueue(() => {
           overlay.open = false;
-        });
+        }, this, CORAL_NAME + "._onKeyDown" + ".0");
         break;
       // left arrow
       case 37:

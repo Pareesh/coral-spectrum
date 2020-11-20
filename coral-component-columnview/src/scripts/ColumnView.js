@@ -18,6 +18,7 @@ import selectionMode from './selectionMode';
 import {transform, validate, commons, i18n} from '../../../coral-utils';
 
 const CLASSNAME = '_coral-MillerColumns';
+const CORAL_NAME = 'Coral.Component.ColumnView';
 
 const scrollTo = (element, to, duration, scrollCallback) => {
   if (duration <= 0) {
@@ -289,7 +290,7 @@ class ColumnView extends BaseComponent(HTMLElement) {
     @private
   */
   _onItemAdd() {
-    window.requestAnimationFrame(() => this._ensureTabbableItem());
+    commons.addCallbackInRequestAnimationFrameQueue(() => this._ensureTabbableItem(), this, CORAL_NAME + "._onItemAdd" + ".0");
   }
 
   /**
@@ -299,7 +300,7 @@ class ColumnView extends BaseComponent(HTMLElement) {
     @private
   */
   _onItemRemoved() {
-    window.requestAnimationFrame(() => this._ensureTabbableItem());
+    commons.addCallbackInRequestAnimationFrameQueue(() => this._ensureTabbableItem(), this, CORAL_NAME + "._onItemRemoved" + ".0");
   }
 
   /* @private */

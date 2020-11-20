@@ -15,7 +15,7 @@ import {alignment} from './TableUtil';
 import {commons, transform, validate} from '../../../coral-utils';
 
 const CLASSNAME = '_coral-Table-column';
-
+const CORAL_NAME = 'Coral.Component.TableColumn';
 /**
  Enumeration for {@link TableColumn} sortable direction options.
  
@@ -84,9 +84,9 @@ class TableColumn extends BaseComponent(HTMLTableColElement) {
   
     // Don't trigger on initialization if alignment is LEFT to improve performance
     if (!(typeof oldValue === 'undefined' && this._alignment === alignment.LEFT)) {
-      window.requestAnimationFrame(() => {
+      commons.addCallbackInRequestAnimationFrameQueue(() => {
         this.trigger('coral-table-column:_alignmentchanged');
-      });
+      }, this, CORAL_NAME + ".setAlignment" + ".0");
     }
   }
   
@@ -105,9 +105,9 @@ class TableColumn extends BaseComponent(HTMLTableColElement) {
     this._fixedWidth = transform.booleanAttr(value);
     this._reflectAttribute('fixedwidth', this._fixedWidth);
     
-    window.requestAnimationFrame(() => {
+    commons.addCallbackInRequestAnimationFrameQueue(() => {
       this.trigger('coral-table-column:_fixedwidthchanged');
-    });
+    }, this, CORAL_NAME + ".setFixedWidth" + ".0");
   }
   
   /**
@@ -125,9 +125,9 @@ class TableColumn extends BaseComponent(HTMLTableColElement) {
     this._hidden = transform.booleanAttr(value);
     this._reflectAttribute('hidden', this._hidden);
     
-    window.requestAnimationFrame(() => {
+    commons.addCallbackInRequestAnimationFrameQueue(() => {
       this.trigger('coral-table-column:_hiddenchanged');
-    });
+    }, this, CORAL_NAME + ".setHidden" + ".0");
   }
   
   /**
@@ -146,9 +146,9 @@ class TableColumn extends BaseComponent(HTMLTableColElement) {
     this._orderable = transform.booleanAttr(value);
     this._reflectAttribute('orderable', this._orderable);
     
-    window.requestAnimationFrame(() => {
+    commons.addCallbackInRequestAnimationFrameQueue(() => {
       this.trigger('coral-table-column:_orderablechanged');
-    });
+    }, this, CORAL_NAME + ".setOrderable" + ".0");
   }
   
   /**
@@ -166,9 +166,9 @@ class TableColumn extends BaseComponent(HTMLTableColElement) {
     this._sortable = transform.booleanAttr(value);
     this._reflectAttribute('sortable', this._sortable);
     
-    window.requestAnimationFrame(() => {
+    commons.addCallbackInRequestAnimationFrameQueue(() => {
       this.trigger('coral-table-column:_sortablechanged');
-    });
+    }, this, CORAL_NAME + ".setSortable" + ".0");
   }
   
   /**
@@ -212,9 +212,9 @@ class TableColumn extends BaseComponent(HTMLTableColElement) {
     if (!this._preventSort) {
       this._doSort();
       
-      window.requestAnimationFrame(() => {
+      commons.addCallbackInRequestAnimationFrameQueue(() => {
         this.trigger('coral-table-column:_sortabledirectionchanged');
-      });
+      }, this, CORAL_NAME + ".setSortableDirection" + ".0");
     }
   }
   

@@ -17,6 +17,7 @@ import quickactions from '../templates/quickactions';
 import {transform, commons} from '../../../coral-utils';
 
 const CLASSNAME = '_coral-Masonry-item';
+const CORAL_NAME = 'Coral.Component.MasonryItem';
 
 /**
  @class Coral.Masonry.Item
@@ -136,9 +137,9 @@ class MasonryItem extends BaseComponent(HTMLElement) {
   attributeChangedCallback(name, oldValue, value) {
     if (name === '_removing') {
       // Do it in the next frame so that the removing animation is visible
-      window.requestAnimationFrame(() => {
+      commons.addCallbackInRequestAnimationFrameQueue(() => {
         this.classList.toggle('is-removing', value !== null);
-      });
+      }, this, CORAL_NAME + ".attributeChangedCallback" + ".0");
     }
     else if (name === '_orderable') {
       this._updateDragAction(value !== null);

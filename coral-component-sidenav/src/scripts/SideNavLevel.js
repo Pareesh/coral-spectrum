@@ -14,7 +14,7 @@ import {commons} from '../../../coral-utils';
 import {BaseComponent} from '../../../coral-base-component';
 
 const CLASSNAME = '_coral-SideNav';
-
+const CORAL_NAME = 'Coral.Component.SideNavLevel';
 /**
  @class Coral.SideNav.Level
  @classdesc A SideNav Level component
@@ -40,7 +40,7 @@ class SideNavLevel extends BaseComponent(HTMLElement) {
       this.classList.toggle('is-expanded', isExpanded);
   
       // Do animation in next frame to avoid a forced reflow
-      window.requestAnimationFrame(() => {
+      commons.addCallbackInRequestAnimationFrameQueue(() => {
         // Don't animate on initialization
         if (this._animate) {
           // Remove height as we want the level to naturally grow if content is added later
@@ -78,7 +78,7 @@ class SideNavLevel extends BaseComponent(HTMLElement) {
             this.hidden = true;
           }
         }
-      });
+      }, this, CORAL_NAME + ".attributeChangedCallback" + ".0");
     }
     else {
       super.attributeChangedCallback(name, oldValue, value);

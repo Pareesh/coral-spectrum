@@ -49,6 +49,7 @@ const size = {
 
 // the StepList's base classname
 const CLASSNAME = '_coral-Steplist';
+const CORAL_NAME = 'Coral.Component.StepList';
 
 /**
  @class Coral.StepList
@@ -139,7 +140,7 @@ class StepList extends BaseComponent(HTMLElement) {
       this._target = value;
       
       // we do this in the sync in case the target was not yet in the DOM
-      window.requestAnimationFrame(() => {
+      commons.addCallbackInRequestAnimationFrameQueue(() => {
         const realTarget = getTarget(this._target);
   
         // we add proper accessibility if available
@@ -185,7 +186,7 @@ class StepList extends BaseComponent(HTMLElement) {
             }
           }
         }
-      });
+      }, this, CORAL_NAME + ".setTarget" + ".0");
     }
   }
   

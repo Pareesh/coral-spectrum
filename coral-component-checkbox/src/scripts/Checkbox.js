@@ -20,6 +20,7 @@ const IS_IE_OR_EDGE = navigator.userAgent.indexOf('MSIE') !== -1 || navigator.ap
   window.navigator.userAgent.indexOf('Edge') !== -1;
 
 const CLASSNAME = '_coral-Checkbox';
+const CORAL_NAME = 'Coral.Component.Checkbox';
 
 /**
  @class Coral.Checkbox
@@ -274,9 +275,9 @@ class Checkbox extends BaseFormField(BaseComponent(HTMLElement)) {
       // @polyfill ie/edge
       if (IS_IE_OR_EDGE) {
         // We need 1 additional frame in case the indeterminate state is set manually on change event
-        window.requestAnimationFrame(() => {
+        commons.addCallbackInRequestAnimationFrameQueue(() => {
           this.trigger('change');
-        });
+        }, this, CORAL_NAME + "._onInputChange" + ".0");
       }
       else {
         this.trigger('change');
@@ -312,11 +313,11 @@ class Checkbox extends BaseFormField(BaseComponent(HTMLElement)) {
    */
   _onMouseDown() {
     const target = this._elements.input;
-    window.requestAnimationFrame(() => {
+    commons.addCallbackInRequestAnimationFrameQueue(() => {
       if (target !== document.activeElement) {
         target.focus();
       }
-    });
+    }, this, CORAL_NAME + "._onMouseDown" + ".0");
   }
   
   /**

@@ -42,6 +42,7 @@ const variant = {
 
 // the card's base classname
 const CLASSNAME = '_coral-Card';
+const CORAL_NAME = 'Coral.Component.Card';
 
 // builds a string containing all possible variant classnames. this will be used to remove classnames when the variant
 // changes
@@ -113,7 +114,7 @@ class Card extends BaseComponent(HTMLElement) {
     this._assetHeight = transform.number(value);
     
     // Avoid a forced reflow by executing following in the next frame
-    window.requestAnimationFrame(() => {
+    commons.addCallbackInRequestAnimationFrameQueue(() => {
       // both hint dimensions need to be set in order to use this feature
       if (!this._loaded && this._elements.asset && this.assetWidth && this._assetHeight) {
         // gets the width without the border of the card
@@ -121,7 +122,7 @@ class Card extends BaseComponent(HTMLElement) {
         const width = clientRect.right - clientRect.left;
         // calculates the image ratio used to resize the height
         const ratio = width / this.assetWidth;
-    
+
         // the image is considered "low resolution"
         // @todo: check this after removal of lowResolution
         if (ratio > 1) {
@@ -133,7 +134,7 @@ class Card extends BaseComponent(HTMLElement) {
           this._elements.asset.style.height = `${ratio * this._assetHeight}px`;
         }
       }
-    });
+    }, this, CORAL_NAME + ".setAssetHeight" + ".0");
   }
   
   /**

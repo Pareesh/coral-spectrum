@@ -17,6 +17,7 @@ import treeItem from '../templates/treeItem';
 import {transform, commons, i18n, validate} from '../../../coral-utils';
 
 const CLASSNAME = '_coral-TreeView-item';
+const CORAL_NAME = 'Coral.Component.TreeItem';
 
 /**
  Enumeration for {@link TreeItem} variants.
@@ -170,7 +171,7 @@ class TreeItem extends BaseComponent(HTMLElement) {
     this.trigger('coral-tree-item:_expandedchanged');
     
     // Do animation in next frame to avoid a forced reflow
-    window.requestAnimationFrame(() => {
+    commons.addCallbackInRequestAnimationFrameQueue(() => {
       // Don't animate on initialization
       if (this._animate) {
         // Remove height as we want the drawer to naturally grow if content is added later
@@ -213,7 +214,7 @@ class TreeItem extends BaseComponent(HTMLElement) {
           subTreeContainer.hidden = true;
         }
       }
-    });
+    }, this, CORAL_NAME + ".setExpanded" + ".0");
   }
   
   /**

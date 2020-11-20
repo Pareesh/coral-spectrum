@@ -17,7 +17,7 @@ import '../../../coral-component-textfield';
 import {transform, validate, commons} from '../../../coral-utils';
 
 const CLASSNAME = '_coral-Textfield';
-
+const CORAL_NAME = 'Coral.Component.Textarea';
 /**
  Enumeration for {@link Textarea} variants.
  
@@ -109,10 +109,10 @@ class Textarea extends BaseFormField(BaseComponent(HTMLTextAreaElement)) {
   /** @private */
   _onInput() {
     if (this.variant === variant.QUIET) {
-      requestAnimationFrame(() => {
+      commons.addCallbackInRequestAnimationFrameQueue(() => {
         this.style.height = 'auto';
         this.style.height = `${this.scrollHeight}px`;
-      });
+      }, this, CORAL_NAME + "._onInput" + ".0");
     }
   }
   

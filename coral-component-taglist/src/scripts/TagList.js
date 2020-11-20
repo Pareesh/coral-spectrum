@@ -17,8 +17,11 @@ import {Collection} from '../../../coral-collection';
 import {transform, commons} from '../../../coral-utils';
 
 const CLASSNAME = '_coral-Tags';
+const CORAL_NAME = 'Coral.Component.TagList';
+
 // Collection
 const ITEM_TAGNAME = 'coral-tag';
+
 
 /**
  Extracts the value from the item in case no explicit value was provided.
@@ -490,11 +493,11 @@ class TagList extends BaseFormField(BaseComponent(HTMLElement)) {
       }
     }
     
-    window.requestAnimationFrame(() => {
+    commons.addCallbackInRequestAnimationFrameQueue(() => {
       if (tag.parentElement !== null && !this.contains(document.activeElement)) {
         itemToFocusAfterDelete = undefined;
       }
-    });
+    }, this, CORAL_NAME + "._setItemToFocusOnDelete" + ".0");
   }
   
   /** @private */

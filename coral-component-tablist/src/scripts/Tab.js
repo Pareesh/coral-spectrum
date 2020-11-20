@@ -18,6 +18,7 @@ import {Icon} from '../../../coral-component-icon';
 import getTarget from './getTarget';
 
 const CLASSNAME = '_coral-Tabs-item';
+const CORAL_NAME = 'Coral.Component.Tab';
 
 /**
  @class Coral.Tab
@@ -241,9 +242,9 @@ class Tab extends BaseLabellable(BaseComponent(HTMLElement)) {
   }
 
   _toggleEllipsis() {
-    requestAnimationFrame(() => {
+    commons.addCallbackInRequestAnimationFrameQueue(() => {
       this.classList.toggle('is-overflowing', this._elements.label.clientWidth > this.clientWidth);
-    });
+    }, this, CORAL_NAME + "._toggleEllipsis" + ".0");
   }
 
   /**

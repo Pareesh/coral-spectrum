@@ -28,6 +28,7 @@ import 'codemirror/mode/xml/xml';
 
 // Base classname
 const CLASS_NAME = '_coral-Playground';
+const CORAL_NAME = 'Coral.Component.Playground';
 
 /**
  Enumeration for {@link Playground} screens.
@@ -316,13 +317,13 @@ class Playground extends BaseComponent(HTMLElement) {
     this.code = this._config.code;
     this.livereload = this._config.livereload;
   
-    window.requestAnimationFrame(() => {
+    commons.addCallbackInRequestAnimationFrameQueue(() => {
       this._editor.refresh();
     
       if (this.livereload) {
         this._debounceTrigger('coral-playground:coderun');
       }
-    });
+    }, this, CORAL_NAME + ".connectedCallback" + ".0");
   }
 }
 

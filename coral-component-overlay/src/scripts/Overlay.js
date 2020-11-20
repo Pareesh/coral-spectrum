@@ -129,6 +129,7 @@ const interaction = {
 
 const CLASSNAME = '_coral-Overlay';
 
+const CORAL_NAME = 'Coral.Component.Overlay';
 /**
  @class Coral.Overlay
  @classdesc A generic Overlay component.
@@ -420,11 +421,10 @@ class Overlay extends BaseOverlay(BaseComponent(HTMLElement)) {
       }
     
       this._togglePopperEventListener(true);
-    
       // We need an additional frame to help popper read the correct offsets
-      window.requestAnimationFrame(() => {
+      commons.addCallbackInRequestAnimationFrameQueue(function() {
         this.reposition();
-      });
+      }, this, CORAL_NAME + "._toggleSmartBehavior" + ".0");
     }
     else {
       this._togglePopperEventListener(false);
@@ -474,9 +474,9 @@ class Overlay extends BaseOverlay(BaseComponent(HTMLElement)) {
       this._oldPosition = data.styles.transform;
       
       // Do it in the next frame to avoid triggering the event too early
-      window.requestAnimationFrame(() => {
+      commons.addCallbackInRequestAnimationFrameQueue(function() {
         this.trigger('coral-overlay:positioned', data);
-      });
+      }, this, CORAL_NAME + "._onUpdate" + ".0");
     }
     // Trigger again only if position changed
     else {
@@ -690,16 +690,15 @@ class Overlay extends BaseOverlay(BaseComponent(HTMLElement)) {
   
     // In case it was not added to the DOM, make sure popper is initialized by setting target
     this.target = this.target;
-    
-    // We need an additional frame to help popper read the correct offsets
-    window.requestAnimationFrame(() => {
+
+    commons.addCallbackInRequestAnimationFrameQueue(() => {
       // Force repositioning
       this.reposition(true);
-      
+
       if (!this.open) {
         this._togglePopperEventListener(false);
       }
-    });
+    }, this, CORAL_NAME + ".connectedCallback" + ".0");
   }
   
   /** @ignore */

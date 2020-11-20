@@ -51,7 +51,7 @@ const orientation = {
 
 // the tablist's base classname
 const CLASSNAME = '_coral-Tabs';
-
+const CORAL_NAME = "Coral.Component.TabList";
 /**
  @class Coral.TabList
  @classdesc A TabList component holds a collection of tabs.
@@ -146,36 +146,35 @@ class TabList extends BaseComponent(HTMLElement) {
   set target(value) {
     if (value === null || typeof value === 'string' || value instanceof Node) {
       this._target = value;
-      
-      // we do in case the target was not yet in the DOM
-      window.requestAnimationFrame(() => {
+
+      commons.addCallbackInRequestAnimationFrameQueue(function() {
         const realTarget = getTarget(this._target);
-  
+
         // we add proper accessibility if available
         if (realTarget) {
           const tabItems = this.items.getAll();
           const panelItems = realTarget.items ? realTarget.items.getAll() : realTarget.children;
-    
+
           // we need to add a11y to all component, no matter if they can be perfectly paired
           const maxItems = Math.max(tabItems.length, panelItems.length);
-    
+
           let tab;
           let panel;
           for (let i = 0; i < maxItems; i++) {
             tab = tabItems[i];
             panel = panelItems[i];
-      
+
             // if the tab has its own target, we assume the target component will handle its own accessibility. if the
             // target is an empty string we simply ignore it
             if (tab && tab.target && tab.target.trim() !== '') {
               continue;
             }
-      
+
             if (tab && panel) {
-              // sets the required ids
+               // sets the required ids
               tab.id = tab.id || commons.getUID();
               panel.id = panel.id || commons.getUID();
-        
+
               // creates a 2 way binding for accessibility
               tab.setAttribute('aria-controls', panel.id);
               panel.setAttribute('aria-labelledby', tab.id);
@@ -188,12 +187,12 @@ class TabList extends BaseComponent(HTMLElement) {
               tab.removeAttribute('aria-controls');
             }
             else {
-              // cleans the aria since there is no matching tab
+               // cleans the aria since there is no matching tab
               panel.removeAttribute('aria-labelledby');
             }
           }
         }
-      });
+      }, this, CORAL_NAME + ".target" + ".0");
     }
   }
   
@@ -395,53 +394,45 @@ class TabList extends BaseComponent(HTMLElement) {
   }
   
   _setLine() {
-    // Debounce
-    if (this._timeout !== null) {
-      window.clearTimeout(this._timeout);
-    }
-  
-    this._timeout = window.setTimeout(() => {
-      this._timeout = null;
-  
+    commons.addCallbackInRequestAnimationFrameQueue(function() {
       const selectedItem = this.selectedItem;
-  
       // Position line under the selected item
       if (selectedItem) {
-        if (this.orientation === orientation.HORIZONTAL) {
-          const padding = window.parseInt(window.getComputedStyle(selectedItem).paddingLeft);
-          const left = selectedItem.offsetLeft + padding;
-          const width = selectedItem.clientWidth - padding * 2;
-      
-          // Orientation changed
-          if (this._previousOrientation !== this.orientation) {
-            this._elements.line.style.height = '';
-          }
-      
-          this._elements.line.style.width = `${width}px`;
-          this._elements.line.style.transform = `translate(${left}px, 0)`;
+      if (this.orientation === orientation.HORIZONTAL) {
+        const padding = window.parseInt(window.getComputedStyle(selectedItem).paddingLeft);
+        const left = selectedItem.offsetLeft + padding;
+        const width = selectedItem.clientWidth - padding * 2;
+
+        // Orientation changed
+        if (this._previousOrientation !== this.orientation) {
+          this._elements.line.style.height = '';
         }
-        else if (this.orientation === orientation.VERTICAL) {
-          const top = selectedItem.offsetTop;
-          const height = selectedItem.clientHeight;
-      
-          // Orientation changed
-          if (this._previousOrientation !== this.orientation) {
-            this._elements.line.style.width = '';
-          }
-      
-          this._elements.line.style.height = `${height}px`;
-          this._elements.line.style.transform = `translate(0, ${top}px)`;
-        }
-    
-        this._elements.line.hidden = false;
+
+        this._elements.line.style.width = `${width}px`;
+        this._elements.line.style.transform = `translate(${left}px, 0)`;
       }
+      else if (this.orientation === orientation.VERTICAL) {
+        const top = selectedItem.offsetTop;
+        const height = selectedItem.clientHeight;
+
+        // Orientation changed
+        if (this._previousOrientation !== this.orientation) {
+          this._elements.line.style.width = '';
+        }
+
+        this._elements.line.style.height = `${height}px`;
+        this._elements.line.style.transform = `translate(0, ${top}px)`;
+      }
+
+      this._elements.line.hidden = false;
+    }
       else {
         // Hide line if no selected item
         this._elements.line.hidden = true;
       }
-  
+
       this._previousOrientation = this.orientation;
-    }, this._wait);
+    }, this, CORAL_NAME + "._setLine" + ".0");
   }
   
   /** @private */

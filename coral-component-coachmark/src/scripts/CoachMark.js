@@ -51,6 +51,7 @@ const variant = {
 };
 
 const CLASSNAME = '_coral-CoachMarkIndicator';
+const CORAL_NAME = 'Coral.Component.CoachMark';
 
 /**
  @class Coral.CoachMark
@@ -87,7 +88,7 @@ class CoachMark extends BaseComponent(HTMLElement) {
     if (value === null || typeof value === 'string' || value instanceof Node) {
       this._target = value;
       
-      requestAnimationFrame(() => {
+      commons.addCallbackInRequestAnimationFrameQueue(() => {
         const targetElement = Overlay._getTarget(this);
   
         if (targetElement) {
@@ -113,7 +114,7 @@ class CoachMark extends BaseComponent(HTMLElement) {
     
           this._popper.update();
         }
-      });
+      }, this, CORAL_NAME + ".setTarget" + ".0");
     }
   }
   

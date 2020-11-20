@@ -98,6 +98,8 @@ const capitalize = s => s.charAt(0).toUpperCase() + s.slice(1);
 
 // The dialog's base classname
 const CLASSNAME = '_coral-Dialog';
+const CORAL_NAME = 'Coral.Component.Dialog';
+
 // Modifier classnames
 const FULLSCREEN_CLASSNAME = `${CLASSNAME}--fullscreenTakeover`;
 
@@ -385,7 +387,7 @@ class Dialog extends BaseOverlay(BaseComponent(HTMLElement)) {
     }
     
     // Support animation
-    requestAnimationFrame(() => {
+    commons.addCallbackInRequestAnimationFrameQueue(() => {
       // Support wrapped dialog
       this._elements.wrapper.classList.toggle('is-open', this.open);
   
@@ -401,7 +403,7 @@ class Dialog extends BaseOverlay(BaseComponent(HTMLElement)) {
         this._elements.closeButton.tabIndex = -1;
         this._elements.closeButton.setAttribute('coral-tabcapture', '');
       }
-    });
+    }, this, CORAL_NAME + ".setOpen" + ".0");
   }
   
   /**

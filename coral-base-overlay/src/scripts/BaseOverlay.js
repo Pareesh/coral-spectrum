@@ -49,6 +49,8 @@ const TAB_KEY = 9;
 const overlayStack = [];
 let OverlayManager = {};
 
+const CORAL_NAME = 'Coral.Base.Overlay';
+
 /**
  Return focus option
  */
@@ -291,7 +293,6 @@ function showEverything() {
 function doBackdropHide() {
   document.body.classList.remove('u-coral-noscroll');
 
-  // Start animation
   window.requestAnimationFrame(() => {
     backdropEl.classList.remove('is-open');
 
@@ -300,7 +301,6 @@ function doBackdropHide() {
       backdropEl.style.display = 'none';
     }, FADETIME);
   });
-
   // Set flag for testing
   backdropEl._isOpen = false;
 
@@ -377,6 +377,7 @@ function doBackdropShow(zIndex, instance) {
 
   // Start animation
   backdropEl.style.display = '';
+
   window.requestAnimationFrame(() => {
     // Add the class on the next animation frame so backdrop has time to exist
     // Otherwise, the animation for opacity will not work.
@@ -574,7 +575,7 @@ const BaseOverlay = (superClass) => class extends superClass {
       }
 
       // Don't force reflow
-      window.requestAnimationFrame(() => {
+      commons.addCallbackInRequestAnimationFrameQueue(() => {
         // Keep it silenced
         this._silenced = silenced;
 
@@ -602,9 +603,9 @@ const BaseOverlay = (superClass) => class extends superClass {
           this.style.display = '';
 
           // Do it in the next frame to make the animation happen
-          window.requestAnimationFrame(() => {
+          commons.addCallbackInRequestAnimationFrameQueue(() => {
             this.classList.add('is-open');
-          });
+          }, this, CORAL_NAME + ".setOpen" + ".1");
 
           const openComplete = () => {
             if (this.open) {
@@ -663,7 +664,7 @@ const BaseOverlay = (superClass) => class extends superClass {
             closeComplete();
           }
         }
-      });
+      }, this, CORAL_NAME + ".setOpen" + ".0");
     }
   }
 

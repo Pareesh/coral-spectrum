@@ -12,7 +12,7 @@
 
 import {BaseComponent} from '../../../coral-base-component';
 import {SelectableCollection} from '../../../coral-collection';
-import {transform, validate, Keys} from '../../../coral-utils';
+import {transform, validate, Keys, commons} from '../../../coral-utils';
 
 // Key codes
 const PAGE_UP = 33;
@@ -40,6 +40,7 @@ const variant = {
 
 // the accordions's base classname
 const CLASSNAME = '_coral-Accordion';
+const CORAL_NAME = 'Coral.Component.Accordion';
 
 /**
  @class Coral.Accordion
@@ -387,14 +388,14 @@ class Accordion extends BaseComponent(HTMLElement) {
     if (!this._resetTabTargetScheduled) {
       this._resetTabTargetScheduled = true;
       
-      window.requestAnimationFrame(() => {
+      commons.addCallbackInRequestAnimationFrameQueue(() => {
         this._resetTabTargetScheduled = false;
         
         // since hidden items cannot have focus, we need to make sure the tabTarget is not hidden
         const selectedItems = this.items._getAllSelected();
   
         this._tabTarget = selectedItems.length ? selectedItems[0] : this.items._getFirstSelectable();
-      });
+      }, this, CORAL_NAME + "._resetTabTarget" + ".0");
     }
   }
   
@@ -446,9 +447,9 @@ class Accordion extends BaseComponent(HTMLElement) {
     this._oldSelection = this.selectedItems;
     
     // Don't trigger animations on rendering
-    window.requestAnimationFrame(() => {
+    commons.addCallbackInRequestAnimationFrameQueue(() => {
       this.classList.add(`${CLASSNAME}--animated`);
-    });
+    }, this, CORAL_NAME + ".render" + ".0");
   }
   
   /**

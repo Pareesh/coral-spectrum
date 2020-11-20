@@ -170,6 +170,7 @@ const timeUnit = {
 };
 
 const CLASSNAME = '_coral-Calendar';
+const CORAL_NAME = 'Coral.Component.Calendar';
 
 /**
  @class Coral.Calendar
@@ -617,9 +618,9 @@ class Calendar extends BaseFormField(BaseComponent(HTMLElement)) {
     
     if (el) {
       if (isTransitioning) {
-        window.requestAnimationFrame(() => {
+        commons.addCallbackInRequestAnimationFrameQueue(() => {
           el.querySelector('._coral-Calendar-date').classList.add('is-focused');
-        });
+        }, this, CORAL_NAME + "._setActiveDescendant" + ".0");
       }
       else {
         // Focus the selected date

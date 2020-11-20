@@ -26,7 +26,7 @@ import {isTableHeaderCell, isTableCell, isTableRow, isTableBody, getCellByIndex,
 import {transform, validate, commons, i18n,  Keys} from '../../../coral-utils';
 
 const CLASSNAME = '_coral-Table-wrapper';
-
+const CORAL_NAME = 'Coral.Component.Table';
 /**
  Enumeration for {@link Table} variants
  
@@ -586,9 +586,10 @@ class Table extends BaseComponent(HTMLTableElement) {
       // Prevent change event from triggering if the cloned node is selected
       table._preventTriggeringEvents = true;
       body.insertBefore(placeholder, row.nextElementSibling);
-      window.requestAnimationFrame(() => {
+
+      commons.addCallbackInRequestAnimationFrameQueue(() => {
         table._preventTriggeringEvents = false;
-      });
+      }, table, CORAL_NAME + "._onRowOrder" + ".0");
       
       // Store the data to avoid re-reading the layout on drag events
       const dragData = {
@@ -860,13 +861,13 @@ class Table extends BaseComponent(HTMLTableElement) {
     
     // Trigger a relayout
     table._resetLayout();
-    
-    window.requestAnimationFrame(() => {
+
+    commons.addCallbackInRequestAnimationFrameQueue(() => {
       // Allows sorting again after dragging completed
       matchedTarget._isDragging = undefined;
       // Refocus the dragged element manually
       table._toggleElementTabIndex(dragElement, null, true);
-    });
+    }, table, CORAL_NAME + "._onHeaderCellDragEnd" + ".0");
   }
   
   /** @private */
@@ -991,9 +992,9 @@ class Table extends BaseComponent(HTMLTableElement) {
         row.locked = !row.locked;
         
         // Refocus the locked/unlocked item manually
-        window.requestAnimationFrame(() => {
+        commons.addCallbackInRequestAnimationFrameQueue(() => {
           table._focusItem(row, true);
-        });
+        }, table, CORAL_NAME + "._onRowLock" + ".0");
       }
     }
   }
@@ -1012,9 +1013,9 @@ class Table extends BaseComponent(HTMLTableElement) {
       // Kill text selection feature
       document.onselectstart = () => false;
       // Restore text selection feature
-      window.requestAnimationFrame(() => {
+      commons.addCallbackInRequestAnimationFrameQueue(() => {
         document.onselectstart = onSelectStart;
-      });
+      }, table, CORAL_NAME + "._onRowDown" + ".0");
     }
   }
   
@@ -1061,9 +1062,9 @@ class Table extends BaseComponent(HTMLTableElement) {
     if (dragElement.getBoundingClientRect().top <= firstRow.getBoundingClientRect().top) {
       table._preventTriggeringEvents = true;
       body.insertBefore(dragData.placeholder, firstRow);
-      window.requestAnimationFrame(() => {
+      commons.addCallbackInRequestAnimationFrameQueue(() => {
         table._preventTriggeringEvents = false;
-      });
+      }, table, CORAL_NAME + "._onRowDrag" + ".0");
     }
     
     // Scroll up/down if table edge is reached
@@ -1076,14 +1077,14 @@ class Table extends BaseComponent(HTMLTableElement) {
       
       // Handle the scrollbar position based on the dragged element position.
       // nextFrame is required else Chrome wouldn't take scrollTop changes in account when dragging the first row down
-      window.requestAnimationFrame(() => {
+      commons.addCallbackInRequestAnimationFrameQueue(() => {
         if (position < topScrollLimit) {
           table._elements.container.scrollTop -= scrollOffset;
         }
         else if (position > bottomScrollLimit) {
           table._elements.container.scrollTop += scrollOffset;
         }
-      });
+      }, table, CORAL_NAME + "._onRowDrag" + ".1");
     }
   }
   
@@ -1099,9 +1100,9 @@ class Table extends BaseComponent(HTMLTableElement) {
     if (dragElement.getBoundingClientRect().top >= dropElement.getBoundingClientRect().top) {
       table._preventTriggeringEvents = true;
       body.insertBefore(dragData.placeholder, dropElement.nextElementSibling);
-      window.requestAnimationFrame(() => {
+      commons.addCallbackInRequestAnimationFrameQueue(() => {
         table._preventTriggeringEvents = false;
-      });
+      }, table, CORAL_NAME + "._onRowDragOver" + ".0");
     }
   }
   
@@ -1141,9 +1142,9 @@ class Table extends BaseComponent(HTMLTableElement) {
         // Insert the row at the new position and prevent change event from triggering
         table._preventTriggeringEvents = true;
         body.insertBefore(dragElement, before);
-        window.requestAnimationFrame(() => {
+        commons.addCallbackInRequestAnimationFrameQueue(() => {
           table._preventTriggeringEvents = false;
-        });
+        }, table, CORAL_NAME + "._onRowDragEnd" + ".0");
         
         // Trigger the order event if the row position changed
         table.trigger('coral-table:roworder', {
@@ -1153,12 +1154,12 @@ class Table extends BaseComponent(HTMLTableElement) {
         });
       }
     }
-    
+
     // Refocus the dragged element manually
-    window.requestAnimationFrame(() => {
+    commons.addCallbackInRequestAnimationFrameQueue(() => {
       dragElement.classList.remove('is-focused');
       table._focusItem(dragElement, true);
-    });
+    }, table, CORAL_NAME + "._onRowDragEnd" + ".1");
   }
   
   /** @private */
@@ -1175,16 +1176,16 @@ class Table extends BaseComponent(HTMLTableElement) {
       selectedItems.forEach((cell, i) => {
         cell.selected = i === selectedItems.length - 1;
       });
-      
-      window.requestAnimationFrame(() => {
+
+      commons.addCallbackInRequestAnimationFrameQueue(() => {
         table._preventTriggeringEvents = false;
-        
+
         table.trigger('coral-table:rowchange', {
           oldSelection: selectedItems,
           selection: row.selectedItems,
           row: row
         });
-      });
+      }, table, CORAL_NAME + "._onRowMultipleChanged" + ".1");
     }
   }
   
@@ -1290,9 +1291,9 @@ class Table extends BaseComponent(HTMLTableElement) {
         // Insert row at first position of its tbody
         table._preventTriggeringEvents = true;
         body.insertBefore(row, getRows([body])[0]);
-        window.requestAnimationFrame(() => {
+        commons.addCallbackInRequestAnimationFrameQueue(() => {
           table._preventTriggeringEvents = false;
-        });
+        }, table, CORAL_NAME + "._onRowLockedChanged" + ".0");
         
         // Trigger event on table
         table.trigger('coral-table:rowlock', {row});
@@ -1305,9 +1306,9 @@ class Table extends BaseComponent(HTMLTableElement) {
             // Insert row at its initial position
             table._preventTriggeringEvents = true;
             body.insertBefore(row, beforeRow.nextElementSibling);
-            window.requestAnimationFrame(() => {
+            commons.addCallbackInRequestAnimationFrameQueue(() => {
               table._preventTriggeringEvents = false;
-            });
+            }, table, CORAL_NAME + "._onRowLockedChanged" + ".1");
           }
         }
         
@@ -1830,7 +1831,7 @@ class Table extends BaseComponent(HTMLTableElement) {
     }
 
     // Allow triggering change events again after sorting
-    window.requestAnimationFrame(() => {
+    commons.addCallbackInRequestAnimationFrameQueue(() => {
       // a11y initialize column sort aria-describedby
       if (onInitialization && column.sortableDirection !== sortableDirection.DEFAULT) {
         const textContent = colHeaderCell.content.textContent.trim();
@@ -1840,7 +1841,7 @@ class Table extends BaseComponent(HTMLTableElement) {
       }
 
       table._preventTriggeringEvents = false;
-    });
+    }, table, CORAL_NAME + "._onColumnSort" + ".0");
   }
   
   _onHeadStickyChanged(event) {
@@ -1853,24 +1854,24 @@ class Table extends BaseComponent(HTMLTableElement) {
     const head = event.target;
     
     // Wait next frame before reading and changing header cell layout
-    window.requestAnimationFrame(() => {
+    commons.addCallbackInRequestAnimationFrameQueue(() => {
       // Defines the head height
       const tableHeight = head.sticky ? `${head.getBoundingClientRect().height}px` : null;
       table._resetContainerLayout(tableHeight, table._elements.container.style.height);
-      
+
       getRows([head]).forEach((row) => {
         getHeaderCells(row).forEach((headerCell) => {
           table._toggleStickyHeaderCell(headerCell, head.sticky);
         });
       });
-  
+
       // Make sure sticky styling is applied
       table.classList.toggle(`${CLASSNAME}--sticky`, head.sticky);
-  
+
       // Layout sticky head
       table._preventResetLayout = false;
       table._resetLayout();
-    });
+    }, table, CORAL_NAME + "._onHeadStickyChanged" + ".0");
   }
   
   /** @private */
@@ -2099,12 +2100,12 @@ class Table extends BaseComponent(HTMLTableElement) {
     }
     
     // Focus last selected item
-    window.requestAnimationFrame(() => {
+    commons.addCallbackInRequestAnimationFrameQueue(() => {
       const itemToFocus = this._lastSelectedItems.items[this._lastSelectedItems.items.length - 1];
       if (itemToFocus) {
         this._focusItem(itemToFocus, true);
       }
-    });
+    }, this, CORAL_NAME + "._selectSiblingItem" + ".0");
   }
   
   /** @private */
@@ -2286,9 +2287,9 @@ class Table extends BaseComponent(HTMLTableElement) {
               
               headerCell.content.style.paddingTop = `${paddingTop}px`;
               
-              window.requestAnimationFrame(() => {
+              commons.addCallbackInRequestAnimationFrameQueue(() => {
                 table._preventResetLayout = false;
-              });
+              }, table, CORAL_NAME + "._resizeContainer" + ".0");
             }
             
             // Position the sticky cell
@@ -2379,7 +2380,7 @@ class Table extends BaseComponent(HTMLTableElement) {
       // Trigger a reflow that will reposition the sticky cells for FF only.
       head.style.margin = '1px';
       
-      window.requestAnimationFrame(() => {
+      commons.addCallbackInRequestAnimationFrameQueue(() => {
         head.style.margin = '';
         
         // In other browsers e.g Chrome or IE, we need to adjust the position of the sticky cells manually
@@ -2405,7 +2406,7 @@ class Table extends BaseComponent(HTMLTableElement) {
             }
           }
         }
-      });
+      }, table, CORAL_NAME + "._onScroll" + ".0");
     }
   }
   

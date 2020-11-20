@@ -57,7 +57,7 @@ const placement = {
 };
 
 const CLASSNAME = '_coral-Toast';
-
+const CORAL_NAME = 'Coral.Component.Toast';
 // An array of all possible variant
 const ALL_VARIANT_CLASSES = [];
 for (const variantValue in variant) {
@@ -241,20 +241,20 @@ class Toast extends BaseOverlay(BaseComponent(HTMLElement)) {
       }
       // Add it to the queue
       queue(this);
-      
-      requestAnimationFrame(() => {
+
+      commons.addCallbackInRequestAnimationFrameQueue(() => {
         this._reflectAttribute('open', true);
-        
+
         // If not child of document.body, we have to move it there
         this._moveToDocumentBody();
-  
-        requestAnimationFrame(() => {
+
+        commons.addCallbackInRequestAnimationFrameQueue(() => {
           // Start emptying the queue
           if (document.querySelectorAll('coral-toast[open]').length === PRIORITY_QUEUE.length) {
             unqueue();
           }
-        });
-      });
+        }, this, CORAL_NAME + ".setOpen" + ".1");
+      }, this, CORAL_NAME + ".setOpen" + ".0");
       
       return;
     }
@@ -270,7 +270,7 @@ class Toast extends BaseOverlay(BaseComponent(HTMLElement)) {
       this._handleFocus();
   
       // Use raf to wait for autoDismiss value to be set
-      requestAnimationFrame(() => {
+      commons.addCallbackInRequestAnimationFrameQueue(() => {
         // Only dismiss if value is different than 0
         if (this.autoDismiss !== 0) {
           this._dimissTimeout = window.setTimeout(() => {
@@ -279,7 +279,7 @@ class Toast extends BaseOverlay(BaseComponent(HTMLElement)) {
             }
           }, this.autoDismiss);
         }
-      });
+      }, this, CORAL_NAME + ".setOpen" + ".2");
     }
   }
   
@@ -397,7 +397,7 @@ class Toast extends BaseOverlay(BaseComponent(HTMLElement)) {
   
   _position() {
     if (this.open) {
-      requestAnimationFrame(() => {
+      commons.addCallbackInRequestAnimationFrameQueue(() => {
         if (this.placement === placement.CENTER) {
           this.style.left = `${document.body.clientWidth / 2 - this.clientWidth / 2}px`;
           this.style.right = '';
@@ -410,7 +410,7 @@ class Toast extends BaseOverlay(BaseComponent(HTMLElement)) {
           this.style.left = '';
           this.style.right = 0;
         }
-      });
+      }, this, CORAL_NAME + "._position" + ".0");
     }
   }
   

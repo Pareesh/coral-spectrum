@@ -23,6 +23,7 @@ const arrowMap = {
 };
 
 const CLASSNAME = '_coral-Tooltip';
+const CORAL_NAME = 'Coral.Component.Tooltip';
 
 const OFFSET = 5;
 
@@ -251,14 +252,14 @@ class Tooltip extends Overlay {
   /** @ignore */
   _handleFocusOut() {
     // The item that should have focus will get it on the next frame
-    window.requestAnimationFrame(() => {
+    commons.addCallbackInRequestAnimationFrameQueue(() => {
       const targetIsFocused = document.activeElement === this._getTarget();
 
       if (!targetIsFocused) {
         this._cancelShow();
         this.open = false;
       }
-    });
+    }, this, CORAL_NAME + "._handleFocusOut" + ".0");
   }
 
   /** @ignore */

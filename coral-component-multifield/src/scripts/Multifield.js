@@ -16,6 +16,7 @@ import '../../../coral-component-textfield';
 import {commons, i18n} from '../../../coral-utils';
 
 const CLASSNAME = '_coral-Multifield';
+const CORAL_NAME = 'Coral.Component.Multifield';
 const IS_DRAGGING_CLASS = 'is-dragging';
 const IS_AFTER_CLASS = 'is-after';
 const IS_BEFORE_CLASS = 'is-before';
@@ -167,11 +168,11 @@ class Multifield extends BaseComponent(HTMLElement) {
       this.items.add(document.createElement('coral-multifield-item'));
       
       // Wait for MO to render item template
-      window.requestAnimationFrame(() => {
+      commons.addCallbackInRequestAnimationFrameQueue(() => {
         this.trigger('change');
   
         this._trackEvent('click', 'add item button', event);
-      });
+      }, this, CORAL_NAME + "._onAddItemClick" + ".0");
     }
   }
   

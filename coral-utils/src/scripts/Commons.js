@@ -692,6 +692,16 @@ class Commons {
   get TABBABLE_ELEMENT_SELECTOR() {
     return this._tabbableElementsSelector;
   }
+
+  /**
+   Execute the provided callback on the next animation frame.
+
+   @param {Function} onNextFrame
+   The callback to execute.
+   */
+  addCallbackInRequestAnimationFrameQueue(callback, instance, id) {
+    updateCallbackInRequestAnimationFrameQueue(callback, instance, id);
+  }
 }
 
 /**
@@ -757,5 +767,72 @@ class Commons {
  @type {Commons}
  */
 const commons = new Commons();
+
+const updateCallbackInRequestAnimationFrameQueue = (function(){
+  var instances = [];
+  var intervalId = null;
+  const uniqueId = commons.getUID();
+  // `callbackId = CORAL_NAME + "." + method/property Name + "." + index`
+  // like for coral-base-overlay `callbackId = "Coral.Base.Overlay" + "." + "connectedCallback" + "." + 0`
+  // If there exist two or more requestAnimation callback in same object and same method increase the index by 1.
+  // Passing two different callback with same callbackId will result only in execution of last callback.
+  return function(callback, instance = window, callbackId = commons.getUID()) {
+    try{
+      if (!typeof callback === "function") {
+        return;
+      }
+
+      if (!(typeof callbackId === "string")) {
+        commons.nextFrame(callback);
+      }
+
+      instance.callbacksInRequestAnimationFrameQueue = instance.callbacksInRequestAnimationFrameQueue || {};
+      // uniqueId is added as a preventative step,
+      // in case an instance already have property `callbacksInRequestAnimationFrameQueue`
+      var queue = instance.callbacksInRequestAnimationFrameQueue[uniqueId] || {};
+      var queueMap = queue.map || new Map();
+      var queueIds = queue.ids || [];
+
+      if(!queueIds.includes(callbackId)) {
+        queueIds.push(callbackId);
+      }
+      queueMap.set(callbackId, callback);
+
+      queue.map = queueMap;
+      queue.ids = queueIds;
+      instance.callbacksInRequestAnimationFrameQueue[uniqueId] = queue;
+
+      if(!instances.includes(instance)) {
+        instances.push(instance);
+      }
+      queue = queueMap = queueIds = null;
+    }
+    catch(e) {
+      commons.nextFrame(callback.bind(instance));
+    }
+
+    if(!intervalId) {
+      intervalId = commons.nextFrame(function () {
+        var elements = instances;
+        // always reset values before execution of callbacks
+        instances = [];
+        intervalId = null;
+
+        elements.every(function(element) {
+          var map = element.callbacksInRequestAnimationFrameQueue[uniqueId].map;
+          var ids = element.callbacksInRequestAnimationFrameQueue[uniqueId].ids;
+
+          delete element.callbacksInRequestAnimationFrameQueue[uniqueId];
+
+          while(ids.length > 0) {
+            var id = ids.shift();
+            map.get(id).bind(element)();
+            map.delete(id);
+          }
+        });
+      });
+    }
+  };
+})();
 
 export default commons;

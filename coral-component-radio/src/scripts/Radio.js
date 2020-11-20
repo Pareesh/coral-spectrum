@@ -16,6 +16,7 @@ import base from '../templates/base';
 import {transform, commons, i18n} from '../../../coral-utils';
 
 const CLASSNAME = '_coral-Radio';
+const CORAL_NAME = 'Coral.Component.Radio';
 
 /**
  @class Coral.Radio
@@ -284,11 +285,11 @@ class Radio extends BaseFormField(BaseComponent(HTMLElement)) {
    */
   _onMouseDown() {
     const target = this._elements.input;
-    requestAnimationFrame(() => {
+    commons.addCallbackInRequestAnimationFrameQueue(() => {
       if (target !== document.activeElement) {
         target.focus();
       }
-    });
+    }, this, CORAL_NAME + "._onMouseDown" + ".0");
   }
   
   /**

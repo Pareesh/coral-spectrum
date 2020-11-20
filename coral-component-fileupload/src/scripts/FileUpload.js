@@ -17,6 +17,7 @@ import base from '../templates/base';
 import {transform, commons, validate} from '../../../coral-utils';
 
 const CLASSNAME = '_coral-FileUpload';
+const CORAL_NAME = 'Coral.Component.FileUpload';
 
 const XHR_EVENT_NAMES = ['loadstart', 'progress', 'load', 'error', 'loadend', 'readystatechange', 'abort', 'timeout'];
 
@@ -509,11 +510,11 @@ class FileUpload extends BaseFormField(BaseComponent(HTMLElement)) {
       // Mark the button as focused
       button.classList.add('is-focused');
 
-      window.requestAnimationFrame(() => {
+      commons.addCallbackInRequestAnimationFrameQueue(() => {
         if (input.classList.contains('focus-ring')) {
           button.classList.add('focus-ring');
         }
-      });
+      }, this, CORAL_NAME + "._onInputFocusIn" + ".0");
     }
   }
   
@@ -525,12 +526,12 @@ class FileUpload extends BaseFormField(BaseComponent(HTMLElement)) {
     button.classList.remove('focus-ring');
     
     // Wait a frame so that shifting focus backwards with screen reader doesn't create a focus trap
-    window.requestAnimationFrame(() => {
+    commons.addCallbackInRequestAnimationFrameQueue(() => {
       button.tabIndex = 0;
       // @a11y: aria-hidden is removed to prevent focus trap when navigating backwards using a screen reader's
       // virtual cursor
       button.removeAttribute('aria-hidden');
-    });
+    }, this, CORAL_NAME + "._onInputFocusOut" + ".0");
   }
   
   /** @private */
@@ -1082,10 +1083,10 @@ class FileUpload extends BaseFormField(BaseComponent(HTMLElement)) {
     this.appendChild(this._elements.input);
     
     // IE11 requires one more frame or the resize listener <object> will appear as an overlaying white box
-    window.requestAnimationFrame(() => {
+    commons.addCallbackInRequestAnimationFrameQueue(() => {
       // Handles the repositioning of the input to allow dropping files
       commons.addResizeListener(this, this._positionInputOnDropZone);
-    });
+    }, this, CORAL_NAME + ".render" + ".0");
   }
 }
 

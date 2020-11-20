@@ -15,6 +15,7 @@ import BaseTableSection from './BaseTableSection';
 import {transform} from '../../../coral-utils';
 
 const CLASSNAME = '_coral-Table-head';
+const CORAL_NAME = 'Coral.Component.TableHead';
 
 /**
  @class Coral.Table.Head
@@ -52,9 +53,9 @@ class TableHead extends BaseTableSection(BaseComponent(HTMLTableSectionElement))
     this._reflectAttribute('sticky', this._sticky);
     
     // Delay execution for better performance
-    window.requestAnimationFrame(() => {
+    commons.addCallbackInRequestAnimationFrameQueue(() => {
       this.trigger('coral-table-head:_stickychanged');
-    });
+    }, this, CORAL_NAME + ".setSticky" + ".0");
   }
   
   /** @ignore */

@@ -77,6 +77,7 @@ const placement = {
 const OFFSET = 10;
 
 const CLASSNAME = '_coral-QuickActions';
+const CORAL_NAME = 'Coral.Component.QuickActions';
 
 /**
  @class Coral.QuickActions
@@ -312,7 +313,7 @@ class QuickActions extends Overlay {
     this._openedOnce = true;
     
     // Position once we can read items layout in the next frame
-    window.requestAnimationFrame(() => {
+    commons.addCallbackInRequestAnimationFrameQueue(() => {
       if (this.open && !this._openedBefore) {
         // we iterate over all the items initializing them in the correct order
         const items = this.items.getAll();
@@ -332,7 +333,7 @@ class QuickActions extends Overlay {
       if (targetElement) {
         targetElement.classList.toggle('is-selected', this.open);
       }
-    });
+    }, this, CORAL_NAME + ".setOpen" + ".0");
   }
   
   _getButtonWidth() {
@@ -1034,7 +1035,7 @@ class QuickActions extends Overlay {
       // Return the trapFocus and returnFocus properties to their state before open.
       // Handles the keyboard launch and interaction enabled case, which implies focus trap and focus return.
       // Wait a frame as this is called before the 'open' property sync. Otherwise, returnFocus is set prematurely.
-      window.requestAnimationFrame(() => {
+      commons.addCallbackInRequestAnimationFrameQueue(() => {
         if (this._previousTrapFocus) {
           this.trapFocus = this._previousTrapFocus;
           if (this.trapFocus !== this.constructor.trapFocus.ON) {
@@ -1052,7 +1053,7 @@ class QuickActions extends Overlay {
           this.focusOnShow = this._previousFocusOnShow;
           this._previousFocusOnShow = undefined;
         }
-      });
+      }, this, CORAL_NAME + "._onOverlayClose" + ".0");
     }
     else if (event.target === this._elements.overlay) {
       // do not allow internal Overlay events to escape QuickActions

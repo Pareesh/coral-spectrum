@@ -87,6 +87,7 @@ const variant = {
 // the button's base classname
 const CLASSNAME = '_coral-Button';
 const ACTION_CLASSNAME = '_coral-ActionButton';
+const CORAL_NAME = 'Coral.Base.Button';
 
 const ALL_VARIANT_CLASSES = [
   `${CLASSNAME}--cta`,
@@ -457,11 +458,11 @@ const BaseButton = (superClass) => class extends BaseLabellable(superClass) {
     const target = event.matchedTarget;
     
     // Wait a frame or button won't receive focus in Safari.
-    window.requestAnimationFrame(() => {
+    commons.addCallbackInRequestAnimationFrameQueue(() => {
       if (target !== document.activeElement) {
         target.focus();
       }
-    });
+    }, this, CORAL_NAME + "._onMouseDown" + ".0");
   }
   
   _updateLabel(label) {

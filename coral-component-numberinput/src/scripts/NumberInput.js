@@ -19,6 +19,7 @@ import base from '../templates/base';
 import {transform, commons, i18n} from '../../../coral-utils';
 
 const CLASSNAME = '_coral-Stepper';
+const CORAL_NAME = 'Coral.Component.NumberInput';
 let clearLiveRegionTimeout;
 const LIVEREGION_TIMEOUT_DELAY = 3000;
 const MSPOINTER_TYPE_MOUSE = 0x00000004;
@@ -771,13 +772,13 @@ class NumberInput extends BaseFormField(BaseComponent(HTMLElement)) {
     
     if (value && value !== '') {
       textNode = document.createTextNode(value);
-      window.requestAnimationFrame(() => {
+      commons.addCallbackInRequestAnimationFrameQueue(() => {
         this._elements.liveregion.appendChild(textNode);
         
         clearLiveRegionTimeout = window.setTimeout(() => {
           this._clearLiveRegion();
         }, LIVEREGION_TIMEOUT_DELAY);
-      });
+      }, this, CORAL_NAME + "._updateLiveRegion" + ".0");
     }
   }
   

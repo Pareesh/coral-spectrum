@@ -18,6 +18,7 @@ var delegateEventSplitter = /^(\S+)\s*(.*)$/;
 // Enum value is referenced for speed
 var ELEMENT_NODE = Node.ELEMENT_NODE;
 
+const CORAL_NAME = "Coral.Compat.Component"
 /**
  Return the method corresponding to the method name or the function, if passed.
  
@@ -433,6 +434,7 @@ Component.prototype._queueSync = function() {
   
   if (!this._syncPending) {
     window.requestAnimationFrame(this._syncDOM);
+    commons.addCallbackInRequestAnimationFrameQueue(this._syncDOM, this, CORAL_NAME + "._queueSync" + ".0");
     this._syncPending = true;
   }
 };

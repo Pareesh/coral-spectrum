@@ -16,6 +16,7 @@ import {SelectableCollection} from '../../../coral-collection';
 import {validate, transform, commons} from '../../../coral-utils';
 
 const CLASSNAME = '_coral-Masonry';
+const CORAL_NAME = 'Coral.Component.Masonry';
 
 /**
  Enumeration for {@link Masonry} selection options.
@@ -631,14 +632,14 @@ class Masonry extends BaseComponent(HTMLElement) {
    */
   _scheduleLayout() {
     if (!this._forceDebounce && !this._layoutScheduled) {
-      window.requestAnimationFrame(() => {
+      commons.addCallbackInRequestAnimationFrameQueue(() => {
         // Skip layout if a layout was forced in between
         if (this._layoutScheduled) {
           this._doLayout();
           // Cancel potentially scheduled layout if the current layout was enforced by calling doLayout directly
           this._layoutScheduled = false;
         }
-      });
+      }, this, CORAL_NAME + "._scheduleLayout" + ".0");
       
       this._layoutScheduled = true;
     }
@@ -795,9 +796,9 @@ class Masonry extends BaseComponent(HTMLElement) {
       item.classList.add('is-beforeInserting');
   
       // Do it in the next frame so that the inserting animation is visible
-      window.requestAnimationFrame(() => {
+      commons.addCallbackInRequestAnimationFrameQueue(() => {
         this._onItemAdded(item);
-      });
+      }, this, CORAL_NAME + "._prepareItem" + ".0");
     }
   }
   
@@ -1071,11 +1072,11 @@ class Masonry extends BaseComponent(HTMLElement) {
     // This indicates that the initial items are being attached
     this._attaching = true;
     
-    window.requestAnimationFrame(() => {
+    commons.addCallbackInRequestAnimationFrameQueue(() => {
       this._attaching = false;
       // Update loaded after all items have been attached
       this._updateLoaded();
-    });
+    }, this, CORAL_NAME + ".render" + ".0");
   }
   
   /**

@@ -16,6 +16,7 @@ import {SelectableCollection} from '../../../coral-collection';
 import {transform, commons, i18n} from '../../../coral-utils';
 
 const CLASSNAME = '_coral-Table-row';
+const CORAL_NAME = 'Coral.Component.TableRow';
 
 /**
  @class Coral.Table.Row
@@ -468,7 +469,7 @@ class TableRow extends BaseComponent(HTMLTableRowElement) {
 
   /** @private */
   _setHandle(handle) {
-    requestAnimationFrame(() => {
+    commons.addCallbackInRequestAnimationFrameQueue(() => {
       // Specify handle directly on the row if none found
       if (!this.querySelector(`[${handle}]`)) {
         this.setAttribute(handle, '');
@@ -476,7 +477,7 @@ class TableRow extends BaseComponent(HTMLTableRowElement) {
       this._syncSelectHandle();
       this._syncAriaLabelledby();
       this._syncAriaSelectedState();
-    });
+    }, this, CORAL_NAME + "._setHandle" + ".0");
   }
 
   /** @private */

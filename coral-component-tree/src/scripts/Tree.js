@@ -13,9 +13,10 @@
 import {BaseComponent} from '../../../coral-base-component';
 import {SelectableCollection} from '../../../coral-collection';
 import TreeItem from './TreeItem';
-import {transform} from '../../../coral-utils';
+import {transform, commons} from '../../../coral-utils';
 
 const CLASSNAME = '_coral-TreeView';
+const CORAL_NAME = 'Coral.Component.Tree';
 
 /**
  @class Coral.Tree
@@ -524,9 +525,9 @@ class Tree extends BaseComponent(HTMLElement) {
     this.setAttribute('aria-multiselectable', this.multiple);
     
     // Enable keyboard interaction
-    requestAnimationFrame(() => {
+    commons.addCallbackInRequestAnimationFrameQueue(() => {
       this._resetFocusableItem();
-    });
+    }, this, CORAL_NAME + ".render" + ".0");
     
     // Don't trigger events once connected
     this._preventTriggeringEvents = true;

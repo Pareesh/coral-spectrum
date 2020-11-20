@@ -37,6 +37,7 @@ const variant = {
 };
 
 const CLASSNAME = '_coral-Dropdown';
+const CORAL_NAME = 'Coral.Component.Select';
 
 // used in 'auto' mode to determine if the client is on mobile.
 const IS_MOBILE_DEVICE = navigator.userAgent.match(/iPhone|iPad|iPod|Android/i) !== null;
@@ -650,10 +651,10 @@ class Select extends BaseFormField(BaseComponent(HTMLElement)) {
       }
 
       // Force overlay repositioning (remote loading)
-      requestAnimationFrame(() => {
+      commons.addCallbackInRequestAnimationFrameQueue(() => {
         this._elements.overlay._onAnimate();
         this._elements.overlay.reposition();
-      });
+      }, this, CORAL_NAME + "._showOptions" + ".0");
     }
 
     // Trigger an event

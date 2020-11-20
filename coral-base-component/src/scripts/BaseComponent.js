@@ -16,6 +16,9 @@ import {commons, Keys, keys, events, transform, validate, tracking as trackingUt
 // Used to split events by type/target
 const delegateEventSplitter = /^(\S+)\s*(.*)$/;
 
+// Used to find upper case characters
+const REG_EXP_UPPERCASE = /[A-Z]/g;
+
 /**
  Enumeration representing the tracking options.
  
@@ -239,9 +242,6 @@ const undelegateGlobalEvents = function() {
     this._keys.destroy(true);
   }
 };
-
-// Used to find upper case characters
-const REG_EXP_UPPERCASE = /[A-Z]/g;
 
 /**
  Returns the constructor namespace
@@ -801,6 +801,14 @@ const BaseComponent = (superClass) => class extends superClass {
     this._disconnected = true;
     undelegateGlobalEvents.call(this);
   }
+
+  /**
+   * Execute the provided callback in requestAnimationFrame
+   *
+   * @private
+   * @param {String} uniqueId A unique id attached to callback must be same for same callback.
+   * @param {Function} callback Function that needs to be executed in RAF.
+   */
 };
 
 export default BaseComponent;

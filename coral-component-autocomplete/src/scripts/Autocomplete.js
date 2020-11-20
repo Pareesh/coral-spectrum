@@ -26,6 +26,7 @@ import loadIndicator from '../templates/loadIndicator';
 import {transform, validate, commons, i18n} from '../../../coral-utils';
 
 const CLASSNAME = '_coral-Autocomplete';
+const CORAL_NAME = 'Coral.Component.Autocomplete';
 
 /**
  The distance, in pixels, from the bottom of the List at which we assume the user has scrolled
@@ -1012,7 +1013,7 @@ class Autocomplete extends BaseFormField(BaseComponent(HTMLElement)) {
       item = items[0];
     }
     
-    window.requestAnimationFrame(() => {
+    commons.addCallbackInRequestAnimationFrameQueue(() => {
       if (item) {
         if (currentItem) {
           currentItem.classList.remove('is-focused');
@@ -1024,7 +1025,7 @@ class Autocomplete extends BaseFormField(BaseComponent(HTMLElement)) {
       if (!selectList.querySelector('.is-focused')) {
         input.removeAttribute('aria-activedescendant');
       }
-    });
+    }, this, CORAL_NAME + "._focusNextItem" + ".0");
   }
   
   /** @private */
@@ -1048,7 +1049,7 @@ class Autocomplete extends BaseFormField(BaseComponent(HTMLElement)) {
       item = items[items.length - 1];
     }
     
-    window.requestAnimationFrame(() => {
+    commons.addCallbackInRequestAnimationFrameQueue(() => {
       if (item) {
         this._scrollItemIntoView(item);
         item.classList.add('is-focused');
@@ -1057,7 +1058,7 @@ class Autocomplete extends BaseFormField(BaseComponent(HTMLElement)) {
       if (!selectList.querySelector('.is-focused')) {
         input.removeAttribute('aria-activedescendant');
       }
-    });
+    }, this, CORAL_NAME + "._focusPreviousItem" + ".0");
   }
   
   /** @private */
@@ -1523,9 +1524,9 @@ class Autocomplete extends BaseFormField(BaseComponent(HTMLElement)) {
     
     // Focus on the input element
     // We have to wait a frame here because the item steals focus when selected
-    window.requestAnimationFrame(() => {
+    commons.addCallbackInRequestAnimationFrameQueue(() => {
       this._elements.input.focus();
-    });
+    }, this, CORAL_NAME + "._handleSelect" + ".0");
     
     // Hide the options when option is selected in all cases
     this.hideSuggestions();
@@ -1822,10 +1823,10 @@ class Autocomplete extends BaseFormField(BaseComponent(HTMLElement)) {
     this._elements.overlay.open = true;
   
     // Force overlay repositioning (e.g because of remote loading)
-    requestAnimationFrame(() => {
+    commons.addCallbackInRequestAnimationFrameQueue(() => {
       this._elements.overlay._onAnimate();
       this._elements.overlay.reposition();
-    });
+    }, this, CORAL_NAME + ".showSuggestions" + ".0");
     
     this._elements.input.setAttribute('aria-expanded', 'true');
     this._elements.trigger.setAttribute('aria-expanded', 'true');
