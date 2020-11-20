@@ -15,7 +15,7 @@ import base from '../templates/base';
 import {Overlay} from '../../../coral-component-overlay';
 import '../../../coral-component-popover';
 import PopperJS from 'popper.js';
-import {transform, validate} from '../../../coral-utils';
+import {transform, validate, commons} from '../../../coral-utils';
 
 /**
  Enumeration for {@link CoachMark} sizes.

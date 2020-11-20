@@ -769,9 +769,10 @@ class Commons {
 const commons = new Commons();
 
 const updateCallbackInRequestAnimationFrameQueue = (function(){
-  var instances = [];
-  var intervalId = null;
   const uniqueId = commons.getUID();
+  var rafQueue = new Map();
+  var intervalId = null;
+  var count = 0;
   // `callbackId = CORAL_NAME + "." + method/property Name + "." + index`
   // like for coral-base-overlay `callbackId = "Coral.Base.Overlay" + "." + "connectedCallback" + "." + 0`
   // If there exist two or more requestAnimation callback in same object and same method increase the index by 1.
@@ -783,53 +784,42 @@ const updateCallbackInRequestAnimationFrameQueue = (function(){
       }
 
       if (!(typeof callbackId === "string")) {
-        commons.nextFrame(callback);
+        commons.nextFrame(callback.bind(instance));
       }
 
-      instance.callbacksInRequestAnimationFrameQueue = instance.callbacksInRequestAnimationFrameQueue || {};
       // uniqueId is added as a preventative step,
       // in case an instance already have property `callbacksInRequestAnimationFrameQueue`
-      var queue = instance.callbacksInRequestAnimationFrameQueue[uniqueId] || {};
+      instance._callbacksInRequestAnimationFrameQueue = instance._callbacksInRequestAnimationFrameQueue || {};
+      var queue = instance._callbacksInRequestAnimationFrameQueue[uniqueId] || {};
       var queueMap = queue.map || new Map();
-      var queueIds = queue.ids || [];
-
-      if(!queueIds.includes(callbackId)) {
-        queueIds.push(callbackId);
+      if(queueMap.has(callbackId)) {
+        var pos = queueMap.get(callbackId);
+        rafQueue.set(pos, callback.bind(instance));
       }
-      queueMap.set(callbackId, callback);
-
-      queue.map = queueMap;
-      queue.ids = queueIds;
-      instance.callbacksInRequestAnimationFrameQueue[uniqueId] = queue;
-
-      if(!instances.includes(instance)) {
-        instances.push(instance);
+      else {
+        rafQueue.set(count, callback.bind(instance));
+        queueMap.set(callbackId, count);
+        instance._callbacksInRequestAnimationFrameQueue[uniqueId] = queueMap;
+        count++;
       }
-      queue = queueMap = queueIds = null;
+      queue = queueMap = null;
     }
     catch(e) {
       commons.nextFrame(callback.bind(instance));
     }
 
-    if(!intervalId) {
+    if (!intervalId) {
       intervalId = commons.nextFrame(function () {
-        var elements = instances;
+        var callbacks = rafQueue.values();
+
         // always reset values before execution of callbacks
-        instances = [];
+        rafQueue.clear();
         intervalId = null;
+        count = 0;
 
-        elements.every(function(element) {
-          var map = element.callbacksInRequestAnimationFrameQueue[uniqueId].map;
-          var ids = element.callbacksInRequestAnimationFrameQueue[uniqueId].ids;
-
-          delete element.callbacksInRequestAnimationFrameQueue[uniqueId];
-
-          while(ids.length > 0) {
-            var id = ids.shift();
-            map.get(id).bind(element)();
-            map.delete(id);
-          }
-        });
+        for(var func of callbacks) {
+          func();
+        }
       });
     }
   };

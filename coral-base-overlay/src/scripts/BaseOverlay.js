@@ -575,7 +575,7 @@ const BaseOverlay = (superClass) => class extends superClass {
       }
 
       // Don't force reflow
-      commons.addCallbackInRequestAnimationFrameQueue(() => {
+      window.requestAnimationFrame(() => {
         // Keep it silenced
         this._silenced = silenced;
 
@@ -603,9 +603,9 @@ const BaseOverlay = (superClass) => class extends superClass {
           this.style.display = '';
 
           // Do it in the next frame to make the animation happen
-          commons.addCallbackInRequestAnimationFrameQueue(() => {
+          window.requestAnimationFrame(() => {
             this.classList.add('is-open');
-          }, this, CORAL_NAME + ".setOpen" + ".1");
+          });
 
           const openComplete = () => {
             if (this.open) {
@@ -664,7 +664,7 @@ const BaseOverlay = (superClass) => class extends superClass {
             closeComplete();
           }
         }
-      }, this, CORAL_NAME + ".setOpen" + ".0");
+      });
     }
   }
 
