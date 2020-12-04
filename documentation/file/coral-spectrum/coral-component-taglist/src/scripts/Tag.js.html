@@ -648,7 +648,13 @@ class Tag extends BaseComponent(HTMLElement) {
     return typeof this._value === &apos;string&apos; ? this._value : this.textContent.replace(/\s{2,}/g, &apos; &apos;).trim();
   }
   set value(value) {
-    this._value = transform.string(value);
+    let _value = transform.string(value);
+
+    if(this._value === _value) {
+      // do nothing if value not changed
+      return;
+    }
+    this._value = _value;
     this._reflectAttribute(&apos;value&apos;, this._value);
     
     this.trigger(&apos;coral-tag:_valuechanged&apos;);

@@ -192,12 +192,12 @@
       "undocumentLines": [
         18,
         33,
-        102,
-        141,
-        172,
-        192,
-        202,
-        219
+        110,
+        149,
+        180,
+        200,
+        210,
+        227
       ]
     },
     "coral-spectrum/coral-component-accordion/src/scripts/AccordionItemContent.js": {
@@ -882,8 +882,8 @@
         71,
         96,
         131,
-        164,
-        190
+        165,
+        191
       ]
     },
     "coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js": {
@@ -1524,9 +1524,9 @@
         44,
         46,
         55,
-        81,
-        101,
-        121
+        87,
+        113,
+        139
       ]
     },
     "coral-spectrum/coral-component-radio/src/scripts/Radio.js": {
@@ -2254,12 +2254,12 @@
         125,
         161,
         201,
-        229,
-        247,
-        266,
-        285,
-        304,
-        409
+        235,
+        253,
+        272,
+        291,
+        310,
+        415
       ]
     },
     "coral-spectrum/coral-component-taglist/src/scripts/TagLabel.js": {

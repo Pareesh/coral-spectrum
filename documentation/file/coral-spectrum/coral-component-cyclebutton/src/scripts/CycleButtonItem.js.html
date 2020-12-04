@@ -476,14 +476,14 @@ class CycleButtonItem extends BaseComponent(HTMLElement) {
     return this._icon || &apos;&apos;;
   }
   set icon(value) {
-    let transformedValue = transform.string(value);
+    let _icon = transform.string(value);
 
-    if(this._icon === transformedValue) {
+    if(this._icon === _icon) {
       // do nothing if value not changed
       return;
     }
 
-    this._icon = transformedValue;
+    this._icon = _icon;
     this._reflectAttribute(&apos;icon&apos;, this._icon);
 
     this.trigger(&apos;coral-cyclebutton-item:_iconchanged&apos;);
@@ -542,15 +542,15 @@ class CycleButtonItem extends BaseComponent(HTMLElement) {
     return this._selected || false;
   }
   set selected(value) {
-    let transformedValue = transform.booleanAttr(value);
+    let _selected = transform.booleanAttr(value);
 
-    if(this._selected === transformedValue) {
+    if(this._selected === _selected) {
       // do nothing if value not changed
       return;
     }
     
-    if (!transformedValue || transformedValue &amp;&amp; !this.disabled) {
-      this._selected = transformedValue;
+    if (!_selected || _selected &amp;&amp; !this.disabled) {
+      this._selected = _selected;
       this._reflectAttribute(&apos;selected&apos;, this.disabled ? false : this._selected);
       
       this.classList.toggle(&apos;is-selected&apos;, this._selected);
@@ -576,14 +576,15 @@ class CycleButtonItem extends BaseComponent(HTMLElement) {
     return this._displayMode || displayMode.INHERIT;
   }
   set displayMode(value) {
-    let transformedValue = transform.string(value).toLowerCase();
+    let _value = transform.string(value).toLowerCase();
+    let _displayMode = validate.enumeration(displayMode)(_value) &amp;&amp; _value || displayMode.INHERIT;
 
-    if(this._displayMode === transformedValue) {
+    if(this._displayMode === _displayMode) {
       // do nothing if value not changed
       return;
     }
 
-    this._displayMode = validate.enumeration(displayMode)(transformedValue) &amp;&amp; transformedValue || displayMode.INHERIT;
+    this._displayMode = _displayMode;
     this._reflectAttribute(&apos;displaymode&apos;, this._displayMode);
 
     this.trigger(&apos;coral-cyclebutton-item:_displaymodechanged&apos;);

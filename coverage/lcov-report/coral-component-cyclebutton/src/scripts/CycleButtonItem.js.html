@@ -22,9 +22,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75.93% </span>
+                <span class="strong">76.36% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>41/54</span>
+                <span class='fraction'>42/55</span>
             </div>
         
             
@@ -43,9 +43,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75.93% </span>
+                <span class="strong">76.36% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>41/54</span>
+                <span class='fraction'>42/55</span>
             </div>
         
             
@@ -269,7 +269,8 @@
 <a name='L211'></a><a href='#L211'>211</a>
 <a name='L212'></a><a href='#L212'>212</a>
 <a name='L213'></a><a href='#L213'>213</a>
-<a name='L214'></a><a href='#L214'>214</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L214'></a><a href='#L214'>214</a>
+<a name='L215'></a><a href='#L215'>215</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -473,6 +474,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">496x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">496x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -481,7 +484,6 @@
 <span class="cline-any cline-yes">496x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">496x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
  * Copyright 2019 Adobe. All rights reserved.
  * This file is licensed to you under the Apache License, Version 2.0 (the "License");
@@ -538,14 +540,14 @@ class CycleButtonItem extends BaseComponent(HTMLElement) {
     return this._icon || '';
   }
   set icon(value) {
-    let transformedValue = transform.string(value);
+    let _icon = transform.string(value);
 &nbsp;
-    if(this._icon === transformedValue) {
+    if(this._icon === _icon) {
       // do nothing if value not changed
       return;
     }
 &nbsp;
-    this._icon = transformedValue;
+    this._icon = _icon;
     this._reflectAttribute('icon', this._icon);
 &nbsp;
     this.trigger('coral-cyclebutton-item:_iconchanged');
@@ -604,15 +606,15 @@ class CycleButtonItem extends BaseComponent(HTMLElement) {
     return this._selected || false;
   }
   set selected(value) {
-    let transformedValue = transform.booleanAttr(value);
+    let _selected = transform.booleanAttr(value);
 &nbsp;
-    if(this._selected === transformedValue) {
+    if(this._selected === _selected) {
       // do nothing if value not changed
       return;
     }
     
-    if (!transformedValue || transformedValue &amp;&amp; !this.disabled) {
-      this._selected = transformedValue;
+    if (!_selected || _selected &amp;&amp; !this.disabled) {
+      this._selected = _selected;
       this._reflectAttribute('selected', this.disabled ? false : this._selected);
       
       this.classLi<span class="fstat-no" title="function not covered" >st.t</span>oggle('is-selected', this._selected);
@@ -638,25 +640,26 @@ class CycleButtonItem extends BaseComponent(HTMLElement) {
     return this._displayMode || displayMode.INHERIT;
   }
   set displayMode(value) {
-    let transformedValue = transform.string(value).toLowerCase();
+    let _value = transform.string(value).toLowerCase();
+    let _displayMode = validate.enumeration(displayMode)(_value) &amp;&amp; _value || displayMode.INHERIT;
 &nbsp;
-    if(this._displayMode === transformedValue) {
+    if(this._displayMode === _displayMode) {
       // do nothing if value not changed
       return;
     }
 &nbsp;
-    this._displayMode = validate.enumeration(displayMode)(transformedValue) &amp;&amp; transformedValue || displayMode.INHERIT;
+    this._displayMode = _displayMode;
     this._reflectAttribute('displaymode', this._displayMode);
 &nbsp;
     this.trigger('coral-cyclebutton-item:_displaymodechanged');
   }
   
   /**
-   Inherited from {@link BaseComponent#trackingElement}.
-   */<span class="missing-if-branch" title="else path not taken" >E</span>
+   Inh<span class="missing-if-branch" title="else path not taken" >E</span>erited from {@link BaseComponent#trackingElement}.
+   */
   get trackingElement() {
-    return typeof this._trackingElement === 'undefined' ?
-      // keep spaces to only 1 max and trim. this mimics na<span class="branch-0 cbranch-no" title="branch not covered" >tive h</span>tml behaviors
+    return typeof this._trackingElement === 'undefined' ?<span class="branch-0 cbranch-no" title="branch not covered" ></span>
+      // keep spaces to only 1 max and trim. this mimics native html behaviors
       (this.content || this).textContent.replace(/\s{2,}/g, ' ').trim() || this.icon :
       this._trackingElement;
   }
@@ -684,10 +687,10 @@ class CycleButtonItem extends BaseComponent(HTMLElement) {
   
   /** @ignore */
   render() {
-    su<span class="missing-if-branch" title="if path not taken" >I</span>per.render();
-    
-    // a<span class="cstat-no" title="statement not covered" >dds the </span>role to support accessibility
-    this.setAttribute('role', 'menuitemradio');
+    super.render();
+    <span class="missing-if-branch" title="if path not taken" >I</span>
+    // adds the role to support accessibility
+    this<span class="cstat-no" title="statement not covered" >.setAttr</span>ibute('role', 'menuitemradio');
   
     // Default reflected attributes
     if (!this._displayMode) { this.displayMode = displayMode.INHERIT; }
@@ -702,7 +705,7 @@ export default CycleButtonItem;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri Dec 04 2020 06:55:12 GMT+0000 (Coordinated Universal Time)
+                at Fri Dec 04 2020 16:14:09 GMT+0000 (Coordinated Universal Time)
             </div>
         </div>
         <script src="../../../prettify.js"></script>

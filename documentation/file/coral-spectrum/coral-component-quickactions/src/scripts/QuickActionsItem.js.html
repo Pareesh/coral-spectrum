@@ -500,9 +500,15 @@ class QuickActionsItem extends BaseComponent(HTMLElement) {
     return this._href || &apos;&apos;;
   }
   set href(value) {
-    this._href = transform.string(value);
+    let _href = transform.string(value);
+
+    if(this._href === _href) {
+      // do nothing if value not changed
+      return;
+    }
+    this._href = _href;
     this._reflectAttribute(&apos;href&apos;, this._href);
-    
+
     this.trigger(&apos;coral-quickactions-item:_hrefchanged&apos;);
   }
   
@@ -520,7 +526,13 @@ class QuickActionsItem extends BaseComponent(HTMLElement) {
     return this._icon || &apos;&apos;;
   }
   set icon(value) {
-    this._icon = transform.string(value);
+    let _icon = transform.string(value);
+
+    if(this._icon === _icon) {
+      // do nothing if value not changed
+      return;
+    }
+    this._icon = _icon;
     this._reflectAttribute(&apos;icon&apos;, this._icon);
     
     this.trigger(&apos;coral-quickactions-item:_iconchanged&apos;);
@@ -539,8 +551,14 @@ class QuickActionsItem extends BaseComponent(HTMLElement) {
     return this._type || type.BUTTON;
   }
   set type(value) {
-    value = transform.string(value).toLowerCase();
-    this._type = validate.enumeration(type)(value) &amp;&amp; value || type.BUTTON;
+    let _value = transform.string(value).toLowerCase();
+    let _type = validate.enumeration(type)(_value) &amp;&amp; _value || type.BUTTON;
+
+    if(this._type === _type) {
+      // do nothing if value not changed
+      return;
+    }
+    this._type = _type;
     this._reflectAttribute(&apos;type&apos;, this._type);
     
     this.trigger(&apos;coral-quickactions-item:_typechanged&apos;);

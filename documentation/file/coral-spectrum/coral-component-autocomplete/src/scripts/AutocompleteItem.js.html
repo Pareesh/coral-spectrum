@@ -470,14 +470,14 @@ class AutocompleteItem extends BaseComponent(HTMLElement) {
       this._value;
   }
   set value(value) {
-    let transformedValue = transform.string(value);
+    let _value = transform.string(value);
 
-    if(this._value === transformedValue) {
+    if(this._value === _value) {
       // do nothing if value not changed
       return;
     }
 
-    this._value = transformedValue;
+    this._value = _value;
     this._reflectAttribute(&apos;value&apos;, this._value);
 
     this.trigger(&apos;coral-autocomplete-item:_valuechanged&apos;);
@@ -509,14 +509,14 @@ class AutocompleteItem extends BaseComponent(HTMLElement) {
     return this._selected || false;
   }
   set selected(value) {
-    let transformedValue = transform.booleanAttr(value);
+    let _selected = transform.booleanAttr(value);
 
-    if(this._selected === transformedValue) {
+    if(this._selected === _selected) {
       // do nothing if value not changed
       return;
     }
 
-    this._selected = transformedValue;
+    this._selected = _selected;
     this._reflectAttribute(&apos;selected&apos;, this._selected);
 
     this.trigger(&apos;coral-autocomplete-item:_selectedchanged&apos;);

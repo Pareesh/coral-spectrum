@@ -602,15 +602,15 @@ class Tab extends BaseLabellable(BaseComponent(HTMLElement)) {
     return this._selected || false;
   }
   set selected(value) {
-    let transformedValue = transform.booleanAttr(value);
+    let _selected = transform.booleanAttr(value);
 
-    if(this._value === transformedValue) {
+    if(this._selected === _selected) {
       // do nothing if value not changed
       return;
     }
 
-    if (!transformedValue || transformedValue &amp;&amp; !this.disabled) {
-      this._selected = transformedValue;
+    if (!_selected || _selected &amp;&amp; !this.disabled) {
+      this._selected = _selected;
       this._reflectAttribute(&apos;selected&apos;, this.disabled ? false : this._selected);
 
       this.classList.toggle(&apos;is-selected&apos;, this._selected);

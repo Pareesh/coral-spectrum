@@ -16926,7 +16926,14 @@
         return typeof this._value === 'string' ? this._value : this.textContent.replace(/\s{2,}/g, ' ').trim();
       },
       set: function set(value) {
-        this._value = transform.string(value);
+        var _value = transform.string(value);
+
+        if (this._value === _value) {
+          // do nothing if value not changed
+          return;
+        }
+
+        this._value = _value;
 
         this._reflectAttribute('value', this._value);
 
@@ -19941,14 +19948,14 @@
         return this._selected || false;
       },
       set: function set(value) {
-        var transformedValue = transform.booleanAttr(value);
+        var _selected = transform.booleanAttr(value);
 
-        if (this._selected === transformedValue) {
+        if (this._selected === _selected) {
           // do nothing if value not changed
           return;
         }
 
-        this._selected = transformedValue;
+        this._selected = _selected;
 
         this._reflectAttribute('selected', this.disabled ? false : this._selected);
 
@@ -29213,14 +29220,14 @@
         return this._selected || false;
       },
       set: function set(value) {
-        var transformedValue = transform.booleanAttr(value);
+        var _selected = transform.booleanAttr(value);
 
-        if (this._selected === transformedValue) {
+        if (this._selected === _selected) {
           // do nothing if value not changed
           return;
         }
 
-        this._selected = transformedValue;
+        this._selected = _selected;
 
         this._reflectAttribute('selected', this._selected);
 
@@ -29251,14 +29258,14 @@
         return val;
       },
       set: function set(value) {
-        var transformedValue = transform.string(value);
+        var _value = transform.string(value);
 
-        if (this._value === transformedValue) {
+        if (this._value === _value) {
           // do nothing if value not changed
           return;
         }
 
-        this._value = transformedValue;
+        this._value = _value;
 
         this._reflectAttribute('value', this._value);
 
@@ -33490,7 +33497,16 @@
       set: function set(value) {
         var _this2 = this;
 
-        this._selected = this.hasAttribute('disabled') ? false : transform.booleanAttr(value);
+        var _value = transform.booleanAttr(value);
+
+        var _selected = this.hasAttribute('disabled') ? false : _value;
+
+        if (this._selected === _selected) {
+          // do nothing if value not changed
+          return;
+        }
+
+        this._selected = _selected;
 
         this._reflectAttribute('selected', this._selected); // Read it before applying is-open which adds additional padding
 
@@ -33540,7 +33556,7 @@
 
         this._elements.button[this._disabled ? 'setAttribute' : 'removeAttribute']('disabled', '');
 
-        this.selected = this.selected;
+        this.selected = this._disabled ? false : this.selected;
       }
       /**
         The heading level for the Accordion item 
@@ -36300,14 +36316,14 @@
         return typeof this._value === 'undefined' ? this.getAttribute('value') || this.textContent.replace(/\s{2,}/g, ' ').trim() : this._value;
       },
       set: function set(value) {
-        var transformedValue = transform.string(value);
+        var _value = transform.string(value);
 
-        if (this._value === transformedValue) {
+        if (this._value === _value) {
           // do nothing if value not changed
           return;
         }
 
-        this._value = transformedValue;
+        this._value = _value;
 
         this._reflectAttribute('value', this._value);
 
@@ -36343,14 +36359,14 @@
         return this._selected || false;
       },
       set: function set(value) {
-        var transformedValue = transform.booleanAttr(value);
+        var _selected = transform.booleanAttr(value);
 
-        if (this._selected === transformedValue) {
+        if (this._selected === _selected) {
           // do nothing if value not changed
           return;
         }
 
-        this._selected = transformedValue;
+        this._selected = _selected;
 
         this._reflectAttribute('selected', this._selected);
 
@@ -52789,14 +52805,14 @@
         return this._icon || '';
       },
       set: function set(value) {
-        var transformedValue = transform.string(value);
+        var _icon = transform.string(value);
 
-        if (this._icon === transformedValue) {
+        if (this._icon === _icon) {
           // do nothing if value not changed
           return;
         }
 
-        this._icon = transformedValue;
+        this._icon = _icon;
 
         this._reflectAttribute('icon', this._icon);
 
@@ -52862,15 +52878,15 @@
         return this._selected || false;
       },
       set: function set(value) {
-        var transformedValue = transform.booleanAttr(value);
+        var _selected = transform.booleanAttr(value);
 
-        if (this._selected === transformedValue) {
+        if (this._selected === _selected) {
           // do nothing if value not changed
           return;
         }
 
-        if (!transformedValue || transformedValue && !this.disabled) {
-          this._selected = transformedValue;
+        if (!_selected || _selected && !this.disabled) {
+          this._selected = _selected;
 
           this._reflectAttribute('selected', this.disabled ? false : this._selected);
 
@@ -52898,14 +52914,16 @@
         return this._displayMode || displayMode.INHERIT;
       },
       set: function set(value) {
-        var transformedValue = transform.string(value).toLowerCase();
+        var _value = transform.string(value).toLowerCase();
 
-        if (this._displayMode === transformedValue) {
+        var _displayMode = validate.enumeration(displayMode)(_value) && _value || displayMode.INHERIT;
+
+        if (this._displayMode === _displayMode) {
           // do nothing if value not changed
           return;
         }
 
-        this._displayMode = validate.enumeration(displayMode)(transformedValue) && transformedValue || displayMode.INHERIT;
+        this._displayMode = _displayMode;
 
         this._reflectAttribute('displaymode', this._displayMode);
 
@@ -61754,14 +61772,14 @@
         return this._selected || false;
       },
       set: function set(value) {
-        var transformedValue = transform.booleanAttr(value);
+        var _selected = transform.booleanAttr(value);
 
-        if (this._selected === transformedValue) {
+        if (this._selected === _selected) {
           // do nothing if value not changed
           return;
         }
 
-        this._selected = transformedValue;
+        this._selected = _selected;
 
         this._reflectAttribute('selected', this._selected);
 
@@ -62481,7 +62499,14 @@
         return this._href || '';
       },
       set: function set(value) {
-        this._href = transform.string(value);
+        var _href = transform.string(value);
+
+        if (this._href === _href) {
+          // do nothing if value not changed
+          return;
+        }
+
+        this._href = _href;
 
         this._reflectAttribute('href', this._href);
 
@@ -62504,7 +62529,14 @@
         return this._icon || '';
       },
       set: function set(value) {
-        this._icon = transform.string(value);
+        var _icon = transform.string(value);
+
+        if (this._icon === _icon) {
+          // do nothing if value not changed
+          return;
+        }
+
+        this._icon = _icon;
 
         this._reflectAttribute('icon', this._icon);
 
@@ -62526,8 +62558,16 @@
         return this._type || type$1.BUTTON;
       },
       set: function set(value) {
-        value = transform.string(value).toLowerCase();
-        this._type = validate.enumeration(type$1)(value) && value || type$1.BUTTON;
+        var _value = transform.string(value).toLowerCase();
+
+        var _type = validate.enumeration(type$1)(_value) && _value || type$1.BUTTON;
+
+        if (this._type === _type) {
+          // do nothing if value not changed
+          return;
+        }
+
+        this._type = _type;
 
         this._reflectAttribute('type', this._type);
 
@@ -77058,15 +77098,15 @@
         return this._selected || false;
       },
       set: function set(value) {
-        var transformedValue = transform.booleanAttr(value);
+        var _selected = transform.booleanAttr(value);
 
-        if (this._value === transformedValue) {
+        if (this._selected === _selected) {
           // do nothing if value not changed
           return;
         }
 
-        if (!transformedValue || transformedValue && !this.disabled) {
-          this._selected = transformedValue;
+        if (!_selected || _selected && !this.disabled) {
+          this._selected = _selected;
 
           this._reflectAttribute('selected', this.disabled ? false : this._selected);
 

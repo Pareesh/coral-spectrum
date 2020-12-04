@@ -22,16 +22,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">90.98% </span>
+                <span class="strong">91.8% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>111/122</span>
+                <span class='fraction'>112/122</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">79.12% </span>
+                <span class="strong">80.22% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>72/91</span>
+                <span class='fraction'>73/91</span>
             </div>
         
             
@@ -43,9 +43,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">90.98% </span>
+                <span class="strong">91.8% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>111/122</span>
+                <span class='fraction'>112/122</span>
             </div>
         
             
@@ -524,15 +524,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">448x</span>
+<span class="cline-any cline-yes">446x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">448x</span>
+<span class="cline-any cline-yes">446x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">448x</span>
+<span class="cline-any cline-yes">446x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">448x</span>
+<span class="cline-any cline-yes">446x</span>
 <span class="cline-any cline-yes">144x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">144x</span>
@@ -710,7 +710,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">10020x</span>
+<span class="cline-any cline-yes">10016x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">76x</span>
@@ -747,26 +747,23 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">304x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">304x</span>
-<span class="cline-any cline-yes">290x</span>
+<span class="cline-any cline-yes">302x</span>
+<span class="cline-any cline-yes">288x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">290x</span>
+<span class="cline-any cline-yes">288x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">290x</span>
-<span class="cline-any cline-yes">290x</span>
-<span class="cline-any cline-yes">290x</span>
+<span class="cline-any cline-yes">288x</span>
+<span class="cline-any cline-yes">288x</span>
+<span class="cline-any cline-yes">288x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">290x</span>
-<span class="cline-any cline-yes">244x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">290x</span>
+<span class="cline-any cline-yes">288x</span>
+<span class="cline-any cline-yes">242x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">288x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -777,7 +774,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">466x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">482x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -976,15 +976,15 @@ class Tab extends BaseLabellable(BaseComponent(HTMLElement)) {
     return this._selected || false;
   }
   set selected(value) {
-    let transformedValue = transform.booleanAttr(value);
+    let _selected = transform.booleanAttr(value);
 &nbsp;
-    if(this._value === transformedValue) {
+    if(this._selected === _selected) {
       // do nothing if value not changed
       return;
     }
 &nbsp;
-    if (!transformedValue || transformedValue &amp;&amp; !this.disabled) {
-      this._selected = transformedValue;
+    if (!_selected || _selected &amp;&amp; !this.disabled) {
+      this._selected = _selected;
       this._reflectAttribute('selected', this.disabled ? false : this._selected);
 &nbsp;
       this.classList.toggle('is-selected', this._selected);
@@ -1114,9 +1114,9 @@ class Tab extends BaseLabellable(BaseComponent(HTMLElement)) {
   render() {
     super.render();
 &nbsp;
-    th<span class="missing-if-branch" title="if path not taken" >I</span>is.classList.add(CLASSNAME);
+    this.classList.add(CLASSNAME);
 &nbsp;
-    // a<span class="cstat-no" title="statement not covered" >dds the </span>role to support accessibility
+    // adds the role to support accessibility
     this.setAttribute('role', 'tab');
 &nbsp;
     // Generate a unique ID for the tab panel if one isn't already present
@@ -1170,7 +1170,7 @@ export default Tab;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri Dec 04 2020 06:55:12 GMT+0000 (Coordinated Universal Time)
+                at Fri Dec 04 2020 16:14:09 GMT+0000 (Coordinated Universal Time)
             </div>
         </div>
         <script src="../../../prettify.js"></script>
