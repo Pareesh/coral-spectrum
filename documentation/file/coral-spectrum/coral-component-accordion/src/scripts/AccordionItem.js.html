@@ -574,7 +574,7 @@ class AccordionItem extends BaseComponent(HTMLElement) {
     this.classList.toggle(&apos;is-disabled&apos;, this._disabled);
     this._elements.button[this._disabled ? &apos;setAttribute&apos; : &apos;removeAttribute&apos;](&apos;disabled&apos;, &apos;&apos;);
   
-    this.selected = this._disabled ? false : this.selected;
+    this.selected = this.selected;
   }
 
 

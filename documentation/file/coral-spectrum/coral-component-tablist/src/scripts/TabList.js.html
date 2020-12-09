@@ -571,7 +571,6 @@ class TabList extends BaseComponent(HTMLElement) {
       
       // we do in case the target was not yet in the DOM
       // trigger once in an animation frame
-      // avoid calling the same function twice.
       !(this._setTargetInQueue === true) &amp;&amp; window.requestAnimationFrame(() =&gt; {
         delete this._setTargetInQueue;
 
@@ -821,6 +820,7 @@ class TabList extends BaseComponent(HTMLElement) {
   }
   
   _setLine() {
+    // trigger once in an animation frame
     !(this._setLineInQueue === true) &amp;&amp; window.requestAnimationFrame(() =&gt; {
       delete this._setLineInQueue;
 

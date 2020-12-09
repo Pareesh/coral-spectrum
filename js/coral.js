@@ -11563,7 +11563,9 @@ var Coral = (function (exports) {
           // A component that is reattached should respond to global events again
           if (this._disconnected) {
             delegateGlobalEvents.call(this);
-          }
+          } // set _disconnected to false instead of undefined
+          // would ensure that connectedCallback has executed for the component
+
 
           this._disconnected = false;
 
@@ -33556,7 +33558,7 @@ var Coral = (function (exports) {
 
         this._elements.button[this._disabled ? 'setAttribute' : 'removeAttribute']('disabled', '');
 
-        this.selected = this._disabled ? false : this.selected;
+        this.selected = this.selected;
       }
       /**
         The heading level for the Accordion item 
@@ -77479,6 +77481,7 @@ var Coral = (function (exports) {
       value: function _setLine() {
         var _this3 = this;
 
+        // trigger once in an animation frame
         !(this._setLineInQueue === true) && window.requestAnimationFrame(function () {
           delete _this3._setLineInQueue;
           var selectedItem = _this3.selectedItem; // Position line under the selected item
@@ -77636,7 +77639,6 @@ var Coral = (function (exports) {
         if (value === null || typeof value === 'string' || value instanceof Node) {
           this._target = value; // we do in case the target was not yet in the DOM
           // trigger once in an animation frame
-          // avoid calling the same function twice.
 
           !(this._setTargetInQueue === true) && window.requestAnimationFrame(function () {
             delete _this4._setTargetInQueue;
