@@ -744,7 +744,7 @@ class BaseComponent extends superClass {
     // Attach Vent
     this._vent = new Vent(this);
     this._events = {};
-    
+
     // Content zone MO for virtual DOM support
     if (this._contentZones) {
       this._contentZoneObserver = new MutationObserver((mutations) =&gt; {
@@ -1162,7 +1162,27 @@ class BaseComponent extends superClass {
     this.hidden = true;
     return this;
   }
-  
+
+  /**
+   * checks whether connectedCallback needs to be executed or not ,skip if component is not in connected state
+   * or connectedCallback already executed for the component or we are ignore the connectedCallback for some reason
+   *
+   * @returns {Boolean} return true for skipped cases
+   */
+  _skipConnectedCallback() {
+    return !this.isConnected || this._disconnected === false || this._ignoreConnectedCallback === true;
+  }
+
+  /**
+   * checks whether disconnectedCallback needs to be executed or not ,skip if component is in connected state
+   * or disconnectedCallback already executed for the component or we ignore the callback for some reason
+   *
+   * @returns {Boolean} return true for skipped cases
+   */
+  _skipDisconnectedCallback() {
+    return this.isConnected || this._disconnected === true || this._ignoreConnectedCallback === true;
+  }
+
   /**
    Returns {@link BaseComponent} tracking options.
    
@@ -1188,7 +1208,7 @@ class BaseComponent extends superClass {
       &apos;trackingFeature&apos;
     ];
   }
-  
+
   /** @ignore */
   // eslint-disable-next-line no-unused-vars
   attributeChangedCallback(name, oldValue, value) {

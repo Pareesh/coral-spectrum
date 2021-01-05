@@ -11537,6 +11537,30 @@
           return this;
         }
         /**
+         * checks whether connectedCallback needs to be executed or not ,skip if component is not in connected state
+         * or connectedCallback already executed for the component or we are ignore the connectedCallback for some reason
+         *
+         * @returns {Boolean} return true for skipped cases
+         */
+
+      }, {
+        key: "_skipConnectedCallback",
+        value: function _skipConnectedCallback() {
+          return !this.isConnected || this._disconnected === false || this._ignoreConnectedCallback === true;
+        }
+        /**
+         * checks whether disconnectedCallback needs to be executed or not ,skip if component is in connected state
+         * or disconnectedCallback already executed for the component or we ignore the callback for some reason
+         *
+         * @returns {Boolean} return true for skipped cases
+         */
+
+      }, {
+        key: "_skipDisconnectedCallback",
+        value: function _skipDisconnectedCallback() {
+          return this.isConnected || this._disconnected === true || this._ignoreConnectedCallback === true;
+        }
+        /**
          Returns {@link BaseComponent} tracking options.
          
          @return {TrackingEnum}
@@ -16790,14 +16814,14 @@
     }, {
       key: "connectedCallback",
       value: function connectedCallback() {
-        // true if component connectedCallback has already been called
-        var isConnected = this._disconnected === false;
+        if (this._skipConnectedCallback()) {
+          return;
+        }
 
         _get(_getPrototypeOf(Tag.prototype), "connectedCallback", this).call(this); // Used to inform the tag list that it's added
-        // only trigger once when component is attached or reattached
 
 
-        !isConnected && this.trigger('coral-tag:_connected');
+        this.trigger('coral-tag:_connected');
       }
       /** @ignore */
 
@@ -16931,7 +16955,6 @@
         var _value = transform.string(value);
 
         if (this._value === _value) {
-          // do nothing if value not changed
           return;
         }
 
@@ -19953,7 +19976,6 @@
         var _selected = transform.booleanAttr(value);
 
         if (this._selected === _selected) {
-          // do nothing if value not changed
           return;
         }
 
@@ -24330,20 +24352,16 @@
       value: function connectedCallback() {
         var _this5 = this;
 
-        if (this._ignoreConnectedCallback) {
+        if (this._skipConnectedCallback()) {
           return;
-        } // true if component connectedCallback has already been called
-
-
-        var isConnected = this._disconnected === false;
+        }
 
         _get(_getPrototypeOf(Overlay.prototype), "connectedCallback", this).call(this); // In case it was not added to the DOM, make sure popper is initialized by setting target
 
 
         this.target = this.target; // We need an additional frame to help popper read the correct offsets
-        // trigger only once when attaching or reattaching.
 
-        !isConnected && window.requestAnimationFrame(function () {
+        window.requestAnimationFrame(function () {
           // Force repositioning
           _this5.reposition(true);
 
@@ -29225,7 +29243,6 @@
         var _selected = transform.booleanAttr(value);
 
         if (this._selected === _selected) {
-          // do nothing if value not changed
           return;
         }
 
@@ -29263,7 +29280,6 @@
         var _value = transform.string(value);
 
         if (this._value === _value) {
-          // do nothing if value not changed
           return;
         }
 
@@ -33504,7 +33520,6 @@
         var _selected = this.hasAttribute('disabled') ? false : _value;
 
         if (this._selected === _selected) {
-          // do nothing if value not changed
           return;
         }
 
@@ -36321,7 +36336,6 @@
         var _value = transform.string(value);
 
         if (this._value === _value) {
-          // do nothing if value not changed
           return;
         }
 
@@ -36364,7 +36378,6 @@
         var _selected = transform.booleanAttr(value);
 
         if (this._selected === _selected) {
-          // do nothing if value not changed
           return;
         }
 
@@ -52810,7 +52823,6 @@
         var _icon = transform.string(value);
 
         if (this._icon === _icon) {
-          // do nothing if value not changed
           return;
         }
 
@@ -52883,7 +52895,6 @@
         var _selected = transform.booleanAttr(value);
 
         if (this._selected === _selected) {
-          // do nothing if value not changed
           return;
         }
 
@@ -52921,7 +52932,6 @@
         var _displayMode = validate.enumeration(displayMode)(_value) && _value || displayMode.INHERIT;
 
         if (this._displayMode === _displayMode) {
-          // do nothing if value not changed
           return;
         }
 
@@ -58223,18 +58233,14 @@
     }, {
       key: "connectedCallback",
       value: function connectedCallback() {
-        if (!this.isConnected) {
+        if (this._skipConnectedCallback()) {
           return;
-        } // true if component connectedCallback has already been called
-
-
-        var isConnected = this._disconnected === false;
+        }
 
         _get(_getPrototypeOf(MasonryItem.prototype), "connectedCallback", this).call(this); // Inform masonry immediately
-        // only trigger once while connecting
 
 
-        !isConnected && this.trigger('coral-masonry-item:_connected');
+        this.trigger('coral-masonry-item:_connected');
       }
       /** @ignore */
 
@@ -61777,7 +61783,6 @@
         var _selected = transform.booleanAttr(value);
 
         if (this._selected === _selected) {
-          // do nothing if value not changed
           return;
         }
 
@@ -62504,7 +62509,6 @@
         var _href = transform.string(value);
 
         if (this._href === _href) {
-          // do nothing if value not changed
           return;
         }
 
@@ -62534,7 +62538,6 @@
         var _icon = transform.string(value);
 
         if (this._icon === _icon) {
-          // do nothing if value not changed
           return;
         }
 
@@ -62565,7 +62568,6 @@
         var _type = validate.enumeration(type$1)(_value) && _value || type$1.BUTTON;
 
         if (this._type === _type) {
-          // do nothing if value not changed
           return;
         }
 
@@ -77103,7 +77105,6 @@
         var _selected = transform.booleanAttr(value);
 
         if (this._selected === _selected) {
-          // do nothing if value not changed
           return;
         }
 

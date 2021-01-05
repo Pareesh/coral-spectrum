@@ -1,7 +1,7 @@
 {
-  "coverage": "64.81%",
-  "expectCount": 3663,
-  "actualCount": 2374,
+  "coverage": "64.82%",
+  "expectCount": 3665,
+  "actualCount": 2376,
   "files": {
     "coral-spectrum/coral-base-button/src/scripts/BaseButton.js": {
       "expectCount": 6,
@@ -15,8 +15,8 @@
       ]
     },
     "coral-spectrum/coral-base-component/src/scripts/BaseComponent.js": {
-      "expectCount": 47,
-      "actualCount": 28,
+      "expectCount": 49,
+      "actualCount": 30,
       "undocumentLines": [
         17,
         244,
@@ -34,9 +34,9 @@
         490,
         493,
         675,
-        753,
-        788,
-        797
+        773,
+        808,
+        817
       ]
     },
     "coral-spectrum/coral-base-fieldgroup/src/scripts/BaseFieldGroup.js": {
@@ -192,12 +192,12 @@
       "undocumentLines": [
         18,
         33,
-        110,
-        149,
-        180,
-        200,
-        210,
-        227
+        109,
+        148,
+        179,
+        199,
+        209,
+        226
       ]
     },
     "coral-spectrum/coral-component-accordion/src/scripts/AccordionItemContent.js": {
@@ -376,10 +376,10 @@
       "actualCount": 8,
       "undocumentLines": [
         28,
-        58,
-        65,
-        97,
-        115
+        57,
+        64,
+        95,
+        113
       ]
     },
     "coral-spectrum/coral-component-banner/src/scripts/Banner.js": {
@@ -878,12 +878,12 @@
       "expectCount": 16,
       "actualCount": 10,
       "undocumentLines": [
-        64,
-        71,
-        96,
-        131,
-        165,
-        191
+        63,
+        70,
+        95,
+        129,
+        162,
+        188
       ]
     },
     "coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js": {
@@ -1152,9 +1152,9 @@
         45,
         63,
         141,
-        169,
-        196,
-        205
+        168,
+        195,
+        204
       ]
     },
     "coral-spectrum/coral-component-list/src/scripts/SelectListItemContent.js": {
@@ -1376,8 +1376,8 @@
       "undocumentLines": [
         16,
         31,
-        76,
-        85
+        75,
+        84
       ]
     },
     "coral-spectrum/coral-component-panelstack/src/scripts/PanelContent.js": {
@@ -1524,9 +1524,9 @@
         44,
         46,
         55,
-        87,
-        113,
-        139
+        86,
+        111,
+        136
       ]
     },
     "coral-spectrum/coral-component-radio/src/scripts/Radio.js": {
@@ -1605,8 +1605,8 @@
         28,
         37,
         63,
-        88,
-        123
+        87,
+        121
       ]
     },
     "coral-spectrum/coral-component-shell/src/scripts/Shell.js": {
@@ -2192,11 +2192,11 @@
         42,
         130,
         156,
-        191,
-        219,
-        248,
-        288,
-        300
+        190,
+        218,
+        247,
+        287,
+        299
       ]
     },
     "coral-spectrum/coral-component-tablist/src/scripts/TabLabel.js": {
@@ -2254,12 +2254,12 @@
         125,
         161,
         201,
-        235,
-        253,
-        272,
-        291,
-        310,
-        415
+        234,
+        252,
+        271,
+        290,
+        309,
+        414
       ]
     },
     "coral-spectrum/coral-component-taglist/src/scripts/TagLabel.js": {

@@ -273,10 +273,7 @@
 <a name='L215'></a><a href='#L215'>215</a>
 <a name='L216'></a><a href='#L216'>216</a>
 <a name='L217'></a><a href='#L217'>217</a>
-<a name='L218'></a><a href='#L218'>218</a>
-<a name='L219'></a><a href='#L219'>219</a>
-<a name='L220'></a><a href='#L220'>220</a>
-<a name='L221'></a><a href='#L221'>221</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L218'></a><a href='#L218'>218</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -438,13 +435,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">490x</span>
+<span class="cline-any cline-yes">482x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -474,7 +470,6 @@
 <span class="cline-any cline-yes">302x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">302x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -483,7 +478,6 @@
 <span class="cline-any cline-yes">302x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">302x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -579,7 +573,6 @@ class QuickActionsItem extends BaseComponent(HTMLElement) {
     let _href = transform.string(value);
 &nbsp;
     if(this._href === _href) {
-      // do nothing if value not changed
       return;
     }
     this._href = _href;
@@ -605,7 +598,6 @@ class QuickActionsItem extends BaseComponent(HTMLElement) {
     let _icon = transform.string(value);
 &nbsp;
     if(this._icon === _icon) {
-      // do nothing if value not changed
       return;
     }
     this._icon = _icon;
@@ -631,17 +623,16 @@ class QuickActionsItem extends BaseComponent(HTMLElement) {
     let _type = validate.enumeration(type)(_value) &amp;&amp; _value || type.BUTTON;
 &nbsp;
     if(this._type === _type) {
-      // do nothing if value not changed
       return;
     }
     this._type = _type;
     this._reflectAttribute('type', this._type);
     
     this.trigger('coral-quickactions-item:_typechanged');
-  }<span class="missing-if-branch" title="else path not taken" >E</span>
+  }
   
   /**
-   Inherited from {@link BaseComponent#trackingElement}.
+   Inh<span class="missing-if-branch" title="else path not taken" >E</span>erited from {@link BaseComponent#trackingElement}.
    */
   get trackingElement() {
     return typeof this._trackingElement === 'undefined' ?
@@ -663,11 +654,11 @@ class QuickActionsItem extends BaseComponent(HTMLElement) {
   _onMutation() {
     this.trigger('coral-quickactions-item:_contentchanged');
   }
-  <span class="missing-if-branch" title="if path not taken" >I</span>
+  
   /**
-   Retur<span class="cstat-no" title="statement not covered" >ns {@lin</span>k QuickActionsItem} type options.
-   
-   @return {QuickActionsItemTypeEnum}
+   Returns {@link QuickActionsItem} type options.
+   <span class="missing-if-branch" title="if path not taken" >I</span>
+   @retu<span class="cstat-no" title="statement not covered" >rn {Quic</span>kActionsItemTypeEnum}
    */
   static get type() { return type; }
   
@@ -693,10 +684,10 @@ class QuickActionsItem extends BaseComponent(HTMLElement) {
   /**
    Triggered when the content of a {@link QuickActionsItem} was changed.
    
-   @ty<span class="missing-if-branch" title="if path not taken" >I</span>pedef {CustomEvent} coral-quickactions-item:_contentchanged
+   @typedef {CustomEvent} coral-quickactions-item:_contentchanged
    
-   @priv<span class="cstat-no" title="statement not covered" >ate</span>
-   */
+   @pr<span class="missing-if-branch" title="if path not taken" >I</span>ivate
+   */<span class="cstat-no" title="statement not covered" ></span>
   
   /**
    Triggered when the href of a {@link QuickActionsItem} was changed.
@@ -723,7 +714,7 @@ export default QuickActionsItem;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Wed Dec 09 2020 11:06:21 GMT+0000 (Coordinated Universal Time)
+                at Tue Jan 05 2021 12:17:01 GMT+0000 (Coordinated Universal Time)
             </div>
         </div>
         <script src="../../../prettify.js"></script>
