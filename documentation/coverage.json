@@ -1,7 +1,7 @@
 {
-  "coverage": "64.82%",
-  "expectCount": 3665,
-  "actualCount": 2376,
+  "coverage": "64.81%",
+  "expectCount": 3664,
+  "actualCount": 2375,
   "files": {
     "coral-spectrum/coral-base-button/src/scripts/BaseButton.js": {
       "expectCount": 6,
@@ -15,8 +15,8 @@
       ]
     },
     "coral-spectrum/coral-base-component/src/scripts/BaseComponent.js": {
-      "expectCount": 49,
-      "actualCount": 30,
+      "expectCount": 48,
+      "actualCount": 29,
       "undocumentLines": [
         17,
         244,
@@ -34,9 +34,9 @@
         490,
         493,
         675,
-        773,
-        808,
-        817
+        763,
+        798,
+        807
       ]
     },
     "coral-spectrum/coral-base-fieldgroup/src/scripts/BaseFieldGroup.js": {
