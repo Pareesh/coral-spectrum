@@ -396,19 +396,9 @@ class TabList extends BaseComponent(HTMLElement) {
   }
 
   _setLine() {
-<<<<<<< HEAD
-    // Debounce
-    if (this._timeout !== null) {
-      window.clearTimeout(this._timeout);
-    }
-
-    this._timeout = window.setTimeout(() => {
-      this._timeout = null;
-=======
     // trigger once in an animation frame
     !(this._setLineInQueue === true) && window.requestAnimationFrame(() => {
       delete this._setLineInQueue;
->>>>>>> df381a6cc... fix(GRANITE-32187): Massive performance drop in complex dialog openings with coral spectrum
 
       const selectedItem = this.selectedItem;
 
@@ -438,19 +428,11 @@ class TabList extends BaseComponent(HTMLElement) {
           this._elements.line.style.height = `${height}px`;
           this._elements.line.style.transform = `translate(0, ${top}px)`;
         }
-<<<<<<< HEAD
-
-=======
->>>>>>> df381a6cc... fix(GRANITE-32187): Massive performance drop in complex dialog openings with coral spectrum
         this._elements.line.hidden = false;
       } else {
         // Hide line if no selected item
         this._elements.line.hidden = true;
       }
-<<<<<<< HEAD
-
-=======
->>>>>>> df381a6cc... fix(GRANITE-32187): Massive performance drop in complex dialog openings with coral spectrum
       this._previousOrientation = this.orientation;
     });
 
