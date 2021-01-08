@@ -446,7 +446,7 @@ class AutocompleteItem extends BaseComponent(HTMLElement) {
   /** @ignore */
   constructor() {
     super();
-  
+
     this._observer = new MutationObserver(this._handleMutation.bind(this));
     this._observer.observe(this, {
       characterData: true,
@@ -454,10 +454,10 @@ class AutocompleteItem extends BaseComponent(HTMLElement) {
       subtree: true
     });
   }
-  
+
   /**
    Value of the item. &lt;code&gt;textContent&lt;/code&gt; is used if not provided.
-   
+
    @type {String}
    @default &quot;&quot;
    @htmlattribute value
@@ -469,6 +469,7 @@ class AutocompleteItem extends BaseComponent(HTMLElement) {
       this.getAttribute(&apos;value&apos;) || this.textContent.replace(/\s{2,}/g, &apos; &apos;).trim() :
       this._value;
   }
+
   set value(value) {
     let _value = transform.string(value);
 
@@ -481,11 +482,12 @@ class AutocompleteItem extends BaseComponent(HTMLElement) {
 
     this.trigger(&apos;coral-autocomplete-item:_valuechanged&apos;);
   }
-  
+
   // @compat
   get content() {
     return this;
   }
+
   set content(value) {
     // Support configs
     if (typeof value === &apos;object&apos;) {
@@ -495,10 +497,10 @@ class AutocompleteItem extends BaseComponent(HTMLElement) {
       }
     }
   }
-  
+
   /**
    Whether this item is selected.
-   
+
    @type {Boolean}
    @default false
    @htmlattribute selected
@@ -507,6 +509,7 @@ class AutocompleteItem extends BaseComponent(HTMLElement) {
   get selected() {
     return this._selected || false;
   }
+
   set selected(value) {
     let _selected = transform.booleanAttr(value);
 
@@ -519,10 +522,10 @@ class AutocompleteItem extends BaseComponent(HTMLElement) {
 
     this.trigger(&apos;coral-autocomplete-item:_selectedchanged&apos;);
   }
-  
+
   /**
    Whether this item is disabled.
-   
+
    @type {Boolean}
    @default false
    @htmlattribute disabled
@@ -531,18 +534,19 @@ class AutocompleteItem extends BaseComponent(HTMLElement) {
   get disabled() {
     return this._disabled || false;
   }
+
   set disabled(value) {
     this._disabled = transform.booleanAttr(value);
     this._reflectAttribute(&apos;disabled&apos;, this._disabled);
   }
-  
+
   /** @private */
   _handleMutation() {
     this.trigger(&apos;coral-autocomplete-item:_contentchanged&apos;, {
       content: this.textContent
     });
   }
-  
+
   /** @ignore */
   static get observedAttributes() {
     return super.observedAttributes.concat([&apos;selected&apos;, &apos;disabled&apos;, &apos;value&apos;]);

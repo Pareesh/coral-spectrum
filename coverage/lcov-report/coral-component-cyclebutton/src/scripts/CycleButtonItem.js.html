@@ -267,7 +267,17 @@
 <a name='L209'></a><a href='#L209'>209</a>
 <a name='L210'></a><a href='#L210'>210</a>
 <a name='L211'></a><a href='#L211'>211</a>
-<a name='L212'></a><a href='#L212'>212</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L212'></a><a href='#L212'>212</a>
+<a name='L213'></a><a href='#L213'>213</a>
+<a name='L214'></a><a href='#L214'>214</a>
+<a name='L215'></a><a href='#L215'>215</a>
+<a name='L216'></a><a href='#L216'>216</a>
+<a name='L217'></a><a href='#L217'>217</a>
+<a name='L218'></a><a href='#L218'>218</a>
+<a name='L219'></a><a href='#L219'>219</a>
+<a name='L220'></a><a href='#L220'>220</a>
+<a name='L221'></a><a href='#L221'>221</a>
+<a name='L222'></a><a href='#L222'>222</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -354,7 +364,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1088x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -382,7 +391,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -430,21 +438,20 @@
 <span class="cline-any cline-yes">626x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">254x</span>
+<span class="cline-any cline-yes">253x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">254x</span>
-<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-yes">253x</span>
+<span class="cline-any cline-yes">17x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">236x</span>
-<span class="cline-any cline-yes">236x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">236x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">236x</span>
 <span class="cline-any cline-yes">236x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">236x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">236x</span>
+<span class="cline-any cline-yes">236x</span>
+<span class="cline-any cline-yes">236x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -478,6 +485,19 @@
 <span class="cline-any cline-yes">496x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">496x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">170x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
  * Copyright 2019 Adobe. All rights reserved.
  * This file is licensed to you under the Apache License, Version 2.0 (the "License");
@@ -495,9 +515,9 @@ import {commons, transform, validate} from '../../../coral-utils';
 &nbsp;
 /**
  Enum for {CycleButtonItem} display options.
- 
+&nbsp;
  @typedef {Object} CycleButtonItemDisplayModeEnum
- 
+&nbsp;
  @property {String} ICON
  Icon display mode.
  @property {String} TEXT
@@ -524,7 +544,7 @@ const displayMode = {
 class CycleButtonItem extends BaseComponent(HTMLElement) {
   /**
    The Item's icon. See {@link Coral.Icon} for valid icon names.
-   
+&nbsp;
    @type {String}
    @default ""
    @htmlattribute icon
@@ -533,6 +553,7 @@ class CycleButtonItem extends BaseComponent(HTMLElement) {
   get icon() {
     return this._icon || '';
   }
+&nbsp;
   set icon(value) {
     let _icon = transform.string(value);
 &nbsp;
@@ -545,11 +566,12 @@ class CycleButtonItem extends BaseComponent(HTMLElement) {
 &nbsp;
     this.trigger('coral-cyclebutton-item:_iconchanged');
   }
-  
+&nbsp;
   // @compat
   get content() {
     return this;
   }
+&nbsp;
   set content(value) {
     // Support configs
     if (typeof value === 'object') {
@@ -559,78 +581,81 @@ class CycleButtonItem extends BaseComponent(HTMLElement) {
       }
     }
   }
-  
+&nbsp;
   /**
    Whether the Item is disabled. When set to true, this will prevent every user interacting with it.
-   
+&nbsp;
    @type {Boolean}
    @default false
    @htmlattribute disabled
    @htmlattributereflected
    */
-  get disabled() {
-    return this._disabled || false;
+  get <span class="missing-if-branch" title="if path not taken" >I</span>disabled() {
+    retu<span class="cstat-no" title="statement not covered" >rn this.</span>_disabled || false;
   }
-  set <span class="missing-if-branch" title="if path not taken" >I</span>disabled(value) {
-    this<span class="cstat-no" title="statement not covered" >._disabl</span>ed = transform.booleanAttr(value);
+&nbsp;
+  set disabled(value) {
+    this._disabled = transform.booleanAttr(value);
     this._reflectAttribute('disabled', this._disabled);
-    
+&nbsp;
     this.classList.toggle('is-disabled', this.disabled);
     this[this._disabled ? 'setAttribute' : 'removeAttribute']('aria-disabled', this._disabled);
-    
+&nbsp;
     if (this._disabled &amp;&amp; this.selected) {
       this.selected = false;
     }
-    
+&nbsp;
     if (!this._disabled &amp;&amp; !this.selected) {
-      // We inform the parent to verify if this item should be selected because it's the only one left
+      // We inform<span class="fstat-no" title="function not covered" > the</span> parent to verify if this item should be selected because it's the only one left
       this.trigger('coral-cyclebutton-item:_validateselection');
-    }
-  }
-  <span class="fstat-no" title="function not covered" ></span>
-  /**
-   Whe<span class="cstat-no" title="statement not covered" >ther the Item is selected.</span>
-   @type<span class="cstat-no" title="statement not covered" > {Boolean}</span>
+    }<span class="cstat-no" title="statement not covered" ></span>
+  }<span class="cstat-no" title="statement not covered" ></span>
+&nbsp;
+  /**<span class="cstat-no" title="statement not covered" ></span>
+   Whether the Item is selected.
+   @type {Boolean}
    @default false
-   @htmlat<span class="cstat-no" title="statement not covered" >tribute selected</span>
+   @htmlattribute selected
    @htmlattributereflected
    */
   get selected() {
     return this._selected || false;
   }
+&nbsp;
   set selected(value) {
     let _selected = transform.booleanAttr(value);
 &nbsp;
     if(this._selected === _selected) {
       return;
     }
-    
-    if (!_selected || _selected &amp;&amp; !this.disabled) {
+    <span class="fstat-no" title="function not covered" ></span>
+    if<span class="cstat-no" title="statement not covered" > (!_selected || _selected &amp;&amp; !this.disabled) {</span>
       this._selected = _selected;
-      this._reflectAttribute('selected', this.disabled ? false : this._selected);
-      
-      this.classList.toggle('is-selected', this._selected);
-      this.setAttr<span class="fstat-no" title="function not covered" >ibut</span>e('aria-checked', this._selected);
-      <span class="cstat-no" title="statement not covered" ></span>
-      this.trigger('coral-cyclebutton-item:_selectedchanged');
+<span class="cstat-no" title="statement not covered" >      this._reflectAttribute('selected', this.disabled ? f</span>alse : this._selected);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      this.classList.toggle('is-selected', this._selected);</span>
+<span class="cstat-no" title="statement not covered" >      this.setAttribute('aria-checked', this._selected);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      this.trigger('coral-cyclebutton-item:_selectedchanged');</span>
     }<span class="cstat-no" title="statement not covered" ></span>
   }
-  <span class="cstat-no" title="statement not covered" ></span>
+&nbsp;
   /**<span class="cstat-no" title="statement not covered" ></span>
    The displayMode to be used when the particular item is selected. When this value is set to &lt;code&gt;inherit&lt;/code&gt;
-   it <span class="cstat-no" title="statement not covered" >will defer to the component level displayMode. If the selected item does not have the necessary icon or text</span>
-   infor<span class="cstat-no" title="statement not covered" >mation, then fallback t</span>o show whichever is available. The appearance of collapsed items in the popover are
+   it wi<span class="cstat-no" title="statement not covered" >ll defer to the component level displayMode. If the selecte</span>d item does not have the necessary icon or text
+   information, then fallback to show whichever is available. The appearance of collapsed items in the popover are
    not affected by this property.
    See {@link CycleButtonItemDisplayModeEnum}.
-   <span class="cstat-no" title="statement not covered" ></span>
+&nbsp;
    @type {String}
-   @defa<span class="cstat-no" title="statement not covered" >ult CycleButtonItemDisplayModeEnum.INHERIT</span>
+   @default CycleButtonItemDisplayModeEnum.INHERIT
    @htmlattribute displaymode
    @htmlattributereflected
    */
   get displayMode() {
     return this._displayMode || displayMode.INHERIT;
   }
+&nbsp;
   set displayMode(value) {
     let _value = transform.string(value).toLowerCase();
     let _displayMode = validate.enumeration(displayMode)(_value) &amp;&amp; _value || displayMode.INHERIT;
@@ -640,52 +665,57 @@ class CycleButtonItem extends BaseComponent(HTMLElement) {
     }
 &nbsp;
     this._displayMode = _displayMode;
-    this._reflectAttribute('displaymode', this._displayMode);
+    th<span class="missing-if-branch" title="else path not taken" >E</span>is._reflectAttribute('displaymode', this._displayMode);
 &nbsp;
     this.trigger('coral-cyclebutton-item:_displaymodechanged');
-  }
-  
+  }<span class="branch-0 cbranch-no" title="branch not covered" ></span>
+&nbsp;
   /**
    Inherited from {@link BaseComponent#trackingElement}.
-   */<span class="missing-if-branch" title="else path not taken" >E</span>
+   */
   get trackingElement() {
     return typeof this._trackingElement === 'undefined' ?
-      // keep spaces to only 1 max and trim. this mimics na<span class="branch-0 cbranch-no" title="branch not covered" >tive h</span>tml behaviors
+      // keep spaces to only 1 max and trim. this mimics native html behaviors
       (this.content || this).textContent.replace(/\s{2,}/g, ' ').trim() || this.icon :
       this._trackingElement;
   }
+&nbsp;
   set trackingElement(value) {
     super.trackingElement = value;
   }
-  
+&nbsp;
   /**
    Returns {@link CycleButtonItem} display options.
-   
+&nbsp;
    @return {CycleButtonItemDisplayModeEnum}
    */
-  static get displayMode() { return displayMode; }
-  
+  static get displayMode() {
+    return displayMode;
+  }
+&nbsp;
   static get _attributePropertyMap() {
     return commons.extend(super._attributePropertyMap, {
       displaymode: 'displayMode'
     });
-  }
-  
+  }<span class="missing-if-branch" title="if path not taken" >I</span>
+<span class="cstat-no" title="statement not covered" ></span>
   /** @ignore */
   static get observedAttributes() {
     return super.observedAttributes.concat(['selected', 'disabled', 'icon', 'displaymode']);
   }
-  
+&nbsp;
   /** @ignore */
   render() {
     super.render();
-    
-    //<span class="missing-if-branch" title="if path not taken" >I</span> adds the role to support accessibility
-    this<span class="cstat-no" title="statement not covered" >.setAttr</span>ibute('role', 'menuitemradio');
-  
+&nbsp;
+    // adds the role to support accessibility
+    this.setAttribute('role', 'menuitemradio');
+&nbsp;
     // Default reflected attributes
-    if (!this._displayMode) { this.displayMode = displayMode.INHERIT; }
-  }
+    if (!this._displayMode) {
+      this.displayMode = displayMode.INHERIT;
+    }
+  }<span class="branch-1 cbranch-no" title="branch not covered" ></span>
 }
 &nbsp;
 export default CycleButtonItem;
@@ -696,7 +726,7 @@ export default CycleButtonItem;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Wed Jan 06 2021 12:21:01 GMT+0000 (Coordinated Universal Time)
+                at Fri Jan 08 2021 06:45:54 GMT+0000 (Coordinated Universal Time)
             </div>
         </div>
         <script src="../../../prettify.js"></script>

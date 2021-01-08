@@ -186,7 +186,11 @@
 <a name='L128'></a><a href='#L128'>128</a>
 <a name='L129'></a><a href='#L129'>129</a>
 <a name='L130'></a><a href='#L130'>130</a>
-<a name='L131'></a><a href='#L131'>131</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L131'></a><a href='#L131'>131</a>
+<a name='L132'></a><a href='#L132'>132</a>
+<a name='L133'></a><a href='#L133'>133</a>
+<a name='L134'></a><a href='#L134'>134</a>
+<a name='L135'></a><a href='#L135'>135</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -237,7 +241,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">884x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -304,7 +307,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -316,7 +318,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">252x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">252x</span></td><td class="text"><pre class="prettyprint lang-js">/**
+<span class="cline-any cline-yes">252x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">252x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
  * Copyright 2019 Adobe. All rights reserved.
  * This file is licensed to you under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License. You may obtain a copy
@@ -342,7 +350,7 @@ class AutocompleteItem extends BaseComponent(HTMLElement) {
   /** @ignore */
   constructor() {
     super();
-  
+&nbsp;
     this._observer = new MutationObserver(this._handleMutation.bind(this));
     this._observer.observe(this, {
       characterData: true,
@@ -350,10 +358,10 @@ class AutocompleteItem extends BaseComponent(HTMLElement) {
       subtree: true
     });
   }
-  
+&nbsp;
   /**
    Value of the item. &lt;code&gt;textContent&lt;/code&gt; is used if not provided.
-   
+&nbsp;
    @type {String}
    @default ""
    @htmlattribute value
@@ -365,6 +373,7 @@ class AutocompleteItem extends BaseComponent(HTMLElement) {
       this.getAttribute('value') || this.textContent.replace(/\s{2,}/g, ' ').trim() :
       this._value;
   }
+&nbsp;
   set value(value) {
     let _value = transform.string(value);
 &nbsp;
@@ -377,11 +386,12 @@ class AutocompleteItem extends BaseComponent(HTMLElement) {
 &nbsp;
     this.trigger('coral-autocomplete-item:_valuechanged');
   }
-  
+&nbsp;
   // @compat
   get content() {
     return this;
   }
+&nbsp;
   set content(value) {
     // Support configs
     if (typeof value === 'object') {
@@ -391,18 +401,19 @@ class AutocompleteItem extends BaseComponent(HTMLElement) {
       }
     }
   }
-  
+&nbsp;
   /**
    Whether this item is selected.
-   
-   @type {Boolean}
-   @default false
+&nbsp;
+   @ty<span class="missing-if-branch" title="if path not taken" >I</span>pe {Boolean}
+   @defa<span class="cstat-no" title="statement not covered" >ult fals</span>e
    @htmlattribute selected
-   @ht<span class="missing-if-branch" title="if path not taken" >I</span>mlattributereflected
-   */<span class="cstat-no" title="statement not covered" ></span>
+   @htmlattributereflected
+   */
   get selected() {
     return this._selected || false;
   }
+&nbsp;
   set selected(value) {
     let _selected = transform.booleanAttr(value);
 &nbsp;
@@ -412,13 +423,13 @@ class AutocompleteItem extends BaseComponent(HTMLElement) {
 &nbsp;
     this._selected = _selected;
     this._reflectAttribute('selected', this._selected);
-&nbsp;
+<span class="missing-if-branch" title="else path not taken" >E</span>
     this.trigger('coral-autocomplete-item:_selectedchanged');
   }
-  
-  /**<span class="missing-if-branch" title="else path not taken" >E</span>
+&nbsp;
+  /**
    Whether this item is disabled.
-   
+&nbsp;
    @type {Boolean}
    @default false
    @htmlattribute disabled
@@ -427,18 +438,19 @@ class AutocompleteItem extends BaseComponent(HTMLElement) {
   get disabled() {
     return this._disabled || false;
   }
+&nbsp;
   set disabled(value) {
     this._disabled = transform.booleanAttr(value);
     this._reflectAttribute('disabled', this._disabled);
   }
-  
+&nbsp;
   /** @private */
   _handleMutation() {
     this.trigger('coral-autocomplete-item:_contentchanged', {
       content: this.textContent
     });
   }
-  
+&nbsp;
   /** @ignore */
   static get observedAttributes() {
     return super.observedAttributes.concat(['selected', 'disabled', 'value']);
@@ -453,7 +465,7 @@ export default AutocompleteItem;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Wed Jan 06 2021 12:21:01 GMT+0000 (Coordinated Universal Time)
+                at Fri Jan 08 2021 06:45:54 GMT+0000 (Coordinated Universal Time)
             </div>
         </div>
         <script src="../../../prettify.js"></script>

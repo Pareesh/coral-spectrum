@@ -322,7 +322,13 @@
 <a name='L264'></a><a href='#L264'>264</a>
 <a name='L265'></a><a href='#L265'>265</a>
 <a name='L266'></a><a href='#L266'>266</a>
-<a name='L267'></a><a href='#L267'>267</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L267'></a><a href='#L267'>267</a>
+<a name='L268'></a><a href='#L268'>268</a>
+<a name='L269'></a><a href='#L269'>269</a>
+<a name='L270'></a><a href='#L270'>270</a>
+<a name='L271'></a><a href='#L271'>271</a>
+<a name='L272'></a><a href='#L272'>272</a>
+<a name='L273'></a><a href='#L273'>273</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -375,7 +381,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">700x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -458,7 +463,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -473,7 +477,6 @@
 <span class="cline-any cline-yes">682x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">682x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -588,6 +591,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">682x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
  * Copyright 2019 Adobe. All rights reserved.
  * This file is licensed to you under the Apache License, Version 2.0 (the "License");
@@ -618,68 +630,70 @@ class AccordionItem extends BaseComponent(HTMLElement) {
   /** @ignore */
   constructor() {
     super();
-    
+&nbsp;
     // Prepare templates
     this._elements = {
       // Create or fetch the content zones
       label: this.querySelector('coral-accordion-item-label') || document.createElement('coral-accordion-item-label'),
       content: this.querySelector('coral-accordion-item-content') || document.createElement('coral-accordion-item-content')
     };
-  
+&nbsp;
     base.call(this._elements, {Icon});
   }
-  
+&nbsp;
   /**
    The label of this accordion item.
-   
+&nbsp;
    @type {AccordionItemLabel}
    @contentzone
    */
   get label() {
     return this._getContentZone(this._elements.label);
   }
+&nbsp;
   set label(value) {
     this._setContentZone('label', value, {
       handle: 'label',
       tagName: 'coral-accordion-item-label',
-      insert: function(label) {
+      insert: function (label) {
         this._setAria(this._elements.button, this._elements.content);
-        
+&nbsp;
         this._elements.button.appendChild(label);
       }
     });
   }
-  
+&nbsp;
   /**
    The content of this accordion item.
-   
+&nbsp;
    @type {AccordionItemContent}
    @contentzone
    */
   get content() {
     return this._getContentZone(this._elements.content);
   }
+&nbsp;
   set content(value) {
     this._setContentZone('content', value, {
       handle: 'content',
-      tagName: 'coral-accordion-item-content',
-      insert: function(content) {
+      tagName: 'cora<span class="fstat-no" title="function not covered" >l-acco</span>rdion-item-content',
+<span class="cstat-no" title="statement not covered" >      insert: function (content) {</span>
         content.classList.add(`${CLASSNAME}Content`);
-  <span class="fstat-no" title="function not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        // WAI-ARIA 1.1</span>
+&nbsp;
+        // WAI-ARIA 1.1
         content.setAttribute('role', 'region');
-        
+&nbsp;
         this._setAria(this._elements.button, content);
-        
+&nbsp;
         this.appendChild(content);
       }
     });
   }
-  
+&nbsp;
   /**
    Whether the item is selected. If the item has an element with the `coral-interactive` attribute and is clicked,
    then the toggling of the accordion item will not occur.
-   
+&nbsp;
    @type {Boolean}
    @default false
    @htmlattribute selected
@@ -688,6 +702,7 @@ class AccordionItem extends BaseComponent(HTMLElement) {
   get selected() {
     return this._selected || false;
   }
+&nbsp;
   set selected(value) {
     let _value = transform.booleanAttr(value);
     let _selected = this.hasAttribute('disabled') ? false : _value;
@@ -698,13 +713,13 @@ class AccordionItem extends BaseComponent(HTMLElement) {
 &nbsp;
     this._selected = _selected;
     this._reflectAttribute('selected', this._selected);
-    
+&nbsp;
     // Read it before applying is-open which adds additional padding
     const scrollHeight = this._elements.content.scrollHeight;
-    
+&nbsp;
     this.classList.toggle('is-open', this._selected);
     this._elements.button.setAttribute('aria-expanded', this._selected);
-    
+&nbsp;
     if (!this._selected) {
       this._elements.content.style.height = `${scrollHeight}px`;
       // We read the offset height to force a reflow, this is needed to start the transition between absolute values
@@ -712,7 +727,7 @@ class AccordionItem extends BaseComponent(HTMLElement) {
       // eslint-disable-next-line no-unused-vars
       const offsetHeight = this._elements.content.offsetHeight;
     }
-    
+&nbsp;
     this._elements.content.style.height = this._selected ? `${scrollHeight}px` : '0';
 &nbsp;
     if (this._selected) {
@@ -720,10 +735,10 @@ class AccordionItem extends BaseComponent(HTMLElement) {
         this._elements.content.style.height = '';
       });
     }
-  
+&nbsp;
     this.trigger('coral-accordion-item:_selectedchanged');
   }
-  
+&nbsp;
   /**
    Whether this item is disabled.
    @type {Boolean}
@@ -734,134 +749,137 @@ class AccordionItem extends BaseComponent(HTMLElement) {
   get disabled() {
     return this._disabled || false;
   }
+&nbsp;
   set disabled(value) {
     this._disabled = transform.booleanAttr(value);
     this._reflectAttribute('disabled', this._disabled);
-  
+&nbsp;
     this.classList.toggle('is-disabled', this._disabled);
     this._elements.button[this._disabled ? 'setAttribute' : 'removeAttribute']('disabled', '');
-  
+&nbsp;
     this.selected = this.selected;
   }
 &nbsp;
 &nbsp;
   /**
-    The heading level for the Accordion item 
+   The heading level for the Accordion item
 &nbsp;
-    @type {Number}
-    @default 3
-    @htmlattribute level
-    @htmlattributereflected
-  */
- get level() {
-  return this._level || 3;
-}
-&nbsp;
-set level(value) {
-  value = transform.number(value);
-  // If the value has changed,
-  if (!validate.valueMustChange(value, this._level)) {
-    return;
+   @type {Number}
+   @default 3
+   @htmlattribute level
+   @htmlattributereflected
+   */
+  get level() {
+    return this._level || 3;
   }
-  // and the value is greater than 0
-  if (value &gt; 0) {
-    // set the value and reflect the attribute.
-    this._level = value;
-    this._reflectAttribute('level', this._level);
-    
-    // If the new value is not equal to the default,
-    if (value !== 3) {
-      // override the aria-level on the h3 element. 
-      this._elements.heading.setAttribute('aria-level', this._level);
+&nbsp;
+  set level(value) {
+    value = transform.number(value);
+    // If the value has changed,
+    if (!validate.valueMustChange(value, this._level)) {
       return;
     }
+    // and the value is greater than 0
+    if (value &gt; 0) {
+      // set the value and reflect the attribute.
+      this._level = value;
+      this._reflectAttribute('level', this._level);
+&nbsp;
+      // If the new value is not equal to the default,
+      if (value !== 3) {
+        // override the aria-level on the h3 element.
+        this._elements.heading.setAttribute('aria-level', this._level);
+        return;
+      }
+    }
+&nbsp;
+    // If the value is the default or invalid, remove the aria-level override from the h3 element.
+    this._elements.heading.removeAttribute('aria-level');
   }
 &nbsp;
-  // If the value is the default or invalid, remove the aria-level override from the h3 element. 
-  this._elements.heading.removeAttribute('aria-level');
-}
-  
   /** @private **/
   get _isTabTarget() {
     return this.__isTabTarget || false;
   }
+&nbsp;
   set _isTabTarget(value) {
     this.__isTabTarget = value;
-    
+&nbsp;
     if (this.disabled) {
       this._elements.button.removeAttribute('tabindex');
-    }
-    else {
+    } else {
       this._elements.button.setAttribute('tabindex', this.__isTabTarget ? '0' : '-1');
     }
   }
-  
+&nbsp;
   _setAria(button, content) {
     button.id = button.id || commons.getUID();
     content.id = content.id || commons.getUID();
-  
+&nbsp;
     button.setAttribute('aria-controls', content.id);
     content.setAttribute('aria-labelledby', button.id);
   }
-  
+&nbsp;
   /**
    Handles the focus of the item.
- 
+&nbsp;
    @ignore
    */
-  focus() {
+  focus() {<span class="branch-1 cbranch-no" title="branch not covered" ></span>
     this._elements.label.focus();
   }
-  
-  get _contentZones() { return {'coral-accordion-item-label': 'label', 'coral-accordion-item-content': 'content'}; }
-  
+&nbsp;
+  get _contentZones() {
+    return {'coral-accordion-item-label': 'label', 'coral-accordion-item-content': 'content'};
+  }
+&nbsp;
   /** @ignore */
-  static get observedAttributes() {<span class="branch-1 cbranch-no" title="branch not covered" ></span>
+  static get observedAttributes() {
     return super.observedAttributes.concat(['selected', 'disabled', 'level']);
   }
-  
+&nbsp;
   /** @ignore */
-  render() {
-    super.render();
-  
+  render() {<span class="fstat-no" title="function not covered" ></span>
+    su<span class="cstat-no" title="statement not covered" >per.render();</span>
+&nbsp;
     this.classList.add(CLASSNAME);
-  
+&nbsp;
     // a11y
     this.setAttribute('role', 'presentation');
-  
+&nbsp;
     // Support cloneNode
-    const template<span class="fstat-no" title="function not covered" > = t</span>his.querySelector('._coral-Accordion-itemHeading');
-    if<span class="cstat-no" title="statement not covered" > (template) {</span>
-      template.remove();
+    const template = this.querySelector('._coral-Accordion-itemHeading');
+    if (template) {
+      <span class="missing-if-branch" title="else path not taken" >E</span>template.remove();
     }
-    
+&nbsp;
     // Move content into the content zone if not specified
     if (!this._elements.content.parentNode) {
       while (this.firstChild) {
         this._elements.content.appendChild(this.firstChild);
       }
     }
-    <span class="missing-if-branch" title="else path not taken" >E</span>
+&nbsp;
     this.appendChild(this._elements.heading);
-  
+&nbsp;
     // Assign the content zones, moving them into place in the process
     this.label = this._elements.label;
     this.content = this._elements.content;
-    
+&nbsp;
     // Defaults
     this.selected = this.selected;
   }
 }
 &nbsp;
 export default AccordionItem;
-&nbsp;</pre></td></tr></table></pre>
+<span class="fstat-no" title="function not covered" ></span></pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Wed Jan 06 2021 12:21:01 GMT+0000 (Coordinated Universal Time)
+                at Fri Jan 08 2021 06:45:54 GMT+0000 (Coordinated Universal Time)
             </div>
         </div>
         <script src="../../../prettify.js"></script>

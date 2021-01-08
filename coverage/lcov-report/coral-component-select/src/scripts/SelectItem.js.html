@@ -209,7 +209,11 @@
 <a name='L151'></a><a href='#L151'>151</a>
 <a name='L152'></a><a href='#L152'>152</a>
 <a name='L153'></a><a href='#L153'>153</a>
-<a name='L154'></a><a href='#L154'>154</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L154'></a><a href='#L154'>154</a>
+<a name='L155'></a><a href='#L155'>155</a>
+<a name='L156'></a><a href='#L156'>156</a>
+<a name='L157'></a><a href='#L157'>157</a>
+<a name='L158'></a><a href='#L158'>158</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -301,7 +305,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6672x</span>
+<span class="cline-any cline-yes">6638x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">70x</span>
@@ -321,23 +325,20 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">11739x</span>
+<span class="cline-any cline-yes">11608x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3517x</span>
+<span class="cline-any cline-yes">3451x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3517x</span>
-<span class="cline-any cline-yes">1225x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2292x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2292x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2292x</span>
+<span class="cline-any cline-yes">3451x</span>
+<span class="cline-any cline-yes">1239x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2212x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2212x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2212x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -347,9 +348,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">19405x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">19405x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19280x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19280x</span>
 <span class="cline-any cline-yes">2146x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1840x</span>
@@ -358,10 +362,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">19405x</span>
+<span class="cline-any cline-yes">19280x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3462x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3462x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
  * Copyright 2019 Adobe. All rights reserved.
  * This file is licensed to you under the Apache License, Version 2.0 (the "License");
@@ -401,6 +409,7 @@ class SelectItem extends BaseComponent(HTMLElement) {
   get content() {
     return this;
   }
+&nbsp;
   set content(value) {
     // Support configs
     if (typeof value === 'object') {
@@ -423,6 +432,7 @@ class SelectItem extends BaseComponent(HTMLElement) {
   get disabled() {
     return this._disabled || false;
   }
+&nbsp;
   set disabled(value) {
     this._disabled = transform.booleanAttr(value);
     this._reflectAttribute('disabled', this._disabled);
@@ -433,14 +443,15 @@ class SelectItem extends BaseComponent(HTMLElement) {
   /**
    Whether the item is selected. Selected cannot be set to &lt;code&gt;true&lt;/code&gt; if the item is disabled.
 &nbsp;
-   @type {Boolean}
+   @ty<span class="missing-if-branch" title="else path not taken" >E</span>pe {Boolean}
    @default false
-   @ht<span class="missing-if-branch" title="else path not taken" >E</span>mlattribute selected
+   @htmlattribute selected
    @htmlattributereflected
    */
   get selected() {
     return this._selected || false;
   }
+&nbsp;
   set selected(value) {
     let _selected = transform.booleanAttr(value);
 &nbsp;
@@ -468,14 +479,14 @@ class SelectItem extends BaseComponent(HTMLElement) {
       if (this.getAttribute('value') === null) {
         // keep spaces to only 1 max and trim to mimic native select option behavior
         val = this.textContent.replace(/\s{2,}/g, ' ').trim();
-      }
-      else {
+      } else {
         val = this.getAttribute('value');
       }
     }
 &nbsp;
     return val;
   }
+&nbsp;
   set value(value) {
     let _value = transform.string(value);
     if(this._value === _value) {
@@ -497,6 +508,7 @@ class SelectItem extends BaseComponent(HTMLElement) {
       this.value || this.textContent.replace(/\s{2,}/g, ' ').trim() :
       this._trackingElement;
   }
+&nbsp;
   set trackingElement(value) {
     super.trackingElement = value;
   }
@@ -512,8 +524,8 @@ class SelectItem extends BaseComponent(HTMLElement) {
   static get observedAttributes() {
     return super.observedAttributes.concat(['selected', 'disabled', 'value']);
   }
-}
-&nbsp;
+}<span class="missing-if-branch" title="if path not taken" >I</span>
+<span class="cstat-no" title="statement not covered" ></span>
 export default SelectItem;
 &nbsp;</pre></td></tr></table></pre>
 
@@ -522,7 +534,7 @@ export default SelectItem;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Wed Jan 06 2021 12:21:01 GMT+0000 (Coordinated Universal Time)
+                at Fri Jan 08 2021 06:45:54 GMT+0000 (Coordinated Universal Time)
             </div>
         </div>
         <script src="../../../prettify.js"></script>
