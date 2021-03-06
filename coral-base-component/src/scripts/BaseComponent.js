@@ -86,9 +86,11 @@ const delegateEvents = function () {
   let isKey;
   let isResize;
   let isCapture;
+  const self = this;
+  const events = self._events;
 
-  for (eventInfo in this._events) {
-    listener = this._events[eventInfo];
+  for (eventInfo in events) {
+    listener = events[eventInfo];
 
     // Extract the event name and the selector
     match = eventInfo.match(delegateEventSplitter);
@@ -101,12 +103,12 @@ const delegateEvents = function () {
     }
 
     // Try to get the method corresponding to the value in the map
-    listener = getListenerFromMethodNameOrFunction(this, eventName, listener);
+    listener = getListenerFromMethodNameOrFunction(self, eventName, listener);
 
     if (listener) {
       // Always execute in the context of the object
       // @todo is this necessary? this should be correct anyway
-      listener = listener.bind(this);
+      listener = listener.bind(self);
 
       // Check if the listener is on the window
       isGlobal = eventName.indexOf('global:') === 0;
@@ -141,25 +143,25 @@ const delegateEvents = function () {
       if (isGlobal) {
         // Store for adding/removal
         if (isKey) {
-          this._globalKeys = this._globalKeys || [];
-          this._globalKeys.push({
+          self._globalKeys = self._globalKeys || [];
+          self._globalKeys.push({
             keyCombo: eventName,
             selector: selector,
             listener: listener
           });
         } else {
-          this._globalEvents = this._globalEvents || [];
-          this._globalEvents.push({eventName, selector, listener, isCapture});
+          self._globalEvents = self._globalEvents || [];
+          self._globalEvents.push({eventName, selector, listener, isCapture});
         }
       }
       // Events on the element itself
       else if (isKey) {
         // Create the keys instance only if its needed
-        this._keys = this._keys || new Keys(this, {
+        self._keys = self._keys || new Keys(self, {
           // The filter function for keyboard events.
-          filter: this._filterKeys,
+          filter: self._filterKeys,
           // Execute key listeners in the context of the element
-          context: this
+          context: self
         });
 
         // Add listener locally
@@ -171,10 +173,10 @@ const delegateEvents = function () {
             commons.addResizeListener(elements[i], listener);
           }
         } else {
-          commons.addResizeListener(this, listener);
+          commons.addResizeListener(self, listener);
         }
       } else {
-        this._vent.on(eventName, selector, listener, isCapture);
+        self._vent.on(eventName, selector, listener, isCapture);
       }
     }
   }
@@ -186,24 +188,29 @@ const delegateEvents = function () {
  */
 const delegateGlobalEvents = function () {
   let i;
-  if (this._globalEvents) {
+  const self = this;
+  const globalEvents = self._globalEvents;
+  const globalKeys = self._globalKeys;
+  const keys = self._keys;
+
+  if (globalEvents) {
     // Remove global event listeners
-    for (i = 0 ; i < this._globalEvents.length ; i++) {
-      const event = this._globalEvents[i];
+    for (i = 0 ; i < globalEvents.length ; i++) {
+      const event = globalEvents[i];
       events.on(event.eventName, event.selector, event.listener, event.isCapture);
     }
   }
 
-  if (this._globalKeys) {
+  if (globalKeys) {
     // Remove global key listeners
-    for (i = 0 ; i < this._globalKeys.length ; i++) {
-      const key = this._globalKeys[i];
+    for (i = 0 ; i < globalKeys.length ; i++) {
+      const key = globalKeys[i];
       keys.on(key.keyCombo, key.selector, key.listener);
     }
   }
 
-  if (this._keys) {
-    this._keys.init(true);
+  if (keys) {
+    keys.init(true);
   }
 };
 
@@ -213,24 +220,29 @@ const delegateGlobalEvents = function () {
  */
 const undelegateGlobalEvents = function () {
   let i;
-  if (this._globalEvents) {
+  const self = this;
+  const globalEvents = self._globalEvents;
+  const globalKeys = self._globalKeys;
+  const keys = self._keys;
+
+  if (globalEvents) {
     // Remove global event listeners
-    for (i = 0 ; i < this._globalEvents.length ; i++) {
-      const event = this._globalEvents[i];
+    for (i = 0 ; i < globalEvents.length ; i++) {
+      const event = globalEvents[i];
       events.off(event.eventName, event.selector, event.listener, event.isCapture);
     }
   }
 
-  if (this._globalKeys) {
+  if (globalKeys) {
     // Remove global key listeners
-    for (i = 0 ; i < this._globalKeys.length ; i++) {
-      const key = this._globalKeys[i];
+    for (i = 0 ; i < globalKeys.length ; i++) {
+      const key = globalKeys[i];
       keys.off(key.keyCombo, key.selector, key.listener);
     }
   }
 
-  if (this._keys) {
-    this._keys.destroy(true);
+  if (keys) {
+    keys.destroy(true);
   }
 };
 
@@ -288,9 +300,10 @@ const getConstructorName = function (constructor) {
 
   // Climb up the constructor namespace
   while (constructor) {
-    if (constructor._namespace) {
-      constructorName.push(constructor._namespace.value);
-      constructor = constructor._namespace.parent;
+   const _namespace = constructor._namespace;
+    if (_namespace) {
+      constructorName.push(_namespace.value);
+      constructor = _namespace.parent;
     } else {
       constructor = false;
     }
@@ -309,32 +322,32 @@ const getConstructorName = function (constructor) {
 const BaseComponent = (superClass) => class extends superClass {
   /** @ignore */
   constructor() {
+    const self = this;
     super();
-
     // Attach Vent
-    this._vent = new Vent(this);
-    this._events = {};
+    self._vent = new Vent(self);
+    self._events = {};
 
     // Content zone MO for virtual DOM support
-    if (this._contentZones) {
-      this._contentZoneObserver = new MutationObserver((mutations) => {
+    if (self._contentZones) {
+      self._contentZoneObserver = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
           for (let i = 0 ; i < mutation.addedNodes.length ; i++) {
             const addedNode = mutation.addedNodes[i];
 
-            for (const name in this._contentZones) {
-              const contentZone = this._contentZones[name];
+            for (const name in self._contentZones) {
+              const contentZone = self._contentZones[name];
               if (addedNode.nodeName.toLowerCase() === name && !addedNode._contentZoned) {
                 // Insert the content zone at the right position
                 /** @ignore */
-                this[contentZone] = addedNode;
+                self[contentZone] = addedNode;
               }
             }
           }
         });
       });
 
-      this._contentZoneObserver.observe(this, {
+      self._contentZoneObserver.observe(self, {
         childList: true,
         subtree: true
       });
@@ -354,7 +367,7 @@ const BaseComponent = (superClass) => class extends superClass {
   }
 
   set tracking(value) {
-    value = transform.string(value).toLowerCase();
+    value = transform.toLowerCase(value);
     this._tracking = validate.enumeration(tracking)(value) && value || tracking.ON;
   }
 
@@ -404,12 +417,13 @@ const BaseComponent = (superClass) => class extends superClass {
 
   // Attach event listeners including global ones
   _delegateEvents(eventMap) {
-    this._events = commons.extend(this._events, eventMap);
-    delegateEvents.call(this);
-    delegateGlobalEvents.call(this);
+    const self = this;
+    self._events = commons.extend(self._events, eventMap);
+    delegateEvents.call(self);
+    delegateGlobalEvents.call(self);
 
     // Once events are attached, we dispose them
-    this._events = {};
+    self._events = {};
   }
 
   // Returns the content zone if the component is connected and contains the content zone else null
@@ -425,11 +439,12 @@ const BaseComponent = (superClass) => class extends superClass {
   // Sets the value as content zone for the property given the specified options
   // Ideally content zones will be replaced by shadow dom and <slot> elements
   _setContentZone(property, value, options) {
+    const self = this;
     const handle = options.handle;
     const expectedTagName = options.tagName;
     const additionalSetter = options.set;
     const insert = options.insert;
-
+    const elements = self._elements;
     let oldNode;
 
     if (value) {
@@ -443,7 +458,7 @@ const BaseComponent = (superClass) => class extends superClass {
         ${property} element is of type "${value.tagName}". It must be a "${expectedTagName.toUpperCase()}" element.`);
       }
 
-      oldNode = this._elements[handle];
+      oldNode = elements[handle];
 
       // Flag it for the content zone MO
       value._contentZoned = true;
@@ -455,11 +470,11 @@ const BaseComponent = (superClass) => class extends superClass {
           oldNode.parentNode.removeChild(oldNode);
         }
         // Insert new node
-        insert.call(this, value);
+        insert.call(self, value);
       } else if (oldNode && oldNode.parentNode) {
-        commons._log('warn', `${this._componentName} does not define an insert method for content zone ${handle}, falling back to replace.`);
+        commons._log('warn', `${self._componentName} does not define an insert method for content zone ${handle}, falling back to replace.`);
         // Old way -- assume we have an old node
-        this._elements[handle].parentNode.replaceChild(value, this._elements[handle]);
+        elements[handle].parentNode.replaceChild(value, elements[handle]);
       } else {
         commons._log('error', `${this._componentName} does not define an insert method for content zone ${handle}, falling back to append.`);
         // Just append, which may introduce bugs, but at least doesn't crazy
@@ -467,37 +482,63 @@ const BaseComponent = (superClass) => class extends superClass {
       }
     } else {
       // we need to remove the content zone if it exists
-      oldNode = this._elements[handle];
+      oldNode = elements[handle];
       if (oldNode && oldNode.parentNode) {
         oldNode.parentNode.removeChild(oldNode);
       }
     }
 
     // Re-assign the handle to the new element
-    this._elements[handle] = value;
+    elements[handle] = value;
 
     // Invoke the setter
     if (typeof additionalSetter === 'function') {
-      additionalSetter.call(this, value);
+      additionalSetter.call(self, value);
+    }
+  }
+
+  /**
+   Update the property of the element and execute the passed callback.
+   Only when the existing value is changed then property value will be updated
+   and callback will be executed.This is generally used to update the coral internal mapped property.
+
+   @param {String} handle the property of element.
+   @param {*} value to which element value needs to be updated
+   @param {function} callback function to be executed if value gets changed.
+   */
+  _updateProperty(handle, value, callback) {
+    const self = this;
+    if(!handle && typeof handle !== 'string') {
+      throw new Error(`Coral.Component._updateProperty: handle should be a valid string`);
+      return;
+    }
+
+    if(validate.valueMustChange(self[handle], value)) {
+      self[handle] = value;
+
+      if(typeof callback === 'function') {
+        callback.call(self, value);
+      }
     }
   }
 
   // Handles the reflection of properties by using a flag to prevent setting the property by changing the attribute
   _reflectAttribute(attributeName, value) {
+    const self = this;
     if (typeof value === 'boolean') {
-      if (value && !this.hasAttribute(attributeName)) {
-        this._reflectedAttribute = true;
-        this.setAttribute(attributeName, '');
-        this._reflectedAttribute = false;
-      } else if (!value && this.hasAttribute(attributeName)) {
-        this._reflectedAttribute = true;
-        this.removeAttribute(attributeName);
-        this._reflectedAttribute = false;
+      if (value && !self.hasAttribute(attributeName)) {
+        self._reflectedAttribute = true;
+        self.setAttribute(attributeName, '');
+        self._reflectedAttribute = false;
+      } else if (!value && self.hasAttribute(attributeName)) {
+        self._reflectedAttribute = true;
+        self.removeAttribute(attributeName);
+        self._reflectedAttribute = false;
       }
     } else if (this.getAttribute(attributeName) !== String(value)) {
-      this._reflectedAttribute = true;
-      this.setAttribute(attributeName, value);
-      this._reflectedAttribute = false;
+      self._reflectedAttribute = true;
+      self.setAttribute(attributeName, value);
+      self._reflectedAttribute = false;
     }
   }
 
@@ -644,21 +685,21 @@ const BaseComponent = (superClass) => class extends superClass {
     let property;
     let properties;
     let value;
-
-    const isContentZone = (prop) => this._contentZones && commons.swapKeysAndValues(this._contentZones)[prop];
+    const self = this;
+    const isContentZone = (prop) => self._contentZones && commons.swapKeysAndValues(self._contentZones)[prop];
 
     const updateContentZone = (prop, val) => {
       // If content zone exists and we only want to update properties on the content zone
-      if (this[prop] instanceof HTMLElement && !(val instanceof HTMLElement)) {
+      if (self[prop] instanceof HTMLElement && !(val instanceof HTMLElement)) {
         for (const contentZoneProperty in val) {
           /** @ignore */
-          this[prop][contentZoneProperty] = val[contentZoneProperty];
+          self[prop][contentZoneProperty] = val[contentZoneProperty];
         }
       }
       // Else assign the new value to the content zone
       else {
         /** @ignore */
-        this[prop] = val;
+        self[prop] = val;
       }
     };
 
@@ -666,10 +707,10 @@ const BaseComponent = (superClass) => class extends superClass {
       if (isContentZone(prop)) {
         updateContentZone(prop, val);
       } else {
-        this._silenced = silent;
+        self._silenced = silent;
         /** @ignore */
-        this[prop] = val;
-        this._silenced = false;
+        self[prop] = val;
+        self._silenced = false;
       }
     };
 
@@ -691,7 +732,7 @@ const BaseComponent = (superClass) => class extends superClass {
       }
     }
 
-    return this;
+    return self;
   }
 
   /**
@@ -711,13 +752,14 @@ const BaseComponent = (superClass) => class extends superClass {
    @returns {BaseComponent} this, chainable
    */
   show() {
-    if (!this.hidden) {
-      return this;
+    const self = this;
+    if (!self.hidden) {
+      return self;
     }
 
     /** @ignore */
-    this.hidden = false;
-    return this;
+    self.hidden = false;
+    return self;
   }
 
   /**
@@ -725,13 +767,14 @@ const BaseComponent = (superClass) => class extends superClass {
    @returns {BaseComponent} this, chainable
    */
   hide() {
-    if (this.hidden) {
-      return this;
+    const self = this;
+    if (self.hidden) {
+      return self;
     }
 
     /** @ignore */
-    this.hidden = true;
-    return this;
+    self.hidden = true;
+    return self;
   }
 
   /**
@@ -773,23 +816,23 @@ const BaseComponent = (superClass) => class extends superClass {
   /** @ignore */
   // eslint-disable-next-line no-unused-vars
   attributeChangedCallback(name, oldValue, value) {
-    const self = this;
-    if (!self._reflectedAttribute) {
+    if (!this._reflectedAttribute) {
       // Use the attribute/property mapping
-      self[self.constructor._attributePropertyMap[name] || name] = value;
+      this[this.constructor._attributePropertyMap[name] || name] = value;
     }
   }
 
   /** @ignore */
   connectedCallback() {
+    const self = this;
     // A component that is reattached should respond to global events again
-    if (this._disconnected) {
-      delegateGlobalEvents.call(this);
+    if (self._disconnected) {
+      delegateGlobalEvents.call(self);
     }
-    this._disconnected = false;
+    self._disconnected = false;
 
-    if (!this._rendered) {
-      this.render();
+    if (!self._rendered) {
+      self.render();
     }
   }
 

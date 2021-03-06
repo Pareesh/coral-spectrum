@@ -86,6 +86,32 @@ class Transformation {
 
     return typeof value === 'string' ? value : String(value);
   }
+
+  /**
+   Transform the provided value into a lowercase string. When given <code>null</code> or <code>undefined</code> it will be
+   converted to an empty string("").
+
+   @param {*} value
+   The value to convert to String.
+
+   @returns {String} The corresponding lowercase string value.
+   */
+  toLowerCase(value) {
+    return this.string(value).toLowerCase();
+  }
+
+  /**
+   Transform the provided value into a uppercase string. When given <code>null</code> or <code>undefined</code> it will be
+   converted to an empty string("").
+
+   @param {*} value
+   The value to convert to String.
+
+   @returns {String} The corresponding uppercase string value.
+   */
+  toUpperCase(value) {
+    return this.string(value).toUpperCase();
+  }
 }
 
 /**

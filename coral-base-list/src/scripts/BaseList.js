@@ -60,17 +60,18 @@ const BaseList = (superClass) => class extends superClass {
    @readonly
    */
   get items() {
+    const self = this;
     // Construct the collection on first request:
-    if (!this._items) {
-      this._items = new SelectableCollection({
-        itemTagName: this._itemTagName,
-        itemBaseTagName: this._itemBaseTagName,
+    if (!self._items) {
+      self._items = new SelectableCollection({
+        itemTagName: self._itemTagName,
+        itemBaseTagName: self._itemBaseTagName,
         itemSelector: 'coral-list-item, button[is="coral-buttonlist-item"], a[is="coral-anchorlist-item"]',
-        host: this
+        host: self
       });
     }
 
-    return this._items;
+    return self._items;
   }
 
   /** @private */
@@ -92,9 +93,12 @@ const BaseList = (superClass) => class extends superClass {
   }
 
   set interaction(value) {
-    value = transform.string(value).toLowerCase();
-    this._interaction = validate.enumeration(interaction)(value) && value || interaction.ON;
-    this._reflectAttribute('interaction', this._interaction);
+    value = transform.toLowerCase(value);
+    value = validate.enumeration(interaction)(value) && value || interaction.ON;
+
+    this._updateProperty('_interaction', value, function(value) {
+      this._reflectAttribute('interaction', value);
+    });
   }
 
   /**
@@ -124,32 +128,35 @@ const BaseList = (superClass) => class extends superClass {
 
   /** @private */
   _focusFirstItem(event) {
-    if (this.interaction === interaction.OFF || !this._eventIsAtTarget(event)) {
+    const self = this;
+    if (self.interaction === interaction.OFF || !self._eventIsAtTarget(event)) {
       return;
     }
 
-    const items = this._getSelectableItems();
+    const items = self._getSelectableItems();
     items[0].focus();
   }
 
   /** @private */
   _focusLastItem(event) {
-    if (this.interaction === interaction.OFF || !this._eventIsAtTarget(event)) {
+    const self = this;
+    if (self.interaction === interaction.OFF || !self._eventIsAtTarget(event)) {
       return;
     }
 
-    const items = this._getSelectableItems();
+    const items = self._getSelectableItems();
     items[items.length - 1].focus();
   }
 
   /** @private */
   _focusNextItem(event) {
-    if (this.interaction === interaction.OFF || !this._eventIsAtTarget(event)) {
+    const self = this;
+    if (self.interaction === interaction.OFF || !self._eventIsAtTarget(event)) {
       return;
     }
 
     const target = event.matchedTarget;
-    const items = this._getSelectableItems();
+    const items = self._getSelectableItems();
     const index = items.indexOf(target);
 
     if (index === -1) {
@@ -166,12 +173,13 @@ const BaseList = (superClass) => class extends superClass {
 
   /** @private */
   _focusPreviousItem(event) {
-    if (this.interaction === interaction.OFF || !this._eventIsAtTarget(event)) {
+    const self = this;
+    if (self.interaction === interaction.OFF || !self._eventIsAtTarget(event)) {
       return;
     }
 
     const target = event.matchedTarget;
-    const items = this._getSelectableItems();
+    const items = self._getSelectableItems();
     const index = items.indexOf(target);
 
     if (index === -1) {

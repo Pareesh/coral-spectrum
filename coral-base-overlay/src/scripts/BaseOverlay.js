@@ -207,12 +207,13 @@ OverlayManager = {
  Create the global tab capture element.
  */
 function createDocumentTabCaptureEls() {
+  const body = document.body;
   if (!topTabCaptureEl) {
     topTabCaptureEl = document.createElement('div');
     topTabCaptureEl.setAttribute('coral-tabcapture', '');
     topTabCaptureEl.setAttribute('role', 'presentation');
     topTabCaptureEl.tabIndex = 0;
-    document.body.insertBefore(topTabCaptureEl, document.body.firstChild);
+    body.insertBefore(topTabCaptureEl, body.firstChild);
     topTabCaptureEl.addEventListener('focus', () => {
       const top = OverlayManager.top();
       if (top && top.instance.trapFocus === trapFocus.ON) {
@@ -232,7 +233,7 @@ function createDocumentTabCaptureEls() {
     bottomTabCaptureEl.setAttribute('coral-tabcapture', '');
     bottomTabCaptureEl.setAttribute('role', 'presentation');
     bottomTabCaptureEl.tabIndex = 0;
-    document.body.appendChild(bottomTabCaptureEl);
+    body.appendChild(bottomTabCaptureEl);
     bottomTabCaptureEl.addEventListener('focus', () => {
       const top = OverlayManager.top();
       if (top && top.instance.trapFocus === trapFocus.ON) {
@@ -245,14 +246,14 @@ function createDocumentTabCaptureEls() {
       }
     });
   } else {
-    if (document.body.firstElementChild !== topTabCaptureEl) {
+    if (body.firstElementChild !== topTabCaptureEl) {
       // Make sure we stay at the very top
-      document.body.insertBefore(topTabCaptureEl, document.body.firstChild);
+      body.insertBefore(topTabCaptureEl, body.firstChild);
     }
 
-    if (document.body.lastElementChild !== bottomTabCaptureEl) {
+    if (body.lastElementChild !== bottomTabCaptureEl) {
       // Make sure we stay at the very bottom
-      document.body.appendChild(bottomTabCaptureEl);
+      body.appendChild(bottomTabCaptureEl);
     }
   }
 
@@ -411,36 +412,44 @@ const BaseOverlay = (superClass) => class extends superClass {
   }
 
   set trapFocus(value) {
-    value = transform.string(value).toLowerCase();
-    this._trapFocus = validate.enumeration(trapFocus)(value) && value || trapFocus.OFF;
+    const self = this;
+    value = transform.toLowerCase(value);
+    value = validate.enumeration(trapFocus)(value) && value || trapFocus.OFF;
 
-    if (this._trapFocus === trapFocus.ON) {
-      // Give ourselves tabIndex if we are not focusable
-      if (this.tabIndex < 0) {
-        /** @ignore */
-        this.tabIndex = 0;
+    self._updateProperty('_trapFocus', value, function(value) {
+      const elements = self._elements;
+      const vent = self._vent;
+
+      if (value === trapFocus.ON) {
+        // Give ourselves tabIndex if we are not focusable
+        if (self.tabIndex < 0) {
+          /** @ignore */
+          self.tabIndex = 0;
+        }
+
+        // Insert elements
+        self.insertBefore(elements.topTabCapture, self.firstElementChild);
+        self.appendChild(elements.intermediateTabCapture);
+        self.appendChild(elements.bottomTabCapture);
+
+        // Add listeners
+        self._handleTabCaptureFocus = self._handleTabCaptureFocus.bind(self);
+        self._handleRootKeypress = self._handleRootKeypress.bind(self);
+
+        vent.on('keydown', self._handleRootKeypress);
+        vent.on('focus', '[coral-tabcapture]', self._handleTabCaptureFocus);
+      } else if (value === trapFocus.OFF) {
+        // Remove elements
+        elements.topTabCapture && elements.topTabCapture.remove();
+        elements.intermediateTabCapture && elements.intermediateTabCapture.remove();
+        elements.bottomTabCapture && elements.bottomTabCapture.remove();
+
+        // Remove listeners
+        vent.off('keydown', self._handleRootKeypress);
+        vent.off('focus', '[coral-tabcapture]', self._handleTabCaptureFocus);
       }
+    });
 
-      // Insert elements
-      this.insertBefore(this._elements.topTabCapture, this.firstElementChild);
-      this.appendChild(this._elements.intermediateTabCapture);
-      this.appendChild(this._elements.bottomTabCapture);
-
-      // Add listeners
-      this._handleTabCaptureFocus = this._handleTabCaptureFocus.bind(this);
-      this._handleRootKeypress = this._handleRootKeypress.bind(this);
-      this._vent.on('keydown', this._handleRootKeypress);
-      this._vent.on('focus', '[coral-tabcapture]', this._handleTabCaptureFocus);
-    } else if (this._trapFocus === trapFocus.OFF) {
-      // Remove elements
-      this._elements.topTabCapture && this._elements.topTabCapture.remove();
-      this._elements.intermediateTabCapture && this._elements.intermediateTabCapture.remove();
-      this._elements.bottomTabCapture && this._elements.bottomTabCapture.remove();
-
-      // Remove listeners
-      this._vent.off('keydown', this._handleRootKeypress);
-      this._vent.off('focus', '[coral-tabcapture]', this._handleTabCaptureFocus);
-    }
   }
 
   /**
@@ -455,7 +464,7 @@ const BaseOverlay = (superClass) => class extends superClass {
   }
 
   set returnFocus(value) {
-    value = transform.string(value).toLowerCase();
+    value = transform.toLowerCase(value);
     this._returnFocus = validate.enumeration(returnFocus)(value) && value || returnFocus.OFF;
   }
 
@@ -487,7 +496,7 @@ const BaseOverlay = (superClass) => class extends superClass {
   }
 
   set scrollOnFocus(value) {
-    value = transform.string(value).toLowerCase();
+    value = transform.toLowerCase(value);
     this._scrollOnFocus = validate.enumeration(scrollOnFocus)(value) && value || scrollOnFocus.ON;
   }
 
@@ -528,134 +537,138 @@ const BaseOverlay = (superClass) => class extends superClass {
   }
 
   set open(value) {
+    const self = this;
     const silenced = this._silenced;
 
     value = transform.booleanAttr(value);
 
     // Used for global animations
-    this.trigger('coral-overlay:_animate');
+    self.trigger('coral-overlay:_animate');
 
-    const beforeEvent = this.trigger(value ? 'coral-overlay:beforeopen' : 'coral-overlay:beforeclose');
+    const beforeEvent = self.trigger(value ? 'coral-overlay:beforeopen' : 'coral-overlay:beforeclose');
 
     if (!beforeEvent.defaultPrevented) {
-      const open = this._open = value;
-      this._reflectAttribute('open', open);
+      const open = self._open = value;
+      self._reflectAttribute('open', open);
 
       // Remove aria-hidden attribute before we show.
       // Otherwise, screen readers will not announce
       // Doesn't matter when we set aria-hidden true (nothing being announced)
       if (open) {
-        this.removeAttribute('aria-hidden');
+        self.removeAttribute('aria-hidden');
       } else {
-        this.setAttribute('aria-hidden', !open);
+        self.setAttribute('aria-hidden', !open);
       }
 
       // Don't do anything if we're not in the DOM yet
       // This prevents errors related to allocating a zIndex we don't need
-      if (this.parentNode) {
+      if (self.parentNode) {
         // Do this check afterwards as we may have been appended inside of _show()
         if (open) {
           // Set z-index
-          this._pushOverlay();
+          self._pushOverlay();
 
-          if (this.returnFocus === returnFocus.ON) {
-            this._elementToFocusWhenHidden =
+          if (self.returnFocus === returnFocus.ON) {
+            self._elementToFocusWhenHidden =
               // cached element
-              this._elementToFocusWhenHidden ||
+              self._elementToFocusWhenHidden ||
               // element passed via returnFocusTo()
-              this._returnFocusToElement ||
+              self._returnFocusToElement ||
               // element that had focus before opening the overlay
               (document.activeElement === document.body ? null : document.activeElement);
           }
         } else {
           // Release zIndex
-          this._popOverlay();
+          self._popOverlay();
         }
       }
 
       // Don't force reflow
       window.requestAnimationFrame(() => {
+        const self = this;
+        const elements = self._elements;
         // Keep it silenced
-        this._silenced = silenced;
-
+        self._silenced = silenced;
         if (open) {
-          if (this.trapFocus === trapFocus.ON) {
+          if (self.trapFocus === trapFocus.ON) {
             // Make sure tab capture elements are positioned correctly
             if (
               // Tab capture elements are no longer at the bottom
-              this._elements.topTabCapture !== this.firstElementChild ||
-              this._elements.bottomTabCapture !== this.lastElementChild ||
+              elements.topTabCapture !== self.firstElementChild ||
+              elements.bottomTabCapture !== self.lastElementChild ||
               // Tab capture elements have been separated
-              this._elements.bottomTabCapture.previousElementSibling !== this._elements.intermediateTabCapture
+              elements.bottomTabCapture.previousElementSibling !== elements.intermediateTabCapture
             ) {
-              this.insertBefore(this._elements.intermediateTabCapture, this.firstElementChild);
-              this.appendChild(this._elements.intermediateTabCapture);
-              this.appendChild(this._elements.bottomTabCapture);
+              self.insertBefore(elements.intermediateTabCapture, self.firstElementChild);
+              self.appendChild(elements.intermediateTabCapture);
+              self.appendChild(elements.bottomTabCapture);
             }
           }
 
           // visibility should revert to whatever is specified in CSS, so that transition renders.
-          this.style.visibility = '';
+          self.style.visibility = '';
 
           // The default style should be display: none for overlays
           // Show ourselves first for centering calculations etc
-          this.style.display = '';
+          self.style.display = '';
 
           // Do it in the next frame to make the animation happen
           window.requestAnimationFrame(() => {
-            this.classList.add('is-open');
+            self.classList.add('is-open');
           });
 
           const openComplete = () => {
-            if (this.open) {
-              this._debounce(() => {
+            const self = this;
+            if (self.open) {
+              self._debounce(() => {
                 // handles the focus behavior based on accessibility recommendations
-                this._handleFocus();
+                self._handleFocus();
 
-                this.trigger('coral-overlay:open');
-                this._silenced = false;
+                self.trigger('coral-overlay:open');
+                self._silenced = false;
               });
             }
           };
 
-          if (this._overlayAnimationTime) {
+          if (self._overlayAnimationTime) {
             // Wait for animation to complete
-            commons.transitionEnd(this, openComplete);
+            commons.transitionEnd(self, openComplete);
           } else {
             // Execute immediately
             openComplete();
           }
         } else {
           // Fade out
-          this.classList.remove('is-open');
+          self.classList.remove('is-open');
 
           const closeComplete = () => {
-            if (!this.open) {
+            const self = this;
+            if (!self.open) {
 
               // When the CSS transition has finished, set visibility to browser default, `visibility: visible`,
               // to ensure that the overlay will be included in accessibility name or description
               // of an element that references it using `aria-labelledby` or `aria-describedby`.
-              this.style.visibility = 'visible';
+              self.style.visibility = 'visible';
 
               // makes sure the focus is returned per accessibility recommendations
-              this._handleReturnFocus();
+              self._handleReturnFocus();
 
               // Hide self
-              this.style.display = 'none';
+              self.style.display = 'none';
 
-              this._debounce(() => {
+              self._debounce(() => {
                 // Inform child overlays that we're closing
-                this._closeChildOverlays();
+                self._closeChildOverlays();
 
-                this.trigger('coral-overlay:close');
-                this._silenced = false;
+                self.trigger('coral-overlay:close');
+                self._silenced = false;
               });
             }
           };
 
-          if (this._overlayAnimationTime) {
+          if (self._overlayAnimationTime) {
             // Wait for animation to complete
-            commons.transitionEnd(this, closeComplete);
+            commons.transitionEnd(self, closeComplete);
           } else {
             // Execute immediately
             closeComplete();
@@ -671,14 +684,15 @@ const BaseOverlay = (superClass) => class extends superClass {
     // Close all children overlays and components with overlays
     for (let i = 0 ; i < components.length ; i++) {
       const component = components[i];
+      const _elements = component._elements;
 
       // Overlay component
       if (component.hasAttribute('open')) {
         component.removeAttribute('open');
       }
       // Component that uses an overlay
-      else if (component._elements && component._elements.overlay && component._elements.overlay.hasAttribute('open')) {
-        component._elements.overlay.removeAttribute('open');
+      else if (_elements && _elements.overlay && _elements.overlay.hasAttribute('open')) {
+        _elements.overlay.removeAttribute('open');
       }
     }
   }
@@ -729,25 +743,26 @@ const BaseOverlay = (superClass) => class extends superClass {
    @protected
    */
   _showBackdrop() {
-    const overlay = OverlayManager.get(this);
+    const self = this;
+    const overlay = OverlayManager.get(self);
 
     // Overlay is not tracked unless the component is in the DOM
     // Hence, we need to check
     if (overlay) {
       overlay.backdrop = true;
-      doBackdropShow(overlay.zIndex, this);
+      doBackdropShow(overlay.zIndex, self);
     }
 
     // Mark on the instance that the backdrop has been requested for this overlay
-    this._requestedBackdrop = true;
+    self._requestedBackdrop = true;
 
     // Mark that the backdrop was requested when not attached to the DOM
     // This allows us to know whether to push the overlay when the component is attached
-    if (!this.parentNode) {
-      this._showBackdropOnAttached = true;
+    if (!self.parentNode) {
+      self._showBackdropOnAttached = true;
     }
 
-    if (this.trapFocus === trapFocus.ON) {
+    if (self.trapFocus === trapFocus.ON) {
       createDocumentTabCaptureEls();
     }
   }
@@ -758,7 +773,8 @@ const BaseOverlay = (superClass) => class extends superClass {
    @protected
    */
   _hideBackdrop() {
-    const overlay = OverlayManager.get(this);
+    const self = this;
+    const overlay = OverlayManager.get(self);
 
     if (overlay) {
       overlay.backdrop = false;
@@ -768,7 +784,7 @@ const BaseOverlay = (superClass) => class extends superClass {
     }
 
     // Mark on the instance that the backdrop is no longer needed
-    this._requestedBackdrop = false;
+    self._requestedBackdrop = false;
   }
 
   /**
@@ -777,9 +793,10 @@ const BaseOverlay = (superClass) => class extends superClass {
    @protected
    */
   _handleRootKeypress(event) {
-    if (event.target === this && event.keyCode === TAB_KEY) {
+    const self = this;
+    if (event.target === self && event.keyCode === TAB_KEY) {
       // Skip the top tabcapture and focus on the first focusable element
-      this._focusOn('first');
+      self._focusOn('first');
 
       // Stop the normal tab behavior
       event.preventDefault();
@@ -792,17 +809,18 @@ const BaseOverlay = (superClass) => class extends superClass {
    @protected
    */
   _handleTabCaptureFocus(event) {
+    const self = this;
     // Avoid moving around if we're trying to focus on coral-tabcapture
-    if (this._ignoreTabCapture) {
-      this._ignoreTabCapture = false;
+    if (self._ignoreTabCapture) {
+      self._ignoreTabCapture = false;
       return;
     }
 
     // Focus on the correct tabbable element
     const target = event.target;
-    const which = target === this._elements.intermediateTabCapture ? 'first' : 'last';
+    const which = target === self._elements.intermediateTabCapture ? 'first' : 'last';
 
-    this._focusOn(which);
+    self._focusOn(which);
   }
 
   /**
@@ -812,21 +830,22 @@ const BaseOverlay = (superClass) => class extends superClass {
    @protected
    */
   _handleFocus() {
+    const self = this;
     // ON handles the focusing per accessibility recommendations
-    if (this.focusOnShow === focusOnShow.ON) {
-      this._focusOn('first');
-    } else if (this.focusOnShow instanceof HTMLElement) {
-      this.focusOnShow.focus(preventScroll(this));
-    } else if (typeof this.focusOnShow === 'string' && this.focusOnShow !== focusOnShow.OFF) {
+    if (self.focusOnShow === focusOnShow.ON) {
+      self._focusOn('first');
+    } else if (self.focusOnShow instanceof HTMLElement) {
+      self.focusOnShow.focus(preventScroll(self));
+    } else if (typeof self.focusOnShow === 'string' && self.focusOnShow !== focusOnShow.OFF) {
       // we need to add :not([coral-tabcapture]) to avoid selecting the tab captures
-      const selectedElement = this.querySelector(`${this.focusOnShow}:not([coral-tabcapture])`);
+      const selectedElement = self.querySelector(`${self.focusOnShow}:not([coral-tabcapture])`);
 
       if (selectedElement) {
-        selectedElement.focus(preventScroll(this));
+        selectedElement.focus(preventScroll(self));
       }
       // in case the selector does not match, it should fallback to the default behavior
       else {
-        this._focusOn('first');
+        self._focusOn('first');
       }
     }
   }
@@ -835,19 +854,20 @@ const BaseOverlay = (superClass) => class extends superClass {
    @protected
    */
   _handleReturnFocus() {
-    if (this.returnFocus === returnFocus.ON && this._elementToFocusWhenHidden) {
-      if (document.activeElement && !this.contains(document.activeElement)) {
+    const self = this;
+    const _elementToFocusWhenHidden = self._elementToFocusWhenHidden;
+    if (self.returnFocus === returnFocus.ON && _elementToFocusWhenHidden) {
+      if (document.activeElement && !self.contains(document.activeElement)) {
         // Don't return focus if the user focused outside of the overlay
         return;
       }
-
       // Return focus, ignoring tab capture if it is an overlay
-      this._elementToFocusWhenHidden._ignoreTabCapture = true;
-      this._elementToFocusWhenHidden.focus(preventScroll(this));
-      this._elementToFocusWhenHidden._ignoreTabCapture = false;
+      _elementToFocusWhenHidden._ignoreTabCapture = true;
+      _elementToFocusWhenHidden.focus(preventScroll(this));
+      _elementToFocusWhenHidden._ignoreTabCapture = false;
 
       // Drop the reference to avoid memory leaks
-      this._elementToFocusWhenHidden = null;
+      self._elementToFocusWhenHidden = null;
     }
   }
 
@@ -859,15 +879,16 @@ const BaseOverlay = (superClass) => class extends superClass {
    @protected
    */
   _focusOn(which) {
-    const focusableTarget = this._getFocusableElement(which);
+    const self = this;
+    const focusableTarget = self._getFocusableElement(which);
 
     // if we found a focusing target we focus it
     if (focusableTarget) {
-      focusableTarget.focus(preventScroll(this));
+      focusableTarget.focus(preventScroll(self));
     }
     // otherwise the element itself should get focus
     else {
-      this.focus(preventScroll(this));
+      self.focus(preventScroll(self));
     }
   }
 
@@ -917,9 +938,10 @@ const BaseOverlay = (superClass) => class extends superClass {
    @returns {BaseOverlay} this, chainable
    */
   returnFocusTo(element) {
-    if (this.returnFocus === returnFocus.OFF) {
+    const self = this;
+    if (self.returnFocus === returnFocus.OFF) {
       // Switch on returning focus if it's off
-      this.returnFocus = returnFocus.ON;
+      self.returnFocus = returnFocus.ON;
     }
 
     // If the element is not focusable,
@@ -943,8 +965,8 @@ const BaseOverlay = (superClass) => class extends superClass {
       }, true);
     }
 
-    this._returnFocusToElement = element;
-    return this;
+    self._returnFocusToElement = element;
+    return self;
   }
 
   static get _OverlayManager() {
@@ -1017,33 +1039,36 @@ const BaseOverlay = (superClass) => class extends superClass {
   /** @ignore */
   connectedCallback() {
     super.connectedCallback();
+    const self = this;
+    const hasAttribute = self.hasAttribute;
 
-    if (!this.hasAttribute('trapfocus')) {
-      this.trapFocus = this.trapFocus;
+    if (!hasAttribute('trapfocus')) {
+      self.trapFocus = self.trapFocus;
     }
-    if (!this.hasAttribute('returnfocus')) {
-      this.returnFocus = this.returnFocus;
+    if (!hasAttribute('returnfocus')) {
+      self.returnFocus = self.returnFocus;
     }
-    if (!this.hasAttribute('focusonshow')) {
-      this.focusOnShow = this.focusOnShow;
+    if (!hasAttribute('focusonshow')) {
+      self.focusOnShow = self.focusOnShow;
     }
-    if (!this.hasAttribute('scrollonfocus')) {
-      this.scrollOnFocus = this.scrollOnFocus;
+    if (!hasAttribute('scrollonfocus')) {
+      self.scrollOnFocus = self.scrollOnFocus;
     }
 
-    if (this.open) {
-      this._pushOverlay();
+    if (self.open) {
+      self._pushOverlay();
 
-      if (this._showBackdropOnAttached) {
+      if (self._showBackdropOnAttached) {
         // Show the backdrop again
-        this._showBackdrop();
+        self._showBackdrop();
       }
     } else {
       // If overlay is closed, make sure that it is hidden with `display: none`,
       // but set `visibility: visible` to ensure that the overlay will be included in accessibility name or description
       // of an element that references it using `aria-labelledby` or `aria-describedby`.
-      this.style.display = 'none';
-      this.style.visibility = 'visible';
+      const style = self.style;
+      style.display = 'none';
+      style.visibility = 'visible';
     }
   }
 
@@ -1057,15 +1082,15 @@ const BaseOverlay = (superClass) => class extends superClass {
   /** @ignore */
   disconnectedCallback() {
     super.disconnectedCallback();
-
-    if (this.open) {
+    const self = this;
+    if (self.open) {
       // Release zIndex as we're not in the DOM any longer
       // When we're re-added, we'll get a new zIndex
-      this._popOverlay();
+      self._popOverlay();
 
-      if (this._requestedBackdrop) {
+      if (self._requestedBackdrop) {
         // Mark that we'll need to show the backdrop when attached
-        this._showBackdropOnAttached = true;
+        self._showBackdropOnAttached = true;
       }
     }
   }

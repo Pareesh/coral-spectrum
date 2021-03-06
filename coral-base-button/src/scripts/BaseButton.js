@@ -152,15 +152,17 @@ const BaseButton = (superClass) => class extends BaseLabellable(superClass) {
   constructor() {
     super();
 
+    const self = this;
+
     // Templates
-    this._elements = {
+    self._elements = {
       // Create or fetch the label element
-      label: this.querySelector(this._contentZoneTagName) || document.createElement(this._contentZoneTagName),
-      icon: this.querySelector('coral-icon')
+      label: self.querySelector(self._contentZoneTagName) || document.createElement(self._contentZoneTagName),
+      icon: self.querySelector('coral-icon')
     };
 
     // Events
-    this._events = {
+    self._events = {
       mousedown: '_onMouseDown',
       click: '_onClick'
     };
@@ -178,22 +180,23 @@ const BaseButton = (superClass) => class extends BaseLabellable(superClass) {
   }
 
   set label(value) {
-    this._setContentZone('label', value, {
+    const self = this;
+    self._setContentZone('label', value, {
       handle: 'label',
-      tagName: this._contentZoneTagName,
+      tagName: self._contentZoneTagName,
       insert: function (label) {
         // Update label styles
-        this._updateLabel(label);
+        self._updateLabel(label);
 
         // Ensure there's no extra space left for icon only buttons
         if (label.innerHTML.trim() === '') {
           label.textContent = '';
         }
 
-        if (this.iconPosition === iconPosition.LEFT) {
-          this.appendChild(label);
+        if (self.iconPosition === iconPosition.LEFT) {
+          self.appendChild(label);
         } else {
-          this.insertBefore(label, this.firstChild);
+          self.insertBefore(label, self.firstChild);
         }
       }
     });
@@ -214,11 +217,14 @@ const BaseButton = (superClass) => class extends BaseLabellable(superClass) {
   }
 
   set iconPosition(value) {
-    value = transform.string(value).toLowerCase();
-    this._iconPosition = validate.enumeration(iconPosition)(value) && value || iconPosition.LEFT;
-    this._reflectAttribute('iconposition', this._iconPosition);
+    const self = this;
+    value = transform.toLowerCase(value);
+    value = validate.enumeration(iconPosition)(value) && value || iconPosition.LEFT;
 
-    this._updateIcon(this.icon);
+    self._updateProperty('_iconPosition', value, function(value) {
+      self._reflectAttribute('iconposition', value);
+      self._updateIcon(self.icon);
+    });
   }
 
   /**
@@ -229,17 +235,20 @@ const BaseButton = (superClass) => class extends BaseLabellable(superClass) {
    @htmlattribute icon
    */
   get icon() {
-    if (this._elements.icon) {
-      return this._elements.icon.getAttribute('icon') || '';
+    let elementsIcon = this._elements.icon;
+    if (elementsIcon) {
+      return elementsIcon.getAttribute('icon') || '';
     }
 
     return this._icon || '';
   }
 
   set icon(value) {
-    this._icon = transform.string(value);
+    value = transform.string(value);
 
-    this._updateIcon(value);
+    this._updateProperty('_icon', value, function(value) {
+      this._updateIcon(value);
+    });
   }
 
   /**
@@ -250,20 +259,24 @@ const BaseButton = (superClass) => class extends BaseLabellable(superClass) {
    @htmlattribute iconsize
    */
   get iconSize() {
-    if (this._elements.icon) {
-      return this._elements.icon.getAttribute('size') || Icon.size.SMALL;
-    }
+    let elementsIcon = this._elements.icon;
 
+    if (elementsIcon) {
+      return elementsIcon.getAttribute('size') || Icon.size.SMALL;
+    }
     return this._iconSize || Icon.size.SMALL;
   }
 
   set iconSize(value) {
-    value = transform.string(value).toUpperCase();
-    this._iconSize = validate.enumeration(Icon.size)(value) && value || Icon.size.SMALL;
+    const self = this;
+    value = transform.toUpperCase(value);
+    value = validate.enumeration(Icon.size)(value) && value || Icon.size.SMALL;
 
-    if (this._updatedIcon) {
-      this._getIconElement().setAttribute('size', value);
-    }
+    self._updateProperty('_iconSize', value, function(value) {
+      if (self._updatedIcon) {
+        self._getIconElement().setAttribute('size', value);
+      }
+    });
   }
 
   /**
@@ -274,20 +287,24 @@ const BaseButton = (superClass) => class extends BaseLabellable(superClass) {
    @htmlattribute autoarialabel
    */
   get iconAutoAriaLabel() {
-    if (this._elements.icon) {
-      return this._elements.icon.getAttribute('autoarialabel') || Icon.autoAriaLabel.OFF;
+    const self = this;
+    let _elementsIcon = self._elements.icon;
+    if (_elementsIcon) {
+      return _elementsIcon.getAttribute('autoarialabel') || Icon.autoAriaLabel.OFF;
     }
-
-    return this._iconAutoAriaLabel || Icon.autoAriaLabel.OFF;
+    return self._iconAutoAriaLabel || Icon.autoAriaLabel.OFF;
   }
 
   set iconAutoAriaLabel(value) {
-    value = transform.string(value).toLowerCase();
-    this._iconAutoAriaLabel = validate.enumeration(Icon.autoAriaLabel)(value) && value || Icon.autoAriaLabel.OFF;
+    const self = this;
+    value = transform.toLowerCase();
+    value = validate.enumeration(Icon.autoAriaLabel)(value) && value || Icon.autoAriaLabel.OFF;
 
-    if (this._updatedIcon) {
-      this._getIconElement().setAttribute('autoarialabel', value);
-    }
+    self._updateProperty('_iconAutoAriaLabel', value, function(value) {
+      if (self._updatedIcon) {
+        self._getIconElement().setAttribute('autoarialabel', value);
+      }
+    });
   }
 
   /**
@@ -304,9 +321,13 @@ const BaseButton = (superClass) => class extends BaseLabellable(superClass) {
   }
 
   set size(value) {
-    value = transform.string(value).toUpperCase();
-    this._size = validate.enumeration(size)(value) && value || size.MEDIUM;
-    this._reflectAttribute('size', this._size);
+    let self = this;
+    value = transform.toUpperCase(value);
+    value = validate.enumeration(size)(value) && value || size.MEDIUM;
+
+    self._updateProperty('_size', value, function(value) {
+      self._reflectAttribute('size', value);
+    });
   }
 
   /**
@@ -322,12 +343,14 @@ const BaseButton = (superClass) => class extends BaseLabellable(superClass) {
   }
 
   set selected(value) {
-    this._selected = transform.booleanAttr(value);
-    this._reflectAttribute('selected', this._selected);
+    const self = this;
+    value = transform.booleanAttr(value);
 
-    this.classList.toggle('is-selected', this._selected);
-
-    this.trigger('coral-button:_selectedchanged');
+    self._updateProperty('_selected', value, function(value) {
+      self._reflectAttribute('selected', value);
+      self.classList.toggle('is-selected', value);
+      self.trigger('coral-button:_selectedchanged');
+    });
   }
 
   // We just reflect it but we also trigger an event to be used by button group
@@ -338,7 +361,6 @@ const BaseButton = (superClass) => class extends BaseLabellable(superClass) {
 
   set value(value) {
     this._reflectAttribute('value', value);
-
     this.trigger('coral-button:_valuechanged');
   }
 
@@ -355,10 +377,13 @@ const BaseButton = (superClass) => class extends BaseLabellable(superClass) {
   }
 
   set block(value) {
-    this._block = transform.booleanAttr(value);
-    this._reflectAttribute('block', this._block);
+    const self = this;
+    value = transform.booleanAttr(value);
 
-    this.classList.toggle(`${CLASSNAME}--block`, this._block);
+    self._updateProperty('_block', value, function(value) {
+      self._reflectAttribute('block', value);
+      self.classList.toggle(`${CLASSNAME}--block`, value);
+    });
   }
 
   /**
@@ -374,36 +399,42 @@ const BaseButton = (superClass) => class extends BaseLabellable(superClass) {
   }
 
   set variant(value) {
-    value = transform.string(value).toLowerCase();
-    this._variant = validate.enumeration(variant)(value) && value || variant.DEFAULT;
-    this._reflectAttribute('variant', this._variant);
+    const self = this;
 
-    // removes every existing variant
-    this.classList.remove(CLASSNAME, ACTION_CLASSNAME);
-    this.classList.remove(...ALL_VARIANT_CLASSES);
+    value = transform.toLowerCase(value);
+    value = validate.enumeration(variant)(value) && value || variant.DEFAULT;
 
-    if (this._variant === variant._CUSTOM) {
-      this.classList.remove(CLASSNAME);
-    } else {
-      this.classList.add(...VARIANT_MAP[this._variant]);
+    self._updateProperty('_variant', value, function(value) {
+      const classList = self.classList;
 
-      if (this._variant === variant.ACTION || this._variant === variant.QUIET_ACTION) {
-        this.classList.remove(CLASSNAME);
+      self._reflectAttribute('variant', value);
+      // removes every existing variant
+      classList.remove(CLASSNAME, ACTION_CLASSNAME);
+      classList.remove(...ALL_VARIANT_CLASSES);
+
+      if (value === variant._CUSTOM) {
+        classList.remove(CLASSNAME);
+      } else {
+        classList.add(...VARIANT_MAP[value]);
+
+        if (value === variant.ACTION || value === variant.QUIET_ACTION) {
+          classList.remove(CLASSNAME);
+        }
       }
-    }
-
-    // Update label styles
-    this._updateLabel();
+      // Update label styles
+      self._updateLabel();
+    });
   }
 
   /**
    Inherited from {@link BaseComponent#trackingElement}.
    */
   get trackingElement() {
-    return typeof this._trackingElement === 'undefined' ?
+    const self = this;
+    return typeof self._trackingElement === 'undefined' ?
       // keep spaces to only 1 max and trim. this mimics native html behaviors
-      (this.label || this).textContent.replace(/\s{2,}/g, ' ').trim() || this.icon :
-      this._trackingElement;
+      (self.label || self).textContent.replace(/\s{2,}/g, ' ').trim() || self.icon :
+      self._trackingElement;
   }
 
   set trackingElement(value) {
@@ -411,22 +442,24 @@ const BaseButton = (superClass) => class extends BaseLabellable(superClass) {
   }
 
   _onClick(event) {
-    if (!this.disabled) {
-      this._trackEvent('click', this.getAttribute('is'), event);
+    const self = this;
+    if (!self.disabled) {
+      self._trackEvent('click', self.getAttribute('is'), event);
     }
   }
 
   /** @ignore */
   _updateIcon(value) {
-    if (!this._updatedIcon && this._elements.icon) {
+    const self = this;
+    if (!self._updatedIcon && self._elements.icon) {
       return;
     }
 
-    this._updatedIcon = true;
+    self._updatedIcon = true;
 
-    const iconSizeValue = this.iconSize;
-    const iconAutoAriaLabelValue = this.iconAutoAriaLabel;
-    const iconElement = this._getIconElement();
+    const iconSizeValue = self.iconSize;
+    const iconAutoAriaLabelValue = self.iconAutoAriaLabel;
+    const iconElement = self._getIconElement();
     iconElement.icon = value;
     // Update size as well
     iconElement.size = iconSizeValue;
@@ -434,14 +467,14 @@ const BaseButton = (superClass) => class extends BaseLabellable(superClass) {
     iconElement.autoAriaLabel = iconAutoAriaLabelValue;
 
     // removes the icon element from the DOM.
-    if (this.icon === '') {
+    if (self.icon === '') {
       iconElement.remove();
     }
     // add or adjust the icon. Add it back since it was blown away by textContent
-    else if (!iconElement.parentNode || this._iconPosition) {
-      if (this.contains(this.label)) {
+    else if (!iconElement.parentNode || self._iconPosition) {
+      if (self.contains(self.label)) {
         // insertBefore with <code>null</code> appends
-        this.insertBefore(iconElement, this.iconPosition === iconPosition.LEFT ? this.label : this.label.nextElementSibling);
+        self.insertBefore(iconElement, self.iconPosition === iconPosition.LEFT ? self.label : self.label.nextElementSibling);
       }
     }
 
@@ -450,11 +483,12 @@ const BaseButton = (superClass) => class extends BaseLabellable(superClass) {
 
   /** @ignore */
   _getIconElement() {
-    if (!this._elements.icon) {
-      this._elements.icon = new Icon();
-      this._elements.icon.size = this.iconSize;
+    let elements = this._elements;
+    if (!elements.icon) {
+      elements.icon = new Icon();
+      elements.icon.size = self.iconSize;
     }
-    return this._elements.icon;
+    return elements.icon;
   }
 
   /**
@@ -474,15 +508,18 @@ const BaseButton = (superClass) => class extends BaseLabellable(superClass) {
   }
 
   _updateLabel(label) {
-    label = label || this._elements.label;
+    label = label || self._elements.label;
+    const self = this;
+    const _variant = self._variant;
+    const classList = label.classList;
 
-    label.classList.remove(`${CLASSNAME}-label`, `${ACTION_CLASSNAME}-label`);
+    classList.remove(`${CLASSNAME}-label`, `${ACTION_CLASSNAME}-label`);
 
-    if (this._variant !== variant._CUSTOM) {
-      if (this._variant === variant.ACTION || this._variant === variant.QUIET_ACTION) {
-        label.classList.add(`${ACTION_CLASSNAME}-label`);
+    if (_variant !== variant._CUSTOM) {
+      if (_variant === variant.ACTION || _variant === variant.QUIET_ACTION) {
+        classList.add(`${ACTION_CLASSNAME}-label`);
       } else {
-        label.classList.add(`${CLASSNAME}-label`);
+        classList.add(`${CLASSNAME}-label`);
       }
     }
   }
@@ -559,38 +596,39 @@ const BaseButton = (superClass) => class extends BaseLabellable(superClass) {
   render() {
     super.render();
 
+    const self = this;
     // Default reflected attributes
-    if (!this._variant) {
-      this.variant = variant.DEFAULT;
+    if (!self._variant) {
+      self.variant = variant.DEFAULT;
     }
-    if (!this._size) {
-      this.size = size.MEDIUM;
+    if (!self._size) {
+      self.size = size.MEDIUM;
     }
 
     // Create a fragment
     const fragment = document.createDocumentFragment();
 
-    const label = this._elements.label;
+    const label = self._elements.label;
 
     const contentZoneProvided = label.parentNode;
 
     // Remove it so we can process children
     if (contentZoneProvided) {
-      this.removeChild(label);
+      self.removeChild(label);
     }
 
     let iconAdded = false;
     // Process remaining elements as necessary
-    while (this.firstChild) {
-      const child = this.firstChild;
+    while (self.firstChild) {
+      const child = self.firstChild;
 
       if (child.nodeName === 'CORAL-ICON') {
         // Don't add duplicated icons
         if (iconAdded) {
-          this.removeChild(child);
+          self.removeChild(child);
         } else {
           // Conserve existing icon element to content
-          this._elements.icon = child;
+          self._elements.icon = child;
           fragment.appendChild(child);
           iconAdded = true;
         }
@@ -605,14 +643,14 @@ const BaseButton = (superClass) => class extends BaseLabellable(superClass) {
     }
 
     // Add the frag to the component
-    this.appendChild(fragment);
+    self.appendChild(fragment);
 
     // Assign the content zones, moving them into place in the process
-    this.label = label;
+    self.label = label;
 
     // Make sure the icon is well positioned
-    this._updatedIcon = true;
-    this._updateIcon(this.icon);
+    self._updatedIcon = true;
+    self._updateIcon(self.icon);
   }
 
   /**

@@ -69,11 +69,14 @@ const BaseListItem = (superClass) => class extends BaseLabellable(superClass) {
   }
 
   set disabled(value) {
-    this._disabled = transform.booleanAttr(value);
-    this._reflectAttribute('disabled', this._disabled);
+    const self = this;
+    value = transform.booleanAttr(value);
 
-    this.classList.toggle('is-disabled', this._disabled);
-    this[this._disabled ? 'setAttribute' : 'removeAttribute']('aria-disabled', this._disabled);
+    self._updateProperty('_disabled', value, function(value) {
+      self._reflectAttribute('disabled', value);
+      self.classList.toggle('is-disabled', value);
+      self[value ? 'setAttribute' : 'removeAttribute']('aria-disabled', value);
+    });
   }
 
   /**
@@ -102,12 +105,14 @@ const BaseListItem = (superClass) => class extends BaseLabellable(superClass) {
   }
 
   _getIconElement() {
-    if (!this._elements.icon) {
-      this._elements.icon = this.querySelector('._coral-Menu-item-icon') || new Icon();
-      this._elements.icon.size = Icon.size.SMALL;
-      this._elements.icon.classList.add('_coral-Menu-item-icon');
+    const self = this;
+    const elements = self._elements;
+    if (!elements.icon) {
+      elements.icon = self.querySelector('._coral-Menu-item-icon') || new Icon();
+      elements.icon.size = Icon.size.SMALL;
+      elements.icon.classList.add('_coral-Menu-item-icon');
     }
-    return this._elements.icon;
+    return elements.icon;
   }
 
   get _contentZones() {
@@ -121,28 +126,29 @@ const BaseListItem = (superClass) => class extends BaseLabellable(superClass) {
 
   /** @ignore */
   render() {
+    const self = this;
     super.render();
 
-    this.classList.add(CLASSNAME);
+    self.classList.add(CLASSNAME);
 
     // The attribute that makes different types of list items co-exist
     // This is also used for event delegation
-    this.setAttribute('coral-list-item', '');
+    self.setAttribute('coral-list-item', '');
 
     // Fetch or create the content content zone element
-    const content = this._elements.content;
+    const content = self._elements.content;
 
     // This stops the content zone from being voracious
     if (!content.parentNode) {
       // move the contents of the item into the content zone
-      while (this.firstChild) {
-        content.appendChild(this.firstChild);
+      while (self.firstChild) {
+        content.appendChild(self.firstChild);
       }
     }
 
     // Assign the content zones, moving them into place in the process
-    this.icon = this.icon;
-    this.content = content;
+    self.icon = self.icon;
+    self.content = content;
   }
 };
 

@@ -43,15 +43,16 @@ const BaseFieldGroup = (superClass) => class extends superClass {
    @readonly
    */
   get items() {
+    const self = this;
     // Construct the collection on first request:
-    if (!this._items) {
-      this._items = new SelectableCollection({
-        itemTagName: this._itemTagName,
-        host: this
+    if (!self._items) {
+      self._items = new SelectableCollection({
+        itemTagName: self._itemTagName,
+        host: self
       });
     }
 
-    return this._items;
+    return self._items;
   }
 
   /**
@@ -67,11 +68,14 @@ const BaseFieldGroup = (superClass) => class extends superClass {
   }
 
   set orientation(value) {
-    value = transform.string(value).toLowerCase();
-    this._orientation = validate.enumeration(this.constructor.orientation)(value) && value || orientation.HORIZONTAL;
-    this._reflectAttribute('orientation', this._orientation);
+    const self = this;
+    value = transform.toLowerCase(value);
+    value = validate.enumeration(self.constructor.orientation)(value) && value || orientation.HORIZONTAL;
 
-    this.classList.toggle(`${CLASSNAME}--vertical`, this._orientation === orientation.VERTICAL);
+    self._updateProperty('_orientation', value, function(value){
+      self._reflectAttribute('orientation', value);
+      self.classList.toggle(`${CLASSNAME}--vertical`, value === orientation.VERTICAL);
+    });
   }
 
   /**
@@ -107,16 +111,17 @@ const BaseFieldGroup = (superClass) => class extends superClass {
 
   /** @ignore */
   render() {
+    const self = this;
     super.render();
 
-    this.classList.add(CLASSNAME);
+    self.classList.add(CLASSNAME);
 
     // a11y
-    this.setAttribute('role', 'group');
+    self.setAttribute('role', 'group');
 
     // Default reflected attributes
-    if (!this._orientation) {
-      this.orientation = orientation.HORIZONTAL;
+    if (!self._orientation) {
+      self.orientation = orientation.HORIZONTAL;
     }
   }
 };

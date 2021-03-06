@@ -145,11 +145,14 @@ const BaseFormField = (superClass) => class extends superClass {
   }
 
   set invalid(value) {
-    this._invalid = transform.booleanAttr(value);
-    this._reflectAttribute('invalid', this._invalid);
+    const self = this;
+    value = transform.booleanAttr(value);
 
-    this.setAttribute('aria-invalid', this._invalid);
-    this.classList.toggle('is-invalid', this._invalid);
+    self._updateProperty('_invalid', value, function(value){
+      self._reflectAttribute('invalid', value);
+      self.setAttribute('aria-invalid', value);
+      self.classList.toggle('is-invalid', value);
+    });
   }
 
   /**
@@ -165,7 +168,6 @@ const BaseFormField = (superClass) => class extends superClass {
 
   set describedBy(value) {
     value = transform.string(value);
-
     this._getLabellableElement()[value ? 'setAttribute' : 'removeAttribute']('aria-describedby', value);
   }
 
@@ -182,7 +184,6 @@ const BaseFormField = (superClass) => class extends superClass {
 
   set labelled(value) {
     value = transform.string(value);
-
     this._getLabellableElement()[value ? 'setAttribute' : 'removeAttribute']('aria-label', value);
   }
 
@@ -200,11 +201,12 @@ const BaseFormField = (superClass) => class extends superClass {
   }
 
   set labelledBy(value) {
+    const self = this;
     value = transform.string(value);
 
     // gets the element that will get the label assigned. the _getLabellableElement method should be overriden to
     // allow other bevaviors.
-    const element = this._getLabellableElement();
+    const element = self._getLabellableElement();
     // we get and assign the it that will be passed around
     const elementId = element.id = element.id || commons.getUID();
 
@@ -212,13 +214,13 @@ const BaseFormField = (superClass) => class extends superClass {
 
     // we clear the old label assignments
     if (currentLabelledBy && currentLabelledBy !== value) {
-      this._updateForAttributes(currentLabelledBy, elementId, true);
+      self._updateForAttributes(currentLabelledBy, elementId, true);
     }
 
     if (value) {
       element.setAttribute('aria-labelledby', value);
       if (element.matches(LABELLABLE_ELEMENTS_SELECTOR)) {
-        this._updateForAttributes(value, elementId);
+        self._updateForAttributes(value, elementId);
       }
     } else {
       // since no labelledby value was set, we remove everything
@@ -264,11 +266,12 @@ const BaseFormField = (superClass) => class extends superClass {
    @returns {HTMLElement} the labellable element.
    */
   _getLabellableElement() {
+    const self = this;
     // Use predefined element or query it
-    const element = this._labellableElement || this.querySelector(LABELLABLE_ELEMENTS_SELECTOR);
+    const element = self._labellableElement || self.querySelector(LABELLABLE_ELEMENTS_SELECTOR);
 
     // Use the found element or the container
-    return element || this;
+    return element || self;
   }
 
   /**
@@ -280,11 +283,12 @@ const BaseFormField = (superClass) => class extends superClass {
    @return {HTMLElement} the input to watch for changes.
    */
   _getTargetChangeInput() {
+    const self = this;
     // we use this._targetChangeInput as an internal cache to avoid querying the DOM again every time
-    return this._targetChangeInput ||
+    return self._targetChangeInput ||
       // assignment returns the value
-      (this._targetChangeInput = this._getLabellableElement().matches(TARGET_INPUT_SELECTOR) ?
-        this._getLabellableElement() : null);
+      (self._targetChangeInput = self._getLabellableElement().matches(TARGET_INPUT_SELECTOR) ?
+        self._getLabellableElement() : null);
   }
 
   /**
@@ -294,15 +298,16 @@ const BaseFormField = (superClass) => class extends superClass {
    @protected
    */
   _onInputChange(event) {
+    const self = this;
     // stops the current event
     event.stopPropagation();
 
     /** @ignore */
-    this[this._componentTargetProperty] = event.target[this._eventTargetProperty];
+    self[self._componentTargetProperty] = event.target[self._eventTargetProperty];
 
     // Explicitly re-emit the change event after the property has been set
-    if (this._triggerChangeEvent) {
-      this.trigger('change');
+    if (self._triggerChangeEvent) {
+      self.trigger('change');
     }
   }
 

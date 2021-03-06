@@ -16,13 +16,15 @@
  */
 const BaseLabellable = (superClass) => class extends superClass {
   _observeLabel() {
-    this._observableLabel = this._observableLabel || this._elements.label || this._elements.content;
+    const self = this;
+    const _elements = self._elements;
+    self._observableLabel = self._observableLabel || _elements.label || _elements.content;
 
     // Listen for mutations
-    this._observer = new MutationObserver(this._toggleIconAriaHidden.bind(this));
+    self._observer = new MutationObserver(self._toggleIconAriaHidden.bind(self));
 
     // Watch for changes to the content element
-    this._observer.observe(this._observableLabel, {
+    self._observer.observe(self._observableLabel, {
       // Catch changes to childList
       childList: true,
       // Catch changes to textContent
@@ -34,15 +36,17 @@ const BaseLabellable = (superClass) => class extends superClass {
 
   // Hides the icon from screen readers to avoid duplicated labels
   _toggleIconAriaHidden() {
-    this._renderedLabel = this._renderedLabel || this.label || this.content;
+    const self = this;
+    const elements = self._elements;
+    const renderedLabel = self._renderedLabel = self._renderedLabel || self.label || self.content;
 
     // toggle aria-hidden if tab is labelled
-    if (this._elements.icon) {
-      const isLabelled = (this._renderedLabel && this._renderedLabel.textContent.trim().length) ||
-        this.getAttribute('aria-label') !== null ||
-        this.getAttribute('aria-labelledby') !== null;
+    if (elements.icon) {
+      const isLabelled = (renderedLabel && renderedLabel.textContent.trim().length) ||
+        self.getAttribute('aria-label') !== null ||
+        self.getAttribute('aria-labelledby') !== null;
 
-      this._elements.icon[isLabelled ? 'setAttribute' : 'removeAttribute']('aria-hidden', 'true');
+      elements.icon[isLabelled ? 'setAttribute' : 'removeAttribute']('aria-hidden', 'true');
     }
   }
 
