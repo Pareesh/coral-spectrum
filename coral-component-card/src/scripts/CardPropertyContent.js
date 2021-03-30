@@ -16,4 +16,6 @@
  @htmltag coral-card-property-content
  @return {HTMLElement}
  */
-export default () => document.createElement('coral-card-property-content');
+export default function() {
+  return document.createElement('coral-card-property-content');
+}

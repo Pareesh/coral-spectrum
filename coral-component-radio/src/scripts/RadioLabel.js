@@ -16,4 +16,6 @@
  @htmltag coral-radio-label
  @return {HTMLElement}
  */
-export default () => document.createElement('coral-radio-label');
+export default function() {
+  return document.createElement('coral-radio-label');
+}

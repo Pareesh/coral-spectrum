@@ -21,6 +21,12 @@ const CLASSNAME = '_coral-Shell-help-item';
  @extends {AnchorListItem}
  */
 class ShellHelpItem extends AnchorList.Item {
+
+  _initialise() {
+    super._initialise();
+    this.setAttribute('is', 'coral-shell-help-item');
+  }
+
   /** @ignore */
   render() {
     super.render();

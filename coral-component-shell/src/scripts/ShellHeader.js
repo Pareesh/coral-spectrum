@@ -34,8 +34,6 @@ class ShellHeader extends BaseComponent(HTMLElement) {
       actions: this.querySelector('coral-shell-header-actions') || document.createElement('coral-shell-header-actions'),
       content: this.querySelector('coral-shell-header-content') || document.createElement('coral-shell-header-content')
     };
-
-    Overlay._OverlayManager.push(this);
   }
 
   /**
@@ -104,6 +102,11 @@ class ShellHeader extends BaseComponent(HTMLElement) {
       'coral-shell-header-content': 'content',
       'coral-shell-header-actions': 'actions'
     };
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    Overlay._OverlayManager.push(this);
   }
 
   /** @ignore */

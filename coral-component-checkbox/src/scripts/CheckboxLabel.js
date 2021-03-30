@@ -16,4 +16,6 @@
  @htmltag coral-checkbox-label
  @return {HTMLElement}
  */
-export default () => document.createElement('coral-checkbox-label');
+export default function() {
+  return document.createElement('coral-checkbox-label');
+}

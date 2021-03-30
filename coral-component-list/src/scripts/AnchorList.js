@@ -28,11 +28,15 @@ class AnchorList extends BaseList(BaseComponent(HTMLElement)) {
   /** @ignore */
   constructor() {
     super();
+  }
+
+  _initialise() {
+    super._initialise();
 
     // Events
-    this._delegateEvents(commons.extend(this._events, {
+    this._delegateEvents({
       'click [coral-list-item]': '_onItemClick'
-    }));
+    });
   }
 
   /** @private */

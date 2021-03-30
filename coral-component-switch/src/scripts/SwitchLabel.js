@@ -16,4 +16,6 @@
  @htmltag coral-switch-label
  @return {HTMLElement}
  */
-export default () => document.createElement('coral-switch-label');
+export default function() {
+  return document.createElement('coral-switch-label');
+}

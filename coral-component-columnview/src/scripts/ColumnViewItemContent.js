@@ -16,4 +16,6 @@
  @htmltag coral-columnview-item-content
  @return {HTMLElement}
  */
-export default () => document.createElement('coral-columnview-item-content');
+export default function() {
+  return document.createElement('coral-columnview-item-content');
+}

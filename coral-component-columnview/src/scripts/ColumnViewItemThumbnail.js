@@ -16,4 +16,6 @@
  @htmltag coral-columnview-item-thumbnail
  @return {HTMLElement}
  */
-export default () => document.createElement('coral-columnview-item-thumbnail');
+export default function() {
+  return document.createElement('coral-columnview-item-thumbnail');
+}

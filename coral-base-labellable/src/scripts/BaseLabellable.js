@@ -10,6 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
+import {CoralMutationObserver} from '../../../coral-mutationobserver';
+
 /**
  @base BaseLabellable
  @classdesc Accessibility helper for components with label and icon properties
@@ -19,7 +21,7 @@ const BaseLabellable = (superClass) => class extends superClass {
     this._observableLabel = this._observableLabel || this._elements.label || this._elements.content;
 
     // Listen for mutations
-    this._observer = new MutationObserver(this._toggleIconAriaHidden.bind(this));
+    this._observer = new CoralMutationObserver(this, this._toggleIconAriaHidden.bind(this));
 
     // Watch for changes to the content element
     this._observer.observe(this._observableLabel, {

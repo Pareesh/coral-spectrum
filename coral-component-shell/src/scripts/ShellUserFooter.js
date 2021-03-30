@@ -16,4 +16,6 @@
  @htmltag coral-shell-user-footer
  @return {HTMLElement}
  */
-export default () => document.createElement('coral-shell-user-footer');
+export default function() {
+  return document.createElement('coral-shell-user-footer');
+}

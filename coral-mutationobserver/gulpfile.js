@@ -10,7 +10,4 @@
  * governing permissions and limitations under the License.
  */
 
-// todo We force the polyfill but ideally we should not load it if not required
-if (window.customElements) {
-  window.customElements.forcePolyfill = true;
-}
+require('../coral-gulp')(require('gulp'));

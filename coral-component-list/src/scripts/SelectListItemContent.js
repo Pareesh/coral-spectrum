@@ -16,4 +16,6 @@
  @htmltag coral-selectlist-item-content
  @return {HTMLElement}
  */
-export default () => document.createElement('coral-selectlist-item-content');
+export default function() {
+  return document.createElement('coral-selectlist-item-content');
+}

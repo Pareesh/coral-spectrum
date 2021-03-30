@@ -16,4 +16,6 @@
  @htmltag coral-popover-content
  @return {HTMLElement}
  */
-export default () => document.createElement('coral-popover-content');
+export default function() {
+  return document.createElement('coral-popover-content');
+}

@@ -16,4 +16,6 @@
  @htmltag coral-shell-user-name
  @return {HTMLElement}
  */
-export default () => document.createElement('coral-shell-user-name');
+export default function() {
+  return document.createElement('coral-shell-user-name');
+}

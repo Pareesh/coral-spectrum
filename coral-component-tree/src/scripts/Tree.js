@@ -14,6 +14,7 @@ import {BaseComponent} from '../../../coral-base-component';
 import {SelectableCollection} from '../../../coral-collection';
 import TreeItem from './TreeItem';
 import {transform} from '../../../coral-utils';
+import {CoralMutationObserver} from '../../../coral-mutationobserver';
 
 const CLASSNAME = '_coral-TreeView';
 
@@ -65,7 +66,7 @@ class Tree extends BaseComponent(HTMLElement) {
     this.items._startHandlingItems(true);
 
     // Listen for mutations for Torq compatibility
-    const observer = new MutationObserver((mutations) => {
+    const observer = new CoralMutationObserver(this, (mutations) => {
       mutations.forEach((mutation) => {
         for (let i = 0 ; i < mutation.addedNodes.length ; i++) {
           const addedNode = mutation.addedNodes[i];

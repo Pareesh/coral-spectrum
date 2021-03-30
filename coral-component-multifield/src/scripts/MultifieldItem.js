@@ -37,10 +37,14 @@ class MultifieldItem extends BaseComponent(HTMLElement) {
       content: this.querySelector('coral-multifield-item-content') || document.createElement('coral-multifield-item-content')
     };
 
-    const uid = this.id || commons.getUID();
-    this.setAttribute('id', uid);
-    this._elements.content.setAttribute('id', `${uid}-content`);
+    const uid = this._uid = this.id || commons.getUID();
     item.call(this._elements, {i18n, uid});
+  }
+
+  _initialise() {
+    super._initialise();
+    this.setAttribute('id', this._uid);
+    this._elements.content.setAttribute('id', `${this._uid}-content`);
   }
 
   /**
@@ -93,6 +97,10 @@ class MultifieldItem extends BaseComponent(HTMLElement) {
 
   get _contentZones() {
     return {'coral-multifield-item-content': 'content'};
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
   }
 
   /** @ignore */

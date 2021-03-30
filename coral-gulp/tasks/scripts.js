@@ -13,6 +13,7 @@
 module.exports = function (gulp) {
   const rollup = require('rollup').rollup;
   const rollupConfig = require('../configs/rollup.conf.js')();
+  const rollupConfigES6 = require('../configs/rollup.conf.es6.js')();
 
   gulp.task('scripts', async function (done) {
     const bundle = await rollup({
@@ -22,6 +23,22 @@ module.exports = function (gulp) {
 
     await bundle.write({
       file: './dist/js/coral.js',
+      format: 'iife',
+      name: 'Coral',
+      sourcemap: true
+    });
+
+    done();
+  });
+
+  gulp.task('scripts.es6', async function (done) {
+    const bundle = await rollup({
+      input: 'index.js',
+      plugins: rollupConfigES6
+    });
+
+    await bundle.write({
+      file: './dist/js/coral.es6.js',
       format: 'iife',
       name: 'Coral',
       sourcemap: true

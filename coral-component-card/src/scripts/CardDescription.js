@@ -16,4 +16,6 @@
  @htmltag coral-card-description
  @return {HTMLElement}
  */
-export default () => document.createElement('coral-card-description');
+export default function() {
+  return document.createElement('coral-card-description');
+}

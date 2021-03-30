@@ -11,6 +11,7 @@
  */
 
 import Vent from '@adobe/vent';
+import {CoralMutationObserver} from '../../../coral-mutationobserver';
 import {commons, Keys, keys, events, transform, validate, tracking as trackingUtil} from '../../../coral-utils';
 
 // Used to split events by type/target
@@ -317,7 +318,7 @@ const BaseComponent = (superClass) => class extends superClass {
 
     // Content zone MO for virtual DOM support
     if (this._contentZones) {
-      this._contentZoneObserver = new MutationObserver((mutations) => {
+      this._contentZoneObserver = new CoralMutationObserver(this, (mutations) => {
         mutations.forEach((mutation) => {
           for (let i = 0 ; i < mutation.addedNodes.length ; i++) {
             const addedNode = mutation.addedNodes[i];
@@ -780,9 +781,24 @@ const BaseComponent = (superClass) => class extends superClass {
     }
   }
 
+  _initialise() {
+    this._initialised = true;
+    let children = this.children;
+    for (let i = 0; i < children.length; i++) {
+      let child = children[i];
+      if(!child._initialised && child._initialise) {
+        child._initialise();
+      }
+    }
+  }
+
   /** @ignore */
   connectedCallback() {
     // A component that is reattached should respond to global events again
+    if(!this._initialised) {
+      this._initialise();
+    }
+
     if (this._disconnected) {
       delegateGlobalEvents.call(this);
     }

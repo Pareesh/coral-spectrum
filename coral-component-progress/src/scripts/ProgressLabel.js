@@ -16,4 +16,6 @@
  @htmltag coral-progress-label
  @return {HTMLElement}
  */
-export default () => document.createElement('coral-progress-label');
+export default function() {
+  return document.createElement('coral-progress-label');
+}

@@ -16,4 +16,6 @@
  @htmltag coral-columnview-preview-separator
  @return {HTMLElement}
  */
-export default () => document.createElement('coral-columnview-preview-separator');
+export default function() {
+  return document.createElement('coral-columnview-preview-separator');
+}

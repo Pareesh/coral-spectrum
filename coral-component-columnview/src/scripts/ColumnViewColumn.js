@@ -15,6 +15,7 @@ import ColumnViewCollection from './ColumnViewCollection';
 import isInteractiveTarget from './isInteractiveTarget';
 import selectionMode from './selectionMode';
 import {commons, transform, validate} from '../../../coral-utils';
+import {CoralMutationObserver} from '../../../coral-mutationobserver';
 
 const CLASSNAME = '_coral-MillerColumns-item';
 
@@ -71,7 +72,7 @@ class ColumnViewColumn extends BaseComponent(HTMLElement) {
     this._onDebouncedScroll = this._onDebouncedScroll.bind(this);
     this._toggleItemSelection = this._toggleItemSelection.bind(this);
 
-    this._observer = new MutationObserver(this._handleMutation.bind(this));
+    this._observer = new CoralMutationObserver(this, this._handleMutation.bind(this));
     // items outside the scroll area are not supported
     this._observer.observe(this._elements.content, {
       // only watch the childList, items will tell us if selected/value/content changes

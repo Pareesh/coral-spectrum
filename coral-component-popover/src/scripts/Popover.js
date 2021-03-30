@@ -16,6 +16,7 @@ import {Icon} from '../../../coral-component-icon';
 import '../../../coral-component-dialog';
 import base from '../templates/base';
 import {commons, transform, validate, i18n} from '../../../coral-utils';
+import {CoralMutationObserver} from '../../../coral-mutationobserver';
 
 const CLASSNAME = '_coral-Popover';
 
@@ -122,7 +123,7 @@ class Popover extends Overlay {
 
     // Listen for mutations
     ['header', 'footer'].forEach((name) => {
-      this[`_${name}Observer`] = new MutationObserver(() => {
+      this[`_${name}Observer`] = new CoralMutationObserver(this, () => {
         this._hideContentZoneIfEmpty(name);
         this._toggleFlyout();
       });

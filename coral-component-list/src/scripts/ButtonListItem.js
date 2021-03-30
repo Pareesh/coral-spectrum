@@ -44,6 +44,11 @@ class ButtonListItem extends BaseListItem(BaseComponent(HTMLButtonElement)) {
 
     this.classList.add(CLASSNAME);
   }
+
+  _initialise() {
+    super._initialise();
+    this.setAttribute('is', 'coral-buttonlist-item');
+  }
 }
 
 export default ButtonListItem;

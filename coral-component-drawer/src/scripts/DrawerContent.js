@@ -16,4 +16,6 @@
  @htmltag coral-drawer-content
  @return {HTMLElement}
  */
-export default () => document.createElement('coral-drawer-content');
+export default function() {
+  return document.createElement('coral-drawer-content');
+}

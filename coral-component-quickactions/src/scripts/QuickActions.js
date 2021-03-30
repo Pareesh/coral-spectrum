@@ -102,10 +102,6 @@ class QuickActions extends Overlay {
     this._focusOnShow = Overlay.focusOnShow.OFF;
     this._scrollOnFocus = Overlay.scrollOnFocus.OFF;
 
-    if (!this.id) {
-      this.id = commons.getUID();
-    }
-
     // Flag
     this._openedBefore = false;
 
@@ -114,6 +110,22 @@ class QuickActions extends Overlay {
 
     // Template
     base.call(this._elements, {commons, i18n});
+
+    // Cache bound event handler functions
+    this._onTargetMouseEnter = this._onTargetMouseEnter.bind(this);
+    this._onTargetKeyUp = this._onTargetKeyUp.bind(this);
+    this._onTargetMouseLeave = this._onTargetMouseLeave.bind(this);
+
+    // delegates the item handling to the collection
+    this.items._startHandlingItems(true);
+  }
+
+  _initialise() {
+    super._initialise();
+
+    if(!this.id) {
+      this.id = commons.getUID();
+    }
 
     const events = {
       'global:resize': '_onWindowResize',
@@ -129,12 +141,12 @@ class QuickActions extends Overlay {
       'key:left': '_onButtonKeypressPrevious',
       'key:up': '_onButtonKeypressPrevious',
 
-      'capture:focus': '_onFocus',
-      'capture:blur': '_onBlur',
-
       // Buttons
       'click > ._coral-QuickActions-item:not([handle="moreButton"])': '_onButtonClick',
       'click > ._coral-QuickActions-item[handle="moreButton"]': '_onMoreButtonClick',
+
+      'capture:focus': '_onFocus',
+      'capture:blur': '_onBlur',
 
       // Items
       'coral-quickactions-item:_contentchanged': '_onItemChange',
@@ -155,16 +167,8 @@ class QuickActions extends Overlay {
     events[`global:capture:mouseout #${overlayId}`] = '_onMouseOut';
     events[`global:capture:click #${overlayId} [coral-list-item]`] = '_onButtonListItemClick';
 
-    // Cache bound event handler functions
-    this._onTargetMouseEnter = this._onTargetMouseEnter.bind(this);
-    this._onTargetKeyUp = this._onTargetKeyUp.bind(this);
-    this._onTargetMouseLeave = this._onTargetMouseLeave.bind(this);
-
     // Events
     this._delegateEvents(events);
-
-    // delegates the item handling to the collection
-    this.items._startHandlingItems(true);
   }
 
   /**

@@ -56,6 +56,11 @@ class Textfield extends BaseFormField(BaseComponent(HTMLInputElement)) {
     this._delegateEvents(this._events);
   }
 
+  _initialise() {
+    super._initialise();
+    this.setAttribute('is', 'coral-textfield');
+  }
+
   /**
    The textfield's variant. See {@link TextfieldVariantEnum}.
 

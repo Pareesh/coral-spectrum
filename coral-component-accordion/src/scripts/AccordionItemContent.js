@@ -16,4 +16,6 @@
  @htmltag coral-accordion-item-content
  @return {HTMLElement}
  */
-export default () => document.createElement('coral-accordion-item-content');
+export default function() {
+  return document.createElement('coral-accordion-item-content');
+}

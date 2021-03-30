@@ -16,4 +16,6 @@
  @htmltag coral-dialog-footer
  @return {HTMLElement}
  */
-export default () => document.createElement('coral-dialog-footer');
+export default function() {
+  return document.createElement('coral-dialog-footer');
+}

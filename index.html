@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://opensource.adobe.com/coral-spectrum/playground/dist/css/coral.css"/>
+  <script src="/Users/paregupt/personal/pWorkspace/coral-spectrum/dist/js/coral.es6.js"></script>
+  <script>
+  var getSimpleButtonGroupElement = function () {
+    el = new Coral.ButtonGroup();
+
+    item1 = new Coral.Button();
+    item1.set({
+      value: 'item1',
+      label: {
+        textContent: 'Item 1'
+      }
+    });
+
+    item2 = new Coral.Button();
+    item2.set({
+      value: 'item2',
+      label: {
+        textContent: 'Item 2'
+      }
+    });
+
+    item3 = new Coral.Button();
+    item3.set({
+      value: 'item3',
+      label: {
+        textContent: 'Item 3'
+      }
+    });
+
+    el.appendChild(item1);
+    el.appendChild(item2);
+    el.appendChild(item3);
+
+    return el;
+  };
+  </script>
+</head>
+<body class="coral--lightest">
+  <script>
+    var el = getSimpleButtonGroupElement();
+    var items = el.items.getAll();
+    console.log(items);
+  </script>
+
+
+</body>
+</html>

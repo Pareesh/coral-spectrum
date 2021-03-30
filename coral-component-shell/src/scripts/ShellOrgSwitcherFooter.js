@@ -16,4 +16,6 @@
  @htmltag coral-shell-orgswitcher-footer
  @return {HTMLElement}
  */
-export default () => document.createElement('coral-shell-orgswitcher-footer');
+export default function() {
+  return document.createElement('coral-shell-orgswitcher-footer');
+}

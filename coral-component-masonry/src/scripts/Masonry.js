@@ -14,6 +14,7 @@ import {BaseComponent} from '../../../coral-base-component';
 import MasonryItem from './MasonryItem';
 import {SelectableCollection} from '../../../coral-collection';
 import {validate, transform, commons} from '../../../coral-utils';
+import {CoralMutationObserver} from '../../../coral-mutationobserver';
 
 const CLASSNAME = '_coral-Masonry';
 
@@ -162,7 +163,7 @@ class Masonry extends BaseComponent(HTMLElement) {
 
     // Relayout when child elements change or are added/removed
     // Should this mutation observer become a bottleneck, it could be replaced with a resize listener
-    this._observer = new MutationObserver(this._scheduleLayout.bind(this, 'mutation'));
+    this._observer = new CoralMutationObserver(this, this._scheduleLayout.bind(this, 'mutation'));
     this._observer.observe(this, {
       childList: true,
       subtree: true,

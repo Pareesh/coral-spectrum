@@ -33,7 +33,14 @@ class ShellSolution extends BaseComponent(HTMLAnchorElement) {
       // Fetch or create the content zone elements
       label: this.querySelector('coral-shell-solution-label') || document.createElement('coral-shell-solution-label')
     };
+
     solutionIcon.call(this._elements);
+  }
+
+  _initialise() {
+    super._initialise();
+
+    this.setAttribute('is', 'coral-shell-solution');
   }
 
   /**

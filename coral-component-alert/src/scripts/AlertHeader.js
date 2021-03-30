@@ -16,4 +16,6 @@
  @htmltag coral-alert-header
  @return {HTMLElement}
  */
-export default () => document.createElement('coral-alert-header');
+export default function() {
+  return document.createElement('coral-alert-header');
+}

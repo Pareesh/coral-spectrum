@@ -16,5 +16,6 @@
  @htmltag coral-button-label
  @return {HTMLElement}
  */
-export default () => document.createElement('coral-button-label');
-
+export default function() {
+  return document.createElement('coral-button-label');
+}

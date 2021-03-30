@@ -16,4 +16,6 @@
  @htmltag coral-dialog-content
  @return {HTMLElement}
  */
-export default () => document.createElement('coral-dialog-content');
+export default function() {
+  return document.createElement('coral-dialog-content');
+}

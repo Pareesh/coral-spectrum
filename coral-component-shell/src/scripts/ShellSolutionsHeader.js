@@ -20,7 +20,7 @@ import {commons} from '../../../coral-utils';
 
  @deprecated
  */
-export default () => {
+export default function() {
   commons._log('warn', 'Coral.Shell.Solutions.Header: coral-shell-solutions-header is deprecated.');
   return document.createElement('coral-shell-solutions-header');
 };

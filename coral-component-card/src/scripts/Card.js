@@ -71,8 +71,11 @@ class Card extends BaseComponent(HTMLElement) {
       overlay: this.querySelector('coral-card-overlay') || document.createElement('coral-card-overlay')
     };
     base.call(this._elements);
+  }
 
-    // Events
+  _initialise() {
+    super._initialise();
+
     this._delegateEvents({
       'capture:load coral-card-asset img': '_onLoad'
     });

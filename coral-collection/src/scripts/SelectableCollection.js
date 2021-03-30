@@ -25,11 +25,16 @@ class SelectableCollection extends Collection {
     if (this._filter) {
       commons._log('warn', 'Coral.SelectableCollection does not support the options.filter');
     }
+  }
 
-    // disabled items will not be a selection candicate although hidden items might
-    this._selectableItemSelector = this._allItemsSelector.split(',').map(selector => `${selector}:not([disabled])`).join(',');
-    this._selectedItemSelector = this._allItemsSelector.split(',').map(selector => `${selector}[selected]`).join(',');
-    this._deselectAllExceptSelector = this._selectedItemSelector;
+  _initialise() {
+    if(!this._initialised) {
+      super._initialise();
+      // disabled items will not be a selection candicate although hidden items might
+      this._selectableItemSelector = this._allItemsSelector.split(',').map(selector => `${selector}:not([disabled])`).join(',');
+      this._selectedItemSelector = this._allItemsSelector.split(',').map(selector => `${selector}[selected]`).join(',');
+      this._deselectAllExceptSelector = this._selectedItemSelector;
+    }
   }
 
   /**
@@ -43,6 +48,7 @@ class SelectableCollection extends Collection {
    @protected
    */
   _getSelectableItems() {
+    this._initialise();
     return listToArray(this._container.querySelectorAll(this._selectableItemSelector));
   }
 
@@ -57,6 +63,7 @@ class SelectableCollection extends Collection {
    @protected
    */
   _getFirstSelectable() {
+    this._initialise();
     return this._container.querySelector(this._selectableItemSelector) || null;
   }
 
@@ -71,6 +78,7 @@ class SelectableCollection extends Collection {
    @protected
    */
   _getLastSelectable() {
+    this._initialise();
     const items = this._container.querySelectorAll(this._selectableItemSelector);
     return items[items.length - 1] || null;
   }
@@ -87,6 +95,7 @@ class SelectableCollection extends Collection {
    @protected
    */
   _getPreviousSelectable(item) {
+    this._initialise();
     const items = this.getAll();
     let index = items.indexOf(item);
     let sibling = index > 0 ? items[index - 1] : null;
@@ -116,6 +125,7 @@ class SelectableCollection extends Collection {
    @protected
    */
   _getNextSelectable(item) {
+    this._initialise();
     const items = this.getAll();
     let index = items.indexOf(item);
     let sibling = index < items.length - 1 ? items[index + 1] : null;
@@ -144,6 +154,7 @@ class SelectableCollection extends Collection {
    @protected
    */
   _getFirstSelected(selectedAttribute) {
+    this._initialise();
     let selector = this._selectedItemSelector;
 
     if (typeof selectedAttribute === 'string') {
@@ -165,6 +176,7 @@ class SelectableCollection extends Collection {
    @protected
    */
   _getLastSelected(selectedAttribute) {
+    this._initialise();
     let selector = this._selectedItemSelector;
 
     if (typeof selectedAttribute === 'string') {
@@ -187,6 +199,7 @@ class SelectableCollection extends Collection {
    @returns Array.<HTMLElement> an array with all the selected items.
    */
   _getAllSelected(selectedAttribute) {
+    this._initialise();
     let selector = this._selectedItemSelector;
 
     if (typeof selectedAttribute === 'string') {
@@ -207,6 +220,7 @@ class SelectableCollection extends Collection {
    @protected
    */
   _deselectAllExceptFirst(selectedAttribute) {
+    this._initialise();
     let selector = this._deselectAllExceptSelector;
     const attributeToRemove = selectedAttribute || 'selected';
 
@@ -235,6 +249,7 @@ class SelectableCollection extends Collection {
    @protected
    */
   _deselectAllExceptLast(selectedAttribute) {
+    this._initialise();
     let selector = this._deselectAllExceptSelector;
     const attributeToRemove = selectedAttribute || 'selected';
 
@@ -270,6 +285,7 @@ class SelectableCollection extends Collection {
    @protected
    */
   _deselectAllExcept(itemOrSelectedAttribute, selectedAttribute) {
+    this._initialise();
     // if no selectedAttribute we use the unmodified selector as default
     let selector = this._deselectAllExceptSelector;
 

@@ -16,4 +16,6 @@
  @htmltag coral-status-label
  @return {HTMLElement}
  */
-export default () => document.createElement('coral-status-label');
+export default function() {
+  return document.createElement('coral-status-label');
+}

@@ -15,6 +15,7 @@ import '../coral-theme-spectrum';
 import '../coral-externals';
 import '../coral-compat';
 
+import '../coral-mutationobserver';
 import translations from './i18n/translations';
 import {strings, commons} from '../coral-utils';
 import Autocomplete from './src/scripts/Autocomplete';

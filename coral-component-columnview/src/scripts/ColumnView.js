@@ -16,6 +16,7 @@ import ColumnViewCollection from './ColumnViewCollection';
 import isInteractiveTarget from './isInteractiveTarget';
 import selectionMode from './selectionMode';
 import {transform, validate, commons, i18n} from '../../../coral-utils';
+import {CoralMutationObserver} from '../../../coral-mutationobserver';
 
 const CLASSNAME = '_coral-MillerColumns';
 
@@ -105,7 +106,7 @@ class ColumnView extends BaseComponent(HTMLElement) {
     this._bulkSelectionChange = false;
 
     // initializes the mutation observer that used to detect when new items are added or removed
-    this._observer = new MutationObserver(this._handleMutation.bind(this));
+    this._observer = new CoralMutationObserver(this, this._handleMutation.bind(this));
     this._observer.observe(this, {
       // only watch the childList, items will tell us if selected/value/content changes
       childList: true

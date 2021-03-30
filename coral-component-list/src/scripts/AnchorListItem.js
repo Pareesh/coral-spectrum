@@ -34,6 +34,11 @@ class AnchorListItem extends BaseListItem(BaseComponent(HTMLAnchorElement)) {
     });
   }
 
+  _initialise() {
+    super._initialise();
+    this.setAttribute('is', 'coral-anchorlist-item');
+  }
+
   /**
    Whether this field is disabled or not.
    @type {Boolean}
@@ -85,6 +90,7 @@ class AnchorListItem extends BaseListItem(BaseComponent(HTMLAnchorElement)) {
 
     this.classList.add(CLASSNAME);
   }
+
 }
 
 export default AnchorListItem;

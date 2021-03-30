@@ -16,4 +16,6 @@
  @htmltag coral-toast-content
  @return {HTMLElement}
  */
-export default () => document.createElement('coral-toast-content');
+export default function() {
+  return document.createElement('coral-toast-content');
+}

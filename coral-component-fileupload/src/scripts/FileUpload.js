@@ -15,6 +15,7 @@ import {BaseFormField} from '../../../coral-base-formfield';
 import FileUploadItem from './FileUploadItem';
 import base from '../templates/base';
 import {transform, commons, validate} from '../../../coral-utils';
+import {CoralMutationObserver} from '../../../coral-mutationobserver';
 
 const CLASSNAME = '_coral-FileUpload';
 
@@ -100,7 +101,7 @@ class FileUpload extends BaseFormField(BaseComponent(HTMLElement)) {
     this._positionInputOnDropZone = this._positionInputOnDropZone.bind(this);
 
     // Reposition the input under the specified dropzone
-    this._observer = new MutationObserver(this._positionInputOnDropZone);
+    this._observer = new CoralMutationObserver(this, this._positionInputOnDropZone);
     this._observer.observe(this, {
       childList: true,
       attributes: true,

@@ -16,4 +16,6 @@
  @htmltag coral-tab-label
  @return {HTMLElement}
  */
-export default () => document.createElement('coral-tab-label');
+export default function() {
+  return document.createElement('coral-tab-label');
+}

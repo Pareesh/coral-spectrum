@@ -11,6 +11,7 @@
  */
 
 import '../coral-externals';
+import '../coral-mutationobserver'
 
 import BaseComponent from './src/scripts/BaseComponent';
 

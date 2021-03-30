@@ -16,4 +16,6 @@
  @htmltag coral-shell-user-heading
  @return {HTMLElement}
  */
-export default () => document.createElement('coral-shell-user-heading');
+export default function() {
+  return document.createElement('coral-shell-user-heading');
+}

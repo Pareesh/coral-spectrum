@@ -18,7 +18,7 @@ module.exports = function (config) {
   const root = util.getRoot();
   const CWD = process.cwd();
 
-  const rollupConfig = require('./rollup.conf.js')({runTests: true});
+  const rollupConfig = require('./rollup.conf.es6.js')({runTests: true});
 
   const preprocessors = {};
 

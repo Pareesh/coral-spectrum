@@ -40,6 +40,10 @@ class SideNavItem extends BaseLabellable(BaseComponent(HTMLAnchorElement)) {
     super._observeLabel();
   }
 
+  _initialise() {
+    super._initialise();
+    this.setAttribute('is', 'coral-sidenav-item');
+  }
   /**
    The content of the sidenav item.
 

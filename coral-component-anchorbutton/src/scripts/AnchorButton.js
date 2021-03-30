@@ -44,6 +44,11 @@ class AnchorButton extends BaseButton(BaseComponent(HTMLAnchorElement)) {
     this.addEventListener('click', this._onDisabledClick.bind(this));
   }
 
+  _initialise() {
+    super._initialise();
+    this.setAttribute('is', 'coral-anchorbutton');
+  }
+
   /**
    Disables the button from user interaction.
 

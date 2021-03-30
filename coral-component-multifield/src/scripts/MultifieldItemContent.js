@@ -16,4 +16,6 @@
  @htmltag coral-multifield-item-content
  @return {HTMLElement}
  */
-export default () => document.createElement('coral-multifield-item-content');
+export default function() {
+  return document.createElement('coral-multifield-item-content');
+}

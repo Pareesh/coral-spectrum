@@ -16,4 +16,6 @@
  @htmltag coral-table-headercell-content
  @return {HTMLElement}
  */
-export default () => document.createElement('coral-table-headercell-content');
+export default function() {
+  document.createElement('coral-table-headercell-content');
+}

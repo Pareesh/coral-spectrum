@@ -22,6 +22,8 @@ import '../../../coral-component-button';
 import {Checkbox} from '../../../coral-component-checkbox';
 import base from '../templates/base';
 import {SelectableCollection} from '../../../coral-collection';
+import {CoralMutationObserver} from '../../../coral-mutationobserver';
+
 import {
   isTableHeaderCell,
   isTableCell,
@@ -2500,7 +2502,7 @@ class Table extends BaseComponent(HTMLTableElement) {
   }
 
   _toggleObserver(enable) {
-    this._observer = this._observer || new MutationObserver(this._handleMutations.bind(this));
+    this._observer = this._observer || new CoralMutationObserver(this, this._handleMutations.bind(this));
 
     if (enable) {
       this._observer.observe(this, {

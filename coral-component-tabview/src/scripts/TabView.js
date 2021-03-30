@@ -53,8 +53,11 @@ class TabView extends BaseComponent(HTMLElement) {
       tabList: this.querySelector('coral-tablist') || document.createElement('coral-tablist'),
       panelStack: this.querySelector('coral-panelstack') || document.createElement('coral-panelstack')
     };
+  }
 
-    // Events
+  _initialise() {
+    super._initialise();
+    // Attach events
     this._delegateEvents({
       'coral-tablist:change > coral-tablist': '_onTabListChange',
       'coral-panelstack:change > coral-panelstack': '_onPanelStackChange',

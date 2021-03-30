@@ -16,4 +16,6 @@
  @htmltag coral-columnview-preview-value
  @return {HTMLElement}
  */
-export default () => document.createElement('coral-columnview-preview-value');
+export default function() {
+  return document.createElement('coral-columnview-preview-value');
+}

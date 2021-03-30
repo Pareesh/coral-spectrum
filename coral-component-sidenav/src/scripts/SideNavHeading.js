@@ -16,4 +16,6 @@
  @htmltag coral-sidenav-heading
  @return {HTMLElement}
  */
-export default () => document.createElement('coral-sidenav-heading');
+export default function() {
+  return document.createElement('coral-sidenav-heading');
+}

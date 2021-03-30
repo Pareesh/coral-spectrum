@@ -30,6 +30,11 @@ class Button extends BaseButton(BaseComponent(HTMLButtonElement)) {
     // Events
     this._delegateEvents(this._events);
   }
+
+  _initialise() {
+    super._initialise();
+    this.setAttribute('is', 'coral-button');
+  }
 }
 
 export default Button;

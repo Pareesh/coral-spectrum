@@ -16,4 +16,6 @@
  @htmltag coral-alert-footer
  @return {HTMLElement}
  */
-export default () => document.createElement('coral-alert-footer');
+export default function() {
+  return document.createElement('coral-alert-footer');
+}

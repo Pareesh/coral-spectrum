@@ -16,4 +16,6 @@
  @htmltag coral-card-overlay
  @return {HTMLElement}
  */
-export default () => document.createElement('coral-card-overlay');
+export default function() {
+  return document.createElement('coral-card-overlay');
+}

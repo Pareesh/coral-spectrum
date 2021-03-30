@@ -14,6 +14,7 @@ import {BaseComponent} from '../../../coral-base-component';
 import '../../../coral-component-popover';
 import getFirstSelectableWrappedItem from './getFirstSelectableWrappedItem';
 import {commons} from '../../../coral-utils';
+import {CoralMutationObserver} from '../../../coral-mutationobserver';
 
 const CLASSNAME = '_coral-ActionBar';
 
@@ -107,7 +108,7 @@ class ActionBar extends BaseComponent(HTMLElement) {
     // http://www.backalleycoder.com/2013/03/18/cross-browser-event-based-element-resize-detection/
 
     // relayout any time the dom changes
-    this._observer = new MutationObserver(() => {
+    this._observer = new CoralMutationObserver(this, () => {
       this._debounceOnLayout();
     });
 

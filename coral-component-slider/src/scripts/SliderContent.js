@@ -16,4 +16,6 @@
  @htmltag coral-slider-content
  @return {HTMLElement}
  */
-export default () => document.createElement('coral-slider-content');
+export default function() {
+  return document.createElement('coral-slider-content');
+}

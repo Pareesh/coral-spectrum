@@ -16,4 +16,6 @@
  @htmltag coral-alert-content
  @return {HTMLElement}
  */
-export default () => document.createElement('coral-alert-content');
+export default function() {
+  return document.createElement('coral-alert-content');
+}

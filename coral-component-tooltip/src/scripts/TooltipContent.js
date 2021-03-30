@@ -16,4 +16,6 @@
  @htmltag coral-tooltip-content
  @return {HTMLElement}
  */
-export default () => document.createElement('coral-tooltip-content');
+export default function() {
+  return document.createElement('coral-tooltip-content');
+}

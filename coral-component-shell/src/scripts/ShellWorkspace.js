@@ -34,6 +34,11 @@ class ShellWorkspace extends BaseComponent(HTMLAnchorElement) {
     });
   }
 
+  _initialise() {
+    super._initialise();
+    this.setAttribute('is', 'coral-shell-workspace');
+  }
+
   /**
    Whether this workspace is selected.
 

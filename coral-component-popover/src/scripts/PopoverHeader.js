@@ -16,4 +16,6 @@
  @htmltag coral-popover-header
  @return {HTMLElement}
  */
-export default () => document.createElement('coral-popover-header');
+export default function() {
+  return document.createElement('coral-popover-header');
+}

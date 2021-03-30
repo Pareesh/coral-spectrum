@@ -86,7 +86,34 @@ class Select extends BaseFormField(BaseComponent(HTMLElement)) {
 
     // Templates
     this._elements = {};
+
     base.call(this._elements, {commons, Icon, i18n});
+
+    // Pre-define labellable element
+    this._labellableElement = this._elements.button;
+
+    // default value of inner flag to process events
+    this._bulkSelectionChange = false;
+
+    // we only have AUTO mode.
+    this._useNativeInput = IS_MOBILE_DEVICE;
+
+    this._elements.taglist.reset = () => {
+      // since reseting a form will call the reset on every component, we need to kill the behavior of the taglist
+      // otherwise the state will not be accurate
+    };
+
+    this._initialValues = [];
+
+    // Init the collection mutation observer
+    this.items._startHandlingItems();
+  }
+
+  _initialise() {
+    super._initialise();
+
+    // Overlay
+    const overlayId = this._elements.overlay.id;
 
     const events = {
       'global:click': '_onGlobalClick',
@@ -112,8 +139,6 @@ class Select extends BaseFormField(BaseComponent(HTMLElement)) {
       'key:down > ._coral-Dropdown-trigger': '_onSpaceKey'
     };
 
-    // Overlay
-    const overlayId = this._elements.overlay.id;
     events[`global:capture:coral-collection:add #${overlayId} coral-selectlist`] = '_onSelectListItemAdd';
     events[`global:capture:coral-collection:remove #${overlayId} coral-selectlist`] = '_onInternalEvent';
     events[`global:capture:coral-selectlist:beforechange #${overlayId}`] = '_onSelectListBeforeChange';
@@ -131,26 +156,7 @@ class Select extends BaseFormField(BaseComponent(HTMLElement)) {
     // events[`global:key:tab+shift #${overlayId} coral-selectlist-item`] = '_onTabKey';
 
     // Attach events
-    this._delegateEvents(commons.extend(this._events, events));
-
-    // Pre-define labellable element
-    this._labellableElement = this._elements.button;
-
-    // default value of inner flag to process events
-    this._bulkSelectionChange = false;
-
-    // we only have AUTO mode.
-    this._useNativeInput = IS_MOBILE_DEVICE;
-
-    this._elements.taglist.reset = () => {
-      // since reseting a form will call the reset on every component, we need to kill the behavior of the taglist
-      // otherwise the state will not be accurate
-    };
-
-    this._initialValues = [];
-
-    // Init the collection mutation observer
-    this.items._startHandlingItems();
+    this._delegateEvents(events);
   }
 
   /**

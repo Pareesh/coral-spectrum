@@ -18,4 +18,6 @@
 
  @deprecated
  */
-export default () => document.createElement('coral-shell-help-separator');
+export default function() {
+  return document.createElement('coral-shell-help-separator');
+}

@@ -16,5 +16,7 @@
  @htmltag coral-anchorbutton-label
  @return {HTMLElement}
  */
-export default () => document.createElement('coral-anchorbutton-label');
+export default function() {
+  return document.createElement('coral-anchorbutton-label');
+}
 

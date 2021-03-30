@@ -15,6 +15,7 @@ import '../../../coral-component-button';
 import '../../../coral-component-anchorbutton';
 import '../../../coral-component-popover';
 import '../../../coral-component-list';
+import {CoralMutationObserver} from '../../../coral-mutationobserver';
 import {transform, validate, commons} from '../../../coral-utils';
 
 /**
@@ -54,7 +55,7 @@ class SplitButton extends BaseComponent(HTMLElement) {
     super();
 
     // Watch for inner button changes
-    this._observer = new MutationObserver(() => {
+    this._observer = new CoralMutationObserver(this, () => {
       this._updateLeftVariant();
       this._updateInnerButtons();
       this._updateInnerButtonsVariant(this.variant);

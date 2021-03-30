@@ -30,7 +30,13 @@ class TableBody extends BaseTableSection(BaseComponent(HTMLTableSectionElement))
   constructor() {
     super();
 
+    this._tagName = this._tagName || 'coral-table-body';
     this._toggleObserver(true);
+  }
+
+  _initialise() {
+    super._initialise();
+    this.setAttribute('is', this._tagName);
   }
 
   /** @ignore */

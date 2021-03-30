@@ -73,7 +73,7 @@ describe('BaseFieldGroup', function () {
         el.appendChild(document.createElement('coral-fieldgroup-item'));
         el.appendChild(document.createElement('coral-fieldgroup-item'));
 
-        el.items.last().setAttribute('checked');
+        el.items.last().setAttribute('checked', '');
         expect(el.selectedItem).to.equal(el.items.last());
       });
     });

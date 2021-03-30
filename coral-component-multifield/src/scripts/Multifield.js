@@ -14,6 +14,7 @@ import {BaseComponent} from '../../../coral-base-component';
 import MultifieldCollection from './MultifieldCollection';
 import '../../../coral-component-textfield';
 import {commons, i18n} from '../../../coral-utils';
+import {CoralMutationObserver} from '../../../coral-mutationobserver';
 
 const CLASSNAME = '_coral-Multifield';
 const IS_DRAGGING_CLASS = 'is-dragging';
@@ -73,7 +74,7 @@ class Multifield extends BaseComponent(HTMLElement) {
     this._handleTemplateSupport(this._elements.template);
 
     // Template support: move nodes added to the <template> to its content fragment
-    this._observer = new MutationObserver((mutations) => {
+    this._observer = new CoralMutationObserver(this, (mutations) => {
       mutations.forEach((mutation) => {
         for (let i = 0 ; i < mutation.addedNodes.length ; i++) {
           const addedNode = mutation.addedNodes[i];

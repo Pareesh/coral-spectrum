@@ -16,4 +16,6 @@
  @htmltag coral-card-subtitle
  @return {HTMLElement}
  */
-export default () => document.createElement('coral-card-subtitle');
+export default function() {
+  return document.createElement('coral-card-subtitle');
+}

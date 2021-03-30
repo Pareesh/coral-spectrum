@@ -15,6 +15,8 @@ import '../coral-theme-spectrum';
 import '../coral-externals';
 import '../coral-compat';
 
+import '../coral-mutationobserver';
+
 import SideNav from './src/scripts/SideNav';
 import SideNavItem from './src/scripts/SideNavItem';
 import SideNavItemContent from './src/scripts/SideNavItemContent';

@@ -11,27 +11,14 @@
  */
 
 import listToArray from './listToArray';
-
+import LazyCollection from './LazyCollection';
+import {CoralMutationObserver} from '../../../coral-mutationobserver';
 /**
  Unique id used to idenfity the collection.
 
  @private
  */
 let nextID = 0;
-
-/**
- Attribute used to identify the items of a collection.
-
- @private
- */
-const COLLECTION_ID = 'coral-collection-id-';
-
-/**
- Selector used to determine if nested items should be allowed.
-
- @private
- */
-const SCOPE_SELECTOR = ':scope > ';
 
 /** @private */
 function getTagSelector(tag, nativeTag) {
@@ -58,7 +45,7 @@ function filterItem(item, filter) {
 /**
  Collection provides a standardized way to manipulate items in a component.
  */
-class Collection {
+class Collection extends LazyCollection{
   /**
    @param {HTMLElement} options.host
    The element that hosts the collection.
@@ -90,6 +77,7 @@ class Collection {
    is <code>true</code>.
    */
   constructor(options) {
+    super();
     options = options || {};
 
     // we create an unique collection identifier
@@ -104,37 +92,49 @@ class Collection {
     this._container = options.container || this._host;
     this._filter = options.filter;
 
+    if(this._shouldInitialise()) {
+      // container initialised
+      this._initialise();
+    }
+
     // internal variable to determine if collection events will be handled internally
     this._handleItems = false;
-
-    // we provide support for the :scope selector and swap it for an id
-    if (this._itemSelector && this._itemSelector.indexOf(SCOPE_SELECTOR) === 0) {
-      this._container.id = this._container.id || COLLECTION_ID + this._id;
-      // we create a special selector to make sure that the items are direct children of the container. given that
-      // :scope is not fully supported by all browsers, we use an id to query
-      this._allItemsSelector = this._itemSelector.replace(SCOPE_SELECTOR, `#${this._container.id} > `);
-
-      // we remove the :scope from the selector to be able to use it to determine if the item matches the collection
-      this._itemSelector = this._itemSelector.replace(SCOPE_SELECTOR, '');
-      // in case they match, we enable this optimization
-      if (this._itemSelector === this._itemTagName) {
-        this._useItemTagName = this._itemSelector.toUpperCase();
-      }
-    }
-    // live collections are not supported when nested items is used
-    else {
-      this._allItemsSelector = this._itemSelector;
-
-      // live collections can only be used when a tagname is used to query the items
-      if (this._container && this._allItemsSelector === this._itemTagName) {
-        this._liveCollection = true;
-        this._useItemTagName = this._allItemsSelector.toUpperCase();
-      }
-    }
 
     this._onItemAdded = options.onItemAdded;
     this._onItemRemoved = options.onItemRemoved;
     this._onCollectionChange = options.onCollectionChange;
+  }
+
+  _shouldInitialise() {
+    return !this._container || (this._container && (this._container._initialised || this._container.isConnected));
+  }
+
+  _initialise() {
+    super._initialise();
+
+    if(this._skipInitialItems === false) {
+      delete this._skipInitialItems;
+      // since we are handling the items for the component, we need to make sure the _onItemAdded is called for the
+      // initial items. collection events will not be triggered for these items as they represent the initial state
+      let items;
+      let itemCount = 0;
+
+      if (typeof this._onItemAdded === 'function' || typeof this._onCollectionChange === 'function') {
+        items = this.getAll();
+        itemCount = items.length;
+      }
+
+      if (typeof this._onItemAdded === 'function') {
+        for (let i = 0 ; i < itemCount ; i++) {
+          this._onItemAdded.call(this._host, items[i]);
+        }
+      }
+
+      // we only call the _onCollectionChange callback if there are items inside the collection
+      if (itemCount > 0 && typeof this._onCollectionChange === 'function') {
+        this._onCollectionChange.call(this._host, items, []);
+      }
+    }
   }
 
   /**
@@ -144,6 +144,7 @@ class Collection {
    @default 0
    */
   get length() {
+    this._initialise();
     return this.getAll().length;
   }
 
@@ -163,6 +164,7 @@ class Collection {
    @returns {HTMLElement} the item added.
    */
   add(item, insertBefore) {
+    this._initialise();
     // container and itemtagname are the minimum options that need to be provided to automatically handle this function
     if (this._container && this._itemTagName) {
       if (!(item instanceof HTMLElement)) {
@@ -194,6 +196,7 @@ class Collection {
    @returns {Array.<HTMLElement>} an Array with all the removed items.
    */
   clear() {
+    this._initialise();
     const items = this.getAll();
 
     const removed = [];
@@ -211,6 +214,7 @@ class Collection {
    @returns {Array.<HTMLElement>} an Array with all the items inside the collection.
    */
   getAll() {
+    this._initialise();
     // in order to perform the automatic getAll query, the _host and _allItemsSelector must be provided
     if (this._container && this._allItemsSelector) {
       let items = this._liveCollection ?
@@ -241,6 +245,7 @@ class Collection {
    @returns {HTMLElement} the item removed.
    */
   remove(item) {
+    this._initialise();
     if (item.parentNode) {
       item.parentNode.removeChild(item);
 
@@ -259,6 +264,7 @@ class Collection {
    @returns {?HTMLElement} the first item of the collection.
    */
   first() {
+    this._initialise();
     // Use getAll() so filter() is applied
     return this.getAll()[0] || null;
   }
@@ -269,6 +275,7 @@ class Collection {
    @returns {?HTMLElement} the last item of the collection.
    */
   last() {
+    this._initialise();
     // Use getAll() so filter() is applied
     const all = this.getAll();
     return all[all.length - 1] || null;
@@ -286,6 +293,7 @@ class Collection {
    @protected
    */
   _isPartOfCollection(node) {
+    this._initialise();
     // Only element nodes are allowed
     return node.nodeType === Node.ELEMENT_NODE &&
       filterItem(node, this._filter) &&
@@ -304,6 +312,7 @@ class Collection {
    @protected
    */
   _onItemAttached(item) {
+    this._initialise();
     // if options.onItemAdded was provided, we call the function
     if (typeof this._onItemAdded === 'function') {
       this._onItemAdded.call(this._host, item);
@@ -324,6 +333,7 @@ class Collection {
    @protected
    */
   _onItemDetached(item) {
+    this._initialise();
     // if options.onItemRemoved was provided, we call the function
     if (typeof this._onItemRemoved === 'function') {
       this._onItemRemoved.call(this._host, item);
@@ -332,6 +342,7 @@ class Collection {
     // the usage of trigger assumes that the host is a coral component
     this._host.trigger('coral-collection:remove', {item});
   }
+
 
   /**
    Enables the automatic detection of collection items. The collection will take care of triggering the appropriate
@@ -344,11 +355,11 @@ class Collection {
 
    @protected
    */
-  _startHandlingItems(skipInitialItems) {
+  _startHandlingItems(skipInitialItems = false) {
     if (this._host && this._container) {
       // we reuse the observer if it already exists, this way we do not need to disconnect it if this function is called
       // again
-      this._observer = this._observer || new MutationObserver(this._handleMutation.bind(this));
+      this._observer = this._observer || new CoralMutationObserver(this, this._handleMutation.bind(this));
 
       // this changes the way that _onItemAdded and _onItemRemoved behave, since they well be delayed until a mutation
       // detects them
@@ -362,27 +373,9 @@ class Collection {
       });
 
       // by default we handle the initial items unless otherwise indicated
-      if (skipInitialItems !== true) {
-        // since we are handling the items for the component, we need to make sure the _onItemAdded is called for the
-        // initial items. collection events will not be triggered for these items as they represent the initial state
-        let items;
-        let itemCount = 0;
-
-        if (typeof this._onItemAdded === 'function' || typeof this._onCollectionChange === 'function') {
-          items = this.getAll();
-          itemCount = items.length;
-        }
-
-        if (typeof this._onItemAdded === 'function') {
-          for (let i = 0 ; i < itemCount ; i++) {
-            this._onItemAdded.call(this._host, items[i]);
-          }
-        }
-
-        // we only call the _onCollectionChange callback if there are items inside the collection
-        if (itemCount > 0 && typeof this._onCollectionChange === 'function') {
-          this._onCollectionChange.call(this._host, items, []);
-        }
+      this._skipInitialItems = skipInitialItems;
+      if(this._shouldInitialise()) {
+        this._initialise();
       }
     } else {
       throw new Error('Please provide options.host and/or options.container to enable handling the items.');
@@ -420,9 +413,12 @@ class Collection {
     let removedNodesCount;
     const validAddedNodes = [];
     const validRemovedNodes = [];
-
     // we need to count every addition and removal to notify the component that the collection changed
     let itemChanges = 0;
+
+      // initialise collection if not
+    this._initialise();
+
     for (let i = 0 ; i < mutationsCount ; i++) {
       mutation = mutations[i];
 

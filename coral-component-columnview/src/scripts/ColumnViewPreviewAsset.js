@@ -16,4 +16,6 @@
  @htmltag coral-columnview-preview-asset
  @return {HTMLElement}
  */
-export default () => document.createElement('coral-columnview-preview-asset');
+export default function() {
+  return document.createElement('coral-columnview-preview-asset');
+}

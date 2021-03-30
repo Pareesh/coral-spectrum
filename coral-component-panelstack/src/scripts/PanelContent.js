@@ -16,4 +16,6 @@
  @htmltag coral-panel-content
  @return {HTMLElement}
  */
-export default () => document.createElement('coral-panel-content');
+export default function() {
+  return document.createElement('coral-panel-content');
+}

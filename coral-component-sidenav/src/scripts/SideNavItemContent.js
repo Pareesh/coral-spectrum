@@ -16,4 +16,6 @@
  @htmltag coral-sidenav-item-content
  @return {HTMLElement}
  */
-export default () => document.createElement('coral-sidenav-item-content');
+export default function() {
+  return document.createElement('coral-sidenav-item-content');
+}

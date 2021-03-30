@@ -16,4 +16,6 @@
  @htmltag coral-shell-content
  @return {HTMLElement}
  */
-export default () => document.createElement('coral-shell-content');
+export default function() {
+  return document.createElement('coral-shell-content');
+}

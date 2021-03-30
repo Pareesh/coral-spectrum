@@ -68,6 +68,22 @@ class TabList extends BaseComponent(HTMLElement) {
     this._elements = {};
     line.call(this._elements);
 
+    // Used for eventing
+    this._oldSelection = null;
+
+    // Debounce timer
+    this._timeout = null;
+    // Debounce wait in milliseconds
+    this._wait = 50;
+
+    this._setLine = this._setLine.bind(this);
+
+    // Init the collection mutation observer
+    this.items._startHandlingItems(true);
+  }
+
+  _initialise() {
+    super._initialise();
     // Attach events
     this._delegateEvents({
       'click > coral-tab': '_onTabClick',
@@ -87,19 +103,6 @@ class TabList extends BaseComponent(HTMLElement) {
       'coral-tab:_validateselection': '_onValidateSelection',
       'coral-tab:_sizechanged': '_setLine'
     });
-
-    // Used for eventing
-    this._oldSelection = null;
-
-    // Debounce timer
-    this._timeout = null;
-    // Debounce wait in milliseconds
-    this._wait = 50;
-
-    this._setLine = this._setLine.bind(this);
-
-    // Init the collection mutation observer
-    this.items._startHandlingItems(true);
   }
 
   /**

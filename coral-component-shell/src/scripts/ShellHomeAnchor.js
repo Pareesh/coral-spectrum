@@ -39,6 +39,11 @@ class ShellHomeAnchor extends BaseComponent(HTMLAnchorElement) {
     homeAnchorIcon.call(this._elements);
   }
 
+  _initialise() {
+    super._initialise();
+    this.setAttribute('is', 'coral-shell-homeanchor');
+  }
+
   /**
    The label of the anchor.
 

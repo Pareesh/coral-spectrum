@@ -16,4 +16,6 @@
  @htmltag coral-popover-footer
  @return {HTMLElement}
  */
-export default () => document.createElement('coral-popover-footer');
+export default function() {
+  return document.createElement('coral-popover-footer');
+}
