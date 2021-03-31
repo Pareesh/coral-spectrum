@@ -108,24 +108,10 @@ class QuickActions extends Overlay {
     // Debounce timer
     this._timeout = null;
 
+    this._id = this.id || commons.getUID();
+
     // Template
     base.call(this._elements, {commons, i18n});
-
-    // Cache bound event handler functions
-    this._onTargetMouseEnter = this._onTargetMouseEnter.bind(this);
-    this._onTargetKeyUp = this._onTargetKeyUp.bind(this);
-    this._onTargetMouseLeave = this._onTargetMouseLeave.bind(this);
-
-    // delegates the item handling to the collection
-    this.items._startHandlingItems(true);
-  }
-
-  _initialise() {
-    super._initialise();
-
-    if(!this.id) {
-      this.id = commons.getUID();
-    }
 
     const events = {
       'global:resize': '_onWindowResize',
@@ -140,10 +126,6 @@ class QuickActions extends Overlay {
       'key:pageup': '_onButtonKeypressPrevious',
       'key:left': '_onButtonKeypressPrevious',
       'key:up': '_onButtonKeypressPrevious',
-
-      // Buttons
-      'click > ._coral-QuickActions-item:not([handle="moreButton"])': '_onButtonClick',
-      'click > ._coral-QuickActions-item[handle="moreButton"]': '_onMoreButtonClick',
 
       'capture:focus': '_onFocus',
       'capture:blur': '_onBlur',
@@ -167,8 +149,28 @@ class QuickActions extends Overlay {
     events[`global:capture:mouseout #${overlayId}`] = '_onMouseOut';
     events[`global:capture:click #${overlayId} [coral-list-item]`] = '_onButtonListItemClick';
 
+    // Cache bound event handler functions
+    this._onTargetMouseEnter = this._onTargetMouseEnter.bind(this);
+    this._onTargetKeyUp = this._onTargetKeyUp.bind(this);
+    this._onTargetMouseLeave = this._onTargetMouseLeave.bind(this);
+
     // Events
     this._delegateEvents(events);
+
+    // delegates the item handling to the collection
+    this.items._startHandlingItems(true);
+  }
+
+  _initialise() {
+    super._initialise();
+    this.id = this._id;
+
+    // add scope based events in initialise.
+    this._delegateEvents({
+      // Buttons
+      'click > ._coral-QuickActions-item:not([handle="moreButton"])': '_onButtonClick',
+      'click > ._coral-QuickActions-item[handle="moreButton"]': '_onMoreButtonClick',
+    });
   }
 
   /**
@@ -292,7 +294,7 @@ class QuickActions extends Overlay {
       // Mark the target as owning a popup
       targetElement.setAttribute('aria-haspopup', 'true');
       let ariaOwns = targetElement.getAttribute('aria-owns');
-      ariaOwns = ariaOwns && ariaOwns.length ? `${ariaOwns.trim()}  ${this.id}` : this.id;
+      ariaOwns = ariaOwns && ariaOwns.length ? `${ariaOwns.trim()}  ${this._id}` : this._id;
       targetElement.setAttribute('aria-owns', ariaOwns);
 
       // Cache for use as previous target

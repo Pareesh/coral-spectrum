@@ -2,156 +2,62 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="317ee2bd-da0d-4c0c-994c-d9dc4081f1de" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/coral-collection/src/scripts/LazyCollection.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/coral-gulp/configs/rollup.conf.es6.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/coral-mutationobserver/gulpfile.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/coral-mutationobserver/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/coral-mutationobserver/src/scripts/MutationObserver.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/index.es5.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-base-component/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-base-component/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-base-component/src/scripts/BaseComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-base-component/src/scripts/BaseComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-base-fieldgroup/src/tests/test.BaseFieldGroup.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-base-fieldgroup/src/tests/test.BaseFieldGroup.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-base-labellable/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-base-labellable/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-base-labellable/src/scripts/BaseLabellable.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-base-labellable/src/scripts/BaseLabellable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-collection/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-collection/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-collection/src/scripts/Collection.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-collection/src/scripts/Collection.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coral-collection/src/scripts/LazyCollection.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-collection/src/scripts/SelectableCollection.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-collection/src/scripts/SelectableCollection.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-collection/src/tests/test.Collection.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-collection/src/tests/test.Collection.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-compat/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-compat/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-compat/libs/Component.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-compat/libs/Component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-accordion/src/scripts/AccordionItemContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-accordion/src/scripts/AccordionItemContent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-accordion/src/scripts/AccordionItemLabel.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-accordion/src/scripts/AccordionItemLabel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-component-actionbar/src/scripts/ActionBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-actionbar/src/scripts/ActionBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-alert/src/scripts/AlertContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-alert/src/scripts/AlertContent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-alert/src/scripts/AlertFooter.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-alert/src/scripts/AlertFooter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-alert/src/scripts/AlertHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-alert/src/scripts/AlertHeader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-anchorbutton/src/scripts/AnchorButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-anchorbutton/src/scripts/AnchorButton.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-anchorbutton/src/scripts/AnchorButtonLabel.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-anchorbutton/src/scripts/AnchorButtonLabel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-component-autocomplete/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-autocomplete/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-component-autocomplete/src/scripts/Autocomplete.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-autocomplete/src/scripts/Autocomplete.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-component-autocomplete/src/scripts/AutocompleteItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-autocomplete/src/scripts/AutocompleteItem.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-banner/src/scripts/BannerContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-banner/src/scripts/BannerContent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-banner/src/scripts/BannerHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-banner/src/scripts/BannerHeader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-button/src/scripts/Button.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-button/src/scripts/Button.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-button/src/scripts/ButtonLabel.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-button/src/scripts/ButtonLabel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-card/src/scripts/Card.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-card/src/scripts/Card.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-card/src/scripts/CardAsset.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-card/src/scripts/CardAsset.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-card/src/scripts/CardContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-card/src/scripts/CardContent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-card/src/scripts/CardContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-card/src/scripts/CardContext.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-card/src/scripts/CardDescription.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-card/src/scripts/CardDescription.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-card/src/scripts/CardInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-card/src/scripts/CardInfo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-card/src/scripts/CardOverlay.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-card/src/scripts/CardOverlay.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-card/src/scripts/CardPropertyContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-card/src/scripts/CardPropertyContent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-card/src/scripts/CardSubtitle.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-card/src/scripts/CardSubtitle.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-card/src/scripts/CardTitle.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-card/src/scripts/CardTitle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coral-component-buttongroup/src/scripts/ButtonGroup.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-buttongroup/src/scripts/ButtonGroup.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-component-checkbox/src/scripts/Checkbox.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-checkbox/src/scripts/Checkbox.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-checkbox/src/scripts/CheckboxLabel.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-checkbox/src/scripts/CheckboxLabel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-component-columnview/src/scripts/ColumnView.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-columnview/src/scripts/ColumnView.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-component-columnview/src/scripts/ColumnViewColumn.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-columnview/src/scripts/ColumnViewColumn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-columnview/src/scripts/ColumnViewColumnContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-columnview/src/scripts/ColumnViewColumnContent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-columnview/src/scripts/ColumnViewItemContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-columnview/src/scripts/ColumnViewItemContent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-columnview/src/scripts/ColumnViewItemThumbnail.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-columnview/src/scripts/ColumnViewItemThumbnail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-columnview/src/scripts/ColumnViewPreviewAsset.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-columnview/src/scripts/ColumnViewPreviewAsset.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-columnview/src/scripts/ColumnViewPreviewContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-columnview/src/scripts/ColumnViewPreviewContent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-columnview/src/scripts/ColumnViewPreviewLabel.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-columnview/src/scripts/ColumnViewPreviewLabel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-columnview/src/scripts/ColumnViewPreviewSeparator.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-columnview/src/scripts/ColumnViewPreviewSeparator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-columnview/src/scripts/ColumnViewPreviewValue.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-columnview/src/scripts/ColumnViewPreviewValue.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-component-dialog/src/scripts/Dialog.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-dialog/src/scripts/Dialog.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-dialog/src/scripts/DialogContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-dialog/src/scripts/DialogContent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-dialog/src/scripts/DialogFooter.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-dialog/src/scripts/DialogFooter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-dialog/src/scripts/DialogHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-dialog/src/scripts/DialogHeader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-drawer/src/scripts/DrawerContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-drawer/src/scripts/DrawerContent.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-component-fileupload/src/scripts/FileUpload.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-fileupload/src/scripts/FileUpload.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-component-list/src/scripts/AnchorList.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-list/src/scripts/AnchorList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-list/src/scripts/AnchorListItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-list/src/scripts/AnchorListItem.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-list/src/scripts/ButtonListItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-list/src/scripts/ButtonListItem.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-component-list/src/scripts/List.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-list/src/scripts/List.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-component-list/src/scripts/ListItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-list/src/scripts/ListItem.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-list/src/scripts/ListItemContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-list/src/scripts/ListItemContent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-list/src/scripts/SelectListItemContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-list/src/scripts/SelectListItemContent.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-component-masonry/src/scripts/Masonry.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-masonry/src/scripts/Masonry.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-component-multifield/src/scripts/Multifield.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-multifield/src/scripts/Multifield.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-multifield/src/scripts/MultifieldCollection.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-multifield/src/scripts/MultifieldCollection.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-component-multifield/src/scripts/MultifieldItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-multifield/src/scripts/MultifieldItem.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-multifield/src/scripts/MultifieldItemContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-multifield/src/scripts/MultifieldItemContent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-panelstack/src/scripts/PanelContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-panelstack/src/scripts/PanelContent.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-component-popover/src/scripts/Popover.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-popover/src/scripts/Popover.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-popover/src/scripts/PopoverContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-popover/src/scripts/PopoverContent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-popover/src/scripts/PopoverFooter.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-popover/src/scripts/PopoverFooter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-popover/src/scripts/PopoverHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-popover/src/scripts/PopoverHeader.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-component-progress/src/scripts/Progress.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-progress/src/scripts/Progress.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-progress/src/scripts/ProgressLabel.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-progress/src/scripts/ProgressLabel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-component-quickactions/src/scripts/QuickActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-quickactions/src/scripts/QuickActions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-component-quickactions/src/scripts/QuickActionsItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-quickactions/src/scripts/QuickActionsItem.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-component-radio/src/scripts/Radio.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-radio/src/scripts/Radio.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-radio/src/scripts/RadioLabel.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-radio/src/scripts/RadioLabel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-component-select/src/scripts/Select.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-select/src/scripts/Select.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-component-select/src/scripts/SelectItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-select/src/scripts/SelectItem.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellContent.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellHeader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellHelpItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellHelpItem.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellHelpSeparator.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellHelpSeparator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellHomeAnchor.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellHomeAnchor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellHomeAnchorLabel.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellHomeAnchorLabel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellOrgSwitcherFooter.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellOrgSwitcherFooter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellSolution.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellSolution.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellSolutionLabel.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellSolutionLabel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellSolutionSwitcher.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellSolutionSwitcher.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellSolutionsHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellSolutionsHeader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellUserContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellUserContent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellUserFooter.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellUserFooter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellUserHeading.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellUserHeading.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellUserName.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellUserName.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellUserSubheading.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellUserSubheading.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellWorkspace.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellWorkspace.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-component-sidenav/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-sidenav/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-component-sidenav/src/scripts/SideNav.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-sidenav/src/scripts/SideNav.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-sidenav/src/scripts/SideNavHeading.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-sidenav/src/scripts/SideNavHeading.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-sidenav/src/scripts/SideNavItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-sidenav/src/scripts/SideNavItem.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-sidenav/src/scripts/SideNavItemContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-sidenav/src/scripts/SideNavItemContent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-slider/src/scripts/SliderContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-slider/src/scripts/SliderContent.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-component-splitbutton/src/scripts/SplitButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-splitbutton/src/scripts/SplitButton.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-status/src/scripts/StatusLabel.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-status/src/scripts/StatusLabel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-steplist/src/scripts/StepLabel.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-steplist/src/scripts/StepLabel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-component-switch/src/scripts/Switch.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-switch/src/scripts/Switch.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-switch/src/scripts/SwitchLabel.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-switch/src/scripts/SwitchLabel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-component-table/src/scripts/BaseTableSection.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-table/src/scripts/BaseTableSection.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-component-table/src/scripts/Table.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-table/src/scripts/Table.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-table/src/scripts/TableBody.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-table/src/scripts/TableBody.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-table/src/scripts/TableCell.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-table/src/scripts/TableCell.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-table/src/scripts/TableColumn.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-table/src/scripts/TableColumn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-table/src/scripts/TableFoot.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-table/src/scripts/TableFoot.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-table/src/scripts/TableHead.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-table/src/scripts/TableHead.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-component-table/src/scripts/TableHeaderCell.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-table/src/scripts/TableHeaderCell.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-table/src/scripts/TableHeaderCellContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-table/src/scripts/TableHeaderCellContent.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-component-table/src/scripts/TableRow.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-table/src/scripts/TableRow.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-component-tablist/src/scripts/Tab.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-tablist/src/scripts/Tab.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-tablist/src/scripts/TabLabel.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-tablist/src/scripts/TabLabel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-component-tablist/src/scripts/TabList.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-tablist/src/scripts/TabList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-tabview/src/scripts/TabView.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-tabview/src/scripts/TabView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-taglist/src/scripts/TagLabel.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-taglist/src/scripts/TagLabel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-component-textarea/src/scripts/Textarea.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-textarea/src/scripts/Textarea.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-textfield/src/scripts/Textfield.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-textfield/src/scripts/Textfield.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-component-toast/src/scripts/Toast.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-toast/src/scripts/Toast.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-toast/src/scripts/ToastContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-toast/src/scripts/ToastContent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-tooltip/src/scripts/TooltipContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-tooltip/src/scripts/TooltipContent.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-component-tree/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-tree/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-component-tree/src/scripts/Tree.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-tree/src/scripts/Tree.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-component-tree/src/scripts/TreeItemContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-tree/src/scripts/TreeItemContent.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-component-wizardview/src/scripts/WizardView.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-component-wizardview/src/scripts/WizardView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-externals/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-externals/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-externals/polyfills/CustomEvent.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-externals/polyfills/classList-partial-shim.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-externals/polyfills/custom-elements.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-externals/polyfills/custom-elements.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-externals/polyfills/element.closest.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-externals/polyfills/element.matches.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-externals/polyfills/element.remove.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-externals/polyfills/forcePolyfill.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-gulp/configs/karma.conf.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-gulp/configs/karma.conf.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coral-gulp/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-gulp/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coral-gulp/tasks/scripts.js" beforeDir="false" afterPath="$PROJECT_DIR$/coral-gulp/tasks/scripts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coral-mutationobserver/gulpfile.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coral-mutationobserver/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coral-mutationobserver/src/scripts/MutationObserver.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -164,16 +70,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/output.txt">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/coral-component-buttongroup/src/tests/test.ButtonGroup.js">
+        <entry file="file://$PROJECT_DIR$/coral-gulp/configs/rollup.conf.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="22" selection-start-line="22" selection-end-line="54" selection-end-column="4" />
+            <state relative-caret-position="600">
+              <caret line="40" column="30" lean-forward="true" selection-start-line="40" selection-start-column="30" selection-end-line="40" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -181,44 +82,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/coral-gulp/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="30" column="37" selection-start-line="30" selection-start-column="37" selection-end-line="30" selection-end-column="37" />
+            <state relative-caret-position="235">
+              <caret line="30" column="37" lean-forward="true" selection-start-line="30" selection-start-column="37" selection-end-line="30" selection-end-column="37" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.html">
+        <entry file="file://$PROJECT_DIR$/coral-gulp/tasks/scripts.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="12" column="14" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/coral-base-component/src/scripts/BaseComponent.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="233">
-              <caret line="788" column="9" selection-start-line="788" selection-start-column="9" selection-end-line="788" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/coral-mutationobserver/src/scripts/MutationObserver.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="325">
-              <caret line="23" column="47" selection-start-line="23" selection-start-column="47" selection-end-line="23" selection-end-column="47" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/coral-collection/src/tests/test.Collection.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="490">
-              <caret line="81" column="56" selection-start-line="81" selection-start-column="56" selection-end-line="81" selection-end-column="56" />
+            <state relative-caret-position="320">
+              <caret line="30" column="11" selection-start-line="30" selection-start-column="11" selection-end-line="30" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -226,26 +100,62 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/coral-collection/src/scripts/Collection.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="783">
-              <caret line="417" selection-start-line="417" selection-end-line="417" />
+            <state relative-caret-position="369">
+              <caret line="169" column="34" lean-forward="true" selection-start-line="169" selection-start-column="34" selection-end-line="169" selection-end-column="34" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/coral-collection/src/scripts/LazyCollection.js">
+        <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="38" column="86" selection-start-line="38" selection-start-column="26" selection-end-line="38" selection-end-column="86" />
+            <state relative-caret-position="180">
+              <caret line="12" column="65" lean-forward="true" selection-start-line="12" selection-start-column="65" selection-end-line="12" selection-end-column="65" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/coral-externals/polyfills/focus-options-polyfill.js">
+        <entry file="file://$PROJECT_DIR$/dist/js/coral.es6.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="34" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
+            <state relative-caret-position="334">
+              <caret line="13047" column="5" lean-forward="true" selection-start-line="13047" selection-start-column="5" selection-end-line="13047" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/coral-base-component/src/scripts/BaseComponent.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-3663">
+              <caret line="375" column="3" lean-forward="true" selection-start-line="375" selection-start-column="3" selection-end-line="375" selection-end-column="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/coral-component-buttongroup/src/scripts/ButtonGroup.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="364">
+              <caret line="813" column="36" lean-forward="true" selection-start-line="813" selection-start-column="36" selection-end-line="813" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/coral-component-list/src/scripts/SelectList.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1211">
+              <caret line="131" column="23" lean-forward="true" selection-start-line="131" selection-start-column="23" selection-end-line="131" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/coral-collection/src/scripts/SelectableCollection.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="287">
+              <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
             </state>
           </provider>
         </entry>
@@ -254,36 +164,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>document.createELement</find>
-      <find>document.createElement</find>
-      <find>should trigger a change event when a datetime</find>
-      <find>should allow removing the selected item</find>
-      <find>Mutation</find>
-      <find>_initialised</find>
-      <find>_contentZones</find>
-      <find>_positionInputOnDropZone</find>
-      <find>MutationObserver</find>
-      <find>import {CoralMutationObserver} from '../coral-mutationobserver';</find>
-      <find>'../../../coral-mutationobserver</find>
-      <find>_handleMutation</find>
-      <find>CoralMutationObserver$1</find>
-      <find>should set sortable direction to descending</find>
-      <find>export default () =&gt;</find>
-      <find>export default function() {</find>
-      <find>CoralMutationObserver</find>
-      <find>WizardView</find>
-      <find>_elements</find>
-      <find>openComplete</find>
-      <find>should be labelled by slider items if available</find>
-      <find>should call onItemAdded immediately after an item is added</find>
-      <find>_shouldInitialise</find>
-      <find>should correctly call onItemAdded on nested and direct items</find>
-      <find>error</find>
-      <find>should get all the items with getAll()</find>
-      <find>getSimpleButtonGroupElement</find>
-      <find>_initialise</find>
+      <find>host</find>
+      <find>appendChild</find>
+      <find>replaceChild</find>
+      <find>Array.from</find>
+      <find>super</find>
+      <find>_skipInitialItems</find>
+      <find>class</find>
+      <find>un</find>
+      <find>querySelectorALl</find>
+      <find>querySelectorAll</find>
       <find>BaseComponent</find>
-      <find>instanceof</find>
+      <find>initDate</find>
+      <find>_initialise</find>
+      <find>_deselectAllExcept</find>
+      <find>this._reflectedAttribute</find>
+      <find>error</find>
+      <find>initialise</find>
+      <find>id</find>
+      <find>Radio</find>
+      <find>_id</find>
+      <find>CoralMutation</find>
+      <find>coral-mutationobserver</find>
+      <find>utationObserver</find>
+      <find>ColorInput.Item</find>
+      <find>MutationObserver</find>
+      <find>should be called when form is reset programmatically</find>
+      <find>testFormField</find>
+      <find>_attributePropertyMap</find>
+      <find>_reflectedAttribute</find>
+      <find>SelectableCollection</find>
     </findStrings>
     <replaceStrings>
       <replace>CORAL_NAME</replace>
@@ -310,57 +220,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/coral-component-tree/src/scripts/TreeItemContent.js" />
-        <option value="$PROJECT_DIR$/coral-component-card/src/scripts/CardTitle.js" />
-        <option value="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellSolutionLabel.js" />
-        <option value="$PROJECT_DIR$/coral-component-drawer/src/scripts/DrawerContent.js" />
-        <option value="$PROJECT_DIR$/coral-component-alert/src/scripts/AlertFooter.js" />
-        <option value="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellUserContent.js" />
-        <option value="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellUserFooter.js" />
-        <option value="$PROJECT_DIR$/coral-component-multifield/src/scripts/MultifieldItemContent.js" />
-        <option value="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellOrgSwitcherFooter.js" />
-        <option value="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellHelpSeparator.js" />
-        <option value="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellUserName.js" />
-        <option value="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellHomeAnchorLabel.js" />
-        <option value="$PROJECT_DIR$/coral-component-popover/src/scripts/PopoverFooter.js" />
-        <option value="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellUserHeading.js" />
-        <option value="$PROJECT_DIR$/coral-component-popover/src/scripts/PopoverContent.js" />
-        <option value="$PROJECT_DIR$/coral-component-popover/src/scripts/PopoverHeader.js" />
-        <option value="$PROJECT_DIR$/coral-component-panelstack/src/scripts/PanelContent.js" />
-        <option value="$PROJECT_DIR$/coral-component-slider/src/scripts/SliderContent.js" />
-        <option value="$PROJECT_DIR$/coral-component-sidenav/src/scripts/SideNavItemContent.js" />
-        <option value="$PROJECT_DIR$/coral-component-sidenav/src/scripts/SideNavHeading.js" />
-        <option value="$PROJECT_DIR$/coral-component-progress/src/scripts/ProgressLabel.js" />
-        <option value="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellUserSubheading.js" />
-        <option value="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellContent.js" />
-        <option value="$PROJECT_DIR$/coral-component-steplist/src/scripts/StepLabel.js" />
-        <option value="$PROJECT_DIR$/coral-component-status/src/scripts/StatusLabel.js" />
-        <option value="$PROJECT_DIR$/coral-component-tablist/src/scripts/TabLabel.js" />
-        <option value="$PROJECT_DIR$/coral-component-accordion/src/scripts/AccordionItemLabel.js" />
-        <option value="$PROJECT_DIR$/coral-component-accordion/src/scripts/AccordionItemContent.js" />
-        <option value="$PROJECT_DIR$/coral-component-anchorbutton/src/scripts/AnchorButtonLabel.js" />
-        <option value="$PROJECT_DIR$/coral-component-taglist/src/scripts/TagLabel.js" />
-        <option value="$PROJECT_DIR$/coral-component-tooltip/src/scripts/TooltipContent.js" />
-        <option value="$PROJECT_DIR$/coral-component-banner/src/scripts/BannerHeader.js" />
-        <option value="$PROJECT_DIR$/coral-component-button/src/scripts/ButtonLabel.js" />
-        <option value="$PROJECT_DIR$/coral-component-columnview/src/scripts/ColumnViewPreviewValue.js" />
-        <option value="$PROJECT_DIR$/coral-component-columnview/src/scripts/ColumnViewPreviewLabel.js" />
-        <option value="$PROJECT_DIR$/coral-component-columnview/src/scripts/ColumnViewItemThumbnail.js" />
-        <option value="$PROJECT_DIR$/coral-component-columnview/src/scripts/ColumnViewItemContent.js" />
-        <option value="$PROJECT_DIR$/coral-component-columnview/src/scripts/ColumnViewPreviewAsset.js" />
-        <option value="$PROJECT_DIR$/coral-component-columnview/src/scripts/ColumnViewPreviewContent.js" />
-        <option value="$PROJECT_DIR$/coral-component-columnview/src/scripts/ColumnViewPreviewSeparator.js" />
-        <option value="$PROJECT_DIR$/coral-component-columnview/src/scripts/ColumnViewColumnContent.js" />
-        <option value="$PROJECT_DIR$/coral-component-switch/src/scripts/SwitchLabel.js" />
-        <option value="$PROJECT_DIR$/dist/js/coral.es6.js" />
-        <option value="$PROJECT_DIR$/coral-externals/index.js" />
-        <option value="$PROJECT_DIR$/coral-gulp/configs/karma.conf.js" />
+        <option value="$PROJECT_DIR$/coral-collection/src/tests/test.Collection.js" />
+        <option value="$PROJECT_DIR$/coral-component-list/src/scripts/AnchorList.js" />
+        <option value="$PROJECT_DIR$/coral-component-list/src/scripts/List.js" />
+        <option value="$PROJECT_DIR$/coral-component-list/src/scripts/ListItem.js" />
+        <option value="$PROJECT_DIR$/coral-component-multifield/src/scripts/MultifieldItem.js" />
+        <option value="$PROJECT_DIR$/coral-component-quickactions/src/scripts/QuickActions.js" />
+        <option value="$PROJECT_DIR$/coral-component-select/src/scripts/Select.js" />
+        <option value="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellHeader.js" />
+        <option value="$PROJECT_DIR$/coral-component-tablist/src/scripts/TabList.js" />
+        <option value="$PROJECT_DIR$/coral-component-textarea/src/scripts/Textarea.js" />
+        <option value="$PROJECT_DIR$/coral-component-tree/src/scripts/Tree.js" />
+        <option value="$PROJECT_DIR$/coral-base-labellable/src/scripts/BaseLabellable.js" />
+        <option value="$PROJECT_DIR$/coral-component-table/src/scripts/BaseTableSection.js" />
+        <option value="$PROJECT_DIR$/coral-component-radio/src/scripts/Radio.js" />
+        <option value="$PROJECT_DIR$/coral-component-toast/src/scripts/Toast.js" />
+        <option value="$PROJECT_DIR$/coral-component-actionbar/src/scripts/ActionBar.js" />
+        <option value="$PROJECT_DIR$/coral-component-shell/src/scripts/ShellSolutionSwitcher.js" />
+        <option value="$PROJECT_DIR$/coral-component-dialog/src/scripts/Dialog.js" />
+        <option value="$PROJECT_DIR$/coral-component-select/src/scripts/SelectItem.js" />
+        <option value="$PROJECT_DIR$/coral-component-switch/src/scripts/Switch.js" />
+        <option value="$PROJECT_DIR$/coral-component-popover/src/scripts/Popover.js" />
+        <option value="$PROJECT_DIR$/coral-component-table/src/scripts/Table.js" />
+        <option value="$PROJECT_DIR$/coral-component-masonry/src/scripts/Masonry.js" />
+        <option value="$PROJECT_DIR$/coral-component-multifield/src/scripts/Multifield.js" />
+        <option value="$PROJECT_DIR$/coral-component-autocomplete/src/scripts/Autocomplete.js" />
+        <option value="$PROJECT_DIR$/coral-component-table/src/scripts/TableHeaderCell.js" />
+        <option value="$PROJECT_DIR$/coral-component-sidenav/src/scripts/SideNav.js" />
+        <option value="$PROJECT_DIR$/coral-component-table/src/scripts/TableRow.js" />
+        <option value="$PROJECT_DIR$/coral-component-tablist/src/scripts/Tab.js" />
+        <option value="$PROJECT_DIR$/coral-component-wizardview/src/scripts/WizardView.js" />
+        <option value="$PROJECT_DIR$/coral-component-checkbox/src/scripts/Checkbox.js" />
+        <option value="$PROJECT_DIR$/coral-component-splitbutton/src/scripts/SplitButton.js" />
+        <option value="$PROJECT_DIR$/coral-component-autocomplete/src/scripts/AutocompleteItem.js" />
+        <option value="$PROJECT_DIR$/coral-component-fileupload/src/scripts/FileUpload.js" />
+        <option value="$PROJECT_DIR$/coral-component-quickactions/src/scripts/QuickActionsItem.js" />
+        <option value="$PROJECT_DIR$/coral-compat/libs/Component.js" />
+        <option value="$PROJECT_DIR$/coral-base-component/index.js" />
+        <option value="$PROJECT_DIR$/coral-component-tree/index.js" />
+        <option value="$PROJECT_DIR$/coral-base-labellable/index.js" />
+        <option value="$PROJECT_DIR$/coral-component-sidenav/index.js" />
+        <option value="$PROJECT_DIR$/coral-component-autocomplete/index.js" />
+        <option value="$PROJECT_DIR$/coral-component-progress/src/scripts/Progress.js" />
+        <option value="$PROJECT_DIR$/coral-component-columnview/src/scripts/ColumnViewColumn.js" />
+        <option value="$PROJECT_DIR$/coral-component-columnview/src/scripts/ColumnView.js" />
+        <option value="$PROJECT_DIR$/coral-component-buttongroup/src/tests/test.ButtonGroup.js" />
         <option value="$PROJECT_DIR$/coral-gulp/index.js" />
-        <option value="$PROJECT_DIR$/coral-collection/src/scripts/Collection.js" />
-        <option value="$PROJECT_DIR$/coral-collection/src/scripts/LazyCollection.js" />
+        <option value="$PROJECT_DIR$/index.es5.html" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/coral-mutationobserver/src/scripts/MutationObserver.js" />
         <option value="$PROJECT_DIR$/coral-base-component/src/scripts/BaseComponent.js" />
+        <option value="$PROJECT_DIR$/coral-collection/src/scripts/Collection.js" />
+        <option value="$PROJECT_DIR$/coral-component-buttongroup/src/scripts/ButtonGroup.js" />
       </list>
     </option>
   </component>
@@ -412,48 +322,13 @@
             <path>
               <item name="coral-spectrum" type="b2602c69:ProjectViewProjectNode" />
               <item name="coral-spectrum" type="462c0819:PsiDirectoryNode" />
-              <item name="coral-component-buttongroup" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="coral-spectrum" type="b2602c69:ProjectViewProjectNode" />
-              <item name="coral-spectrum" type="462c0819:PsiDirectoryNode" />
-              <item name="coral-component-buttongroup" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="coral-spectrum" type="b2602c69:ProjectViewProjectNode" />
-              <item name="coral-spectrum" type="462c0819:PsiDirectoryNode" />
-              <item name="coral-component-buttongroup" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="tests" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="coral-spectrum" type="b2602c69:ProjectViewProjectNode" />
-              <item name="coral-spectrum" type="462c0819:PsiDirectoryNode" />
-              <item name="coral-mutationobserver" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="coral-spectrum" type="b2602c69:ProjectViewProjectNode" />
-              <item name="coral-spectrum" type="462c0819:PsiDirectoryNode" />
-              <item name="coral-mutationobserver" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="coral-spectrum" type="b2602c69:ProjectViewProjectNode" />
-              <item name="coral-spectrum" type="462c0819:PsiDirectoryNode" />
-              <item name="coral-mutationobserver" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="scripts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="coral-spectrum" type="b2602c69:ProjectViewProjectNode" />
-              <item name="coral-spectrum" type="462c0819:PsiDirectoryNode" />
               <item name="dist" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="coral-spectrum" type="b2602c69:ProjectViewProjectNode" />
               <item name="coral-spectrum" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="dist" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -474,13 +349,13 @@
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/coral-mutationobserver/src" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/coral-gulp/configs" />
       <recent name="$PROJECT_DIR$/coral-component-masonry/src/tests/snippets" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/coral-mutationobserver/src" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -521,7 +396,7 @@
     <frame x="0" y="23" width="1680" height="952" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.30463982" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.30463982" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -535,7 +410,7 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32945284" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.29651162" />
+      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.29651162" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32945284" />
       <window_info anchor="bottom" id="Docker" order="10" />
@@ -634,249 +509,11 @@
     </option>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/coral-component-quickactions/src/scripts/QuickActions.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coral-collection/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coral-compat/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="39" selection-start-line="22" selection-start-column="39" selection-end-line="22" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coral-compat/libs/property.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coral-compat/libs/Component.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coral-component-autocomplete/src/scripts/AutocompleteItem.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="14" selection-start-line="14" selection-end-line="14" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coral-component-quickactions/src/scripts/QuickActionsItem.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="3" selection-start-line="25" selection-start-column="3" selection-end-line="25" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coral-mutationobserver/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="31" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coral-component-table/src/scripts/TableColumn.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-28" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coral-component-table/src/scripts/TableFoot.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-28" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coral-component-table/src/scripts/TableHead.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="19" column="24" lean-forward="true" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coral-component-table/src/scripts/TableHeaderCell.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="22" column="25" lean-forward="true" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coral-component-table/src/scripts/TableRow.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="26" column="25" lean-forward="true" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coral-component-table/src/scripts/TableUtil.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1765">
-          <caret line="24" column="14" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coral-component-table/src/scripts/TableCell.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-28" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coral-component-table/src/scripts/TableBody.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-28" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coral-component-table/src/scripts/TableHeaderCellContent.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="1" lean-forward="true" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coral-component-quickactions/index.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coral-base-component/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" selection-start-line="13" selection-end-line="13" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coral-component-table/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="14" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coral-component-table/src/tests/test.Table.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="1595" column="31" selection-start-line="1595" selection-start-column="31" selection-end-line="1595" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coral-component-table/src/scripts/Table.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="24" selection-start-line="24" selection-end-line="24" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coral-component-table/src/tests/snippets/Table.sortable.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="35" column="8" selection-end-line="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coral-component-table/src/scripts/BaseTableSection.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="48" column="50" selection-start-line="48" selection-start-column="50" selection-end-line="48" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coral-component-shell/src/scripts/ShellUserSubheading.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="27" selection-start-line="18" selection-end-line="19" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coral-component-card/src/scripts/CardAsset.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="1" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coral-component-card/src/scripts/CardContext.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coral-component-alert/src/scripts/AlertFooter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coral-component-button/src/scripts/ButtonLabel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coral-component-switch/src/scripts/SwitchLabel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dist/js/coral.es6.js" />
-    <entry file="file://$PROJECT_DIR$/coral-component-slider/src/tests/test.Slider.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1380">
-          <caret line="92" column="54" selection-start-line="92" selection-start-column="54" selection-end-line="92" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coral-base-overlay/src/scripts/BaseOverlay.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9135">
-          <caret line="609" column="28" selection-start-line="609" selection-start-column="28" selection-end-line="609" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coral-collection/src/tests/snippets/Collection.base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coral-gulp/configs/rollup.conf.es6.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-51">
-          <caret line="23" column="8" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coral-externals/polyfills/CustomEvent.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="91" lean-forward="true" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="91" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coral-externals/polyfills/classList-partial-shim.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-50">
-          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/coral-gulp/tasks/watch.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="531">
           <caret line="45" column="20" lean-forward="true" selection-start-line="45" selection-start-column="20" selection-end-line="45" selection-end-column="20" />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coral-gulp/tasks/tests.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-26" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/coral-externals/polyfills/focus-options-polyfill.js">
@@ -900,64 +537,318 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/coral-component-buttongroup/src/tests/test.ButtonGroup.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="22" selection-start-line="22" selection-end-line="54" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/coral-collection/src/scripts/LazyCollection.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="38" column="86" selection-start-line="38" selection-start-column="26" selection-end-line="38" selection-end-column="86" />
+        <state relative-caret-position="445">
+          <caret line="43" selection-start-line="43" selection-end-line="43" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/coral-collection/src/tests/test.Collection.js">
+    <entry file="file://$PROJECT_DIR$/coral-component-autocomplete/src/tests/test.Autocomplete.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="490">
-          <caret line="81" column="56" selection-start-line="81" selection-start-column="56" selection-end-line="81" selection-end-column="56" />
+        <state relative-caret-position="264">
+          <caret line="32" column="24" selection-start-line="32" selection-start-column="6" selection-end-line="32" selection-end-column="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/coral-collection/src/scripts/Collection.js">
+    <entry file="file://$PROJECT_DIR$/coral-collection/index.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coral-collection/src/tests/spec.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="783">
-          <caret line="417" selection-start-line="417" selection-end-line="417" />
+        <state>
+          <caret column="3" selection-start-column="3" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coral-guide/scripts/guide.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="101" column="7" lean-forward="true" selection-start-line="101" selection-start-column="7" selection-end-line="101" selection-end-column="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/coral-mutationobserver/src/scripts/MutationObserver.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="23" column="47" selection-start-line="23" selection-start-column="47" selection-end-line="23" selection-end-column="47" />
+        <state relative-caret-position="315">
+          <caret line="21" column="44" selection-start-line="21" selection-start-column="44" selection-end-line="21" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coral-component-datepicker/src/tests/test.Datepicker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6">
+          <caret line="620" column="56" selection-start-line="620" selection-start-column="56" selection-end-line="620" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coral-component-datepicker/src/scripts/Datepicker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="791" column="17" selection-start-line="791" selection-start-column="17" selection-end-line="791" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coral-component-radio/src/tests/test.Radio.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="506" column="17" lean-forward="true" selection-start-line="506" selection-start-column="17" selection-end-line="506" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coral-collection/src/tests/test.Collection.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="160" column="11" selection-start-line="160" selection-start-column="11" selection-end-line="160" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coral-component-list/src/scripts/AnchorList.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coral-component-list/src/scripts/List.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="30" column="3" lean-forward="true" selection-start-line="30" selection-start-column="3" selection-end-line="30" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coral-component-list/src/scripts/ListItem.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coral-component-multifield/src/scripts/MultifieldItem.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="45" column="13" lean-forward="true" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coral-component-radio/src/scripts/Radio.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="57" column="19" selection-start-line="57" selection-start-column="19" selection-end-line="57" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coral-component-quickactions/src/scripts/QuickActions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="167" selection-start-line="167" selection-end-line="167" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coral-component-select/src/scripts/Select.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="153" selection-start-line="153" selection-end-line="153" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coral-component-shell/src/scripts/ShellHeader.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="445">
+          <caret line="44" column="5" selection-start-line="44" selection-start-column="5" selection-end-line="44" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coral-component-table/src/scripts/BaseTableSection.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="28" column="14" selection-start-line="28" selection-start-column="14" selection-end-line="28" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coral-component-textarea/src/scripts/Textarea.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="69" column="17" selection-start-line="69" selection-start-column="17" selection-end-line="69" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coral-compat/libs/Component.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="232" column="25" selection-start-line="232" selection-start-column="25" selection-end-line="232" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="52" selection-start-line="8" selection-start-column="52" selection-end-line="8" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coral-component-tablist/src/scripts/TabList.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="641">
+          <caret line="104" column="52" selection-start-line="104" selection-start-column="33" selection-end-line="104" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coral-component-sidenav/src/scripts/SideNav.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="62" selection-start-line="62" selection-end-line="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coral-component-colorinput/src/tests/test.ColorInput.Item.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-50">
+          <caret line="15" column="10" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/output.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="6369" column="68" selection-start-line="6369" selection-start-column="16" selection-end-line="6369" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coral-utils/src/tests/helpers/helpers.formField.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="325" column="27" selection-start-line="325" selection-start-column="14" selection-end-line="325" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coral-gulp/tasks/tests.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="12" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coral-gulp/tasks/styles.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coral-gulp/tasks/lint.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coral-gulp/tasks/release.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="94">
+          <caret line="25" column="28" lean-forward="true" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coral-component-buttongroup/src/tests/snippets/ButtonGroup.selectionMode.single.value.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/js/coral.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-188234">
+          <caret line="20" column="50" selection-start-line="20" selection-start-column="50" selection-end-line="20" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coral-component-tabview/src/scripts/TabView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="869">
+          <caret line="58" column="24" selection-start-line="58" selection-start-column="24" selection-end-line="58" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coral-component-buttongroup/src/tests/test.ButtonGroup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="1469" column="28" selection-start-line="1469" selection-start-column="28" selection-end-line="1469" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.es5.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="46" selection-start-line="6" selection-start-column="46" selection-end-line="6" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coral-gulp/configs/rollup.conf.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="40" column="30" lean-forward="true" selection-start-line="40" selection-start-column="30" selection-end-line="40" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/coral-gulp/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="30" column="37" selection-start-line="30" selection-start-column="37" selection-end-line="30" selection-end-column="37" />
+        <state relative-caret-position="235">
+          <caret line="30" column="37" lean-forward="true" selection-start-line="30" selection-start-column="37" selection-end-line="30" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coral-gulp/tasks/scripts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="30" column="11" selection-start-line="30" selection-start-column="11" selection-end-line="30" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/js/coral.es6.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="334">
+          <caret line="13047" column="5" lean-forward="true" selection-start-line="13047" selection-start-column="5" selection-end-line="13047" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coral-collection/src/scripts/SelectableCollection.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coral-collection/src/scripts/Collection.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="169" column="34" lean-forward="true" selection-start-line="169" selection-start-column="34" selection-end-line="169" selection-end-column="34" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="12" column="14" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
+        <state relative-caret-position="180">
+          <caret line="12" column="65" lean-forward="true" selection-start-line="12" selection-start-column="65" selection-end-line="12" selection-end-column="65" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/coral-base-component/src/scripts/BaseComponent.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="788" column="9" selection-start-line="788" selection-start-column="9" selection-end-line="788" selection-end-column="9" />
+        <state relative-caret-position="-3663">
+          <caret line="375" column="3" lean-forward="true" selection-start-line="375" selection-start-column="3" selection-end-line="375" selection-end-column="3" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/output.txt">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/coral-component-buttongroup/src/scripts/ButtonGroup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="813" column="36" lean-forward="true" selection-start-line="813" selection-start-column="36" selection-end-line="813" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coral-component-list/src/scripts/SelectList.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1211">
+          <caret line="131" column="23" lean-forward="true" selection-start-line="131" selection-start-column="23" selection-end-line="131" selection-end-column="23" />
+        </state>
+      </provider>
     </entry>
   </component>
   <component name="masterDetails">

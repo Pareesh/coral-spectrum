@@ -99,10 +99,6 @@ class MultifieldItem extends BaseComponent(HTMLElement) {
     return {'coral-multifield-item-content': 'content'};
   }
 
-  connectedCallback() {
-    super.connectedCallback();
-  }
-
   /** @ignore */
   render() {
     super.render();

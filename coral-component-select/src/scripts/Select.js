@@ -89,6 +89,46 @@ class Select extends BaseFormField(BaseComponent(HTMLElement)) {
 
     base.call(this._elements, {commons, Icon, i18n});
 
+    const events = {
+      'global:click': '_onGlobalClick',
+      'global:touchstart': '_onGlobalClick',
+
+      'coral-collection:add coral-taglist': '_onInternalEvent',
+      'coral-collection:remove coral-taglist': '_onInternalEvent',
+
+      // item events
+      'coral-select-item:_valuechanged coral-select-item': '_onItemValueChange',
+      'coral-select-item:_contentchanged coral-select-item': '_onItemContentChange',
+      'coral-select-item:_disabledchanged coral-select-item': '_onItemDisabledChange',
+      'coral-select-item:_selectedchanged coral-select-item': '_onItemSelectedChange',
+
+      'change coral-taglist': '_onTagListChange',
+      'change select': '_onNativeSelectChange',
+      'click select': '_onNativeSelectClick',
+    };
+
+    // Overlay
+    const overlayId = this._elements.overlay.id;
+
+    events[`global:capture:coral-collection:add #${overlayId} coral-selectlist`] = '_onSelectListItemAdd';
+    events[`global:capture:coral-collection:remove #${overlayId} coral-selectlist`] = '_onInternalEvent';
+    events[`global:capture:coral-selectlist:beforechange #${overlayId}`] = '_onSelectListBeforeChange';
+    events[`global:capture:coral-selectlist:change #${overlayId}`] = '_onSelectListChange';
+    events[`global:capture:coral-selectlist:scrollbottom #${overlayId}`] = '_onSelectListScrollBottom';
+    events[`global:capture:coral-overlay:close #${overlayId}`] = '_onOverlayToggle';
+    events[`global:capture:coral-overlay:open #${overlayId}`] = '_onOverlayToggle';
+    events[`global:capture:coral-overlay:positioned #${overlayId}`] = '_onOverlayPositioned';
+    events[`global:capture:coral-overlay:beforeopen #${overlayId}`] = '_onBeforeOpen';
+    events[`global:capture:coral-overlay:beforeclose #${overlayId}`] = '_onInternalEvent';
+    // Keyboard interaction
+    events[`global:keypress #${overlayId}`] = '_onOverlayKeyPress';
+    // TODO for some reason this disables tabbing into the select
+    // events[`global:key:tab #${overlayId} coral-selectlist-item`] = '_onTabKey';
+    // events[`global:key:tab+shift #${overlayId} coral-selectlist-item`] = '_onTabKey';
+
+    // Attach events
+    this._delegateEvents(events);
+
     // Pre-define labellable element
     this._labellableElement = this._elements.button;
 
@@ -112,51 +152,14 @@ class Select extends BaseFormField(BaseComponent(HTMLElement)) {
   _initialise() {
     super._initialise();
 
-    // Overlay
-    const overlayId = this._elements.overlay.id;
-
-    const events = {
-      'global:click': '_onGlobalClick',
-      'global:touchstart': '_onGlobalClick',
-
-      'coral-collection:add coral-taglist': '_onInternalEvent',
-      'coral-collection:remove coral-taglist': '_onInternalEvent',
-
-      // item events
-      'coral-select-item:_valuechanged coral-select-item': '_onItemValueChange',
-      'coral-select-item:_contentchanged coral-select-item': '_onItemContentChange',
-      'coral-select-item:_disabledchanged coral-select-item': '_onItemDisabledChange',
-      'coral-select-item:_selectedchanged coral-select-item': '_onItemSelectedChange',
-
-      'change coral-taglist': '_onTagListChange',
-      'change select': '_onNativeSelectChange',
-      'click select': '_onNativeSelectClick',
+    // add scope based events in initialise.
+    this._delegateEvents({
       'click > ._coral-Dropdown-trigger': '_onButtonClick',
-
       'key:space > ._coral-Dropdown-trigger': '_onSpaceKey',
       'key:enter > ._coral-Dropdown-trigger': '_onSpaceKey',
       'key:return > ._coral-Dropdown-trigger': '_onSpaceKey',
       'key:down > ._coral-Dropdown-trigger': '_onSpaceKey'
-    };
-
-    events[`global:capture:coral-collection:add #${overlayId} coral-selectlist`] = '_onSelectListItemAdd';
-    events[`global:capture:coral-collection:remove #${overlayId} coral-selectlist`] = '_onInternalEvent';
-    events[`global:capture:coral-selectlist:beforechange #${overlayId}`] = '_onSelectListBeforeChange';
-    events[`global:capture:coral-selectlist:change #${overlayId}`] = '_onSelectListChange';
-    events[`global:capture:coral-selectlist:scrollbottom #${overlayId}`] = '_onSelectListScrollBottom';
-    events[`global:capture:coral-overlay:close #${overlayId}`] = '_onOverlayToggle';
-    events[`global:capture:coral-overlay:open #${overlayId}`] = '_onOverlayToggle';
-    events[`global:capture:coral-overlay:positioned #${overlayId}`] = '_onOverlayPositioned';
-    events[`global:capture:coral-overlay:beforeopen #${overlayId}`] = '_onBeforeOpen';
-    events[`global:capture:coral-overlay:beforeclose #${overlayId}`] = '_onInternalEvent';
-    // Keyboard interaction
-    events[`global:keypress #${overlayId}`] = '_onOverlayKeyPress';
-    // TODO for some reason this disables tabbing into the select
-    // events[`global:key:tab #${overlayId} coral-selectlist-item`] = '_onTabKey';
-    // events[`global:key:tab+shift #${overlayId} coral-selectlist-item`] = '_onTabKey';
-
-    // Attach events
-    this._delegateEvents(events);
+    });
   }
 
   /**

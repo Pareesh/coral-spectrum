@@ -12,7 +12,6 @@
 
 import {divider} from './TableUtil';
 import {transform, validate} from '../../../coral-utils';
-import {CoralMutationObserver} from '../../../coral-mutationobserver';
 
 // Builds a string containing all possible divider classnames. This will be used to remove classnames when the
 // divider changes
@@ -27,7 +26,7 @@ for (const dividerValue in divider) {
  */
 const BaseTableSection = (superClass) => class extends superClass {
   /** @ignore */
-  constructor(tagName) {
+  constructor() {
     super();
 
     this._tagName = this.hasAttribute('is') ? this.getAttribute('is').toLowerCase() : undefined;
@@ -55,7 +54,7 @@ const BaseTableSection = (superClass) => class extends superClass {
   }
 
   _toggleObserver(enable) {
-    this._observer = this._observer || new CoralMutationObserver(this, this._handleMutations.bind(this));
+    this._observer = this._observer || new MutationObserver(this._handleMutations.bind(this));
 
     if (enable) {
       // Initialize content MO

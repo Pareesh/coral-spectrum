@@ -14,7 +14,6 @@ import '../coral-theme-spectrum';
 
 import '../coral-externals';
 import '../coral-compat';
-import '../coral-mutationobserver';
 
 import Tree from './src/scripts/Tree';
 import TreeItem from './src/scripts/TreeItem';

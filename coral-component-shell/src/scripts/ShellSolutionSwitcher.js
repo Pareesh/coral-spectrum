@@ -13,7 +13,6 @@
 import {BaseComponent} from '../../../coral-base-component';
 import {Collection} from '../../../coral-collection';
 import solutionSwitcher from '../templates/solutionSwitcher';
-import {CoralMutationObserver} from '../../../coral-mutationobserver';
 
 const CLASSNAME = '_coral-Shell-solutionSwitcher';
 
@@ -34,7 +33,7 @@ class ShellSolutionSwitcher extends BaseComponent(HTMLElement) {
     solutionSwitcher.call(this._elements);
 
     // Listen for mutations
-    const observer = new CoralMutationObserver(this, (mutations) => {
+    const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         for (let i = 0 ; i < mutation.addedNodes.length ; i++) {
           const addedNode = mutation.addedNodes[i];

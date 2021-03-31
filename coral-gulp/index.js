@@ -30,6 +30,7 @@ module.exports = function (gulp) {
     gulp.series(
       gulp.parallel('clean', 'lint'),
       gulp.parallel('styles', 'templates'),
+      'scripts',
       'scripts.es6'
     )
   );

@@ -11,8 +11,19 @@
  */
 
 import listToArray from './listToArray';
-import LazyCollection from './LazyCollection';
-import {CoralMutationObserver} from '../../../coral-mutationobserver';
+
+/**
+ Selector used to determine if nested items should be allowed.
+ @private
+ */
+const SCOPE_SELECTOR = ':scope > ';
+
+/**
+ Attribute used to identify the items of a collection.
+ @private
+ */
+const COLLECTION_ID = 'coral-collection-id-';
+
 /**
  Unique id used to idenfity the collection.
 
@@ -45,7 +56,7 @@ function filterItem(item, filter) {
 /**
  Collection provides a standardized way to manipulate items in a component.
  */
-class Collection extends LazyCollection{
+class Collection {
   /**
    @param {HTMLElement} options.host
    The element that hosts the collection.
@@ -77,7 +88,6 @@ class Collection extends LazyCollection{
    is <code>true</code>.
    */
   constructor(options) {
-    super();
     options = options || {};
 
     // we create an unique collection identifier
@@ -92,8 +102,8 @@ class Collection extends LazyCollection{
     this._container = options.container || this._host;
     this._filter = options.filter;
 
-    if(this._shouldInitialise()) {
-      // container initialised
+    if(!this._container || (this._container && (this._container._initialised || this._container.isConnected))) {
+      // if container is already initialised, initialise the collection
       this._initialise();
     }
 
@@ -105,13 +115,58 @@ class Collection extends LazyCollection{
     this._onCollectionChange = options.onCollectionChange;
   }
 
-  _shouldInitialise() {
-    return !this._container || (this._container && (this._container._initialised || this._container.isConnected));
+  _initialise() {
+    if(this._container && !this._container._initialised && this._container._initialise) {
+      // if container is already initialised, initialise the collection
+      this._container._initialise();
+    }
+
+    if(this._host && !this._host._initialised && this._host._initialise) {
+      // if container is already initialised, initialise the collection
+      this._host._initialise();
+    }
+
+    if(!this._initialised) {
+      // we provide support for the :scope selector and swap it for an id
+      if (this._itemSelector && this._itemSelector.indexOf(SCOPE_SELECTOR) === 0) {
+        this._container.id = this._container.id || COLLECTION_ID + this._id;
+        // we create a special selector to make sure that the items are direct children of the container. given that
+        // :scope is not fully supported by all browsers, we use an id to query
+        this._allItemsSelector = this._itemSelector.replace(SCOPE_SELECTOR, `#${this._container.id} > `);
+
+        // we remove the :scope from the selector to be able to use it to determine if the item matches the collection
+        this._itemSelector = this._itemSelector.replace(SCOPE_SELECTOR, '');
+        // in case they match, we enable this optimization
+        if (this._itemSelector === this._itemTagName) {
+          this._useItemTagName = this._itemSelector.toUpperCase();
+        }
+      }
+      // live collections are not supported when nested items is used
+      else {
+        this._allItemsSelector = this._itemSelector;
+
+        // live collections can only be used when a tagname is used to query the items
+        if (this._container && this._allItemsSelector === this._itemTagName) {
+          this._liveCollection = true;
+          this._useItemTagName = this._allItemsSelector.toUpperCase();
+        }
+      }
+      this._initialised = true;
+    }
+
+    this._handleInitialItems();
+
+    if(this._container && !this._container.isConnected) {
+      // initialise children if container is not connected
+      Array.prototype.forEach.call(this._container.querySelectorAll("*"), (item) => {
+        if(item && item._initialised === false && item._initialise) {
+          item._initialise();
+        }
+      });
+    }
   }
 
-  _initialise() {
-    super._initialise();
-
+  _handleInitialItems() {
     if(this._skipInitialItems === false) {
       delete this._skipInitialItems;
       // since we are handling the items for the component, we need to make sure the _onItemAdded is called for the
@@ -359,7 +414,7 @@ class Collection extends LazyCollection{
     if (this._host && this._container) {
       // we reuse the observer if it already exists, this way we do not need to disconnect it if this function is called
       // again
-      this._observer = this._observer || new CoralMutationObserver(this, this._handleMutation.bind(this));
+      this._observer = this._observer || new MutationObserver(this._handleMutation.bind(this));
 
       // this changes the way that _onItemAdded and _onItemRemoved behave, since they well be delayed until a mutation
       // detects them
@@ -374,8 +429,9 @@ class Collection extends LazyCollection{
 
       // by default we handle the initial items unless otherwise indicated
       this._skipInitialItems = skipInitialItems;
-      if(this._shouldInitialise()) {
-        this._initialise();
+      if(!this._container || (this._container && (this._container._initialised || this._container.isConnected))) {
+        // if container is already initialised, initialise the collection
+        this._handleInitialItems();
       }
     } else {
       throw new Error('Please provide options.host and/or options.container to enable handling the items.');
@@ -416,7 +472,6 @@ class Collection extends LazyCollection{
     // we need to count every addition and removal to notify the component that the collection changed
     let itemChanges = 0;
 
-      // initialise collection if not
     this._initialise();
 
     for (let i = 0 ; i < mutationsCount ; i++) {
@@ -426,6 +481,10 @@ class Collection extends LazyCollection{
       addedNodesCount = addedNodes.length;
       for (let j = 0 ; j < addedNodesCount ; j++) {
         item = addedNodes[j];
+
+        if(!item._initialised && item._initialise && item instanceof (Coral.BaseComponent)) {
+          item._initialise();
+        }
 
         // filters the item
         if (this._isPartOfCollection(item)) {

@@ -12,7 +12,6 @@
 
 import {BaseComponent} from '../../../coral-base-component';
 import {transform} from '../../../coral-utils';
-import {CoralMutationObserver} from '../../../coral-mutationobserver';
 
 /**
  @class Coral.Autocomplete.Item
@@ -26,7 +25,7 @@ class AutocompleteItem extends BaseComponent(HTMLElement) {
   constructor() {
     super();
 
-    this._observer = new CoralMutationObserver(this, this._handleMutation.bind(this));
+    this._observer = new MutationObserver(this._handleMutation.bind(this));
     this._observer.observe(this, {
       characterData: true,
       childList: true,

@@ -16,7 +16,6 @@ import base from '../templates/base';
 import {transform, commons} from '../../../coral-utils';
 import {Icon} from '../../../coral-component-icon';
 import getTarget from './getTarget';
-import {CoralMutationObserver} from '../../../coral-mutationobserver';
 
 const CLASSNAME = '_coral-Tabs-item';
 
@@ -40,7 +39,7 @@ class Tab extends BaseLabellable(BaseComponent(HTMLElement)) {
     base.call(this._elements);
 
     // Listen for mutations
-    this._observer = new CoralMutationObserver(this, () => {
+    this._observer = new MutationObserver(() => {
       // Change icon size if the label is empty
       const icon = this._elements.icon;
       if (icon) {

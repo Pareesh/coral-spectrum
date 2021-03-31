@@ -13,7 +13,6 @@
 import {BaseComponent} from '../../../coral-base-component';
 import {SelectableCollection} from '../../../coral-collection';
 import {transform, validate, commons} from '../../../coral-utils';
-import {CoralMutationObserver} from '../../../coral-mutationobserver';
 
 const CLASSNAME = '_coral-SideNav';
 
@@ -49,6 +48,19 @@ class SideNav extends BaseComponent(HTMLElement) {
   constructor() {
     super();
 
+    // Attach events
+    this._delegateEvents({
+      // Interaction
+      'click a[is="coral-sidenav-item"]': '_onItemClick',
+
+      // Accessibility
+      'capture:focus a[is="coral-sidenav-item"].focus-ring': '_onItemFocusIn',
+      'capture:blur a[is="coral-sidenav-item"]': '_onItemFocusOut',
+
+      // Private
+      'coral-sidenav-item:_selectedchanged': '_onItemSelectedChanged'
+    });
+
     // Used for eventing
     this._oldSelection = null;
 
@@ -62,7 +74,7 @@ class SideNav extends BaseComponent(HTMLElement) {
     this.items._startHandlingItems(true);
 
     // Initialize content MO
-    this._observer = new CoralMutationObserver(this, this._handleMutations.bind(this));
+    this._observer = new MutationObserver(this._handleMutations.bind(this));
     this._observer.observe(this, {
       childList: true,
       subtree: true
@@ -72,19 +84,6 @@ class SideNav extends BaseComponent(HTMLElement) {
   _initialise() {
     super._initialise();
     this.setAttribute('is', 'coral-sidenav');
-
-    // Attach events
-    this._delegateEvents({
-      // Interaction
-      'click a[is="coral-sidenav-item"]': '_onItemClick',
-
-      // Accessibility
-      'capture:focus a[is="coral-sidenav-item"].focus-ring': '_onItemFocusIn',
-      'capture:blur a[is="coral-sidenav-item"]': '_onItemFocusOut',
-
-      // Private
-      'coral-sidenav-item:_selectedchanged': '_onItemSelectedChanged'
-    });
   }
 
   /**

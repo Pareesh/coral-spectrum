@@ -25,13 +25,13 @@ class List extends BaseList(BaseComponent(HTMLElement)) {
   /** @ignore */
   constructor() {
     super();
+
+    // Events
+    this._delegateEvents();
   }
 
   _initialise() {
     super._initialise();
-
-    // Events
-    this._delegateEvents();
   }
 }
 

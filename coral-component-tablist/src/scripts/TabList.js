@@ -68,6 +68,16 @@ class TabList extends BaseComponent(HTMLElement) {
     this._elements = {};
     line.call(this._elements);
 
+    // Attach events
+    this._delegateEvents({
+      'global:coral-commons:_webfontactive': '_setLine',
+
+      // private
+      'coral-tab:_selectedchanged': '_onItemSelectedChanged',
+      'coral-tab:_validateselection': '_onValidateSelection',
+      'coral-tab:_sizechanged': '_setLine'
+    });
+
     // Used for eventing
     this._oldSelection = null;
 
@@ -95,13 +105,6 @@ class TabList extends BaseComponent(HTMLElement) {
       'key:pageup > coral-tab': '_selectPreviousItem',
       'key:left > coral-tab': '_selectPreviousItem',
       'key:up > coral-tab': '_selectPreviousItem',
-
-      'global:coral-commons:_webfontactive': '_setLine',
-
-      // private
-      'coral-tab:_selectedchanged': '_onItemSelectedChanged',
-      'coral-tab:_validateselection': '_onValidateSelection',
-      'coral-tab:_sizechanged': '_setLine'
     });
   }
 

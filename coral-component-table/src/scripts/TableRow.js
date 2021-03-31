@@ -14,7 +14,6 @@ import accessibilityState from '../templates/accessibilityState';
 import {BaseComponent} from '../../../coral-base-component';
 import {SelectableCollection} from '../../../coral-collection';
 import {transform, commons, i18n} from '../../../coral-utils';
-import {CoralMutationObserver} from '../../../coral-mutationobserver';
 
 const CLASSNAME = '_coral-Table-row';
 
@@ -46,7 +45,7 @@ class TableRow extends BaseComponent(HTMLTableRowElement) {
     });
 
     // Initialize content MO
-    this._observer = new CoralMutationObserver(this, this._handleMutations.bind(this));
+    this._observer = new MutationObserver(this._handleMutations.bind(this));
     this._observer.observe(this, {
       childList: true
     });

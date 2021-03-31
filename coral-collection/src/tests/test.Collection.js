@@ -159,7 +159,6 @@ describe('Collection', function () {
           itemTagName: 'coral-collection-test-item',
           itemSelector: 'coral-collection-test-item:not([disabled])'
         });
-        collection._initialise();
         expect(collection._itemSelector).to.equal('coral-collection-test-item:not([disabled])');
         expect(collection._allItemsSelector).to.equal(collection._itemSelector);
       });

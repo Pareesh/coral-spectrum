@@ -16,7 +16,6 @@ import {Icon} from '../../../coral-component-icon';
 import {Button} from '../../../coral-component-button';
 import base from '../templates/base';
 import {transform, validate, commons} from '../../../coral-utils';
-import {CoralMutationObserver} from '../../../coral-mutationobserver';
 
 /**
  Enumeration for {@link Toast} variants.
@@ -152,7 +151,7 @@ class Toast extends BaseOverlay(BaseComponent(HTMLElement)) {
     });
 
     // Layout any time the DOM changes
-    this._observer = new CoralMutationObserver(this, () => {
+    this._observer = new MutationObserver(() => {
       this._debounceLayout();
     });
 

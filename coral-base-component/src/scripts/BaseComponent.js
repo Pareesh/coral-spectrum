@@ -11,7 +11,6 @@
  */
 
 import Vent from '@adobe/vent';
-import {CoralMutationObserver} from '../../../coral-mutationobserver';
 import {commons, Keys, keys, events, transform, validate, tracking as trackingUtil} from '../../../coral-utils';
 
 // Used to split events by type/target
@@ -315,10 +314,11 @@ const BaseComponent = (superClass) => class extends superClass {
     // Attach Vent
     this._vent = new Vent(this);
     this._events = {};
+    this._reflectedAttribute = [];
 
     // Content zone MO for virtual DOM support
     if (this._contentZones) {
-      this._contentZoneObserver = new CoralMutationObserver(this, (mutations) => {
+      this._contentZoneObserver = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
           for (let i = 0 ; i < mutation.addedNodes.length ; i++) {
             const addedNode = mutation.addedNodes[i];
@@ -339,6 +339,39 @@ const BaseComponent = (superClass) => class extends superClass {
         childList: true,
         subtree: true
       });
+    }
+
+    this._initialised = false;
+    // add observer which will listen items when element is in disconnected state
+    this._mutationobserver = new MutationObserver(this._onMutationWhenDisconnected.bind(this));
+    this._mutationobserver.observe(this, {
+      childList: true
+    });
+
+  }
+
+  _onMutationWhenDisconnected(mutations) {
+    let self = this;
+    let mutationsCount = mutations.length;
+
+    if(!self._initialised && self._initialise) {
+      // initialise the container if not done
+      self._initialise();
+    }
+
+    for (let i = 0 ; i < mutationsCount ; i++) {
+      let mutation = mutations[i];
+
+      let addedNodes = mutation.addedNodes;
+      let addedNodesCount = addedNodes.length;
+
+      for (let j = 0 ; j < addedNodesCount ; j++) {
+        let addedNode = addedNodes[j];
+        if(!addedNode._initialised && addedNode._initialise) {
+          // initialise the container if not done
+          addedNode._initialise();
+        }
+      }
     }
   }
 
@@ -485,21 +518,17 @@ const BaseComponent = (superClass) => class extends superClass {
 
   // Handles the reflection of properties by using a flag to prevent setting the property by changing the attribute
   _reflectAttribute(attributeName, value) {
+    this._reflectedAttribute.push(attributeName);
     if (typeof value === 'boolean') {
       if (value && !this.hasAttribute(attributeName)) {
-        this._reflectedAttribute = true;
         this.setAttribute(attributeName, '');
-        this._reflectedAttribute = false;
       } else if (!value && this.hasAttribute(attributeName)) {
-        this._reflectedAttribute = true;
         this.removeAttribute(attributeName);
-        this._reflectedAttribute = false;
       }
     } else if (this.getAttribute(attributeName) !== String(value)) {
-      this._reflectedAttribute = true;
       this.setAttribute(attributeName, value);
-      this._reflectedAttribute = false;
     }
+    this._reflectedAttribute.splice(this._reflectedAttribute.indexOf(attributeName), 1);
   }
 
   /**
@@ -775,7 +804,7 @@ const BaseComponent = (superClass) => class extends superClass {
   // eslint-disable-next-line no-unused-vars
   attributeChangedCallback(name, oldValue, value) {
     const self = this;
-    if (!self._reflectedAttribute) {
+    if (!self._reflectedAttribute || !self._reflectedAttribute.includes(name)) {
       // Use the attribute/property mapping
       self[self.constructor._attributePropertyMap[name] || name] = value;
     }
@@ -783,13 +812,6 @@ const BaseComponent = (superClass) => class extends superClass {
 
   _initialise() {
     this._initialised = true;
-    let children = this.children;
-    for (let i = 0; i < children.length; i++) {
-      let child = children[i];
-      if(!child._initialised && child._initialise) {
-        child._initialise();
-      }
-    }
   }
 
   /** @ignore */
@@ -798,6 +820,7 @@ const BaseComponent = (superClass) => class extends superClass {
     if(!this._initialised) {
       this._initialise();
     }
+    this._mutationobserver.disconnect();
 
     if (this._disconnected) {
       delegateGlobalEvents.call(this);
@@ -818,6 +841,11 @@ const BaseComponent = (superClass) => class extends superClass {
   disconnectedCallback() {
     // A component that isn't in the DOM should not be responding to global events
     this._disconnected = true;
+
+    this._mutationobserver.observe(this, {
+      childList: true
+    });
+
     undelegateGlobalEvents.call(this);
   }
 };

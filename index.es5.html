@@ -3,10 +3,11 @@
 <head>
   <link rel="stylesheet" href="https://opensource.adobe.com/coral-spectrum/playground/dist/css/coral.css"/>
   <script>
+    if (window.customElements) {
+      window.customElements.forcePolyfill = true;
+    }
   </script>
-  <script src="/Users/paregupt/personal/pWorkspace/coral-spectrum/dist/js/coral.es6.js"></script>
-  <script>
-  </script>
+  <script src="/Users/paregupt/personal/pWorkspace/coral-spectrum/dist/js/coral.js"></script>
 </head>
 <body class="coral--lightest">
 <coral-buttongroup selectionmode="single" value="item3">

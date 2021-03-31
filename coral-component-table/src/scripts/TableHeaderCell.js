@@ -11,7 +11,7 @@
  */
 
 import {BaseComponent} from '../../../coral-base-component';
-import {CoralMutationObserver} from '../../../coral-mutationobserver';
+
 const CLASSNAME = '_coral-Table-headerCell';
 
 /**
@@ -33,7 +33,7 @@ class TableHeaderCell extends BaseComponent(HTMLTableCellElement) {
     };
 
     // Watch for content changes in sticky header cell
-    this._stickyCellObserver = new CoralMutationObserver(this, this._handleMutations.bind(this));
+    this._stickyCellObserver = new MutationObserver(this._handleMutations.bind(this));
     this._stickyCellObserver.observe(this._elements.content, {
       childList: true,
       subtree: true

@@ -15,7 +15,7 @@ import {Collection} from '../../../coral-collection';
 import '../../../coral-component-steplist';
 import '../../../coral-component-panelstack';
 import {commons} from '../../../coral-utils';
-import {CoralMutationObserver} from '../../../coral-mutationobserver';
+
 
 const CLASSNAME = '_coral-WizardView';
 
@@ -44,7 +44,7 @@ class WizardView extends BaseComponent(HTMLElement) {
     this.panelStacks._startHandlingItems(true);
 
     // Disable tracking for specific elements that are attached to the component.
-    this._observer = new CoralMutationObserver(this, (mutations) => {
+    this._observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         // Sync added nodes
         for (let i = 0 ; i < mutation.addedNodes.length ; i++) {

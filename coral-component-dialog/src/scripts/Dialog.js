@@ -17,7 +17,6 @@ import {Icon} from '../../../coral-component-icon';
 import '../../../coral-component-button';
 import base from '../templates/base';
 import {commons, transform, validate, i18n} from '../../../coral-utils';
-import {CoralMutationObserver} from '../../../coral-mutationobserver';
 
 /**
  Enumeration for {@link Dialog} closable options.
@@ -152,7 +151,7 @@ class Dialog extends BaseOverlay(BaseComponent(HTMLElement)) {
     this._overlayAnimationTime = this.constructor.FADETIME;
 
     // Listen for mutations
-    this._headerObserver = new CoralMutationObserver(this, this._hideHeaderIfEmpty.bind(this));
+    this._headerObserver = new MutationObserver(this._hideHeaderIfEmpty.bind(this));
 
     // Watch for changes to the header element's children
     this._observeHeader();

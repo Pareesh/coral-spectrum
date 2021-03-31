@@ -11,7 +11,6 @@
  */
 
 import {events, keys, commons, Keys} from '../../coral-utils';
-import {CoralMutationObserver} from '../../coral-mutationobserver';
 
 // Used to split events by type/target
 var delegateEventSplitter = /^(\S+)\s*(.*)$/;
@@ -231,7 +230,7 @@ Component.prototype.createdCallback = function () {
   // Add MutationObserver for content zones
   if (Object.keys(this._contentZones).length) {
     // Watch for childlist modifications
-    this._observer = new CoralMutationObserver(this, this._handleContentZones.bind(this));
+    this._observer = new MutationObserver(this._handleContentZones.bind(this));
     this._observer.observe(this, {
       childList: true,
       subtree: false // don't care about nested stuff

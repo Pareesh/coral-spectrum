@@ -13,7 +13,6 @@
 import {BaseComponent} from '../../../coral-base-component';
 import base from '../templates/base';
 import {commons, transform, validate} from '../../../coral-utils';
-import {CoralMutationObserver} from '../../../coral-mutationobserver';
 
 /**
  Enumeration for {@link Progress} sizes.
@@ -77,7 +76,7 @@ class Progress extends BaseComponent(HTMLElement) {
     base.call(this._elements);
 
     // Watch for label changes
-    this._observer = new CoralMutationObserver(this, this._toggleLabelVisibility.bind(this));
+    this._observer = new MutationObserver(this._toggleLabelVisibility.bind(this));
     this._observer.observe(this._elements.label, {
       characterData: true,
       childList: true,

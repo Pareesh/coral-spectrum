@@ -14,7 +14,6 @@ import {BaseComponent} from '../../../coral-base-component';
 import {BaseFormField} from '../../../coral-base-formfield';
 import {Icon} from '../../../coral-component-icon';
 import base from '../templates/base';
-import {CoralMutationObserver} from '../../../coral-mutationobserver';
 import {transform, commons, i18n} from '../../../coral-utils';
 
 const IS_IE_OR_EDGE = navigator.userAgent.indexOf('MSIE') !== -1 || navigator.appVersion.indexOf('Trident/') > 0 ||
@@ -52,7 +51,7 @@ class Checkbox extends BaseFormField(BaseComponent(HTMLElement)) {
     this._labellableElement = this._elements.input;
 
     // Check if the label is empty whenever we get a mutation
-    this._observer = new CoralMutationObserver(this, this._hideLabelIfEmpty.bind(this));
+    this._observer = new MutationObserver(this._hideLabelIfEmpty.bind(this));
 
     // Watch for changes to the label element's children
     this._observer.observe(this._elements.labelWrapper, {

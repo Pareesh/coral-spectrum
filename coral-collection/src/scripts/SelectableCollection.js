@@ -28,13 +28,11 @@ class SelectableCollection extends Collection {
   }
 
   _initialise() {
-    if(!this._initialised) {
-      super._initialise();
-      // disabled items will not be a selection candicate although hidden items might
-      this._selectableItemSelector = this._allItemsSelector.split(',').map(selector => `${selector}:not([disabled])`).join(',');
-      this._selectedItemSelector = this._allItemsSelector.split(',').map(selector => `${selector}[selected]`).join(',');
-      this._deselectAllExceptSelector = this._selectedItemSelector;
-    }
+    super._initialise();
+    // disabled items will not be a selection candicate although hidden items might
+    this._selectableItemSelector = this._allItemsSelector.split(',').map(selector => `${selector}:not([disabled])`).join(',');
+    this._selectedItemSelector = this._allItemsSelector.split(',').map(selector => `${selector}[selected]`).join(',');
+    this._deselectAllExceptSelector = this._selectedItemSelector;
   }
 
   /**

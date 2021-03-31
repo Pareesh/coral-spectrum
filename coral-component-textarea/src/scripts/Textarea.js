@@ -53,16 +53,15 @@ class Textarea extends BaseFormField(BaseComponent(HTMLTextAreaElement)) {
   /** @ignore */
   constructor() {
     super();
+
+    this._delegateEvents({
+      input: '_onInput'
+    });
   }
 
   _initialise() {
     super._initialise();
-
     this.setAttribute('is', 'coral-textarea');
-
-    this._delegateEvents(commons.extend(this._events, {
-      input: '_onInput'
-    }));
   }
 
   /**

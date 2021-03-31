@@ -36,6 +36,12 @@ class ShellHeader extends BaseComponent(HTMLElement) {
     };
   }
 
+  _initialise() {
+    super._initialise();
+
+    Overlay._OverlayManager.push(this);
+  }
+
   /**
    The label of the panel.
 
@@ -106,7 +112,6 @@ class ShellHeader extends BaseComponent(HTMLElement) {
 
   connectedCallback() {
     super.connectedCallback();
-    Overlay._OverlayManager.push(this);
   }
 
   /** @ignore */

@@ -10,7 +10,6 @@
  * governing permissions and limitations under the License.
  */
 
-import '../coral-mutationobserver';
 import BaseLabellable from './src/scripts/BaseLabellable';
 
 export {BaseLabellable};

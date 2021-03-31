@@ -24,7 +24,6 @@ import '../../../coral-component-wait';
 import base from '../templates/base';
 import loadIndicator from '../templates/loadIndicator';
 import {transform, validate, commons, i18n} from '../../../coral-utils';
-import {CoralMutationObserver} from '../../../coral-mutationobserver';
 
 const CLASSNAME = '_coral-Autocomplete';
 
@@ -171,7 +170,7 @@ class Autocomplete extends BaseFormField(BaseComponent(HTMLElement)) {
     this._handleScrollBottom = this._handleScrollBottom.bind(this);
 
     // Listen for mutations
-    this._observer = new CoralMutationObserver(this, this._handleMutation.bind(this));
+    this._observer = new MutationObserver(this._handleMutation.bind(this));
     this._startObserving();
   }
 

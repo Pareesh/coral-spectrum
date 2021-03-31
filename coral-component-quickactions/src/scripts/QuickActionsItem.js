@@ -12,7 +12,6 @@
 
 import {BaseComponent} from '../../../coral-base-component';
 import {transform, validate} from '../../../coral-utils';
-import {CoralMutationObserver} from '../../../coral-mutationobserver';
 
 /**
  Enumeration for {@link QuickActionsItem} type values.
@@ -44,7 +43,7 @@ class QuickActionsItem extends BaseComponent(HTMLElement) {
     // QuickActions will add button/anchorbutton references to it
     this._elements = {};
 
-    this._observer = new CoralMutationObserver(this, this._onMutation.bind(this));
+    this._observer = new MutationObserver(this._onMutation.bind(this));
     this._observer.observe(this, {
       characterData: true,
       childList: true,
