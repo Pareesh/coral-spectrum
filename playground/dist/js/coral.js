@@ -58016,12 +58016,25 @@
       }
     }, {
       key: "removing",
+
+      /**
+       Specify whether the item is in removing state or not.
+       @type {Boolean}
+       */
       get: function get() {
-        return item.hasAttribute('_removing');
-      } // @compat
+        return this.hasAttribute('_removing');
+      }
+      /**
+       Whether the item is selected.
+        @type {Boolean}
+       @default false
+       @htmlattribute selected
+       @htmlattributereflected
+       */
 
     }, {
       key: "content",
+      // @compat
       get: function get() {
         return this;
       },
@@ -58050,14 +58063,6 @@
       set: function set(value) {
         this._showRemoveTransition = transform.booleanAttr(value);
       }
-      /**
-       Whether the item is selected.
-        @type {Boolean}
-       @default false
-       @htmlattribute selected
-       @htmlattributereflected
-       */
-
     }, {
       key: "selected",
       get: function get() {
