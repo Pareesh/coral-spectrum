@@ -11041,6 +11041,27 @@ var Coral = (function (exports) {
     return originalConstructor._componentName;
   };
   /**
+    This will recursively change the ignoreConnectedCallback
+    value for coral-components, since a parent has ignored
+    the callback all its items should ignore the callback hooks
+    @ignore
+   */
+
+
+  var _recursiveIgnoreConnectedCallback = function _recursiveIgnoreConnectedCallback(el, value) {
+    var children = el.children;
+
+    for (var i = 0; i < children.length; i++) {
+      var child = children[i]; // todo better check for coral-component
+
+      if (typeof child._ignoreConnectedCallback === 'boolean') {
+        child._ignoreConnectedCallback = value;
+      } else {
+        _recursiveIgnoreConnectedCallback(child, value);
+      }
+    }
+  };
+  /**
    @base BaseComponent
    @classdesc The base element for all Coral components
    */
@@ -11450,20 +11471,27 @@ var Coral = (function (exports) {
           return this;
         }
         /**
-         * checks whether connectedCallback needs to be executed or not ,skip if component is not in connected state
-         * or connectedCallback already executed for the component or we are ignore the connectedCallback for some reason
-         *
-         * @returns {Boolean} return true for skipped cases
+          This should be executed when messenger is connect event is connected.
+          It will add the parent as a listener in child messenger.
+          @ignore
          */
 
       }, {
-        key: "_skipConnectedCallback",
-        value: function _skipConnectedCallback() {
-          return !this.isConnected || this._disconnected === false || this._ignoreConnectedCallback === true;
+        key: "_onMessengerConnected",
+        value: function _onMessengerConnected(event) {
+          event.stopImmediatePropagation();
+          var handler = event.detail.handler;
+
+          if (typeof handler === 'function') {
+            handler(this);
+          } else {
+            throw new Error("Messenger handler should be a function");
+          }
         }
         /**
-         Returns {@link BaseComponent} tracking options.
-          @return {TrackingEnum}
+         specify whether the connected and disconnected hooks are ignore for component
+         @returns true when ignored
+         @private
          */
 
       }, {
@@ -11479,6 +11507,17 @@ var Coral = (function (exports) {
             self[self.constructor._attributePropertyMap[name] || name] = value;
           }
         }
+        /**
+         called when we need to re-initialise things, when
+         connected/disconnected callback are skipped.
+         @param connected, true when element connectedcallback is getting skipped, else false
+         @private
+         */
+
+      }, {
+        key: "_updateCallback",
+        value: function _updateCallback(connected) {} // do nothing
+
         /** @ignore */
 
       }, {
@@ -11558,6 +11597,25 @@ var Coral = (function (exports) {
         get: function get() {
           return this.constructor._componentName || getConstructorName(this.constructor);
         }
+      }, {
+        key: "_ignoreConnectedCallback",
+        get: function get() {
+          return this.__ignoreConnectedCallback || false;
+        },
+        set: function set(value) {
+          value = transform.booleanAttr(value);
+
+          if (value !== this.__ignoreConnectedCallback) {
+            this.__ignoreConnectedCallback = value;
+
+            _recursiveIgnoreConnectedCallback(this, value);
+          }
+        }
+        /**
+         Returns {@link BaseComponent} tracking options.
+          @return {TrackingEnum}
+         */
+
       }], [{
         key: "tracking",
         get: function get() {
@@ -11988,6 +12046,74 @@ var Coral = (function (exports) {
   };
 
   /**
+   * Copyright 2019 Adobe. All rights reserved.
+   * This file is licensed to you under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License. You may obtain a copy
+   * of the License at http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software distributed under
+   * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+   * OF ANY KIND, either express or implied. See the License for the specific language
+   * governing permissions and limitations under the License.
+   */
+
+  /**
+    Decorator will be used to intercept any call before passing it to actual element.
+    kind of wrapper around each decorated component
+    @private
+   */
+  var Decorator = function Decorator(superClass) {
+    return /*#__PURE__*/function (_superClass) {
+      _inherits(_class, _superClass);
+
+      var _super = _createSuper(_class);
+
+      function _class() {
+        _classCallCheck(this, _class);
+
+        return _super.apply(this, arguments);
+      }
+
+      _createClass(_class, [{
+        key: "_updateCallback",
+
+        /** @ignore */
+        value: function _updateCallback(connected) {
+          _get(_getPrototypeOf(_class.prototype), "_updateCallback", this).call(this, connected);
+        }
+        /** @ignore */
+
+      }, {
+        key: "connectedCallback",
+        value: function connectedCallback() {
+          if (!this.isConnected || this._disconnected === false || this._ignoreConnectedCallback === true) {
+            this._updateCallback(true);
+
+            return;
+          }
+
+          _get(_getPrototypeOf(_class.prototype), "connectedCallback", this).call(this);
+        }
+        /** @ignore */
+
+      }, {
+        key: "disconnectedCallback",
+        value: function disconnectedCallback() {
+          if (this.isConnected || this._disconnected === true || this._ignoreConnectedCallback === true) {
+            this._updateCallback(false);
+
+            return;
+          }
+
+          _get(_getPrototypeOf(_class.prototype), "disconnectedCallback", this).call(this);
+        }
+      }]);
+
+      return _class;
+    }(superClass);
+  };
+
+  /**
    Enumeration for {@link Textfield} variants.
 
    @typedef {Object} TextfieldVariantEnum
@@ -12022,16 +12148,16 @@ var Coral = (function (exports) {
    */
 
 
-  var Textfield = /*#__PURE__*/function (_BaseFormField) {
-    _inherits(Textfield, _BaseFormField);
+  var Textfield = Decorator( /*#__PURE__*/function (_BaseFormField) {
+    _inherits(_class, _BaseFormField);
 
-    var _super = _createSuper(Textfield);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function Textfield() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, Textfield);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this);
 
@@ -12048,12 +12174,12 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(Textfield, [{
+    _createClass(_class, [{
       key: "render",
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(Textfield.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME); // Default reflected attributes
 
@@ -12096,12 +12222,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(Textfield), "_nativeObservedAttributes", this).concat(['variant']);
+        return _get(_getPrototypeOf(_class), "_nativeObservedAttributes", this).concat(['variant']);
       }
     }]);
 
-    return Textfield;
-  }(BaseFormField(BaseComponent(HTMLInputElement)));
+    return _class;
+  }(BaseFormField(BaseComponent(HTMLInputElement))));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -13028,16 +13154,16 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var Icon = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(Icon, _BaseComponent);
+  var Icon = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(Icon);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function Icon() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, Icon);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this);
       _this._elements = {};
@@ -13050,7 +13176,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(Icon, [{
+    _createClass(_class, [{
       key: "_updateIcon",
       value: function _updateIcon() {
         var iconId = this.icon; // If icon name is passed, we have to build the icon Id based on the icon name
@@ -13178,7 +13304,7 @@ var Coral = (function (exports) {
         if (name === 'alt' || name === 'title') {
           this._updateAltText(value);
         } else {
-          _get(_getPrototypeOf(Icon.prototype), "attributeChangedCallback", this).call(this, name, oldValue, value);
+          _get(_getPrototypeOf(_class.prototype), "attributeChangedCallback", this).call(this, name, oldValue, value);
         }
       }
       /** @ignore */
@@ -13186,7 +13312,7 @@ var Coral = (function (exports) {
     }, {
       key: "connectedCallback",
       value: function connectedCallback() {
-        _get(_getPrototypeOf(Icon.prototype), "connectedCallback", this).call(this); // Contextual icons need to be checked again
+        _get(_getPrototypeOf(_class.prototype), "connectedCallback", this).call(this); // Contextual icons need to be checked again
 
 
         if (this.hasAttribute('_context')) {
@@ -13198,7 +13324,7 @@ var Coral = (function (exports) {
     }, {
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(Icon.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1); // Set default size
 
@@ -13429,7 +13555,7 @@ var Coral = (function (exports) {
     }, {
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(Icon), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
           autoarialabel: 'autoAriaLabel'
         });
       }
@@ -13438,13 +13564,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(Icon), "observedAttributes", this).concat(['autoarialabel', 'icon', 'size', 'alt', 'title']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['autoarialabel', 'icon', 'size', 'alt', 'title']);
       }
     }]);
 
-    return Icon;
-  }(BaseComponent(HTMLElement)); // Load icon collections by default
-
+    return _class;
+  }(BaseComponent(HTMLElement))); // Load icon collections by default
 
   var iconCollections = [SPECTRUM_ICONS_COLOR];
   var extension = '.svg';
@@ -15093,16 +15218,16 @@ var Coral = (function (exports) {
    @extends {BaseButton}
    */
 
-  var Button = /*#__PURE__*/function (_BaseButton) {
-    _inherits(Button, _BaseButton);
+  var Button = Decorator( /*#__PURE__*/function (_BaseButton) {
+    _inherits(_class, _BaseButton);
 
-    var _super = _createSuper(Button);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function Button() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, Button);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Events
 
@@ -15111,8 +15236,8 @@ var Coral = (function (exports) {
       return _this;
     }
 
-    return Button;
-  }(BaseButton(BaseComponent(HTMLButtonElement)));
+    return _class;
+  }(BaseButton(BaseComponent(HTMLButtonElement))));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -15188,16 +15313,16 @@ var Coral = (function (exports) {
    */
 
 
-  var Textarea = /*#__PURE__*/function (_BaseFormField) {
-    _inherits(Textarea, _BaseFormField);
+  var Textarea = Decorator( /*#__PURE__*/function (_BaseFormField) {
+    _inherits(_class, _BaseFormField);
 
-    var _super = _createSuper(Textarea);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function Textarea() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, Textarea);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this);
 
@@ -15216,7 +15341,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(Textarea, [{
+    _createClass(_class, [{
       key: "reset",
 
       /**
@@ -15254,7 +15379,7 @@ var Coral = (function (exports) {
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(Textarea.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$3, "".concat(CLASSNAME$3, "--multiline")); // Default reflected attributes
 
@@ -15302,12 +15427,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(Textarea), "_nativeObservedAttributes", this).concat(['variant']);
+        return _get(_getPrototypeOf(_class), "_nativeObservedAttributes", this).concat(['variant']);
       }
     }]);
 
-    return Textarea;
-  }(BaseFormField(BaseComponent(HTMLTextAreaElement)));
+    return _class;
+  }(BaseFormField(BaseComponent(HTMLTextAreaElement))));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -16463,16 +16588,16 @@ var Coral = (function (exports) {
    */
 
 
-  var Tag = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(Tag, _BaseComponent);
+  var Tag = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(Tag);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function Tag() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, Tag);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Attach events
 
@@ -16500,7 +16625,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(Tag, [{
+    _createClass(_class, [{
       key: "_toggleTagVariant",
 
       /**
@@ -16598,7 +16723,7 @@ var Coral = (function (exports) {
         else if (name === 'role') {
             this._updateAriaLabel();
           } else {
-            _get(_getPrototypeOf(Tag.prototype), "attributeChangedCallback", this).call(this, name, oldValue, value);
+            _get(_getPrototypeOf(_class.prototype), "attributeChangedCallback", this).call(this, name, oldValue, value);
           }
       }
       /** @ignore */
@@ -16606,11 +16731,7 @@ var Coral = (function (exports) {
     }, {
       key: "connectedCallback",
       value: function connectedCallback() {
-        if (this._skipConnectedCallback()) {
-          return;
-        }
-
-        _get(_getPrototypeOf(Tag.prototype), "connectedCallback", this).call(this); // Used to inform the tag list that it's added
+        _get(_getPrototypeOf(_class.prototype), "connectedCallback", this).call(this); // Used to inform the tag list that it's added
 
 
         this.trigger('coral-tag:_connected');
@@ -16620,7 +16741,7 @@ var Coral = (function (exports) {
     }, {
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(Tag.prototype), "render", this).call(this); // Default reflected attributes
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this); // Default reflected attributes
 
 
         if (!this._size) {
@@ -16659,7 +16780,7 @@ var Coral = (function (exports) {
     }, {
       key: "disconnectedCallback",
       value: function disconnectedCallback() {
-        _get(_getPrototypeOf(Tag.prototype), "disconnectedCallback", this).call(this); // Used to inform the tag list that it's removed synchronously
+        _get(_getPrototypeOf(_class.prototype), "disconnectedCallback", this).call(this); // Used to inform the tag list that it's removed synchronously
 
 
         if (this._host) {
@@ -16847,7 +16968,7 @@ var Coral = (function (exports) {
         this.value || (this.label || this).textContent.replace(/\s{2,}/g, ' ').trim() : this._trackingElement;
       },
       set: function set(value) {
-        _set(_getPrototypeOf(Tag.prototype), "trackingElement", value, this, true);
+        _set(_getPrototypeOf(_class.prototype), "trackingElement", value, this, true);
       }
     }, {
       key: "_contentZones",
@@ -16881,12 +17002,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(Tag), "observedAttributes", this).concat(['closable', 'value', 'quiet', 'multiline', 'size', 'color', 'disabled', 'role']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['closable', 'value', 'quiet', 'multiline', 'size', 'color', 'disabled', 'role']);
       }
     }]);
 
-    return Tag;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -16936,16 +17057,16 @@ var Coral = (function (exports) {
    */
 
 
-  var TagList = /*#__PURE__*/function (_BaseFormField) {
-    _inherits(TagList, _BaseFormField);
+  var TagList = Decorator( /*#__PURE__*/function (_BaseFormField) {
+    _inherits(_class, _BaseFormField);
 
-    var _super = _createSuper(TagList);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function TagList() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, TagList);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Attach events
 
@@ -16980,7 +17101,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(TagList, [{
+    _createClass(_class, [{
       key: "_attachInputToItem",
 
       /** @private */
@@ -17294,7 +17415,7 @@ var Coral = (function (exports) {
       value: function render() {
         var _this4 = this;
 
-        _get(_getPrototypeOf(TagList.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$5); // adds the role to support accessibility
 
@@ -17450,12 +17571,12 @@ var Coral = (function (exports) {
     }, {
       key: "invalid",
       get: function get() {
-        return _get(_getPrototypeOf(TagList.prototype), "invalid", this);
+        return _get(_getPrototypeOf(_class.prototype), "invalid", this);
       },
       set: function set(value) {
         var _this8 = this;
 
-        _set(_getPrototypeOf(TagList.prototype), "invalid", value, this, true);
+        _set(_getPrototypeOf(_class.prototype), "invalid", value, this, true);
 
         this.items.getAll().forEach(function (item) {
           item.classList.toggle('is-invalid', _this8._invalid);
@@ -17506,12 +17627,12 @@ var Coral = (function (exports) {
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(TagList), "observedAttributes", this).concat(['closable', 'value', 'quiet', 'multiline', 'size', 'color']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['closable', 'value', 'quiet', 'multiline', 'size', 'color']);
       }
     }]);
 
-    return TagList;
-  }(BaseFormField(BaseComponent(HTMLElement)));
+    return _class;
+  }(BaseFormField(BaseComponent(HTMLElement))));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -18036,16 +18157,16 @@ var Coral = (function (exports) {
    @extends {BaseList}
    */
 
-  var List = /*#__PURE__*/function (_BaseList) {
-    _inherits(List, _BaseList);
+  var List = Decorator( /*#__PURE__*/function (_BaseList) {
+    _inherits(_class, _BaseList);
 
-    var _super = _createSuper(List);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function List() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, List);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Events
 
@@ -18054,8 +18175,8 @@ var Coral = (function (exports) {
       return _this;
     }
 
-    return List;
-  }(BaseList(BaseComponent(HTMLElement)));
+    return _class;
+  }(BaseList(BaseComponent(HTMLElement))));
 
   var CLASSNAME$8 = '_coral-Menu-divider';
   /**
@@ -18066,23 +18187,23 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var ListDivider = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(ListDivider, _BaseComponent);
+  var ListDivider = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(ListDivider);
+    var _super = _createSuper(_class);
 
-    function ListDivider() {
-      _classCallCheck(this, ListDivider);
+    function _class() {
+      _classCallCheck(this, _class);
 
       return _super.apply(this, arguments);
     }
 
-    _createClass(ListDivider, [{
+    _createClass(_class, [{
       key: "render",
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(ListDivider.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$8); // a11y
 
@@ -18090,8 +18211,8 @@ var Coral = (function (exports) {
       }
     }]);
 
-    return ListDivider;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   /**
    @class Coral.List.Item
@@ -18102,16 +18223,16 @@ var Coral = (function (exports) {
    @extends {BaseListItem}
    */
 
-  var ListItem = /*#__PURE__*/function (_BaseListItem) {
-    _inherits(ListItem, _BaseListItem);
+  var ListItem = Decorator( /*#__PURE__*/function (_BaseListItem) {
+    _inherits(_class, _BaseListItem);
 
-    var _super = _createSuper(ListItem);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function ListItem() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, ListItem);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Events
 
@@ -18120,8 +18241,8 @@ var Coral = (function (exports) {
       return _this;
     }
 
-    return ListItem;
-  }(BaseListItem(BaseComponent(HTMLElement)));
+    return _class;
+  }(BaseListItem(BaseComponent(HTMLElement))));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -18155,16 +18276,16 @@ var Coral = (function (exports) {
    @extends {BaseList}
    */
 
-  var AnchorList = /*#__PURE__*/function (_BaseList) {
-    _inherits(AnchorList, _BaseList);
+  var AnchorList = Decorator( /*#__PURE__*/function (_BaseList) {
+    _inherits(_class, _BaseList);
 
-    var _super = _createSuper(AnchorList);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function AnchorList() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, AnchorList);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Events
 
@@ -18177,7 +18298,7 @@ var Coral = (function (exports) {
     /** @private */
 
 
-    _createClass(AnchorList, [{
+    _createClass(_class, [{
       key: "_onItemClick",
       value: function _onItemClick(event) {
         this._trackEvent('click', 'coral-anchorlist-item', event, event.matchedTarget);
@@ -18187,7 +18308,7 @@ var Coral = (function (exports) {
     }, {
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(AnchorList.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$9);
       }
@@ -18207,8 +18328,8 @@ var Coral = (function (exports) {
       }
     }]);
 
-    return AnchorList;
-  }(BaseList(BaseComponent(HTMLElement)));
+    return _class;
+  }(BaseList(BaseComponent(HTMLElement))));
 
   var CLASSNAME$a = '_coral-AnchorList-item';
   /**
@@ -18220,16 +18341,16 @@ var Coral = (function (exports) {
    @extends {BaseListItem}
    */
 
-  var AnchorListItem = /*#__PURE__*/function (_BaseListItem) {
-    _inherits(AnchorListItem, _BaseListItem);
+  var AnchorListItem = Decorator( /*#__PURE__*/function (_BaseListItem) {
+    _inherits(_class, _BaseListItem);
 
-    var _super = _createSuper(AnchorListItem);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function AnchorListItem() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, AnchorListItem);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Events
 
@@ -18248,7 +18369,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(AnchorListItem, [{
+    _createClass(_class, [{
       key: "_onClick",
 
       /** @private */
@@ -18263,17 +18384,17 @@ var Coral = (function (exports) {
     }, {
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(AnchorListItem.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$a);
       }
     }, {
       key: "disabled",
       get: function get() {
-        return _get(_getPrototypeOf(AnchorListItem.prototype), "disabled", this);
+        return _get(_getPrototypeOf(_class.prototype), "disabled", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(AnchorListItem.prototype), "disabled", value, this, true);
+        _set(_getPrototypeOf(_class.prototype), "disabled", value, this, true);
 
         if (this.disabled) {
           // It's not tabbable anymore
@@ -18294,12 +18415,12 @@ var Coral = (function (exports) {
         (this.content || this).textContent.replace(/\s{2,}/g, ' ').trim() : this._trackingElement;
       },
       set: function set(value) {
-        _set(_getPrototypeOf(AnchorListItem.prototype), "trackingElement", value, this, true);
+        _set(_getPrototypeOf(_class.prototype), "trackingElement", value, this, true);
       }
     }]);
 
-    return AnchorListItem;
-  }(BaseListItem(BaseComponent(HTMLAnchorElement)));
+    return _class;
+  }(BaseListItem(BaseComponent(HTMLAnchorElement))));
 
   var CLASSNAME$b = '_coral-ButtonList';
   /**
@@ -18311,16 +18432,16 @@ var Coral = (function (exports) {
    @extends {BaseList}
    */
 
-  var ButtonList = /*#__PURE__*/function (_BaseList) {
-    _inherits(ButtonList, _BaseList);
+  var ButtonList = Decorator( /*#__PURE__*/function (_BaseList) {
+    _inherits(_class, _BaseList);
 
-    var _super = _createSuper(ButtonList);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function ButtonList() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, ButtonList);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Events
 
@@ -18333,7 +18454,7 @@ var Coral = (function (exports) {
     /** @private */
 
 
-    _createClass(ButtonList, [{
+    _createClass(_class, [{
       key: "_onItemClick",
       value: function _onItemClick(event) {
         this._trackEvent('click', 'coral-buttonlist-item', event, event.matchedTarget);
@@ -18343,7 +18464,7 @@ var Coral = (function (exports) {
     }, {
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(ButtonList.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$b);
       }
@@ -18363,8 +18484,8 @@ var Coral = (function (exports) {
       }
     }]);
 
-    return ButtonList;
-  }(BaseList(BaseComponent(HTMLElement)));
+    return _class;
+  }(BaseList(BaseComponent(HTMLElement))));
 
   var CLASSNAME$c = '_coral-ButtonList-item';
   /**
@@ -18376,23 +18497,23 @@ var Coral = (function (exports) {
    @extends {BaseListItem}
    */
 
-  var ButtonListItem = /*#__PURE__*/function (_BaseListItem) {
-    _inherits(ButtonListItem, _BaseListItem);
+  var ButtonListItem = Decorator( /*#__PURE__*/function (_BaseListItem) {
+    _inherits(_class, _BaseListItem);
 
-    var _super = _createSuper(ButtonListItem);
+    var _super = _createSuper(_class);
 
-    function ButtonListItem() {
-      _classCallCheck(this, ButtonListItem);
+    function _class() {
+      _classCallCheck(this, _class);
 
       return _super.apply(this, arguments);
     }
 
-    _createClass(ButtonListItem, [{
+    _createClass(_class, [{
       key: "render",
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(ButtonListItem.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$c);
       }
@@ -18407,12 +18528,12 @@ var Coral = (function (exports) {
         (this.content || this).textContent.replace(/\s{2,}/g, ' ').trim() : this._trackingElement;
       },
       set: function set(value) {
-        _set(_getPrototypeOf(ButtonListItem.prototype), "trackingElement", value, this, true);
+        _set(_getPrototypeOf(_class.prototype), "trackingElement", value, this, true);
       }
     }]);
 
-    return ButtonListItem;
-  }(BaseListItem(BaseComponent(HTMLButtonElement)));
+    return _class;
+  }(BaseListItem(BaseComponent(HTMLButtonElement))));
 
   var template$1 = function anonymous(data_0) {
     var frag = document.createDocumentFragment();
@@ -18517,15 +18638,15 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var Wait = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(Wait, _BaseComponent);
+  var Wait = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(Wait);
+    var _super = _createSuper(_class);
 
-    function Wait() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, Wait);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Prepare templates
 
@@ -18543,7 +18664,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(Wait, [{
+    _createClass(_class, [{
       key: "attributeChangedCallback",
 
       /** @ignore */
@@ -18553,14 +18674,14 @@ var Coral = (function (exports) {
           this._oldValue = this._value || 0;
         }
 
-        _get(_getPrototypeOf(Wait.prototype), "attributeChangedCallback", this).call(this, name, oldValue, value);
+        _get(_getPrototypeOf(_class.prototype), "attributeChangedCallback", this).call(this, name, oldValue, value);
       }
       /** @ignore */
 
     }, {
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(Wait.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$d); // ARIA
 
@@ -18772,12 +18893,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(Wait), "observedAttributes", this).concat(['size', 'centered', 'variant', 'value', 'indeterminate']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['size', 'centered', 'variant', 'value', 'indeterminate']);
       }
     }]);
 
-    return Wait;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -18845,16 +18966,16 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var SelectList = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(SelectList, _BaseComponent);
+  var SelectList = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(SelectList);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function SelectList() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, SelectList);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Attach events
 
@@ -18903,7 +19024,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(SelectList, [{
+    _createClass(_class, [{
       key: "_toggleItemSelection",
 
       /** @private */
@@ -19419,12 +19540,12 @@ var Coral = (function (exports) {
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(SelectList), "observedAttributes", this).concat(['loading', 'multiple']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['loading', 'multiple']);
       }
     }]);
 
-    return SelectList;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   var CLASSNAME$f = '_coral-SelectList-group';
   /**
@@ -19435,23 +19556,23 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var SelectListGroup = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(SelectListGroup, _BaseComponent);
+  var SelectListGroup = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(SelectListGroup);
+    var _super = _createSuper(_class);
 
-    function SelectListGroup() {
-      _classCallCheck(this, SelectListGroup);
+    function _class() {
+      _classCallCheck(this, _class);
 
       return _super.apply(this, arguments);
     }
 
-    _createClass(SelectListGroup, [{
+    _createClass(_class, [{
       key: "render",
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(SelectListGroup.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$f);
         this.setAttribute('role', 'group');
@@ -19500,12 +19621,12 @@ var Coral = (function (exports) {
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(SelectListGroup), "observedAttributes", this).concat(['label']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['label']);
       }
     }]);
 
-    return SelectListGroup;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   var template$3 = function anonymous(data_0) {
     var frag = document.createDocumentFragment();
@@ -19538,16 +19659,16 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var SelectListItem = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(SelectListItem, _BaseComponent);
+  var SelectListItem = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(SelectListItem);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function SelectListItem() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, SelectListItem);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Templates
 
@@ -19569,7 +19690,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(SelectListItem, [{
+    _createClass(_class, [{
       key: "_getIconElement",
       value: function _getIconElement() {
         if (!this._elements.icon) {
@@ -19594,7 +19715,7 @@ var Coral = (function (exports) {
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(SelectListItem.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$g);
 
@@ -19774,12 +19895,12 @@ var Coral = (function (exports) {
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(SelectListItem), "observedAttributes", this).concat(['selected', 'disabled', 'value']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['selected', 'disabled', 'value']);
       }
     }]);
 
-    return SelectListItem;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -23872,16 +23993,16 @@ var Coral = (function (exports) {
    @extends {BaseOverlay}
    */
 
-  var Overlay = /*#__PURE__*/function (_BaseOverlay) {
-    _inherits(Overlay, _BaseOverlay);
+  var ExtensibleOverlay = /*#__PURE__*/function (_BaseOverlay) {
+    _inherits(ExtensibleOverlay, _BaseOverlay);
 
-    var _super = _createSuper(Overlay);
+    var _super = _createSuper(ExtensibleOverlay);
 
     /** @ignore */
-    function Overlay() {
+    function ExtensibleOverlay() {
       var _this;
 
-      _classCallCheck(this, Overlay);
+      _classCallCheck(this, ExtensibleOverlay);
 
       _this = _super.call(this); // Override from BaseOverlay
 
@@ -23904,7 +24025,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(Overlay, [{
+    _createClass(ExtensibleOverlay, [{
       key: "_toggleSmartBehavior",
       value: function _toggleSmartBehavior(toggle) {
         var _this2 = this;
@@ -24023,6 +24144,19 @@ var Coral = (function (exports) {
       value: function _getTarget(targetValue) {
         return this.constructor._getTarget(this, targetValue);
       }
+    }, {
+      key: "_initPopper",
+      value: function _initPopper(forceReposition, targetElement) {
+        targetElement = targetElement || this._getTarget();
+
+        if (targetElement) {
+          this._popper = this._popper || new Popper(targetElement, this, {
+            onUpdate: this._onUpdate.bind(this)
+          }); // Make sure popper options modifiers are up to date
+
+          this.reposition(forceReposition);
+        }
+      }
       /**
        Re-position the overlay if it's currently open.
         @function
@@ -24094,11 +24228,7 @@ var Coral = (function (exports) {
       value: function connectedCallback() {
         var _this5 = this;
 
-        if (this._skipConnectedCallback()) {
-          return;
-        }
-
-        _get(_getPrototypeOf(Overlay.prototype), "connectedCallback", this).call(this); // In case it was not added to the DOM, make sure popper is initialized by setting target
+        _get(_getPrototypeOf(ExtensibleOverlay.prototype), "connectedCallback", this).call(this); // In case it was not added to the DOM, make sure popper is initialized by setting target
 
 
         this.target = this.target; // We need an additional frame to help popper read the correct offsets
@@ -24120,17 +24250,6 @@ var Coral = (function (exports) {
         this.classList.add(CLASSNAME$i); // Hidden by default
 
         this.style.display = 'none';
-      }
-      /** @ignore */
-
-    }, {
-      key: "disconnectedCallback",
-      value: function disconnectedCallback() {
-        if (this._ignoreConnectedCallback) {
-          return;
-        }
-
-        _get(_getPrototypeOf(Overlay.prototype), "disconnectedCallback", this).call(this);
       }
       /**
        Triggered after the {@link Overlay} is positioned.
@@ -24156,14 +24275,12 @@ var Coral = (function (exports) {
             // To make it return focus to the right item, change the target
             if (this._returnFocus === this.constructor.returnFocus.ON) {
               this.returnFocusTo(targetElement);
-            } // Initialize popper only if we have a target
+            } // update popper if popper already initialised or it is not explicitly avoid.
 
 
-            this._popper = this._popper || new Popper(targetElement, this, {
-              onUpdate: this._onUpdate.bind(this)
-            }); // Make sure popper options modifiers are up to date
-
-            this.reposition();
+            if (this._popper || !this._avoidPopperInit) {
+              this._initPopper(false, targetElement);
+            }
           }
         }
       }
@@ -24391,10 +24508,15 @@ var Coral = (function (exports) {
     }, {
       key: "open",
       get: function get() {
-        return _get(_getPrototypeOf(Overlay.prototype), "open", this);
+        return _get(_getPrototypeOf(ExtensibleOverlay.prototype), "open", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(Overlay.prototype), "open", value, this, true);
+        // initialise popper if undefined, used when popper initialisation avoided while setting target.
+        if (!this._popper) {
+          this._initPopper(true);
+        }
+
+        _set(_getPrototypeOf(ExtensibleOverlay.prototype), "open", value, this, true);
 
         this._toggleSmartBehavior(this.open);
       }
@@ -24478,7 +24600,7 @@ var Coral = (function (exports) {
     }, {
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(Overlay), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(ExtensibleOverlay), "_attributePropertyMap", this), {
           alignmy: 'alignMy',
           alignat: 'alignAt',
           lengthoffset: 'lengthOffset',
@@ -24491,12 +24613,14 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(Overlay), "observedAttributes", this).concat(['alignmy', 'alignat', 'offset', 'lengthoffset', 'breadthoffset', 'placement', 'within', 'withinoffset', 'collision', 'interaction', 'target', 'inner', 'smart']);
+        return _get(_getPrototypeOf(ExtensibleOverlay), "observedAttributes", this).concat(['alignmy', 'alignat', 'offset', 'lengthoffset', 'breadthoffset', 'placement', 'within', 'withinoffset', 'collision', 'interaction', 'target', 'inner', 'smart']);
       }
     }]);
 
-    return Overlay;
+    return ExtensibleOverlay;
   }(BaseOverlay(BaseComponent(HTMLElement)));
+
+  var Overlay = Decorator(ExtensibleOverlay);
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -25580,16 +25704,16 @@ var Coral = (function (exports) {
    */
 
 
-  var Dialog = /*#__PURE__*/function (_BaseOverlay) {
-    _inherits(Dialog, _BaseOverlay);
+  var Dialog = Decorator( /*#__PURE__*/function (_BaseOverlay) {
+    _inherits(_class, _BaseOverlay);
 
-    var _super = _createSuper(Dialog);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function Dialog() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, Dialog);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Prepare templates
 
@@ -25632,7 +25756,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(Dialog, [{
+    _createClass(_class, [{
       key: "_observeHeader",
 
       /** @ignore */
@@ -25785,24 +25909,13 @@ var Coral = (function (exports) {
         return this;
       }
     }, {
-      key: "connectedCallback",
-
-      /** @ignore */
-      value: function connectedCallback() {
-        if (this._ignoreConnectedCallback) {
-          return;
-        }
-
-        _get(_getPrototypeOf(Dialog.prototype), "connectedCallback", this).call(this);
-      }
-      /** @ignore */
-
-    }, {
       key: "render",
+
+      /** @ignore */
       value: function render() {
         var _this2 = this;
 
-        _get(_getPrototypeOf(Dialog.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add("".concat(CLASSNAME$j, "-wrapper")); // Default reflected attributes
 
@@ -25907,17 +26020,6 @@ var Coral = (function (exports) {
         this.header = header;
         this.footer = footer;
         this.content = content;
-      }
-      /** @ignore */
-
-    }, {
-      key: "disconnectedCallback",
-      value: function disconnectedCallback() {
-        if (this._ignoreConnectedCallback) {
-          return;
-        }
-
-        _get(_getPrototypeOf(Dialog.prototype), "disconnectedCallback", this).call(this);
       }
     }, {
       key: "interaction",
@@ -26128,12 +26230,12 @@ var Coral = (function (exports) {
     }, {
       key: "open",
       get: function get() {
-        return _get(_getPrototypeOf(Dialog.prototype), "open", this);
+        return _get(_getPrototypeOf(_class.prototype), "open", this);
       },
       set: function set(value) {
         var _this3 = this;
 
-        _set(_getPrototypeOf(Dialog.prototype), "open", value, this, true); // Ensure we're in the DOM
+        _set(_getPrototypeOf(_class.prototype), "open", value, this, true); // Ensure we're in the DOM
 
 
         if (this.open) {
@@ -26249,7 +26351,7 @@ var Coral = (function (exports) {
         return typeof this._trackingElement === 'undefined' ? this.header && this.header.textContent && this.header.textContent.replace(/\s{2,}/g, ' ').trim() || '' : this._trackingElement;
       },
       set: function set(value) {
-        _set(_getPrototypeOf(Dialog.prototype), "trackingElement", value, this, true);
+        _set(_getPrototypeOf(_class.prototype), "trackingElement", value, this, true);
       }
     }, {
       key: "_contentZones",
@@ -26305,12 +26407,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(Dialog), "observedAttributes", this).concat(['interaction', 'backdrop', 'variant', 'fullscreen', 'icon', 'closable', 'movable']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['interaction', 'backdrop', 'variant', 'fullscreen', 'icon', 'closable', 'movable']);
       }
     }]);
 
-    return Dialog;
-  }(BaseOverlay(BaseComponent(HTMLElement)));
+    return _class;
+  }(BaseOverlay(BaseComponent(HTMLElement))));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -26512,16 +26614,16 @@ var Coral = (function (exports) {
    */
 
 
-  var Popover = /*#__PURE__*/function (_Overlay) {
-    _inherits(Popover, _Overlay);
+  var Popover = Decorator( /*#__PURE__*/function (_ExtensibleOverlay) {
+    _inherits(_class, _ExtensibleOverlay);
 
-    var _super = _createSuper(Popover);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function Popover() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, Popover);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Prepare templates
 
@@ -26567,7 +26669,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(Popover, [{
+    _createClass(_class, [{
       key: "_setAriaExpandedOnTarget",
       value: function _setAriaExpandedOnTarget() {
         var _this2 = this;
@@ -26745,7 +26847,7 @@ var Coral = (function (exports) {
       value: function render() {
         var _this4 = this;
 
-        _get(_getPrototypeOf(Popover.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$k); // ARIA
 
@@ -26972,10 +27074,10 @@ var Coral = (function (exports) {
     }, {
       key: "target",
       get: function get() {
-        return _get(_getPrototypeOf(Popover.prototype), "target", this);
+        return _get(_getPrototypeOf(_class.prototype), "target", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(Popover.prototype), "target", value, this, true); // Coach Mark specific
+        _set(_getPrototypeOf(_class.prototype), "target", value, this, true); // Coach Mark specific
 
 
         var target = this._getTarget();
@@ -26993,10 +27095,10 @@ var Coral = (function (exports) {
     }, {
       key: "open",
       get: function get() {
-        return _get(_getPrototypeOf(Popover.prototype), "open", this);
+        return _get(_getPrototypeOf(_class.prototype), "open", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(Popover.prototype), "open", value, this, true);
+        _set(_getPrototypeOf(_class.prototype), "open", value, this, true);
 
         var target = this._getTarget();
 
@@ -27057,12 +27159,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(Popover), "observedAttributes", this).concat(['closable', 'variant']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['closable', 'variant']);
       }
     }]);
 
-    return Popover;
-  }(Overlay);
+    return _class;
+  }(ExtensibleOverlay));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -27139,30 +27241,32 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var PopoverSeparator = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(PopoverSeparator, _BaseComponent);
+  var PopoverSeparator = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(PopoverSeparator);
+    var _super = _createSuper(_class);
 
-    function PopoverSeparator() {
-      _classCallCheck(this, PopoverSeparator);
+    function _class() {
+      _classCallCheck(this, _class);
 
       return _super.apply(this, arguments);
     }
 
-    _createClass(PopoverSeparator, [{
+    _createClass(_class, [{
       key: "connectedCallback",
 
       /** @ignore */
       value: function connectedCallback() {
         var _this$classList;
 
+        _get(_getPrototypeOf(_class.prototype), "connectedCallback", this).call(this);
+
         (_this$classList = this.classList).add.apply(_this$classList, CLASSNAMES);
       }
     }]);
 
-    return PopoverSeparator;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -27358,16 +27462,16 @@ var Coral = (function (exports) {
    */
 
 
-  var Select = /*#__PURE__*/function (_BaseFormField) {
-    _inherits(Select, _BaseFormField);
+  var Select = Decorator( /*#__PURE__*/function (_BaseFormField) {
+    _inherits(_class, _BaseFormField);
 
-    var _super = _createSuper(Select);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function Select() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, Select);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Templates
 
@@ -27440,7 +27544,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(Select, [{
+    _createClass(_class, [{
       key: "_setName",
 
       /** @ignore */
@@ -28256,7 +28360,7 @@ var Coral = (function (exports) {
 
       /** @ignore */
       value: function connectedCallback() {
-        _get(_getPrototypeOf(Select.prototype), "connectedCallback", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "connectedCallback", this).call(this);
 
         var overlay = this._elements.overlay; // Cannot be open by default when rendered
 
@@ -28273,7 +28377,7 @@ var Coral = (function (exports) {
       value: function render() {
         var _this3 = this;
 
-        _get(_getPrototypeOf(Select.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$l); // Default reflected attributes
 
@@ -28326,7 +28430,7 @@ var Coral = (function (exports) {
     }, {
       key: "disconnectedCallback",
       value: function disconnectedCallback() {
-        _get(_getPrototypeOf(Select.prototype), "disconnectedCallback", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "disconnectedCallback", this).call(this);
 
         var overlay = this._elements.overlay; // In case it was moved out don't forget to remove it
 
@@ -28637,10 +28741,10 @@ var Coral = (function (exports) {
     }, {
       key: "invalid",
       get: function get() {
-        return _get(_getPrototypeOf(Select.prototype), "invalid", this);
+        return _get(_getPrototypeOf(_class.prototype), "invalid", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(Select.prototype), "invalid", value, this, true);
+        _set(_getPrototypeOf(_class.prototype), "invalid", value, this, true);
 
         this.classList.toggle('is-invalid', this.invalid);
 
@@ -28698,10 +28802,10 @@ var Coral = (function (exports) {
     }, {
       key: "labelled",
       get: function get() {
-        return _get(_getPrototypeOf(Select.prototype), "labelled", this);
+        return _get(_getPrototypeOf(_class.prototype), "labelled", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(Select.prototype), "labelled", value, this, true);
+        _set(_getPrototypeOf(_class.prototype), "labelled", value, this, true);
 
         if (this.labelled) {
           if (!this.labelledBy) {
@@ -28731,9 +28835,9 @@ var Coral = (function (exports) {
         return this._labelledBy;
       },
       set: function set(value) {
-        _set(_getPrototypeOf(Select.prototype), "labelledBy", value, this, true);
+        _set(_getPrototypeOf(_class.prototype), "labelledBy", value, this, true);
 
-        this._labelledBy = _get(_getPrototypeOf(Select.prototype), "labelledBy", this);
+        this._labelledBy = _get(_getPrototypeOf(_class.prototype), "labelledBy", this);
 
         if (this._labelledBy) {
           this._elements.button.setAttribute('aria-labelledby', "".concat(this._labelledBy, " ").concat(this._elements.label.id, " ").concat(this.invalid ? this._elements.invalidIcon.id : ''));
@@ -28824,12 +28928,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(Select), "observedAttributes", this).concat(['variant', 'multiple', 'placeholder', 'loading']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['variant', 'multiple', 'placeholder', 'loading']);
       }
     }]);
 
-    return Select;
-  }(BaseFormField(BaseComponent(HTMLElement)));
+    return _class;
+  }(BaseFormField(BaseComponent(HTMLElement))));
 
   /**
    @class Coral.Select.Item
@@ -28839,16 +28943,16 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var SelectItem = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(SelectItem, _BaseComponent);
+  var SelectItem = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(SelectItem);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function SelectItem() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, SelectItem);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this);
       _this._observer = new MutationObserver(_this._handleMutation.bind(_assertThisInitialized(_this)));
@@ -28863,7 +28967,7 @@ var Coral = (function (exports) {
     } // @compat
 
 
-    _createClass(SelectItem, [{
+    _createClass(_class, [{
       key: "_handleMutation",
 
       /** @private */
@@ -28983,17 +29087,17 @@ var Coral = (function (exports) {
         this.value || this.textContent.replace(/\s{2,}/g, ' ').trim() : this._trackingElement;
       },
       set: function set(value) {
-        _set(_getPrototypeOf(SelectItem.prototype), "trackingElement", value, this, true);
+        _set(_getPrototypeOf(_class.prototype), "trackingElement", value, this, true);
       }
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(SelectItem), "observedAttributes", this).concat(['selected', 'disabled', 'value']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['selected', 'disabled', 'value']);
       }
     }]);
 
-    return SelectItem;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -29133,16 +29237,16 @@ var Coral = (function (exports) {
    @extends {BaseFormField}
    */
 
-  var Radio = /*#__PURE__*/function (_BaseFormField) {
-    _inherits(Radio, _BaseFormField);
+  var Radio = Decorator( /*#__PURE__*/function (_BaseFormField) {
+    _inherits(_class, _BaseFormField);
 
-    var _super = _createSuper(Radio);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function Radio() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, Radio);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this);
 
@@ -29186,7 +29290,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(Radio, [{
+    _createClass(_class, [{
       key: "_syncRelatedRadios",
 
       /**
@@ -29280,7 +29384,7 @@ var Coral = (function (exports) {
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(Radio.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$m); // Create a fragment
 
@@ -29458,10 +29562,10 @@ var Coral = (function (exports) {
     }, {
       key: "labelled",
       get: function get() {
-        return _get(_getPrototypeOf(Radio.prototype), "labelled", this);
+        return _get(_getPrototypeOf(_class.prototype), "labelled", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(Radio.prototype), "labelled", value, this, true);
+        _set(_getPrototypeOf(_class.prototype), "labelled", value, this, true);
 
         this._hideLabelIfEmpty();
       }
@@ -29477,7 +29581,7 @@ var Coral = (function (exports) {
         (this.name ? "".concat(this.name, "=").concat(this.value) : '') || (this.label || this).textContent.replace(/\s{2,}/g, ' ').trim() : this._trackingElement;
       },
       set: function set(value) {
-        _set(_getPrototypeOf(Radio.prototype), "trackingElement", value, this, true);
+        _set(_getPrototypeOf(_class.prototype), "trackingElement", value, this, true);
       }
       /*
        Indicates to the formField that the 'checked' property needs to be set in this component.
@@ -29511,12 +29615,12 @@ var Coral = (function (exports) {
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(Radio), "observedAttributes", this).concat(['checked']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['checked']);
       }
     }]);
 
-    return Radio;
-  }(BaseFormField(BaseComponent(HTMLElement)));
+    return _class;
+  }(BaseFormField(BaseComponent(HTMLElement))));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -29718,18 +29822,18 @@ var Coral = (function (exports) {
    @extends {BaseFieldGroup}
    */
 
-  var RadioGroup = /*#__PURE__*/function (_BaseFieldGroup) {
-    _inherits(RadioGroup, _BaseFieldGroup);
+  var RadioGroup = Decorator( /*#__PURE__*/function (_BaseFieldGroup) {
+    _inherits(_class, _BaseFieldGroup);
 
-    var _super = _createSuper(RadioGroup);
+    var _super = _createSuper(_class);
 
-    function RadioGroup() {
-      _classCallCheck(this, RadioGroup);
+    function _class() {
+      _classCallCheck(this, _class);
 
       return _super.apply(this, arguments);
     }
 
-    _createClass(RadioGroup, [{
+    _createClass(_class, [{
       key: "orientation",
 
       /**
@@ -29740,10 +29844,10 @@ var Coral = (function (exports) {
        @htmlattributereflected
        */
       get: function get() {
-        return _get(_getPrototypeOf(RadioGroup.prototype), "orientation", this);
+        return _get(_getPrototypeOf(_class.prototype), "orientation", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(RadioGroup.prototype), "orientation", value, this, true);
+        _set(_getPrototypeOf(_class.prototype), "orientation", value, this, true);
 
         this.classList.toggle("coral-RadioGroup--labelsBelow", this._orientation === orientation$1.LABELS_BELOW);
       }
@@ -29767,8 +29871,8 @@ var Coral = (function (exports) {
       }
     }]);
 
-    return RadioGroup;
-  }(BaseFieldGroup(BaseComponent(HTMLElement)));
+    return _class;
+  }(BaseFieldGroup(BaseComponent(HTMLElement))));
 
   /**
    * Copyright 2020 Adobe. All rights reserved.
@@ -30019,16 +30123,16 @@ var Coral = (function (exports) {
    */
 
 
-  var NumberInput = /*#__PURE__*/function (_BaseFormField) {
-    _inherits(NumberInput, _BaseFormField);
+  var NumberInput = Decorator( /*#__PURE__*/function (_BaseFormField) {
+    _inherits(_class, _BaseFormField);
 
-    var _super = _createSuper(NumberInput);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function NumberInput() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, NumberInput);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this);
 
@@ -30072,7 +30176,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(NumberInput, [{
+    _createClass(_class, [{
       key: "reset",
       // overrides the behavior from BaseFormField
       value: function reset() {
@@ -30470,7 +30574,7 @@ var Coral = (function (exports) {
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(NumberInput.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$o); // Default reflected attributes
 
@@ -30761,10 +30865,10 @@ var Coral = (function (exports) {
     }, {
       key: "invalid",
       get: function get() {
-        return _get(_getPrototypeOf(NumberInput.prototype), "invalid", this);
+        return _get(_getPrototypeOf(_class.prototype), "invalid", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(NumberInput.prototype), "invalid", value, this, true);
+        _set(_getPrototypeOf(_class.prototype), "invalid", value, this, true);
 
         this._elements.input.invalid = this._invalid;
       }
@@ -30775,10 +30879,10 @@ var Coral = (function (exports) {
     }, {
       key: "labelledBy",
       get: function get() {
-        return _get(_getPrototypeOf(NumberInput.prototype), "labelledBy", this);
+        return _get(_getPrototypeOf(_class.prototype), "labelledBy", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(NumberInput.prototype), "labelledBy", value, this, true); // in case the user focuses the buttons, he will still get a notion of the usage of the component
+        _set(_getPrototypeOf(_class.prototype), "labelledBy", value, this, true); // in case the user focuses the buttons, he will still get a notion of the usage of the component
 
 
         this[this.labelledBy ? 'setAttribute' : 'removeAttribute']('aria-labelledby', this.labelledBy);
@@ -30806,12 +30910,12 @@ var Coral = (function (exports) {
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(NumberInput), "observedAttributes", this).concat(['min', 'max', 'step', 'placeholder']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['min', 'max', 'step', 'placeholder']);
       }
     }]);
 
-    return NumberInput;
-  }(BaseFormField(BaseComponent(HTMLElement)));
+    return _class;
+  }(BaseFormField(BaseComponent(HTMLElement))));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -30906,16 +31010,16 @@ var Coral = (function (exports) {
    */
 
 
-  var Tooltip = /*#__PURE__*/function (_Overlay) {
-    _inherits(Tooltip, _Overlay);
+  var Tooltip = Decorator( /*#__PURE__*/function (_ExtensibleOverlay) {
+    _inherits(_class, _ExtensibleOverlay);
 
-    var _super = _createSuper(Tooltip);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function Tooltip() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, Tooltip);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Override defaults
 
@@ -30947,7 +31051,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(Tooltip, [{
+    _createClass(_class, [{
       key: "_onPositioned",
 
       /** @ignore */
@@ -31127,7 +31231,7 @@ var Coral = (function (exports) {
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(Tooltip.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$p); // ARIA
 
@@ -31220,10 +31324,10 @@ var Coral = (function (exports) {
     }, {
       key: "open",
       get: function get() {
-        return _get(_getPrototypeOf(Tooltip.prototype), "open", this);
+        return _get(_getPrototypeOf(_class.prototype), "open", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(Tooltip.prototype), "open", value, this, true);
+        _set(_getPrototypeOf(_class.prototype), "open", value, this, true);
 
         if (!this.open) {
           // Stop previous show operations from happening
@@ -31237,10 +31341,10 @@ var Coral = (function (exports) {
     }, {
       key: "target",
       get: function get() {
-        return _get(_getPrototypeOf(Tooltip.prototype), "target", this);
+        return _get(_getPrototypeOf(_class.prototype), "target", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(Tooltip.prototype), "target", value, this, true);
+        _set(_getPrototypeOf(_class.prototype), "target", value, this, true);
 
         var target = this._getTarget(value);
 
@@ -31262,10 +31366,10 @@ var Coral = (function (exports) {
     }, {
       key: "interaction",
       get: function get() {
-        return _get(_getPrototypeOf(Tooltip.prototype), "interaction", this);
+        return _get(_getPrototypeOf(_class.prototype), "interaction", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(Tooltip.prototype), "interaction", value, this, true);
+        _set(_getPrototypeOf(_class.prototype), "interaction", value, this, true);
 
         var target = this._getTarget();
 
@@ -31299,12 +31403,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(Tooltip), "observedAttributes", this).concat(['variant', 'delay']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['variant', 'delay']);
       }
     }]);
 
-    return Tooltip;
-  }(Overlay);
+    return _class;
+  }(ExtensibleOverlay));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -31470,16 +31574,16 @@ var Coral = (function (exports) {
    @extends {BaseFormField}
    */
 
-  var Checkbox = /*#__PURE__*/function (_BaseFormField) {
-    _inherits(Checkbox, _BaseFormField);
+  var Checkbox = Decorator( /*#__PURE__*/function (_BaseFormField) {
+    _inherits(_class, _BaseFormField);
 
-    var _super = _createSuper(Checkbox);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function Checkbox() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, Checkbox);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // @polyfill ie
 
@@ -31524,7 +31628,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(Checkbox, [{
+    _createClass(_class, [{
       key: "_onInputChange",
 
       /** @private */
@@ -31628,7 +31732,7 @@ var Coral = (function (exports) {
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(Checkbox.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$q); // Create a fragment
 
@@ -31824,10 +31928,10 @@ var Coral = (function (exports) {
     }, {
       key: "labelled",
       get: function get() {
-        return _get(_getPrototypeOf(Checkbox.prototype), "labelled", this);
+        return _get(_getPrototypeOf(_class.prototype), "labelled", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(Checkbox.prototype), "labelled", value, this, true);
+        _set(_getPrototypeOf(_class.prototype), "labelled", value, this, true);
 
         this._hideLabelIfEmpty();
       }
@@ -31838,10 +31942,10 @@ var Coral = (function (exports) {
     }, {
       key: "labelledBy",
       get: function get() {
-        return _get(_getPrototypeOf(Checkbox.prototype), "labelledBy", this);
+        return _get(_getPrototypeOf(_class.prototype), "labelledBy", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(Checkbox.prototype), "labelledBy", value, this, true);
+        _set(_getPrototypeOf(_class.prototype), "labelledBy", value, this, true);
 
         this._hideLabelIfEmpty();
       }
@@ -31857,7 +31961,7 @@ var Coral = (function (exports) {
         (this.name ? "".concat(this.name, "=").concat(this.value) : '') || (this.label || this).textContent.replace(/\s{2,}/g, ' ').trim() : this._trackingElement;
       },
       set: function set(value) {
-        _set(_getPrototypeOf(Checkbox.prototype), "trackingElement", value, this, true);
+        _set(_getPrototypeOf(_class.prototype), "trackingElement", value, this, true);
       }
       /*
        Indicates to the formField that the 'checked' property needs to be set in this component.
@@ -31891,12 +31995,12 @@ var Coral = (function (exports) {
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(Checkbox), "observedAttributes", this).concat(['indeterminate', 'checked']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['indeterminate', 'checked']);
       }
     }]);
 
-    return Checkbox;
-  }(BaseFormField(BaseComponent(HTMLElement)));
+    return _class;
+  }(BaseFormField(BaseComponent(HTMLElement))));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -31949,18 +32053,18 @@ var Coral = (function (exports) {
    @extends {BaseFieldGroup}
    */
 
-  var CheckboxGroup = /*#__PURE__*/function (_BaseFieldGroup) {
-    _inherits(CheckboxGroup, _BaseFieldGroup);
+  var CheckboxGroup = Decorator( /*#__PURE__*/function (_BaseFieldGroup) {
+    _inherits(_class, _BaseFieldGroup);
 
-    var _super = _createSuper(CheckboxGroup);
+    var _super = _createSuper(_class);
 
-    function CheckboxGroup() {
-      _classCallCheck(this, CheckboxGroup);
+    function _class() {
+      _classCallCheck(this, _class);
 
       return _super.apply(this, arguments);
     }
 
-    _createClass(CheckboxGroup, [{
+    _createClass(_class, [{
       key: "_itemTagName",
 
       /** @private */
@@ -31981,8 +32085,8 @@ var Coral = (function (exports) {
       }
     }]);
 
-    return CheckboxGroup;
-  }(BaseFieldGroup(BaseComponent(HTMLElement)));
+    return _class;
+  }(BaseFieldGroup(BaseComponent(HTMLElement))));
 
   /**
    * Copyright 2020 Adobe. All rights reserved.
@@ -32491,16 +32595,16 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var Accordion = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(Accordion, _BaseComponent);
+  var Accordion = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(Accordion);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function Accordion() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, Accordion);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Attach events
 
@@ -32537,7 +32641,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(Accordion, [{
+    _createClass(_class, [{
       key: "_onHomeKey",
 
       /** @private */
@@ -32814,7 +32918,7 @@ var Coral = (function (exports) {
       value: function render() {
         var _this4 = this;
 
-        _get(_getPrototypeOf(Accordion.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$r); // Default reflected attributes
 
@@ -32974,12 +33078,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(Accordion), "observedAttributes", this).concat(['variant', 'multiple', 'level']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['variant', 'multiple', 'level']);
       }
     }]);
 
-    return Accordion;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   var template$c = function anonymous(data_0) {
     var frag = document.createDocumentFragment();
@@ -33018,16 +33122,16 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var AccordionItem = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(AccordionItem, _BaseComponent);
+  var AccordionItem = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(AccordionItem);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function AccordionItem() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, AccordionItem);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Prepare templates
 
@@ -33048,7 +33152,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(AccordionItem, [{
+    _createClass(_class, [{
       key: "_setAria",
       value: function _setAria(button, content) {
         button.id = button.id || commons.getUID();
@@ -33071,7 +33175,7 @@ var Coral = (function (exports) {
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(AccordionItem.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$s); // a11y
 
@@ -33284,12 +33388,12 @@ var Coral = (function (exports) {
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(AccordionItem), "observedAttributes", this).concat(['selected', 'disabled', 'level']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['selected', 'disabled', 'level']);
       }
     }]);
 
-    return AccordionItem;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -33486,16 +33590,16 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var ActionBar = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(ActionBar, _BaseComponent);
+  var ActionBar = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(ActionBar);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function ActionBar() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, ActionBar);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Attach events
 
@@ -33532,7 +33636,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(ActionBar, [{
+    _createClass(_class, [{
       key: "_recalculateLayoutOnMutation",
 
       /** @ignore */
@@ -34005,7 +34109,7 @@ var Coral = (function (exports) {
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(ActionBar.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$t); // Move direct items into primary content zone
 
@@ -34130,8 +34234,8 @@ var Coral = (function (exports) {
       }
     }]);
 
-    return ActionBar;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   var CLASSNAME$u = '_coral-ActionBar-item';
   /**
@@ -34142,23 +34246,23 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var ActionBarItem = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(ActionBarItem, _BaseComponent);
+  var ActionBarItem = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(ActionBarItem);
+    var _super = _createSuper(_class);
 
-    function ActionBarItem() {
-      _classCallCheck(this, ActionBarItem);
+    function _class() {
+      _classCallCheck(this, _class);
 
       return _super.apply(this, arguments);
     }
 
-    _createClass(ActionBarItem, [{
+    _createClass(_class, [{
       key: "render",
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(ActionBarItem.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$u);
       }
@@ -34179,8 +34283,8 @@ var Coral = (function (exports) {
       }
     }]);
 
-    return ActionBarItem;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   /**
    @class Coral.ActionBar.Container.Collection
@@ -34259,16 +34363,16 @@ var Coral = (function (exports) {
    @extends {BaseButton}
    */
 
-  var AnchorButton = /*#__PURE__*/function (_BaseButton) {
-    _inherits(AnchorButton, _BaseButton);
+  var AnchorButton = Decorator( /*#__PURE__*/function (_BaseButton) {
+    _inherits(_class, _BaseButton);
 
-    var _super = _createSuper(AnchorButton);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function AnchorButton() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, AnchorButton);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Events
 
@@ -34291,7 +34395,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(AnchorButton, [{
+    _createClass(_class, [{
       key: "_onKeyDown",
 
       /**
@@ -34331,7 +34435,7 @@ var Coral = (function (exports) {
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(AnchorButton.prototype), "render", this).call(this); // a11y
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this); // a11y
 
 
         this.setAttribute('role', 'button');
@@ -34368,12 +34472,12 @@ var Coral = (function (exports) {
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(AnchorButton), "observedAttributes", this).concat(['disabled']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['disabled']);
       }
     }]);
 
-    return AnchorButton;
-  }(BaseButton(BaseComponent(HTMLAnchorElement)));
+    return _class;
+  }(BaseButton(BaseComponent(HTMLAnchorElement))));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -35049,18 +35153,18 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var ActionBarPrimary = /*#__PURE__*/function (_ActionBarContainer) {
-    _inherits(ActionBarPrimary, _ActionBarContainer);
+  var ActionBarPrimary = Decorator( /*#__PURE__*/function (_ActionBarContainer) {
+    _inherits(_class, _ActionBarContainer);
 
-    var _super = _createSuper(ActionBarPrimary);
+    var _super = _createSuper(_class);
 
-    function ActionBarPrimary() {
-      _classCallCheck(this, ActionBarPrimary);
+    function _class() {
+      _classCallCheck(this, _class);
 
       return _super.apply(this, arguments);
     }
 
-    _createClass(ActionBarPrimary, [{
+    _createClass(_class, [{
       key: "_returnElementsFromPopover",
 
       /** @ignore */
@@ -35102,7 +35206,7 @@ var Coral = (function (exports) {
     }, {
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(ActionBarPrimary.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$v);
 
@@ -35110,8 +35214,8 @@ var Coral = (function (exports) {
       }
     }]);
 
-    return ActionBarPrimary;
-  }(BaseActionBarContainer(BaseComponent(HTMLElement)));
+    return _class;
+  }(BaseActionBarContainer(BaseComponent(HTMLElement))));
 
   var CLASSNAME$w = '_coral-ActionBar-secondary';
   /**
@@ -35122,18 +35226,18 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var ActionBarSecondary = /*#__PURE__*/function (_ActionBarContainer) {
-    _inherits(ActionBarSecondary, _ActionBarContainer);
+  var ActionBarSecondary = Decorator( /*#__PURE__*/function (_ActionBarContainer) {
+    _inherits(_class, _ActionBarContainer);
 
-    var _super = _createSuper(ActionBarSecondary);
+    var _super = _createSuper(_class);
 
-    function ActionBarSecondary() {
-      _classCallCheck(this, ActionBarSecondary);
+    function _class() {
+      _classCallCheck(this, _class);
 
       return _super.apply(this, arguments);
     }
 
-    _createClass(ActionBarSecondary, [{
+    _createClass(_class, [{
       key: "_returnElementsFromPopover",
 
       /** @ignore */
@@ -35174,7 +35278,7 @@ var Coral = (function (exports) {
     }, {
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(ActionBarSecondary.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$w);
 
@@ -35182,8 +35286,8 @@ var Coral = (function (exports) {
       }
     }]);
 
-    return ActionBarSecondary;
-  }(BaseActionBarContainer(BaseComponent(HTMLElement)));
+    return _class;
+  }(BaseActionBarContainer(BaseComponent(HTMLElement))));
 
   var CLASSNAME$x = '_coral-ActionBar-container';
   /**
@@ -35214,16 +35318,16 @@ var Coral = (function (exports) {
    @deprecated
    */
 
-  var ActionBarContainer = /*#__PURE__*/function (_BaseActionBarContain) {
-    _inherits(ActionBarContainer, _BaseActionBarContain);
+  var ActionBarContainer = Decorator( /*#__PURE__*/function (_BaseActionBarContain) {
+    _inherits(_class, _BaseActionBarContain);
 
-    var _super = _createSuper(ActionBarContainer);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function ActionBarContainer() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, ActionBarContainer);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this);
 
@@ -35240,7 +35344,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(ActionBarContainer, [{
+    _createClass(_class, [{
       key: "_attachMoreButtonToContainer",
 
       /** @ignore */
@@ -35262,7 +35366,7 @@ var Coral = (function (exports) {
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(ActionBarContainer.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$x); // Cleanup resize helpers object (cloneNode support)
 
@@ -35323,8 +35427,8 @@ var Coral = (function (exports) {
       }
     }]);
 
-    return ActionBarContainer;
-  }(BaseActionBarContainer(BaseComponent(HTMLElement)));
+    return _class;
+  }(BaseActionBarContainer(BaseComponent(HTMLElement))));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -35419,16 +35523,16 @@ var Coral = (function (exports) {
    */
 
 
-  var Alert = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(Alert, _BaseComponent);
+  var Alert = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(Alert);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function Alert() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, Alert);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Prepare templates
 
@@ -35454,7 +35558,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(Alert, [{
+    _createClass(_class, [{
       key: "_onCloseClick",
 
       /**
@@ -35495,7 +35599,7 @@ var Coral = (function (exports) {
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(Alert.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$y); // a11y
 
@@ -35680,12 +35784,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(Alert), "observedAttributes", this).concat(['variant', 'size']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['variant', 'size']);
       }
     }]);
 
-    return Alert;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -35907,16 +36011,16 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var AutocompleteItem = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(AutocompleteItem, _BaseComponent);
+  var AutocompleteItem = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(AutocompleteItem);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function AutocompleteItem() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, AutocompleteItem);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this);
       _this._observer = new MutationObserver(_this._handleMutation.bind(_assertThisInitialized(_this)));
@@ -35938,7 +36042,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(AutocompleteItem, [{
+    _createClass(_class, [{
       key: "_handleMutation",
 
       /** @private */
@@ -36030,12 +36134,12 @@ var Coral = (function (exports) {
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(AutocompleteItem), "observedAttributes", this).concat(['selected', 'disabled', 'value']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['selected', 'disabled', 'value']);
       }
     }]);
 
-    return AutocompleteItem;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   var template$g = function anonymous(data_0) {
     var frag = document.createDocumentFragment();
@@ -36206,16 +36310,16 @@ var Coral = (function (exports) {
    @extends {BaseFormField}
    */
 
-  var Autocomplete = /*#__PURE__*/function (_BaseFormField) {
-    _inherits(Autocomplete, _BaseFormField);
+  var Autocomplete = Decorator( /*#__PURE__*/function (_BaseFormField) {
+    _inherits(_class, _BaseFormField);
 
-    var _super = _createSuper(Autocomplete);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function Autocomplete() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, Autocomplete);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Template
 
@@ -36303,7 +36407,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(Autocomplete, [{
+    _createClass(_class, [{
       key: "_getName",
 
       /** @private */
@@ -37618,7 +37722,7 @@ var Coral = (function (exports) {
 
       /** @ignore */
       value: function connectedCallback() {
-        _get(_getPrototypeOf(Autocomplete.prototype), "connectedCallback", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "connectedCallback", this).call(this);
 
         var overlay = this._elements.overlay; // Cannot be open by default when rendered
 
@@ -37631,7 +37735,7 @@ var Coral = (function (exports) {
     }, {
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(Autocomplete.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$z); // Container role per ARIA Autocomplete
 
@@ -37693,7 +37797,7 @@ var Coral = (function (exports) {
     }, {
       key: "disconnectedCallback",
       value: function disconnectedCallback() {
-        _get(_getPrototypeOf(Autocomplete.prototype), "disconnectedCallback", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "disconnectedCallback", this).call(this);
 
         var overlay = this._elements.overlay; // In case it was moved out don't forget to remove it
 
@@ -38074,10 +38178,10 @@ var Coral = (function (exports) {
     }, {
       key: "invalid",
       get: function get() {
-        return _get(_getPrototypeOf(Autocomplete.prototype), "invalid", this);
+        return _get(_getPrototypeOf(_class.prototype), "invalid", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(Autocomplete.prototype), "invalid", value, this, true); // Add to outer component
+        _set(_getPrototypeOf(_class.prototype), "invalid", value, this, true); // Add to outer component
 
 
         this._elements.inputGroup.classList.toggle('is-invalid', this.invalid);
@@ -38167,10 +38271,10 @@ var Coral = (function (exports) {
     }, {
       key: "labelled",
       get: function get() {
-        return _get(_getPrototypeOf(Autocomplete.prototype), "labelled", this);
+        return _get(_getPrototypeOf(_class.prototype), "labelled", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(Autocomplete.prototype), "labelled", value, this, true);
+        _set(_getPrototypeOf(_class.prototype), "labelled", value, this, true);
 
         this[this.labelled ? 'setAttribute' : 'removeAttribute']('aria-label', this.labelled);
 
@@ -38189,10 +38293,10 @@ var Coral = (function (exports) {
     }, {
       key: "labelledBy",
       get: function get() {
-        return _get(_getPrototypeOf(Autocomplete.prototype), "labelledBy", this);
+        return _get(_getPrototypeOf(_class.prototype), "labelledBy", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(Autocomplete.prototype), "labelledBy", value, this, true);
+        _set(_getPrototypeOf(_class.prototype), "labelledBy", value, this, true);
 
         this[this.labelledBy ? 'setAttribute' : 'removeAttribute']('aria-labelledby', this.labelledBy);
 
@@ -38237,7 +38341,7 @@ var Coral = (function (exports) {
     }, {
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(Autocomplete), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
           forceselection: 'forceSelection',
           maxlength: 'maxLength'
         });
@@ -38247,12 +38351,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(Autocomplete), "observedAttributes", this).concat(['multiple', 'delay', 'forceselection', 'placeholder', 'maxlength', 'icon', 'match', 'loading', 'variant']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['multiple', 'delay', 'forceselection', 'placeholder', 'maxlength', 'icon', 'match', 'loading', 'variant']);
       }
     }]);
 
-    return Autocomplete;
-  }(BaseFormField(BaseComponent(HTMLElement)));
+    return _class;
+  }(BaseFormField(BaseComponent(HTMLElement))));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -38310,16 +38414,16 @@ var Coral = (function (exports) {
    */
 
 
-  var Banner = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(Banner, _BaseComponent);
+  var Banner = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(Banner);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function Banner() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, Banner);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Fetch content zones
 
@@ -38338,12 +38442,12 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(Banner, [{
+    _createClass(_class, [{
       key: "render",
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(Banner.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$A); // Default reflected attributes
 
@@ -38458,8 +38562,8 @@ var Coral = (function (exports) {
       }
     }]);
 
-    return Banner;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -38579,16 +38683,16 @@ var Coral = (function (exports) {
    @extends {BaseFormField}
    */
 
-  var ButtonGroup = /*#__PURE__*/function (_BaseFormField) {
-    _inherits(ButtonGroup, _BaseFormField);
+  var ButtonGroup = Decorator( /*#__PURE__*/function (_BaseFormField) {
+    _inherits(_class, _BaseFormField);
 
-    var _super = _createSuper(ButtonGroup);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function ButtonGroup() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, ButtonGroup);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Store template
 
@@ -38625,7 +38729,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(ButtonGroup, [{
+    _createClass(_class, [{
       key: "reset",
 
       /**
@@ -39152,9 +39256,7 @@ var Coral = (function (exports) {
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(ButtonGroup.prototype), "render", this).call(this);
-
-        _get(_getPrototypeOf(ButtonGroup.prototype), "connectedCallback", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$B); // Default reflected attributes
 
@@ -39428,10 +39530,10 @@ var Coral = (function (exports) {
     }, {
       key: "labelledBy",
       get: function get() {
-        return _get(_getPrototypeOf(ButtonGroup.prototype), "labelledBy", this);
+        return _get(_getPrototypeOf(_class.prototype), "labelledBy", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(ButtonGroup.prototype), "labelledBy", value, this, true);
+        _set(_getPrototypeOf(_class.prototype), "labelledBy", value, this, true);
 
         this._elements.nativeSelect.setAttribute('aria-labelledby', this.labelledBy);
       }
@@ -39443,7 +39545,7 @@ var Coral = (function (exports) {
     }, {
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(ButtonGroup), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
           selectionmode: 'selectionMode'
         });
       }
@@ -39452,12 +39554,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(ButtonGroup), "observedAttributes", this).concat(['selectionmode', 'selectionMode']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['selectionmode', 'selectionMode']);
       }
     }]);
 
-    return ButtonGroup;
-  }(BaseFormField(BaseComponent(HTMLElement)));
+    return _class;
+  }(BaseFormField(BaseComponent(HTMLElement))));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -40104,16 +40206,16 @@ var Coral = (function (exports) {
    @extends {BaseFormField}
    */
 
-  var Calendar = /*#__PURE__*/function (_BaseFormField) {
-    _inherits(Calendar, _BaseFormField);
+  var Calendar = Decorator( /*#__PURE__*/function (_BaseFormField) {
+    _inherits(_class, _BaseFormField);
 
-    var _super = _createSuper(Calendar);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function Calendar() {
+    function _class() {
       var _this2;
 
-      _classCallCheck(this, Calendar);
+      _classCallCheck(this, _class);
 
       _this2 = _super.call(this); // Default value
 
@@ -40169,7 +40271,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(Calendar, [{
+    _createClass(_class, [{
       key: "_renderCalendar",
 
       /** @ignore */
@@ -40766,7 +40868,7 @@ var Coral = (function (exports) {
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(Calendar.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$C);
         this.setAttribute('role', 'group'); // Default reflected attribute
@@ -41030,10 +41132,10 @@ var Coral = (function (exports) {
     }, {
       key: "invalid",
       get: function get() {
-        return _get(_getPrototypeOf(Calendar.prototype), "invalid", this);
+        return _get(_getPrototypeOf(_class.prototype), "invalid", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(Calendar.prototype), "invalid", value, this, true);
+        _set(_getPrototypeOf(_class.prototype), "invalid", value, this, true);
 
         this._renderCalendar();
       }
@@ -41065,7 +41167,7 @@ var Coral = (function (exports) {
     }], [{
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(Calendar), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
           startday: 'startDay',
           headerformat: 'headerFormat',
           valueformat: 'valueFormat'
@@ -41076,12 +41178,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(Calendar), "observedAttributes", this).concat(['startday', 'headerformat', 'min', 'max', 'valueformat']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['startday', 'headerformat', 'min', 'max', 'valueformat']);
       }
     }]);
 
-    return Calendar;
-  }(BaseFormField(BaseComponent(HTMLElement)));
+    return _class;
+  }(BaseFormField(BaseComponent(HTMLElement))));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -41155,16 +41257,16 @@ var Coral = (function (exports) {
    */
 
 
-  var Card = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(Card, _BaseComponent);
+  var Card = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(Card);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function Card() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, Card);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Prepare templates
 
@@ -41190,7 +41292,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(Card, [{
+    _createClass(_class, [{
       key: "_onLoad",
 
       /** @ignore */
@@ -41208,7 +41310,9 @@ var Coral = (function (exports) {
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(Card.prototype), "render", this).call(this);
+        var _this2 = this;
+
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$D); // Default reflected attributes
 
@@ -41260,7 +41364,9 @@ var Coral = (function (exports) {
         this.asset = asset; // In case a lot of alerts are added, they will not overflow the card
         // Also check whether any alerts are available
 
-        this.classList.toggle("".concat(CLASSNAME$D, "--overflow"), this.info.childNodes.length && this.info.scrollHeight > this.clientHeight);
+        requestAnimationFrame(function () {
+          _this2.classList.toggle("".concat(CLASSNAME$D, "--overflow"), _this2.info.childNodes.length && _this2.info.scrollHeight > _this2.clientHeight);
+        });
       }
     }, {
       key: "asset",
@@ -41291,27 +41397,27 @@ var Coral = (function (exports) {
         return this._assetHeight || '';
       },
       set: function set(value) {
-        var _this2 = this;
+        var _this3 = this;
 
         this._assetHeight = transform.number(value); // Avoid a forced reflow by executing following in the next frame
 
         window.requestAnimationFrame(function () {
           // both hint dimensions need to be set in order to use this feature
-          if (!_this2._loaded && _this2._elements.asset && _this2.assetWidth && _this2._assetHeight) {
+          if (!_this3._loaded && _this3._elements.asset && _this3.assetWidth && _this3._assetHeight) {
             // gets the width without the border of the card
-            var clientRect = _this2.getBoundingClientRect();
+            var clientRect = _this3.getBoundingClientRect();
 
             var width = clientRect.right - clientRect.left; // calculates the image ratio used to resize the height
 
-            var ratio = width / _this2.assetWidth; // the image is considered "low resolution"
+            var ratio = width / _this3.assetWidth; // the image is considered "low resolution"
             // @todo: check this after removal of lowResolution
 
             if (ratio > 1) {
               // 32 = $card-asset-lowResolution-padding * 2
-              _this2._elements.asset.style.height = "".concat(_this2._assetHeight + 32, "px");
+              _this3._elements.asset.style.height = "".concat(_this3._assetHeight + 32, "px");
             } // for non-low resolution images, condensed and inverted cards do not require the height to be set
-            else if (_this2.variant !== variant$c.CONDENSED && _this2.variant !== variant$c.INVERTED) {
-                _this2._elements.asset.style.height = "".concat(ratio * _this2._assetHeight, "px");
+            else if (_this3.variant !== variant$c.CONDENSED && _this3.variant !== variant$c.INVERTED) {
+                _this3._elements.asset.style.height = "".concat(ratio * _this3._assetHeight, "px");
               }
           }
         });
@@ -41513,7 +41619,7 @@ var Coral = (function (exports) {
     }, {
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(Card), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
           assetwidth: 'assetWidth',
           assetheight: 'assetHeight',
           colorhint: 'colorHint',
@@ -41525,12 +41631,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(Card), "observedAttributes", this).concat(['assetwidth', 'assetheight', 'colorhint', 'fixedwidth', 'variant', 'stacked']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['assetwidth', 'assetheight', 'colorhint', 'fixedwidth', 'variant', 'stacked']);
       }
     }]);
 
-    return Card;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   var template$n = function anonymous(data_0) {
     var frag = document.createDocumentFragment();
@@ -41554,16 +41660,16 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var CardProperty = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(CardProperty, _BaseComponent);
+  var CardProperty = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(CardProperty);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function CardProperty() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, CardProperty);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Prepare templates
 
@@ -41580,12 +41686,12 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(CardProperty, [{
+    _createClass(_class, [{
       key: "render",
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(CardProperty.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$E, 'coral-Body--small'); // Create a fragment
 
@@ -41693,7 +41799,7 @@ var Coral = (function (exports) {
     }], [{
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(CardProperty), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
           iconalt: 'iconAlt',
           icontitle: 'iconTitle'
         });
@@ -41703,12 +41809,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(CardProperty), "observedAttributes", this).concat(['icon', 'iconalt', 'icontitle']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['icon', 'iconalt', 'icontitle']);
       }
     }]);
 
-    return CardProperty;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -41894,23 +42000,23 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var CardPropertyList = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(CardPropertyList, _BaseComponent);
+  var CardPropertyList = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(CardPropertyList);
+    var _super = _createSuper(_class);
 
-    function CardPropertyList() {
-      _classCallCheck(this, CardPropertyList);
+    function _class() {
+      _classCallCheck(this, _class);
 
       return _super.apply(this, arguments);
     }
 
-    _createClass(CardPropertyList, [{
+    _createClass(_class, [{
       key: "render",
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(CardPropertyList.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add('u-coral-clearFix'); // Empty it if no items
 
@@ -41920,8 +42026,8 @@ var Coral = (function (exports) {
       }
     }]);
 
-    return CardPropertyList;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -41999,18 +42105,18 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var CharacterCount = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(CharacterCount, _BaseComponent);
+  var CharacterCount = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(CharacterCount);
+    var _super = _createSuper(_class);
 
-    function CharacterCount() {
-      _classCallCheck(this, CharacterCount);
+    function _class() {
+      _classCallCheck(this, _class);
 
       return _super.apply(this, arguments);
     }
 
-    _createClass(CharacterCount, [{
+    _createClass(_class, [{
       key: "_getCharCount",
 
       /** @ignore */
@@ -42051,7 +42157,7 @@ var Coral = (function (exports) {
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(CharacterCount.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$F, 'coral-Body--S'); // Set defaults
 
@@ -42129,7 +42235,7 @@ var Coral = (function (exports) {
     }, {
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(CharacterCount), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
           maxlength: 'maxLength'
         });
       }
@@ -42138,12 +42244,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(CharacterCount), "observedAttributes", this).concat(['target', 'maxlength']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['target', 'maxlength']);
       }
     }]);
 
-    return CharacterCount;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -42437,16 +42543,16 @@ var Coral = (function (exports) {
    */
 
 
-  var Clock = /*#__PURE__*/function (_BaseFormField) {
-    _inherits(Clock, _BaseFormField);
+  var Clock = Decorator( /*#__PURE__*/function (_BaseFormField) {
+    _inherits(_class, _BaseFormField);
 
-    var _super = _createSuper(Clock);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function Clock() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, Clock);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Default value
 
@@ -42477,7 +42583,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(Clock, [{
+    _createClass(_class, [{
       key: "_extractTimeFormat",
 
       /**
@@ -42666,7 +42772,7 @@ var Coral = (function (exports) {
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(Clock.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$G); // a11y
 
@@ -42836,10 +42942,10 @@ var Coral = (function (exports) {
     }, {
       key: "invalid",
       get: function get() {
-        return _get(_getPrototypeOf(Clock.prototype), "invalid", this);
+        return _get(_getPrototypeOf(_class.prototype), "invalid", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(Clock.prototype), "invalid", value, this, true);
+        _set(_getPrototypeOf(_class.prototype), "invalid", value, this, true);
 
         this._elements.hours.invalid = this._invalid;
         this._elements.minutes.invalid = this._invalid;
@@ -42935,7 +43041,7 @@ var Coral = (function (exports) {
         return labelledBy;
       },
       set: function set(value) {
-        _set(_getPrototypeOf(Clock.prototype), "labelledBy", value, this, true); // The specified labelledBy property.
+        _set(_getPrototypeOf(_class.prototype), "labelledBy", value, this, true); // The specified labelledBy property.
 
 
         var labelledBy = this.labelledBy; // An array of element ids to label control, the last being the valueAsText element id.
@@ -42960,7 +43066,7 @@ var Coral = (function (exports) {
     }, {
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(Clock), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
           displayformat: 'displayFormat',
           valueformat: 'valueFormat'
         });
@@ -42970,12 +43076,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(Clock), "observedAttributes", this).concat(['displayformat', 'valueformat', 'variant']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['displayformat', 'valueformat', 'variant']);
       }
     }]);
 
-    return Clock;
-  }(BaseFormField(BaseComponent(HTMLElement)));
+    return _class;
+  }(BaseFormField(BaseComponent(HTMLElement))));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -43057,16 +43163,16 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var CoachMark = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(CoachMark, _BaseComponent);
+  var CoachMark = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(CoachMark);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function CoachMark() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, CoachMark);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Templates
 
@@ -43082,12 +43188,12 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(CoachMark, [{
+    _createClass(_class, [{
       key: "render",
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(CoachMark.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$H); // Default reflected attributes
 
@@ -43218,12 +43324,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(CoachMark), "observedAttributes", this).concat(['size', 'variant', 'target']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['size', 'variant', 'target']);
       }
     }]);
 
-    return CoachMark;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -44630,23 +44736,23 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var ColorInputItem = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(ColorInputItem, _BaseComponent);
+  var ColorInputItem = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(ColorInputItem);
+    var _super = _createSuper(_class);
 
-    function ColorInputItem() {
-      _classCallCheck(this, ColorInputItem);
+    function _class() {
+      _classCallCheck(this, _class);
 
       return _super.apply(this, arguments);
     }
 
-    _createClass(ColorInputItem, [{
+    _createClass(_class, [{
       key: "render",
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(ColorInputItem.prototype), "render", this).call(this); // adds the role to support accessibility
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this); // adds the role to support accessibility
 
 
         this.setAttribute('role', 'option');
@@ -44710,12 +44816,12 @@ var Coral = (function (exports) {
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(ColorInputItem), "observedAttributes", this).concat(['selected', 'value']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['selected', 'value']);
       }
     }]);
 
-    return ColorInputItem;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -44912,16 +45018,16 @@ var Coral = (function (exports) {
    @extends {BaseFormField}
    */
 
-  var Slider = /*#__PURE__*/function (_BaseFormField) {
-    _inherits(Slider, _BaseFormField);
+  var ExtensibleSlider = /*#__PURE__*/function (_BaseFormField) {
+    _inherits(ExtensibleSlider, _BaseFormField);
 
-    var _super = _createSuper(Slider);
+    var _super = _createSuper(ExtensibleSlider);
 
     /** @ignore */
-    function Slider() {
+    function ExtensibleSlider() {
       var _this;
 
-      _classCallCheck(this, Slider);
+      _classCallCheck(this, ExtensibleSlider);
 
       _this = _super.call(this);
 
@@ -44970,7 +45076,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(Slider, [{
+    _createClass(ExtensibleSlider, [{
       key: "_getValueOf",
 
       /** @private */
@@ -45391,7 +45497,7 @@ var Coral = (function (exports) {
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(Slider.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(ExtensibleSlider.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$I); // Default reflected attributes
 
@@ -45782,10 +45888,10 @@ var Coral = (function (exports) {
     }, {
       key: "labelledBy",
       get: function get() {
-        return _get(_getPrototypeOf(Slider.prototype), "labelledBy", this);
+        return _get(_getPrototypeOf(ExtensibleSlider.prototype), "labelledBy", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(Slider.prototype), "labelledBy", value, this, true);
+        _set(_getPrototypeOf(ExtensibleSlider.prototype), "labelledBy", value, this, true);
 
         if (this._elements.inputs.length > 1) {
           var input = this._elements.inputs[1];
@@ -45843,7 +45949,7 @@ var Coral = (function (exports) {
     }, {
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(Slider), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(ExtensibleSlider), "_attributePropertyMap", this), {
           showvalue: 'showValue'
         });
       }
@@ -45852,12 +45958,16 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(Slider), "observedAttributes", this).concat(['step', 'min', 'max', 'tooltips', 'showvalue', 'orientation', 'filled']);
+        return _get(_getPrototypeOf(ExtensibleSlider), "observedAttributes", this).concat(['step', 'min', 'max', 'tooltips', 'showvalue', 'orientation', 'filled']);
       }
     }]);
 
-    return Slider;
-  }(BaseFormField(BaseComponent(HTMLElement)));
+    return ExtensibleSlider;
+  }(BaseFormField(BaseComponent(HTMLElement))); // decorated slider, extending this would result in two decoration.
+  // Hence for extending ExtensibleSlider should be used
+
+
+  var Slider = Decorator(ExtensibleSlider);
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -45890,23 +46000,23 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var SliderItem = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(SliderItem, _BaseComponent);
+  var SliderItem = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(SliderItem);
+    var _super = _createSuper(_class);
 
-    function SliderItem() {
-      _classCallCheck(this, SliderItem);
+    function _class() {
+      _classCallCheck(this, _class);
 
       return _super.apply(this, arguments);
     }
 
-    _createClass(SliderItem, [{
+    _createClass(_class, [{
       key: "render",
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(SliderItem.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$J);
       }
@@ -45941,8 +46051,8 @@ var Coral = (function (exports) {
       }
     }]);
 
-    return SliderItem;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   var template$r = function anonymous(data_0) {
     var frag = document.createDocumentFragment();
@@ -46062,18 +46172,18 @@ var Coral = (function (exports) {
    @extends {Slider}
    */
 
-  var RangedSlider = /*#__PURE__*/function (_Slider) {
-    _inherits(RangedSlider, _Slider);
+  var RangedSlider = Decorator( /*#__PURE__*/function (_ExtensibleSlider) {
+    _inherits(_class, _ExtensibleSlider);
 
-    var _super = _createSuper(RangedSlider);
+    var _super = _createSuper(_class);
 
-    function RangedSlider() {
-      _classCallCheck(this, RangedSlider);
+    function _class() {
+      _classCallCheck(this, _class);
 
       return _super.apply(this, arguments);
     }
 
-    _createClass(RangedSlider, [{
+    _createClass(_class, [{
       key: "_getHighestValue",
 
       /** @private */
@@ -46158,7 +46268,7 @@ var Coral = (function (exports) {
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(RangedSlider.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add('_coral-Slider--range'); // Set filled attribute by default
 
@@ -46263,7 +46373,7 @@ var Coral = (function (exports) {
     }], [{
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(RangedSlider), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
           startvalue: 'startValue',
           endvalue: 'endValue'
         });
@@ -46273,12 +46383,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(RangedSlider), "observedAttributes", this).concat(['startvalue', 'endvalue']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['startvalue', 'endvalue']);
       }
     }]);
 
-    return RangedSlider;
-  }(Slider);
+    return _class;
+  }(ExtensibleSlider));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -46367,18 +46477,18 @@ var Coral = (function (exports) {
    @extends {Slider}
    */
 
-  var ColorInputSlider = /*#__PURE__*/function (_Slider) {
-    _inherits(ColorInputSlider, _Slider);
+  var ColorInputSlider = Decorator( /*#__PURE__*/function (_ExtensibleSlider) {
+    _inherits(_class, _ExtensibleSlider);
 
-    var _super = _createSuper(ColorInputSlider);
+    var _super = _createSuper(_class);
 
-    function ColorInputSlider() {
-      _classCallCheck(this, ColorInputSlider);
+    function _class() {
+      _classCallCheck(this, _class);
 
       return _super.apply(this, arguments);
     }
 
-    _createClass(ColorInputSlider, [{
+    _createClass(_class, [{
       key: "_moveHandles",
       value: function _moveHandles() {
         var _this = this;
@@ -46413,7 +46523,7 @@ var Coral = (function (exports) {
       value: function render() {
         var _this$classList;
 
-        _get(_getPrototypeOf(ColorInputSlider.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         (_this$classList = this.classList).add.apply(_this$classList, CLASSNAMES$1);
       }
@@ -46460,12 +46570,12 @@ var Coral = (function (exports) {
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(ColorInputSlider), "observedAttributes", this).concat(['gradient']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['gradient']);
       }
     }]);
 
-    return ColorInputSlider;
-  }(Slider);
+    return _class;
+  }(ExtensibleSlider));
 
   var template$t = function anonymous(data_0) {
     var frag = document.createDocumentFragment();
@@ -46720,16 +46830,16 @@ var Coral = (function (exports) {
    @extends {BaseColorInputAbstractSubview}
    */
 
-  var ColorInputColorProperties = /*#__PURE__*/function (_BaseColorInputAbstra) {
-    _inherits(ColorInputColorProperties, _BaseColorInputAbstra);
+  var ColorInputColorProperties = Decorator( /*#__PURE__*/function (_BaseColorInputAbstra) {
+    _inherits(_class, _BaseColorInputAbstra);
 
-    var _super = _createSuper(ColorInputColorProperties);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function ColorInputColorProperties() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, ColorInputColorProperties);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this);
 
@@ -46753,7 +46863,7 @@ var Coral = (function (exports) {
     /** @ignore */
 
 
-    _createClass(ColorInputColorProperties, [{
+    _createClass(_class, [{
       key: "_onColorInputChange",
       value: function _onColorInputChange() {
         var newColor = this._colorinput.valueAsColor;
@@ -46924,7 +47034,7 @@ var Coral = (function (exports) {
     }, {
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(ColorInputColorProperties.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$K); // Support cloneNode
 
@@ -46938,8 +47048,8 @@ var Coral = (function (exports) {
       }
     }]);
 
-    return ColorInputColorProperties;
-  }(BaseColorInputAbstractSubview(BaseComponent(HTMLElement)));
+    return _class;
+  }(BaseColorInputAbstractSubview(BaseComponent(HTMLElement))));
 
   var template$u = function anonymous(data_0) {
     var frag = document.createDocumentFragment();
@@ -46969,16 +47079,16 @@ var Coral = (function (exports) {
    @extends {BaseColorInputAbstractSubview}
    */
 
-  var ColorInputSwatch = /*#__PURE__*/function (_BaseColorInputAbstra) {
-    _inherits(ColorInputSwatch, _BaseColorInputAbstra);
+  var ColorInputSwatch = Decorator( /*#__PURE__*/function (_BaseColorInputAbstra) {
+    _inherits(_class, _BaseColorInputAbstra);
 
-    var _super = _createSuper(ColorInputSwatch);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function ColorInputSwatch() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, ColorInputSwatch);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Events
 
@@ -46998,7 +47108,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(ColorInputSwatch, [{
+    _createClass(_class, [{
       key: "_onColorInputChange",
 
       /** @ignore */
@@ -47013,7 +47123,7 @@ var Coral = (function (exports) {
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(ColorInputSwatch.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$L, 'u-coral-clearFix'); // adds the role to support accessibility
 
@@ -47136,7 +47246,7 @@ var Coral = (function (exports) {
     }], [{
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(ColorInputSwatch), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
           tabindex: 'tabIndex',
           targetcolor: 'targetColor'
         });
@@ -47146,12 +47256,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(ColorInputSwatch), "observedAttributes", this).concat(['selected', 'tabindex', 'disabled', 'targetcolor']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['selected', 'tabindex', 'disabled', 'targetcolor']);
       }
     }]);
 
-    return ColorInputSwatch;
-  }(BaseColorInputAbstractSubview(BaseComponent(HTMLElement)));
+    return _class;
+  }(BaseColorInputAbstractSubview(BaseComponent(HTMLElement))));
 
   var template$v = function anonymous(data_0) {
     var frag = document.createDocumentFragment();
@@ -47209,16 +47319,16 @@ var Coral = (function (exports) {
    @extends {BaseColorInputAbstractSubview}
    */
 
-  var ColorInputSwatches = /*#__PURE__*/function (_BaseColorInputAbstra) {
-    _inherits(ColorInputSwatches, _BaseColorInputAbstra);
+  var ColorInputSwatches = Decorator( /*#__PURE__*/function (_BaseColorInputAbstra) {
+    _inherits(_class, _BaseColorInputAbstra);
 
-    var _super = _createSuper(ColorInputSwatches);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function ColorInputSwatches() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, ColorInputSwatches);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Events
 
@@ -47250,7 +47360,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(ColorInputSwatches, [{
+    _createClass(_class, [{
       key: "_onItemSelectedChanged",
 
       /** @private */
@@ -47513,7 +47623,7 @@ var Coral = (function (exports) {
     }, {
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(ColorInputSwatches.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$M); // adds the role to support accessibility
 
@@ -47564,8 +47674,8 @@ var Coral = (function (exports) {
       }
     }]);
 
-    return ColorInputSwatches;
-  }(BaseColorInputAbstractSubview(BaseComponent(HTMLElement)));
+    return _class;
+  }(BaseColorInputAbstractSubview(BaseComponent(HTMLElement))));
 
   var template$w = function anonymous(data_0) {
     var frag = document.createDocumentFragment();
@@ -47827,16 +47937,16 @@ var Coral = (function (exports) {
    @extends {BaseFormField}
    */
 
-  var ColorInput = /*#__PURE__*/function (_BaseFormField) {
-    _inherits(ColorInput, _BaseFormField);
+  var ColorInput = Decorator( /*#__PURE__*/function (_BaseFormField) {
+    _inherits(_class, _BaseFormField);
 
-    var _super = _createSuper(ColorInput);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function ColorInput() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, ColorInput);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Prepare templates
 
@@ -47882,7 +47992,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(ColorInput, [{
+    _createClass(_class, [{
       key: "_onItemSelectedChanged",
 
       /** @private */
@@ -48211,7 +48321,7 @@ var Coral = (function (exports) {
 
       /** @ignore */
       value: function connectedCallback() {
-        _get(_getPrototypeOf(ColorInput.prototype), "connectedCallback", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "connectedCallback", this).call(this);
 
         var overlay = this._elements.overlay; // Cannot be open by default when rendered
 
@@ -48226,7 +48336,7 @@ var Coral = (function (exports) {
     }, {
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(ColorInput.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$N);
         this.setAttribute('role', 'group');
@@ -48270,7 +48380,7 @@ var Coral = (function (exports) {
     }, {
       key: "disconnectedCallback",
       value: function disconnectedCallback() {
-        _get(_getPrototypeOf(ColorInput.prototype), "disconnectedCallback", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "disconnectedCallback", this).call(this);
 
         var overlay = this._elements.overlay; // In case it was moved out don't forget to remove it
 
@@ -48588,10 +48698,10 @@ var Coral = (function (exports) {
     }, {
       key: "invalid",
       get: function get() {
-        return _get(_getPrototypeOf(ColorInput.prototype), "invalid", this);
+        return _get(_getPrototypeOf(_class.prototype), "invalid", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(ColorInput.prototype), "invalid", value, this, true);
+        _set(_getPrototypeOf(_class.prototype), "invalid", value, this, true);
 
         this._elements.input.invalid = this.invalid;
       }
@@ -48643,10 +48753,10 @@ var Coral = (function (exports) {
     }, {
       key: "labelledBy",
       get: function get() {
-        return _get(_getPrototypeOf(ColorInput.prototype), "labelledBy", this);
+        return _get(_getPrototypeOf(_class.prototype), "labelledBy", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(ColorInput.prototype), "labelledBy", value, this, true); // Sync input aria-labelledby
+        _set(_getPrototypeOf(_class.prototype), "labelledBy", value, this, true); // Sync input aria-labelledby
 
 
         this._elements.input[value ? 'setAttribute' : 'removeAttribute']('aria-labelledby', value); // in case the user focuses the buttons, he will still get a notion of the usage of the component
@@ -48710,7 +48820,7 @@ var Coral = (function (exports) {
     }, {
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(ColorInput), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
           autogeneratecolors: 'autoGenerateColors',
           showswatches: 'showSwatches',
           showproperties: 'showProperties',
@@ -48722,12 +48832,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(ColorInput), "observedAttributes", this).concat(['variant', 'autogeneratecolors', 'showswatches', 'showproperties', 'showdefaultcolors', 'placeholder']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['variant', 'autogeneratecolors', 'showswatches', 'showproperties', 'showdefaultcolors', 'placeholder']);
       }
     }]);
 
-    return ColorInput;
-  }(BaseFormField(BaseComponent(HTMLElement)));
+    return _class;
+  }(BaseFormField(BaseComponent(HTMLElement))));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -49187,16 +49297,16 @@ var Coral = (function (exports) {
    */
 
 
-  var ColumnView = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(ColumnView, _BaseComponent);
+  var ColumnView = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(ColumnView);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function ColumnView() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, ColumnView);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Content zone
 
@@ -49268,7 +49378,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(ColumnView, [{
+    _createClass(_class, [{
       key: "_onColumnActiveItemChanged",
 
       /** @private */
@@ -50427,7 +50537,7 @@ var Coral = (function (exports) {
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(ColumnView.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$O); // @a11y
 
@@ -50608,7 +50718,7 @@ var Coral = (function (exports) {
     }, {
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(ColumnView), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
           selectionmode: 'selectionMode'
         });
       }
@@ -50617,12 +50727,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(ColumnView), "observedAttributes", this).concat(['selectionmode']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['selectionmode']);
       }
     }]);
 
-    return ColumnView;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   var CLASSNAME$P = '_coral-MillerColumns-item'; // The number of milliseconds for which scroll events should be debounced.
 
@@ -50642,16 +50752,16 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var ColumnViewColumn = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(ColumnViewColumn, _BaseComponent);
+  var ColumnViewColumn = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(ColumnViewColumn);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function ColumnViewColumn() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, ColumnViewColumn);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Events
 
@@ -50698,7 +50808,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(ColumnViewColumn, [{
+    _createClass(_class, [{
       key: "_onItemClick",
 
       /** @private */
@@ -51076,7 +51186,7 @@ var Coral = (function (exports) {
       value: function render() {
         var _this3 = this;
 
-        _get(_getPrototypeOf(ColumnViewColumn.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$P); // @a11y
 
@@ -51245,7 +51355,7 @@ var Coral = (function (exports) {
     }], [{
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(ColumnViewColumn), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
           _selectionmode: '_selectionMode'
         });
       }
@@ -51254,12 +51364,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(ColumnViewColumn), "observedAttributes", this).concat(['_selectionmode']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['_selectionmode']);
       }
     }]);
 
-    return ColumnViewColumn;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -51312,16 +51422,16 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var ColumnViewItem = /*#__PURE__*/function (_BaseLabellable) {
-    _inherits(ColumnViewItem, _BaseLabellable);
+  var ColumnViewItem = Decorator( /*#__PURE__*/function (_BaseLabellable) {
+    _inherits(_class, _BaseLabellable);
 
-    var _super = _createSuper(ColumnViewItem);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function ColumnViewItem() {
+    function _class() {
       var _thisSuper, _this;
 
-      _classCallCheck(this, ColumnViewItem);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Content zone
 
@@ -51338,7 +51448,7 @@ var Coral = (function (exports) {
         });
       }
 
-      _get((_thisSuper = _assertThisInitialized(_this), _getPrototypeOf(ColumnViewItem.prototype)), "_observeLabel", _thisSuper).call(_thisSuper);
+      _get((_thisSuper = _assertThisInitialized(_this), _getPrototypeOf(_class.prototype)), "_observeLabel", _thisSuper).call(_thisSuper);
 
       return _this;
     }
@@ -51349,7 +51459,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(ColumnViewItem, [{
+    _createClass(_class, [{
       key: "attributeChangedCallback",
 
       /** @ignore */
@@ -51378,7 +51488,7 @@ var Coral = (function (exports) {
               }
             }
         } else {
-          _get(_getPrototypeOf(ColumnViewItem.prototype), "attributeChangedCallback", this).call(this, name, oldValue, value);
+          _get(_getPrototypeOf(_class.prototype), "attributeChangedCallback", this).call(this, name, oldValue, value);
         }
       }
       /**
@@ -51391,7 +51501,7 @@ var Coral = (function (exports) {
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(ColumnViewItem.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$Q); // @a11y
 
@@ -51552,7 +51662,7 @@ var Coral = (function (exports) {
           this._elements.thumbnail.appendChild(this._elements.icon);
         }
 
-        _get(_getPrototypeOf(ColumnViewItem.prototype), "_toggleIconAriaHidden", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "_toggleIconAriaHidden", this).call(this);
       }
       /**
        Whether the item is selected.
@@ -51689,12 +51799,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(ColumnViewItem), "observedAttributes", this).concat(['variant', 'icon', 'selected', 'active', '_selectable']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['variant', 'icon', 'selected', 'active', '_selectable']);
       }
     }]);
 
-    return ColumnViewItem;
-  }(BaseLabellable(BaseComponent(HTMLElement)));
+    return _class;
+  }(BaseLabellable(BaseComponent(HTMLElement))));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -51749,16 +51859,16 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var ColumnViewPreview = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(ColumnViewPreview, _BaseComponent);
+  var ColumnViewPreview = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(ColumnViewPreview);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function ColumnViewPreview() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, ColumnViewPreview);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Content zone
 
@@ -51774,12 +51884,12 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(ColumnViewPreview, [{
+    _createClass(_class, [{
       key: "render",
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(ColumnViewPreview.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.setAttribute('role', 'group');
         this.id = this.id || commons.getUID();
@@ -51872,8 +51982,8 @@ var Coral = (function (exports) {
       }
     }]);
 
-    return ColumnViewPreview;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -52158,23 +52268,23 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var CycleButtonItem = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(CycleButtonItem, _BaseComponent);
+  var CycleButtonItem = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(CycleButtonItem);
+    var _super = _createSuper(_class);
 
-    function CycleButtonItem() {
-      _classCallCheck(this, CycleButtonItem);
+    function _class() {
+      _classCallCheck(this, _class);
 
       return _super.apply(this, arguments);
     }
 
-    _createClass(CycleButtonItem, [{
+    _createClass(_class, [{
       key: "render",
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(CycleButtonItem.prototype), "render", this).call(this); // adds the role to support accessibility
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this); // adds the role to support accessibility
 
 
         this.setAttribute('role', 'menuitemradio'); // Default reflected attributes
@@ -52327,7 +52437,7 @@ var Coral = (function (exports) {
         (this.content || this).textContent.replace(/\s{2,}/g, ' ').trim() || this.icon : this._trackingElement;
       },
       set: function set(value) {
-        _set(_getPrototypeOf(CycleButtonItem.prototype), "trackingElement", value, this, true);
+        _set(_getPrototypeOf(_class.prototype), "trackingElement", value, this, true);
       }
       /**
        Returns {@link CycleButtonItem} display options.
@@ -52342,7 +52452,7 @@ var Coral = (function (exports) {
     }, {
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(CycleButtonItem), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
           displaymode: 'displayMode'
         });
       }
@@ -52351,12 +52461,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(CycleButtonItem), "observedAttributes", this).concat(['selected', 'disabled', 'icon', 'displaymode']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['selected', 'disabled', 'icon', 'displaymode']);
       }
     }]);
 
-    return CycleButtonItem;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   var template$y = function anonymous(data_0) {
     var frag = document.createDocumentFragment();
@@ -52476,16 +52586,16 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var CycleButton = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(CycleButton, _BaseComponent);
+  var CycleButton = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(CycleButton);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function CycleButton() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, CycleButton);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this);
       _this._id = _this.id || commons.getUID(); // Templates
@@ -52546,7 +52656,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(CycleButton, [{
+    _createClass(_class, [{
       key: "_hasMenuItemRadioGroup",
 
       /** @private */
@@ -53172,7 +53282,7 @@ var Coral = (function (exports) {
               this._elements.selectList[this._hasMenuItemRadioGroup() ? 'setAttribute' : 'removeAttribute']('aria-labelledby', value || this._elements.button.id);
             }
           } else {
-            _get(_getPrototypeOf(CycleButton.prototype), "attributeChangedCallback", this).call(this, name, oldValue, value);
+            _get(_getPrototypeOf(_class.prototype), "attributeChangedCallback", this).call(this, name, oldValue, value);
           }
       }
       /** @ignore */
@@ -53180,7 +53290,7 @@ var Coral = (function (exports) {
     }, {
       key: "connectedCallback",
       value: function connectedCallback() {
-        _get(_getPrototypeOf(CycleButton.prototype), "connectedCallback", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "connectedCallback", this).call(this);
 
         var overlay = this._elements.overlay; // Cannot be open by default when rendered
 
@@ -53197,7 +53307,7 @@ var Coral = (function (exports) {
       value: function render() {
         var _this4 = this;
 
-        _get(_getPrototypeOf(CycleButton.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         if (!this.id) {
           this.id = this._id;
@@ -53244,7 +53354,7 @@ var Coral = (function (exports) {
     }, {
       key: "disconnectedCallback",
       value: function disconnectedCallback() {
-        _get(_getPrototypeOf(CycleButton.prototype), "disconnectedCallback", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "disconnectedCallback", this).call(this);
 
         var overlay = this._elements.overlay; // In case it was moved out don't forget to remove it
 
@@ -53404,7 +53514,7 @@ var Coral = (function (exports) {
     }, {
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(CycleButton), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
           displaymode: 'displayMode'
         });
       }
@@ -53413,12 +53523,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(CycleButton), "observedAttributes", this).concat(['icon', 'threshold', 'displaymode', 'aria-label', 'aria-labelledby']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['icon', 'threshold', 'displaymode', 'aria-label', 'aria-labelledby']);
       }
     }]);
 
-    return CycleButton;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   /**
    @class Coral.CycleButton.Action
@@ -53428,23 +53538,23 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var CycleButtonAction = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(CycleButtonAction, _BaseComponent);
+  var CycleButtonAction = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(CycleButtonAction);
+    var _super = _createSuper(_class);
 
-    function CycleButtonAction() {
-      _classCallCheck(this, CycleButtonAction);
+    function _class() {
+      _classCallCheck(this, _class);
 
       return _super.apply(this, arguments);
     }
 
-    _createClass(CycleButtonAction, [{
+    _createClass(_class, [{
       key: "render",
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(CycleButtonAction.prototype), "render", this).call(this); // adds the role to support accessibility
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this); // adds the role to support accessibility
 
 
         this.setAttribute('role', 'menuitem');
@@ -53494,19 +53604,19 @@ var Coral = (function (exports) {
         (this.content || this).textContent.replace(/\s{2,}/g, ' ').trim() || this.icon : this._trackingElement;
       },
       set: function set(value) {
-        _set(_getPrototypeOf(CycleButtonAction.prototype), "trackingElement", value, this, true);
+        _set(_getPrototypeOf(_class.prototype), "trackingElement", value, this, true);
       }
       /** @ignore */
 
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(CycleButtonAction), "observedAttributes", this).concat(['icon']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['icon']);
       }
     }]);
 
-    return CycleButtonAction;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -53809,16 +53919,16 @@ var Coral = (function (exports) {
    */
 
 
-  var Datepicker = /*#__PURE__*/function (_BaseFormField) {
-    _inherits(Datepicker, _BaseFormField);
+  var Datepicker = Decorator( /*#__PURE__*/function (_BaseFormField) {
+    _inherits(_class, _BaseFormField);
 
-    var _super = _createSuper(Datepicker);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function Datepicker() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, Datepicker);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Prepare templates
 
@@ -53856,7 +53966,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(Datepicker, [{
+    _createClass(_class, [{
       key: "_onPopoverBeforeOpen",
 
       /** @ignore */
@@ -54032,7 +54142,7 @@ var Coral = (function (exports) {
 
       /** @ignore */
       value: function connectedCallback() {
-        _get(_getPrototypeOf(Datepicker.prototype), "connectedCallback", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "connectedCallback", this).call(this);
 
         var overlay = this._elements.overlay; // Cannot be open by default when rendered
 
@@ -54047,7 +54157,7 @@ var Coral = (function (exports) {
     }, {
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(Datepicker.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$T); // a11y
 
@@ -54102,7 +54212,7 @@ var Coral = (function (exports) {
     }, {
       key: "disconnectedCallback",
       value: function disconnectedCallback() {
-        _get(_getPrototypeOf(Datepicker.prototype), "disconnectedCallback", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "disconnectedCallback", this).call(this);
 
         var overlay = this._elements.overlay; // In case it was moved out don't forget to remove it
 
@@ -54460,10 +54570,10 @@ var Coral = (function (exports) {
     }, {
       key: "invalid",
       get: function get() {
-        return _get(_getPrototypeOf(Datepicker.prototype), "invalid", this);
+        return _get(_getPrototypeOf(_class.prototype), "invalid", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(Datepicker.prototype), "invalid", value, this, true);
+        _set(_getPrototypeOf(_class.prototype), "invalid", value, this, true);
 
         this.classList.toggle('is-invalid', this.invalid);
 
@@ -54524,10 +54634,10 @@ var Coral = (function (exports) {
     }, {
       key: "labelled",
       get: function get() {
-        return _get(_getPrototypeOf(Datepicker.prototype), "labelled", this);
+        return _get(_getPrototypeOf(_class.prototype), "labelled", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(Datepicker.prototype), "labelled", value, this, true); // in case the user focuses the buttons, he will still get a notion of the usage of the component
+        _set(_getPrototypeOf(_class.prototype), "labelled", value, this, true); // in case the user focuses the buttons, he will still get a notion of the usage of the component
 
 
         this[this.labelled ? 'setAttribute' : 'removeAttribute']('aria-label', this.labelled);
@@ -54543,10 +54653,10 @@ var Coral = (function (exports) {
     }, {
       key: "labelledBy",
       get: function get() {
-        return _get(_getPrototypeOf(Datepicker.prototype), "labelledBy", this);
+        return _get(_getPrototypeOf(_class.prototype), "labelledBy", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(Datepicker.prototype), "labelledBy", value, this, true); // in case the user focuses the buttons, he will still get a notion of the usage of the component
+        _set(_getPrototypeOf(_class.prototype), "labelledBy", value, this, true); // in case the user focuses the buttons, he will still get a notion of the usage of the component
 
 
         this[this.labelledBy ? 'setAttribute' : 'removeAttribute']('aria-labelledby', this.labelledBy);
@@ -54633,7 +54743,7 @@ var Coral = (function (exports) {
     }, {
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(Datepicker), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
           startday: 'startDay',
           headerformat: 'headerFormat',
           displayformat: 'displayFormat',
@@ -54645,12 +54755,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(Datepicker), "observedAttributes", this).concat(['min', 'max', 'type', 'placeholder', 'startday', 'headerFormat', 'displayformat', 'valueformat', 'variant']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['min', 'max', 'type', 'placeholder', 'startday', 'headerFormat', 'displayformat', 'valueformat', 'variant']);
       }
     }]);
 
-    return Datepicker;
-  }(BaseFormField(BaseComponent(HTMLElement)));
+    return _class;
+  }(BaseFormField(BaseComponent(HTMLElement))));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -54822,16 +54932,16 @@ var Coral = (function (exports) {
    */
 
 
-  var Drawer = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(Drawer, _BaseComponent);
+  var Drawer = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(Drawer);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function Drawer() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, Drawer);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Templates
 
@@ -54858,7 +54968,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(Drawer, [{
+    _createClass(_class, [{
       key: "_onClick",
 
       /** @private */
@@ -54870,7 +54980,7 @@ var Coral = (function (exports) {
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(Drawer.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$U, 'coral-Well'); // Default reflected attributes
 
@@ -55057,12 +55167,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(Drawer), "observedAttributes", this).concat(['disabled', 'direction', 'open']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['disabled', 'direction', 'open']);
       }
     }]);
 
-    return Drawer;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -56282,16 +56392,16 @@ var Coral = (function (exports) {
    @extends {BaseFormField}
    */
 
-  var FileUpload = /*#__PURE__*/function (_BaseFormField) {
-    _inherits(FileUpload, _BaseFormField);
+  var FileUpload = Decorator( /*#__PURE__*/function (_BaseFormField) {
+    _inherits(_class, _BaseFormField);
 
-    var _super = _createSuper(FileUpload);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function FileUpload() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, FileUpload);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Events
 
@@ -56349,7 +56459,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(FileUpload, [{
+    _createClass(_class, [{
       key: "_onButtonFocusIn",
 
       /** @private */
@@ -56948,7 +57058,7 @@ var Coral = (function (exports) {
       value: function render() {
         var _this8 = this;
 
-        _get(_getPrototypeOf(FileUpload.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$V);
         var button = this.querySelector('[coral-fileupload-select]');
@@ -57047,10 +57157,10 @@ var Coral = (function (exports) {
     }, {
       key: "invalid",
       get: function get() {
-        return _get(_getPrototypeOf(FileUpload.prototype), "invalid", this);
+        return _get(_getPrototypeOf(_class.prototype), "invalid", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(FileUpload.prototype), "invalid", value, this, true);
+        _set(_getPrototypeOf(_class.prototype), "invalid", value, this, true);
 
         this._elements.input.setAttribute('aria-invalid', this.invalid);
 
@@ -57133,10 +57243,10 @@ var Coral = (function (exports) {
     }, {
       key: "labelledBy",
       get: function get() {
-        return _get(_getPrototypeOf(FileUpload.prototype), "labelledBy", this);
+        return _get(_getPrototypeOf(_class.prototype), "labelledBy", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(FileUpload.prototype), "labelledBy", value, this, true); // The specified labelledBy property.
+        _set(_getPrototypeOf(_class.prototype), "labelledBy", value, this, true); // The specified labelledBy property.
 
 
         var labelledBy = this.labelledBy; // An array of element ids to label control, the last being the select button element id.
@@ -57382,7 +57492,7 @@ var Coral = (function (exports) {
     }], [{
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(FileUpload), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
           sizelimit: 'sizeLimit',
           autostart: 'autoStart'
         });
@@ -57392,12 +57502,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(FileUpload), "observedAttributes", this).concat(['async', 'action', 'method', 'multiple', 'sizelimit', 'accept', 'autostart']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['async', 'action', 'method', 'multiple', 'sizelimit', 'accept', 'autostart']);
       }
     }]);
 
-    return FileUpload;
-  }(BaseFormField(BaseComponent(HTMLElement)));
+    return _class;
+  }(BaseFormField(BaseComponent(HTMLElement))));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -57433,6 +57543,297 @@ var Coral = (function (exports) {
     return frag;
   };
 
+  var SCOPE_SELECTOR$1 = ':scope > ';
+  /**
+   * Messenger will used to pass the messages from child component to its parent. Currently we are relying on
+   * events to do the job. When a large DOM is connected, these events as a bulk leads to delays.
+   * With the use of messenger we will directly call the parent method provided in the observed messages list.
+   * The current implmentation only supports one to many mapping i.e. one parent and many children and any
+   * in child property will result in execution of only one parent method. This should be used purely for
+   * coral internal events and not any DOM based or public events.
+   *
+   * Limitations :
+     - This doesnot support the case where any change in child property,
+       needs to be notified to two or more parents.
+       This is achievable, but not currently supported.
+     - Do not use messenger for generic events like click, hover, etc.
+    @private
+   */
+
+  var Messenger = /*#__PURE__*/function () {
+    /** @ignore */
+    function Messenger(element) {
+      _classCallCheck(this, Messenger);
+
+      this._element = element;
+      this._connected = false;
+
+      this._clearQueue();
+
+      this._clearListeners();
+    }
+    /* checks whether Messenger is connected or not.
+      @returns {Boolean} true if connected
+      @private
+     */
+
+
+    _createClass(Messenger, [{
+      key: "_addMessageToQueue",
+
+      /* add a message to the queue only if messenger is not connected
+        message will be added only if element is not connected.
+        @private
+       */
+      value: function _addMessageToQueue(message, detail) {
+        if (!this.isConnected) {
+          this._queue.push({
+            message: message,
+            detail: detail
+          });
+        }
+      }
+      /* executes the stored queue messages.
+        It will be executed when element is connected.
+        @private
+       */
+
+    }, {
+      key: "_executeQueue",
+      value: function _executeQueue() {
+        var _this = this;
+
+        this._queue.forEach(function (options) {
+          _this._postMessage(options.message, options.detail);
+        });
+
+        this._clearQueue();
+      }
+      /* empty the stored queue message
+        @private
+       */
+
+    }, {
+      key: "_clearQueue",
+      value: function _clearQueue() {
+        this._queue = [];
+      }
+      /* clears the listeners
+        @private
+       */
+
+    }, {
+      key: "_clearListeners",
+      value: function _clearListeners() {
+        this._listeners = [];
+      }
+      /* element should call this method when they are connected in DOM.
+         its the responsibility of the element to call this hook
+        @triggers `${element.tagName.toLowerCase()}:_messengerconnected`
+        @private
+       */
+
+    }, {
+      key: "connect",
+      value: function connect() {
+        if (!this.isConnected) {
+          var element = this._element;
+          this._connected = true;
+          element.trigger("".concat(element.tagName.toLowerCase(), ":_messengerconnected"), {
+            handler: this.registerListener.bind(this)
+          }); // post all stored messages
+
+          this._executeQueue();
+        }
+      }
+      /* add the listener to messenger
+         this handler will be passed when messengerconnect event is trigger
+         the handler needs to be executed by listeners.
+        @private
+       */
+
+    }, {
+      key: "registerListener",
+      value: function registerListener(listener) {
+        if (listener) {
+          this._listeners.push(listener);
+        }
+      }
+      /* post the provided message to all listener.
+        @param {String} message which should be posted
+        @param {Object} additional detail which needs to be posted.
+        @private
+       */
+
+    }, {
+      key: "_postMessage",
+      value: function _postMessage(message, detail) {
+        var element = this._element;
+        this.listeners.forEach(function (listener) {
+          var observedMessages = listener.observedMessages;
+          var messageInfo = observedMessages[message];
+
+          if (messageInfo) {
+            var selector;
+            var handler;
+
+            if (typeof messageInfo === 'string') {
+              selector = "*";
+              handler = messageInfo;
+            } else if (_typeof(messageInfo) === 'object') {
+              selector = messageInfo.selector || "*";
+              handler = messageInfo.handler;
+            }
+
+            if (selector.indexOf(SCOPE_SELECTOR$1) === 0) {
+              if (!listener.id) {
+                listener.id = commons.getUID();
+              }
+
+              selector = selector.replace(SCOPE_SELECTOR$1, "#".concat(listener.id, " > "));
+            }
+
+            if (element.matches(selector)) {
+              listener[handler].call(listener, new Event$1({
+                target: element,
+                detail: detail,
+                type: message,
+                currentTarget: listener
+              }));
+            }
+          }
+        });
+      }
+      /* post the provided message to all listener,
+         along with validating silencing and storing in queue
+        @param {String} message which should be posted
+        @param {Object} additional detail which needs to be posted.
+        @private
+       */
+
+    }, {
+      key: "postMessage",
+      value: function postMessage(message, detail) {
+        if (this.isSilenced) {
+          return;
+        }
+
+        if (!this.isConnected) {
+          this._addMessageToQueue(message, detail);
+
+          return;
+        }
+
+        this._postMessage(message, detail);
+      }
+      /* element should call this method when they are disconnected from DOM.
+        its the responsibility of the element to call this hook
+        @private
+       */
+
+    }, {
+      key: "disconnect",
+      value: function disconnect() {
+        if (this.isConnected) {
+          this._connected = false;
+
+          this._clearListeners();
+
+          this._clearQueue();
+        }
+      }
+    }, {
+      key: "isConnected",
+      get: function get() {
+        return this._connected === true;
+      }
+      /* checks whether the event is silenced or not
+        @returns {Boolean} true if silenced
+        @private
+       */
+
+    }, {
+      key: "isSilenced",
+      get: function get() {
+        return this._element._silenced === true;
+      }
+      /* specifies the list of listener attached to messenger.
+        @returns {Array} array of listeners
+        @private
+       */
+
+    }, {
+      key: "listeners",
+      get: function get() {
+        return this._listeners;
+      }
+    }]);
+
+    return Messenger;
+  }();
+  /**
+   * This Event class is just a bogus class, current message callback aspects
+   * actual event as a parameter, since we are directly calling the method instead
+   * of triggering event, will pass an instance of this disguised object,
+   * to avoid breaks.
+   * This just disguise the  most used functionality of event object
+   * @private
+   */
+
+
+  var Event$1 = /*#__PURE__*/function () {
+    function Event(options) {
+      _classCallCheck(this, Event);
+
+      this._detail = options.detail;
+      this._target = options.target;
+      this._type = options.type;
+      this._currentTarget = options.currentTarget;
+      this._defaultPrevented = false;
+      this._propagationStopped = false;
+      this._immediatePropagationStopped = false;
+    }
+
+    _createClass(Event, [{
+      key: "preventDefault",
+      value: function preventDefault() {
+        this._defaultPrevented = true;
+      }
+    }, {
+      key: "stopPropagation",
+      value: function stopPropagation() {
+        this._propagationStopped = true;
+      }
+    }, {
+      key: "stopImmediatePropagation",
+      value: function stopImmediatePropagation() {
+        this._immediatePropagationStopped = true;
+      }
+    }, {
+      key: "detail",
+      get: function get() {
+        return this._detail;
+      }
+    }, {
+      key: "type",
+      get: function get() {
+        return this._type;
+      }
+    }, {
+      key: "target",
+      get: function get() {
+        return this._target;
+      }
+    }, {
+      key: "currentTarget",
+      get: function get() {
+        return this._currentTarget;
+      }
+    }]);
+
+    return Event;
+  }();
+
   var CLASSNAME$W = '_coral-Masonry-item';
   /**
    @class Coral.Masonry.Item
@@ -57442,18 +57843,20 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var MasonryItem = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(MasonryItem, _BaseComponent);
+  var MasonryItem = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(MasonryItem);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function MasonryItem() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, MasonryItem);
+      _classCallCheck(this, _class);
 
-      _this = _super.call(this); // Represents ownership (necessary when the item is moved which triggers callbacks)
+      _this = _super.call(this); // messenger
+
+      _this._messenger = new Messenger(_assertThisInitialized(_this)); // Represents ownership (necessary when the item is moved which triggers callbacks)
 
       _this._masonry = null; // Default value
 
@@ -57462,10 +57865,9 @@ var Coral = (function (exports) {
       _this._elements = {};
       template$D.call(_this._elements);
       return _this;
-    } // @compat
+    }
 
-
-    _createClass(MasonryItem, [{
+    _createClass(_class, [{
       key: "_insert",
 
       /**
@@ -57541,7 +57943,26 @@ var Coral = (function (exports) {
         } else if (name === '_orderable') {
           this._updateDragAction(value !== null);
         } else {
-          _get(_getPrototypeOf(MasonryItem.prototype), "attributeChangedCallback", this).call(this, name, oldValue, value);
+          _get(_getPrototypeOf(_class.prototype), "attributeChangedCallback", this).call(this, name, oldValue, value);
+        }
+      }
+      /** @ignore */
+
+    }, {
+      key: "_updateCallback",
+      value: function _updateCallback(connected) {
+        _get(_getPrototypeOf(_class.prototype), "_updateCallback", this).call(this, connected);
+
+        if (connected) {
+          this._messenger.connect(); // In case an already connected element is switched to new parent,
+          // we need to ignore the connected callback in that case as well which is correct,
+          // as the item will be connected to new parent and messenger needs to be informed as well parent.
+          // Hence posting connected in update callback.
+
+
+          this._messenger.postMessage('coral-masonry-item:_connected');
+        } else {
+          this._messenger.disconnect();
         }
       }
       /** @ignore */
@@ -57549,21 +57970,19 @@ var Coral = (function (exports) {
     }, {
       key: "connectedCallback",
       value: function connectedCallback() {
-        if (this._skipConnectedCallback()) {
-          return;
-        }
+        this._messenger.connect();
 
-        _get(_getPrototypeOf(MasonryItem.prototype), "connectedCallback", this).call(this); // Inform masonry immediately
+        _get(_getPrototypeOf(_class.prototype), "connectedCallback", this).call(this); // Inform masonry immediately
 
 
-        this.trigger('coral-masonry-item:_connected');
+        this._messenger.postMessage('coral-masonry-item:_connected');
       }
       /** @ignore */
 
     }, {
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(MasonryItem.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$W); // @a11y
 
@@ -57584,11 +58003,7 @@ var Coral = (function (exports) {
     }, {
       key: "disconnectedCallback",
       value: function disconnectedCallback() {
-        if (this.isConnected) {
-          return;
-        }
-
-        _get(_getPrototypeOf(MasonryItem.prototype), "disconnectedCallback", this).call(this); // Handle it in masonry immediately
+        _get(_getPrototypeOf(_class.prototype), "disconnectedCallback", this).call(this); // Handle it in masonry immediately
 
 
         var masonry = this._masonry;
@@ -57596,7 +58011,15 @@ var Coral = (function (exports) {
         if (masonry) {
           masonry._onItemDisconnected(this);
         }
+
+        this._messenger.disconnect();
       }
+    }, {
+      key: "removing",
+      get: function get() {
+        return item.hasAttribute('_removing');
+      } // @compat
+
     }, {
       key: "content",
       get: function get() {
@@ -57612,6 +58035,22 @@ var Coral = (function (exports) {
         }
       }
       /**
+       Specify while disconnecting the item, should it show transition or not.
+       This is useful when replacing large items, this result in delay.
+        @type {Boolean}
+       @default true
+       @private No need to update in public document.
+       */
+
+    }, {
+      key: "showRemoveTransition",
+      get: function get() {
+        return !(this._showRemoveTransition === false);
+      },
+      set: function set(value) {
+        this._showRemoveTransition = transform.booleanAttr(value);
+      }
+      /**
        Whether the item is selected.
         @type {Boolean}
        @default false
@@ -57625,26 +58064,30 @@ var Coral = (function (exports) {
         return this._selected || false;
       },
       set: function set(value) {
-        this._selected = transform.booleanAttr(value);
+        value = transform.booleanAttr(value);
 
-        this._reflectAttribute('selected', this._selected);
+        if (validate.valueMustChange(this._selected, value)) {
+          this._selected = value;
 
-        this.setAttribute('aria-selected', this._selected);
-        this.classList.toggle('is-selected', this._selected);
+          this._reflectAttribute('selected', value);
 
-        this._elements.check[this._selected ? 'setAttribute' : 'removeAttribute']('checked', '');
+          this.setAttribute('aria-selected', value);
+          this.classList.toggle('is-selected', value);
 
-        this.trigger('coral-masonry-item:_selectedchanged');
+          this._elements.check[value ? 'setAttribute' : 'removeAttribute']('checked', '');
+
+          this._messenger.postMessage('coral-masonry-item:_selectedchanged');
+        }
       }
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(MasonryItem), "observedAttributes", this).concat(['selected', '_removing', '_orderable']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['selected', '_removing', '_orderable']);
       }
     }]);
 
-    return MasonryItem;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   var CLASSNAME$X = '_coral-Masonry';
   /**
@@ -57751,16 +58194,16 @@ var Coral = (function (exports) {
    */
 
 
-  var Masonry = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(Masonry, _BaseComponent);
+  var Masonry = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(Masonry);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function Masonry() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, Masonry);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Defaults
 
@@ -57792,9 +58235,8 @@ var Coral = (function (exports) {
         // Selection
         'click coral-masonry-item': '_onItemClick',
         'key:space coral-masonry-item': '_onItemClick',
-        // private
-        'coral-masonry-item:_connected': '_onItemConnected',
-        'coral-masonry-item:_selectedchanged': '_onItemSelectedChanged'
+        // Messenger
+        'coral-masonry-item:_messengerconnected': '_onMessengerConnected'
       }); // Relayout when child elements change or are added/removed
       // Should this mutation observer become a bottleneck, it could be replaced with a resize listener
 
@@ -57822,7 +58264,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(Masonry, [{
+    _createClass(_class, [{
       key: "_onItemSelectedChanged",
       value: function _onItemSelectedChanged(event) {
         event.stopImmediatePropagation();
@@ -58153,8 +58595,10 @@ var Coral = (function (exports) {
 
         this._updateAriaRoleForItems(this.ariaGrid);
 
-        this._updateAriaColumnCountForParent(this.ariaGrid); // Prevent endless observation loop (skip mutations which have been caused by the layout)
+        this._updateAriaColumnCountForParent(this.ariaGrid); // set to false in case forced layouting is done between animation call
 
+
+        this._layoutScheduled = false; // Prevent endless observation loop (skip mutations which have been caused by the layout)
 
         this._observer.takeRecords();
       }
@@ -58215,11 +58659,21 @@ var Coral = (function (exports) {
           });
         }
       }
+    }, {
+      key: "_removeItem",
+      value: function _removeItem(item) {
+        item.removeAttribute('_removing');
+        item._masonry = null;
+
+        this._onItemRemoved(item);
+      }
       /** @private */
 
     }, {
       key: "_onItemDisconnected",
       value: function _onItemDisconnected(item) {
+        var _this7 = this;
+
         // We don't care about transitions if the masonry is not in the body
         if (!document.body.contains(this)) {
           return;
@@ -58230,19 +58684,20 @@ var Coral = (function (exports) {
           return;
         }
 
-        if (!item.hasAttribute('_removing')) {
+        if (!item.hasAttribute('_removing') && item.showRemoveTransition) {
           // Attach again for remove transition
           item.setAttribute('_removing', '');
+          item._ignoreConnectedCallback = true;
           this.appendChild(item);
+          item._ignoreConnectedCallback = false;
           commons.transitionEnd(item, function () {
             item.remove();
+
+            _this7._removeItem(item);
           });
         } // remove transition completed
         else {
-            item.removeAttribute('_removing');
-            item._masonry = null;
-
-            this._onItemRemoved(item);
+            this._removeItem(item);
           }
       }
       /** @private */
@@ -58406,21 +58861,14 @@ var Coral = (function (exports) {
         item._dropPlaceholder = null;
         item._prevDragPos = null;
       }
-      /**
-       Registry for masonry layouts.
-        @type {Object.<string,Layout>}
-       @private
-       @readonly
-       */
-
     }, {
       key: "render",
 
       /** @ignore */
       value: function render() {
-        var _this7 = this;
+        var _this8 = this;
 
-        _get(_getPrototypeOf(Masonry.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$X); // Keep the default behavior when ariaGrid is not enabled
 
@@ -58449,14 +58897,14 @@ var Coral = (function (exports) {
         commons.addResizeListener(this, this._onResize.bind(this)); // Prepare items
 
         this.items.getAll().forEach(function (item) {
-          _this7._prepareItem(item);
+          _this8._prepareItem(item);
         }); // This indicates that the initial items are being attached
 
         this._attaching = true;
         window.requestAnimationFrame(function () {
-          _this7._attaching = false; // Update loaded after all items have been attached
+          _this8._attaching = false; // Update loaded after all items have been attached
 
-          _this7._updateLoaded();
+          _this8._updateLoaded();
         });
       }
       /**
@@ -58744,6 +59192,21 @@ var Coral = (function (exports) {
           this.parentElement.removeAttribute('aria-labelledby');
         }
       }
+    }, {
+      key: "observedMessages",
+      get: function get() {
+        return {
+          'coral-masonry-item:_connected': '_onItemConnected',
+          'coral-masonry-item:_selectedchanged': '_onItemSelectedChanged'
+        };
+      }
+      /**
+       Registry for masonry layouts.
+        @type {Object.<string,Layout>}
+       @private
+       @readonly
+       */
+
     }], [{
       key: "registerLayout",
 
@@ -58789,7 +59252,7 @@ var Coral = (function (exports) {
     }, {
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(Masonry), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
           selectionmode: 'selectionMode',
           ariagrid: 'ariaGrid',
           'aria-label': 'ariaLabel',
@@ -58801,12 +59264,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(Masonry), "observedAttributes", this).concat(['selectionmode', 'layout', 'spacing', 'orderable', 'ariagrid', 'aria-label', 'aria-labelledby']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['selectionmode', 'layout', 'spacing', 'orderable', 'ariagrid', 'aria-label', 'aria-labelledby']);
       }
     }]);
 
-    return Masonry;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -59935,16 +60398,16 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var Multifield = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(Multifield, _BaseComponent);
+  var Multifield = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(Multifield);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function Multifield() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, Multifield);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this);
 
@@ -60020,7 +60483,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(Multifield, [{
+    _createClass(_class, [{
       key: "_handleTemplateSupport",
 
       /** @ignore */
@@ -60475,7 +60938,7 @@ var Coral = (function (exports) {
       value: function render() {
         var _this4 = this;
 
-        _get(_getPrototypeOf(Multifield.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$Y, 'coral-Well'); // a11y
 
@@ -60564,8 +61027,8 @@ var Coral = (function (exports) {
       }
     }]);
 
-    return Multifield;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   var template$E = function anonymous(data_0) {
     var frag = document.createDocumentFragment();
@@ -60619,16 +61082,16 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var MultifieldItem = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(MultifieldItem, _BaseComponent);
+  var MultifieldItem = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(MultifieldItem);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function MultifieldItem() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, MultifieldItem);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Prepare templates
 
@@ -60655,12 +61118,12 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(MultifieldItem, [{
+    _createClass(_class, [{
       key: "render",
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(MultifieldItem.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$Z); // a11y
 
@@ -60754,8 +61217,8 @@ var Coral = (function (exports) {
       }
     }]);
 
-    return MultifieldItem;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -60811,16 +61274,16 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var PanelStack = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(PanelStack, _BaseComponent);
+  var PanelStack = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(PanelStack);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function PanelStack() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, PanelStack);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Attach events
 
@@ -60843,7 +61306,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(PanelStack, [{
+    _createClass(_class, [{
       key: "_onItemSelectedChanged",
 
       /** @private */
@@ -60899,7 +61362,7 @@ var Coral = (function (exports) {
     }, {
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(PanelStack.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$_);
         this.setAttribute('role', 'presentation'); // Don't trigger events once connected
@@ -60950,8 +61413,8 @@ var Coral = (function (exports) {
       }
     }]);
 
-    return PanelStack;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   var CLASSNAME$$ = '_coral-Panel';
   /**
@@ -60962,16 +61425,16 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var Panel = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(Panel, _BaseComponent);
+  var Panel = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(Panel);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function Panel() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, Panel);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Templates
 
@@ -60987,12 +61450,12 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(Panel, [{
+    _createClass(_class, [{
       key: "render",
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(Panel.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$$); // Adds the role to support accessibility when role is not already defined.
 
@@ -61068,12 +61531,12 @@ var Coral = (function (exports) {
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(Panel), "observedAttributes", this).concat(['selected']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['selected']);
       }
     }]);
 
-    return Panel;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -61191,16 +61654,16 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var Progress = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(Progress, _BaseComponent);
+  var Progress = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(Progress);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function Progress() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, Progress);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Prepare templates
 
@@ -61230,7 +61693,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(Progress, [{
+    _createClass(_class, [{
       key: "_toggleLabelVisibility",
 
       /** @ignore */
@@ -61299,14 +61762,14 @@ var Coral = (function (exports) {
           this._oldValue = this._value || 0;
         }
 
-        _get(_getPrototypeOf(Progress.prototype), "attributeChangedCallback", this).call(this, name, oldValue, value);
+        _get(_getPrototypeOf(_class.prototype), "attributeChangedCallback", this).call(this, name, oldValue, value);
       }
       /** @ignore */
 
     }, {
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(Progress.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$10); // Default reflected attributes
 
@@ -61562,7 +62025,7 @@ var Coral = (function (exports) {
     }, {
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(Progress), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
           showpercent: 'showPercent',
           labelposition: 'labelPosition'
         });
@@ -61572,12 +62035,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(Progress), "observedAttributes", this).concat(['value', 'indeterminate', 'size', 'showpercent', 'labelposition']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['value', 'indeterminate', 'size', 'showpercent', 'labelposition']);
       }
     }]);
 
-    return Progress;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -61640,20 +62103,22 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var QuickActionsItem = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(QuickActionsItem, _BaseComponent);
+  var QuickActionsItem = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(QuickActionsItem);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function QuickActionsItem() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, QuickActionsItem);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // QuickActions will add button/anchorbutton references to it
 
-      _this._elements = {};
+      _this._elements = {}; // messenger
+
+      _this._messenger = new Messenger(_assertThisInitialized(_this));
       _this._observer = new MutationObserver(_this._onMutation.bind(_assertThisInitialized(_this)));
 
       _this._observer.observe(_assertThisInitialized(_this), {
@@ -61666,7 +62131,7 @@ var Coral = (function (exports) {
     } // @compat
 
 
-    _createClass(QuickActionsItem, [{
+    _createClass(_class, [{
       key: "_onMutation",
 
       /**
@@ -61675,7 +62140,7 @@ var Coral = (function (exports) {
         @private
        */
       value: function _onMutation() {
-        this.trigger('coral-quickactions-item:_contentchanged');
+        this._messenger.postMessage('coral-quickactions-item:_contentchanged');
       }
       /**
        Returns {@link QuickActionsItem} type options.
@@ -61683,11 +62148,42 @@ var Coral = (function (exports) {
        */
 
     }, {
-      key: "render",
+      key: "_updateCallback",
 
       /** @ignore */
+      value: function _updateCallback(connected) {
+        _get(_getPrototypeOf(_class.prototype), "_updateCallback", this).call(this, connected);
+
+        if (connected) {
+          this._messenger.connect();
+        } else {
+          this._messenger.disconnect();
+        }
+      }
+      /** @ignore */
+
+    }, {
+      key: "connectedCallback",
+      value: function connectedCallback() {
+        this._messenger.connect();
+
+        _get(_getPrototypeOf(_class.prototype), "connectedCallback", this).call(this);
+      }
+      /** @ignore */
+
+    }, {
+      key: "disconnectedCallback",
+      value: function disconnectedCallback() {
+        _get(_getPrototypeOf(_class.prototype), "disconnectedCallback", this).call(this);
+
+        this._messenger.disconnect();
+      }
+      /** @ignore */
+
+    }, {
+      key: "render",
       value: function render() {
-        _get(_getPrototypeOf(QuickActionsItem.prototype), "render", this).call(this); // Default reflected attributes
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this); // Default reflected attributes
 
 
         if (!this._type) {
@@ -61747,17 +62243,15 @@ var Coral = (function (exports) {
         return this._href || '';
       },
       set: function set(value) {
-        var _href = transform.string(value);
+        value = transform.string(value);
 
-        if (this._href === _href) {
-          return;
+        if (validate.valueMustChange(this._href, value)) {
+          this._href = value;
+
+          this._reflectAttribute('href', value);
+
+          this._messenger.postMessage('coral-quickactions-item:_hrefchanged');
         }
-
-        this._href = _href;
-
-        this._reflectAttribute('href', this._href);
-
-        this.trigger('coral-quickactions-item:_hrefchanged');
       }
       /**
        Specifies the name of the icon to be shown in the QuickActions Item. See {@link Icon} for valid icon
@@ -61775,17 +62269,15 @@ var Coral = (function (exports) {
         return this._icon || '';
       },
       set: function set(value) {
-        var _icon = transform.string(value);
+        value = transform.string(value);
 
-        if (this._icon === _icon) {
-          return;
+        if (validate.valueMustChange(this._icon, value)) {
+          this._icon = value;
+
+          this._reflectAttribute('icon', value);
+
+          this._messenger.postMessage('coral-quickactions-item:_iconchanged');
         }
-
-        this._icon = _icon;
-
-        this._reflectAttribute('icon', this._icon);
-
-        this.trigger('coral-quickactions-item:_iconchanged');
       }
       /**
        The type of item that will be used. Setting {@link QuickActionsItemTypeEnum}.ANCHOR will allow users to
@@ -61802,19 +62294,16 @@ var Coral = (function (exports) {
         return this._type || type$1.BUTTON;
       },
       set: function set(value) {
-        var _value = transform.string(value).toLowerCase();
+        value = transform.string(value).toLowerCase();
+        value = validate.enumeration(type$1)(value) && value || type$1.BUTTON;
 
-        var _type = validate.enumeration(type$1)(_value) && _value || type$1.BUTTON;
+        if (validate.valueMustChange(this._type, value)) {
+          this._type = value;
 
-        if (this._type === _type) {
-          return;
+          this._reflectAttribute('type', value);
+
+          this._messenger.postMessage('coral-quickactions-item:_typechanged');
         }
-
-        this._type = _type;
-
-        this._reflectAttribute('type', this._type);
-
-        this.trigger('coral-quickactions-item:_typechanged');
       }
       /**
        Inherited from {@link BaseComponent#trackingElement}.
@@ -61827,7 +62316,7 @@ var Coral = (function (exports) {
         this.textContent && this.textContent.replace(/\s{2,}/g, ' ').trim() || this.icon : this._trackingElement;
       },
       set: function set(value) {
-        _set(_getPrototypeOf(QuickActionsItem.prototype), "trackingElement", value, this, true);
+        _set(_getPrototypeOf(_class.prototype), "trackingElement", value, this, true);
       }
     }], [{
       key: "type",
@@ -61839,12 +62328,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(QuickActionsItem), "observedAttributes", this).concat(['href', 'icon', 'type']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['href', 'icon', 'type']);
       }
     }]);
 
-    return QuickActionsItem;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   var template$G = function anonymous(data_0) {
     var frag = document.createDocumentFragment();
@@ -61955,16 +62444,16 @@ var Coral = (function (exports) {
    @extends {Overlay}
    */
 
-  var QuickActions = /*#__PURE__*/function (_Overlay) {
-    _inherits(QuickActions, _Overlay);
+  var QuickActions = Decorator( /*#__PURE__*/function (_ExtensibleOverlay) {
+    _inherits(_class, _ExtensibleOverlay);
 
-    var _super = _createSuper(QuickActions);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function QuickActions() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, QuickActions);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Override defaults
 
@@ -62008,11 +62497,8 @@ var Coral = (function (exports) {
         // Buttons
         'click > ._coral-QuickActions-item:not([handle="moreButton"])': '_onButtonClick',
         'click > ._coral-QuickActions-item[handle="moreButton"]': '_onMoreButtonClick',
-        // Items
-        'coral-quickactions-item:_contentchanged': '_onItemChange',
-        'coral-quickactions-item:_iconchanged': '_onItemChange',
-        'coral-quickactions-item:_hrefchanged': '_onItemChange',
-        'coral-quickactions-item:_typechanged': '_onItemTypeChange'
+        //Messenger
+        'coral-quickactions-item:_messengerconnected': '_onMessengerConnected'
       };
       var overlayId = _this._elements.overlay.id; // Overlay
 
@@ -62043,7 +62529,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(QuickActions, [{
+    _createClass(_class, [{
       key: "_getButtonWidth",
       value: function _getButtonWidth() {
         if (this.closest('.coral--large')) {
@@ -62075,7 +62561,7 @@ var Coral = (function (exports) {
             newTarget = this.parentNode;
           } else {
             // Delegate to Coral.Overlay for _prev, _next and general selector
-            newTarget = _get(_getPrototypeOf(QuickActions.prototype), "_getTarget", this).call(this, targetValue);
+            newTarget = _get(_getPrototypeOf(_class.prototype), "_getTarget", this).call(this, targetValue);
           }
         }
 
@@ -62308,11 +62794,11 @@ var Coral = (function (exports) {
         }
 
         var buttonListItemParent = this._elements.buttonList;
-        buttonListItemParent.insertBefore(buttonListItem, buttonListItemParent.children[index]);
         buttonListItem.tabIndex = -1;
         buttonListItem.content.innerHTML = itemData.htmlContent;
         buttonListItem.icon = itemData.icon;
         buttonListItem.setAttribute('role', 'menuitem');
+        buttonListItemParent.insertBefore(buttonListItem, buttonListItemParent.children[index]);
         item._elements.button = button;
         item._elements.buttonListItem = buttonListItem;
         buttonListItem._elements.quickActionsItem = item;
@@ -62513,7 +62999,7 @@ var Coral = (function (exports) {
 
         this._timeout = window.setTimeout(function () {
           if (_this2._isTop) {
-            _get(_getPrototypeOf(QuickActions.prototype), "_handleEscape", _this2).call(_this2, event);
+            _get(_getPrototypeOf(_class.prototype), "_handleEscape", _this2).call(_this2, event);
           }
 
           _this2._isTop = undefined;
@@ -62904,14 +63390,17 @@ var Coral = (function (exports) {
       key: "_onItemTypeChange",
       value: function _onItemTypeChange(event) {
         // stops propagation so that this event remains internal to the component
-        event.stopImmediatePropagation();
-        var item = event.target;
+        event.stopImmediatePropagation(); // delay this execution while opening quickaction to avoid performance delay
 
-        this._removeItemElements(item);
+        if (this._openedBefore || this.open) {
+          var item = event.target;
 
-        this._attachItem(item);
+          this._removeItemElements(item);
 
-        this._layout();
+          this._attachItem(item);
+
+          this._layout();
+        }
       }
       /** @ignore */
 
@@ -62981,11 +63470,11 @@ var Coral = (function (exports) {
 
     }, {
       key: "reposition",
-      value: function reposition() {
+      value: function reposition(forceReposition) {
         // Override to support placement.CENTER
         this._toggleCenterPlacement(true);
 
-        _get(_getPrototypeOf(QuickActions.prototype), "reposition", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "reposition", this).call(this, forceReposition);
 
         this._toggleCenterPlacement(false);
 
@@ -63011,7 +63500,7 @@ var Coral = (function (exports) {
 
       /** @ignore */
       value: function connectedCallback() {
-        _get(_getPrototypeOf(QuickActions.prototype), "connectedCallback", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "connectedCallback", this).call(this);
 
         var overlay = this._elements.overlay; // Cannot be open by default when rendered
 
@@ -63028,7 +63517,7 @@ var Coral = (function (exports) {
       value: function render() {
         var _this5 = this;
 
-        _get(_getPrototypeOf(QuickActions.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$11); // Define QuickActions as a menu
 
@@ -63044,17 +63533,21 @@ var Coral = (function (exports) {
 
         var frag = document.createDocumentFragment();
         frag.appendChild(this._elements.moreButton);
-        frag.appendChild(this._elements.overlay); // Link target
+        frag.appendChild(this._elements.overlay); // avoid popper initialisation if popper neither exist nor overlay opened.
+
+        this._elements.overlay._avoidPopperInit = this._elements.overlay.open || this._elements.overlay._popper ? false : true; // Link target
 
         this._elements.overlay.target = this._elements.moreButton;
-        this.appendChild(frag);
+        this.appendChild(frag); // set this to false after overlay has been connected to avoid connected callback target setting
+
+        delete this._elements.overlay._avoidPopperInit;
       }
       /** @ignore */
 
     }, {
       key: "disconnectedCallback",
       value: function disconnectedCallback() {
-        _get(_getPrototypeOf(QuickActions.prototype), "disconnectedCallback", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "disconnectedCallback", this).call(this);
 
         var overlay = this._elements.overlay; // In case it was moved out don't forget to remove it
 
@@ -63121,7 +63614,7 @@ var Coral = (function (exports) {
     }, {
       key: "placement",
       get: function get() {
-        return _get(_getPrototypeOf(QuickActions.prototype), "placement", this);
+        return _get(_getPrototypeOf(_class.prototype), "placement", this);
       },
       set: function set(value) {
         value = transform.string(value).toLowerCase();
@@ -63139,10 +63632,10 @@ var Coral = (function (exports) {
     }, {
       key: "interaction",
       get: function get() {
-        return _get(_getPrototypeOf(QuickActions.prototype), "interaction", this);
+        return _get(_getPrototypeOf(_class.prototype), "interaction", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(QuickActions.prototype), "interaction", value, this, true);
+        _set(_getPrototypeOf(_class.prototype), "interaction", value, this, true);
 
         if (this.interaction === interaction$3.ON) {
           this._addTargetEventListeners();
@@ -63157,19 +63650,23 @@ var Coral = (function (exports) {
     }, {
       key: "target",
       get: function get() {
-        return _get(_getPrototypeOf(QuickActions.prototype), "target", this);
+        return _get(_getPrototypeOf(_class.prototype), "target", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(QuickActions.prototype), "target", value, this, true);
+        // avoid popper initialization while connecting for first time and not opened.
+        this._avoidPopperInit = this.open || this._popper ? false : true;
+
+        _set(_getPrototypeOf(_class.prototype), "target", value, this, true);
 
         var targetElement = this._getTarget(value);
 
-        var targetHasChanged = targetElement !== this._previousTarget;
+        var prevTargetElement = this._previousTarget;
+        var targetHasChanged = targetElement !== prevTargetElement;
 
         if (targetElement && targetHasChanged) {
           // Remove listeners from the previous target
-          if (this._previousTarget) {
-            var previousTarget = this._getTarget(this._previousTarget);
+          if (prevTargetElement) {
+            var previousTarget = this._getTarget(prevTargetElement);
 
             if (previousTarget) {
               this._removeTargetEventListeners(previousTarget);
@@ -63180,16 +63677,28 @@ var Coral = (function (exports) {
           } // Set up listeners for the new target
 
 
-          this._addTargetEventListeners(); // Mark the target as owning a popup
+          this._addTargetEventListeners();
 
-
-          targetElement.setAttribute('aria-haspopup', 'true');
           var ariaOwns = targetElement.getAttribute('aria-owns');
           ariaOwns = ariaOwns && ariaOwns.length ? "".concat(ariaOwns.trim(), "  ").concat(this.id) : this.id;
-          targetElement.setAttribute('aria-owns', ariaOwns); // Cache for use as previous target
+          targetElement.setAttribute('aria-owns', ariaOwns); // Mark the target as owning a popup
+
+          targetElement.setAttribute('aria-haspopup', 'true'); // Cache for use as previous target
 
           this._previousTarget = targetElement;
         }
+
+        delete this._avoidPopperInit;
+      }
+    }, {
+      key: "observedMessages",
+      get: function get() {
+        return {
+          'coral-quickactions-item:_contentchanged': '_onItemChange',
+          'coral-quickactions-item:_iconchanged': '_onItemChange',
+          'coral-quickactions-item:_hrefchanged': '_onItemChange',
+          'coral-quickactions-item:_typechanged': '_onItemTypeChange'
+        };
       }
       /**
        Inherited from {@link Overlay#open}.
@@ -63198,7 +63707,7 @@ var Coral = (function (exports) {
     }, {
       key: "open",
       get: function get() {
-        return _get(_getPrototypeOf(QuickActions.prototype), "open", this);
+        return _get(_getPrototypeOf(_class.prototype), "open", this);
       },
       set: function set(value) {
         var _this6 = this;
@@ -63209,7 +63718,7 @@ var Coral = (function (exports) {
           this.returnFocusTo(document.activeElement);
         }
 
-        _set(_getPrototypeOf(QuickActions.prototype), "open", value, this, true);
+        _set(_getPrototypeOf(_class.prototype), "open", value, this, true);
 
         this._openedOnce = true; // Position once we can read items layout in the next frame
 
@@ -63257,12 +63766,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(QuickActions), "observedAttributes", this).concat(['threshold']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['threshold']);
       }
     }]);
 
-    return QuickActions;
-  }(Overlay);
+    return _class;
+  }(ExtensibleOverlay));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -64205,16 +64714,16 @@ var Coral = (function (exports) {
    @extends {BaseFormField}
    */
 
-  var Search = /*#__PURE__*/function (_BaseFormField) {
-    _inherits(Search, _BaseFormField);
+  var Search = Decorator( /*#__PURE__*/function (_BaseFormField) {
+    _inherits(_class, _BaseFormField);
 
-    var _super = _createSuper(Search);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function Search() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, Search);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this);
 
@@ -64247,7 +64756,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(Search, [{
+    _createClass(_class, [{
       key: "_triggerInputEvent",
 
       /** @ignore */
@@ -64337,7 +64846,7 @@ var Coral = (function (exports) {
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(Search.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$15); // Default reflected attributes
 
@@ -64481,10 +64990,10 @@ var Coral = (function (exports) {
     }, {
       key: "labelledBy",
       get: function get() {
-        return _get(_getPrototypeOf(Search.prototype), "labelledBy", this);
+        return _get(_getPrototypeOf(_class.prototype), "labelledBy", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(Search.prototype), "labelledBy", value, this, true); // in case the user focuses the buttons, he will still get a notion of the usage of the component
+        _set(_getPrototypeOf(_class.prototype), "labelledBy", value, this, true); // in case the user focuses the buttons, he will still get a notion of the usage of the component
 
 
         this[this.labelledBy ? 'setAttribute' : 'removeAttribute']('aria-labelledby', this.labelledBy);
@@ -64569,10 +65078,10 @@ var Coral = (function (exports) {
     }, {
       key: "invalid",
       get: function get() {
-        return _get(_getPrototypeOf(Search.prototype), "invalid", this);
+        return _get(_getPrototypeOf(_class.prototype), "invalid", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(Search.prototype), "invalid", value, this, true);
+        _set(_getPrototypeOf(_class.prototype), "invalid", value, this, true);
       }
     }], [{
       key: "variant",
@@ -64582,7 +65091,7 @@ var Coral = (function (exports) {
     }, {
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(Search), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
           maxlength: 'maxLength'
         });
       }
@@ -64591,12 +65100,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(Search), "observedAttributes", this).concat(['placeholder', 'icon', 'variant', 'maxlength']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['placeholder', 'icon', 'variant', 'maxlength']);
       }
     }]);
 
-    return Search;
-  }(BaseFormField(BaseComponent(HTMLElement)));
+    return _class;
+  }(BaseFormField(BaseComponent(HTMLElement))));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -67860,16 +68369,16 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var SideNav = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(SideNav, _BaseComponent);
+  var SideNav = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(SideNav);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function SideNav() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, SideNav);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Attach events
 
@@ -67909,7 +68418,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(SideNav, [{
+    _createClass(_class, [{
       key: "_onItemClick",
       value: function _onItemClick(event) {
         var item = event.matchedTarget;
@@ -68098,7 +68607,7 @@ var Coral = (function (exports) {
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(SideNav.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1j); // Default reflected attributes
 
@@ -68204,12 +68713,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(SideNav), "observedAttributes", this).concat(['variant']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['variant']);
       }
     }]);
 
-    return SideNav;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   var template$T = function anonymous(data_0) {
     var frag = document.createDocumentFragment();
@@ -68251,16 +68760,16 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var SideNavItem = /*#__PURE__*/function (_BaseLabellable) {
-    _inherits(SideNavItem, _BaseLabellable);
+  var SideNavItem = Decorator( /*#__PURE__*/function (_BaseLabellable) {
+    _inherits(_class, _BaseLabellable);
 
-    var _super = _createSuper(SideNavItem);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function SideNavItem() {
+    function _class() {
       var _thisSuper, _this;
 
-      _classCallCheck(this, SideNavItem);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Prepare templates
 
@@ -68269,7 +68778,7 @@ var Coral = (function (exports) {
       };
       template$T.call(_this._elements);
 
-      _get((_thisSuper = _assertThisInitialized(_this), _getPrototypeOf(SideNavItem.prototype)), "_observeLabel", _thisSuper).call(_thisSuper);
+      _get((_thisSuper = _assertThisInitialized(_this), _getPrototypeOf(_class.prototype)), "_observeLabel", _thisSuper).call(_thisSuper);
 
       return _this;
     }
@@ -68280,12 +68789,12 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(SideNavItem, [{
+    _createClass(_class, [{
       key: "render",
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(SideNavItem.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1k); // Create a fragment
 
@@ -68346,7 +68855,7 @@ var Coral = (function (exports) {
         this._elements.icon.icon = value;
         this._elements.icon.hidden = this._elements.icon.icon === '';
 
-        _get(_getPrototypeOf(SideNavItem.prototype), "_toggleIconAriaHidden", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "_toggleIconAriaHidden", this).call(this);
       }
       /**
        Whether the item is selected.
@@ -68381,12 +68890,12 @@ var Coral = (function (exports) {
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(SideNavItem), "observedAttributes", this).concat(['selected', 'icon']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['selected', 'icon']);
       }
     }]);
 
-    return SideNavItem;
-  }(BaseLabellable(BaseComponent(HTMLAnchorElement)));
+    return _class;
+  }(BaseLabellable(BaseComponent(HTMLAnchorElement))));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -68441,18 +68950,18 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var SideNavLevel = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(SideNavLevel, _BaseComponent);
+  var SideNavLevel = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(SideNavLevel);
+    var _super = _createSuper(_class);
 
-    function SideNavLevel() {
-      _classCallCheck(this, SideNavLevel);
+    function _class() {
+      _classCallCheck(this, _class);
 
       return _super.apply(this, arguments);
     }
 
-    _createClass(SideNavLevel, [{
+    _createClass(_class, [{
       key: "attributeChangedCallback",
 
       /** @ignore */
@@ -68462,47 +68971,45 @@ var Coral = (function (exports) {
         if (name === '_expanded') {
           var isExpanded = value === 'on';
 
-          if (oldValue === value) {
-            return;
-          }
+          if (oldValue !== value) {
+            this.classList.toggle('is-expanded', isExpanded); // Do animation in next frame to avoid a forced reflow
 
-          this.classList.toggle('is-expanded', isExpanded); // Do animation in next frame to avoid a forced reflow
+            window.requestAnimationFrame(function () {
+              // Don't animate on initialization
+              if (_this._animate) {
+                // Remove height as we want the level to naturally grow if content is added later
+                commons.transitionEnd(_this, function () {
+                  if (isExpanded) {
+                    _this.style.height = '';
+                  } else {
+                    _this.hidden = true;
+                  }
+                }); // Force height to enable transition
 
-          window.requestAnimationFrame(function () {
-            // Don't animate on initialization
-            if (_this._animate) {
-              // Remove height as we want the level to naturally grow if content is added later
-              commons.transitionEnd(_this, function () {
-                if (isExpanded) {
-                  _this.style.height = '';
+                if (!isExpanded) {
+                  _this.style.height = "".concat(_this.scrollHeight, "px");
                 } else {
+                  _this.hidden = false;
+                } // We read the offset height to force a reflow, this is needed to start the transition between absolute values
+                // https://blog.alexmaccaw.com/css-transitions under Redrawing
+                // eslint-disable-next-line no-unused-vars
+
+
+                var offsetHeight = _this.offsetHeight;
+                _this.style.height = isExpanded ? "".concat(_this.scrollHeight, "px") : 0;
+              } else {
+                // Make sure it's animated next time
+                _this._animate = true; // Hide it on initialization if closed
+
+                if (!isExpanded) {
+                  _this.style.height = 0;
                   _this.hidden = true;
                 }
-              }); // Force height to enable transition
-
-              if (!isExpanded) {
-                _this.style.height = "".concat(_this.scrollHeight, "px");
-              } else {
-                _this.hidden = false;
-              } // We read the offset height to force a reflow, this is needed to start the transition between absolute values
-              // https://blog.alexmaccaw.com/css-transitions under Redrawing
-              // eslint-disable-next-line no-unused-vars
-
-
-              var offsetHeight = _this.offsetHeight;
-              _this.style.height = isExpanded ? "".concat(_this.scrollHeight, "px") : 0;
-            } else {
-              // Make sure it's animated next time
-              _this._animate = true; // Hide it on initialization if closed
-
-              if (!isExpanded) {
-                _this.style.height = 0;
-                _this.hidden = true;
               }
-            }
-          });
+            });
+          }
         } else {
-          _get(_getPrototypeOf(SideNavLevel.prototype), "attributeChangedCallback", this).call(this, name, oldValue, value);
+          _get(_getPrototypeOf(_class.prototype), "attributeChangedCallback", this).call(this, name, oldValue, value);
         }
       }
       /** @ignore */
@@ -68510,7 +69017,7 @@ var Coral = (function (exports) {
     }, {
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(SideNavLevel.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1l); // a11y
 
@@ -68521,12 +69028,12 @@ var Coral = (function (exports) {
 
       /** @ignore */
       get: function get() {
-        return _get(_getPrototypeOf(SideNavLevel), "observedAttributes", this).concat(['_expanded']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['_expanded']);
       }
     }]);
 
-    return SideNavLevel;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -68586,16 +69093,16 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var SplitButton = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(SplitButton, _BaseComponent);
+  var SplitButton = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(SplitButton);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function SplitButton() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, SplitButton);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Watch for inner button changes
 
@@ -68623,7 +69130,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(SplitButton, [{
+    _createClass(_class, [{
       key: "_getInnerButtons",
       value: function _getInnerButtons() {
         var action = this.querySelector('[coral-splitbutton-action]');
@@ -68695,7 +69202,7 @@ var Coral = (function (exports) {
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(SplitButton.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1m); // a11y
 
@@ -68733,12 +69240,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(SplitButton), "observedAttributes", this).concat(['variant']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['variant']);
       }
     }]);
 
-    return SplitButton;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -68833,16 +69340,16 @@ var Coral = (function (exports) {
    */
 
 
-  var Status = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(Status, _BaseComponent);
+  var Status = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(Status);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function Status() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, Status);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Prepare templates
 
@@ -68861,12 +69368,12 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(Status, [{
+    _createClass(_class, [{
       key: "render",
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(Status.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1n); // Default reflected attributes
 
@@ -69022,12 +69529,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(Status), "observedAttributes", this).concat(['variant', 'color', 'disabled']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['variant', 'color', 'disabled']);
       }
     }]);
 
-    return Status;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -69145,16 +69652,16 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var StepList = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(StepList, _BaseComponent);
+  var StepList = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(StepList);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function StepList() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, StepList);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this);
 
@@ -69192,7 +69699,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(StepList, [{
+    _createClass(_class, [{
       key: "_syncItemTabIndex",
 
       /** @private */
@@ -69454,7 +69961,7 @@ var Coral = (function (exports) {
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(StepList.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1o); // Default reflected attributes
 
@@ -69708,12 +70215,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(StepList), "observedAttributes", this).concat(['target', 'size', 'interaction']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['target', 'size', 'interaction']);
       }
     }]);
 
-    return StepList;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   var template$U = function anonymous(data_0) {
     var frag = document.createDocumentFragment();
@@ -69776,16 +70283,16 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var Step = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(Step, _BaseComponent);
+  var Step = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(Step);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function Step() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, Step);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Fetch or create content zone
 
@@ -69802,7 +70309,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(Step, [{
+    _createClass(_class, [{
       key: "_isHybrid",
       value: function _isHybrid() {
         var label = this.label;
@@ -69868,7 +70375,7 @@ var Coral = (function (exports) {
 
       /** @ignore */
       value: function connectedCallback() {
-        _get(_getPrototypeOf(Step.prototype), "connectedCallback", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "connectedCallback", this).call(this);
 
         var overlay = this._elements.overlay; // Cannot be open by default when rendered
 
@@ -69883,7 +70390,7 @@ var Coral = (function (exports) {
     }, {
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(Step.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1p); // Generate a unique ID for the Step panel if one isn't already present
         // This will be used for accessibility purposes
@@ -69944,7 +70451,7 @@ var Coral = (function (exports) {
     }, {
       key: "disconnectedCallback",
       value: function disconnectedCallback() {
-        _get(_getPrototypeOf(Step.prototype), "disconnectedCallback", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "disconnectedCallback", this).call(this);
 
         var overlay = this._elements.overlay; // In case it was moved out don't forget to remove it
 
@@ -70173,7 +70680,7 @@ var Coral = (function (exports) {
         (this.label || this).textContent.replace(/\s{2,}/g, ' ').trim() : this._trackingElement;
       },
       set: function set(value) {
-        _set(_getPrototypeOf(Step.prototype), "trackingElement", value, this, true);
+        _set(_getPrototypeOf(_class.prototype), "trackingElement", value, this, true);
       }
     }, {
       key: "_contentZones",
@@ -70187,7 +70694,7 @@ var Coral = (function (exports) {
     }], [{
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(Step), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
           labelledby: 'labelledBy',
           describedby: 'describedBy'
         });
@@ -70197,12 +70704,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(Step), "observedAttributes", this).concat(['selected', 'target', 'disabled', 'labelled', 'labelledby', 'describedby']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['selected', 'target', 'disabled', 'labelled', 'labelledby', 'describedby']);
       }
     }]);
 
-    return Step;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -70492,16 +70999,16 @@ var Coral = (function (exports) {
    @extends {BaseFormField}
    */
 
-  var Switch = /*#__PURE__*/function (_BaseFormField) {
-    _inherits(Switch, _BaseFormField);
+  var Switch = Decorator( /*#__PURE__*/function (_BaseFormField) {
+    _inherits(_class, _BaseFormField);
 
-    var _super = _createSuper(Switch);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function Switch() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, Switch);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Make sure the events from the FormField are attached
 
@@ -70545,7 +71052,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(Switch, [{
+    _createClass(_class, [{
       key: "_hideLabelIfEmpty",
 
       /**
@@ -70595,7 +71102,7 @@ var Coral = (function (exports) {
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(Switch.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1q); // Create a fragment
 
@@ -70769,10 +71276,10 @@ var Coral = (function (exports) {
     }, {
       key: "labelled",
       get: function get() {
-        return _get(_getPrototypeOf(Switch.prototype), "labelled", this);
+        return _get(_getPrototypeOf(_class.prototype), "labelled", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(Switch.prototype), "labelled", value, this, true);
+        _set(_getPrototypeOf(_class.prototype), "labelled", value, this, true);
 
         this._hideLabelIfEmpty();
       }
@@ -70806,12 +71313,12 @@ var Coral = (function (exports) {
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(Switch), "observedAttributes", this).concat(['checked']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['checked']);
       }
     }]);
 
-    return Switch;
-  }(BaseFormField(BaseComponent(HTMLElement)));
+    return _class;
+  }(BaseFormField(BaseComponent(HTMLElement))));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -71264,18 +71771,18 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var TableColumn = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(TableColumn, _BaseComponent);
+  var TableColumn = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(TableColumn);
+    var _super = _createSuper(_class);
 
-    function TableColumn() {
-      _classCallCheck(this, TableColumn);
+    function _class() {
+      _classCallCheck(this, _class);
 
       return _super.apply(this, arguments);
     }
 
-    _createClass(TableColumn, [{
+    _createClass(_class, [{
       key: "_sort",
 
       /** @private */
@@ -71315,7 +71822,7 @@ var Coral = (function (exports) {
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(TableColumn.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1r); // Default reflected attributes
 
@@ -71586,7 +72093,7 @@ var Coral = (function (exports) {
     }, {
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(TableColumn), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
           fixedwidth: 'fixedWidth',
           sortabletype: 'sortableType',
           sortabledirection: 'sortableDirection'
@@ -71597,12 +72104,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(TableColumn), "observedAttributes", this).concat(['fixedwidth', 'hidden', 'alignment', 'orderable', 'sortable', 'sortabletype', 'sortabledirection']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['fixedwidth', 'hidden', 'alignment', 'orderable', 'sortable', 'sortabletype', 'sortabledirection']);
       }
     }]);
 
-    return TableColumn;
-  }(BaseComponent(HTMLTableColElement));
+    return _class;
+  }(BaseComponent(HTMLTableColElement)));
 
   var CLASSNAME$1s = '_coral-Table-cell';
   /**
@@ -71614,18 +72121,18 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var TableCell = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(TableCell, _BaseComponent);
+  var TableCell = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(TableCell);
+    var _super = _createSuper(_class);
 
-    function TableCell() {
-      _classCallCheck(this, TableCell);
+    function _class() {
+      _classCallCheck(this, _class);
 
       return _super.apply(this, arguments);
     }
 
-    _createClass(TableCell, [{
+    _createClass(_class, [{
       key: "_setHandle",
 
       /** @private */
@@ -71701,7 +72208,7 @@ var Coral = (function (exports) {
         if (name === '_selectable') {
           this._toggleSelectable(value !== null);
         } else {
-          _get(_getPrototypeOf(TableCell.prototype), "attributeChangedCallback", this).call(this, name, oldValue, value);
+          _get(_getPrototypeOf(_class.prototype), "attributeChangedCallback", this).call(this, name, oldValue, value);
         }
       }
       /** @ignore */
@@ -71709,7 +72216,7 @@ var Coral = (function (exports) {
     }, {
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(TableCell.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1s);
         this.id = this.id || commons.getUID();
@@ -71791,12 +72298,12 @@ var Coral = (function (exports) {
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(TableCell), "observedAttributes", this).concat(['selected', '_selectable']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['selected', '_selectable']);
       }
     }]);
 
-    return TableCell;
-  }(BaseComponent(HTMLTableCellElement));
+    return _class;
+  }(BaseComponent(HTMLTableCellElement)));
 
   var template$W = function anonymous(data_0) {
     var frag = document.createDocumentFragment();
@@ -71821,16 +72328,16 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var TableRow = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(TableRow, _BaseComponent);
+  var TableRow = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(TableRow);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function TableRow() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, TableRow);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Templates
 
@@ -71865,7 +72372,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(TableRow, [{
+    _createClass(_class, [{
       key: "_triggerChangeEvent",
       value: function _triggerChangeEvent() {
         var selectedItems = this.selectedItems;
@@ -72212,7 +72719,7 @@ var Coral = (function (exports) {
         } else if (name === '_lockable') {
           this._toggleLockable(value !== null);
         } else {
-          _get(_getPrototypeOf(TableRow.prototype), "attributeChangedCallback", this).call(this, name, oldValue, value);
+          _get(_getPrototypeOf(_class.prototype), "attributeChangedCallback", this).call(this, name, oldValue, value);
         }
       }
       /** @ignore */
@@ -72220,7 +72727,7 @@ var Coral = (function (exports) {
     }, {
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(TableRow.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1t);
 
@@ -72394,12 +72901,12 @@ var Coral = (function (exports) {
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(TableRow), "observedAttributes", this).concat(['locked', 'selected', 'multiple', 'selectable', '_selectable', '_orderable', '_lockable']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['locked', 'selected', 'multiple', 'selectable', '_selectable', '_orderable', '_lockable']);
       }
     }]);
 
-    return TableRow;
-  }(BaseComponent(HTMLTableRowElement));
+    return _class;
+  }(BaseComponent(HTMLTableRowElement)));
 
   // divider changes
 
@@ -72530,16 +73037,16 @@ var Coral = (function (exports) {
    @extends {BaseTableSection}
    */
 
-  var TableHead = /*#__PURE__*/function (_BaseTableSection) {
-    _inherits(TableHead, _BaseTableSection);
+  var TableHead = Decorator( /*#__PURE__*/function (_BaseTableSection) {
+    _inherits(_class, _BaseTableSection);
 
-    var _super = _createSuper(TableHead);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function TableHead() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, TableHead);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this);
 
@@ -72559,12 +73066,12 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(TableHead, [{
+    _createClass(_class, [{
       key: "render",
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(TableHead.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1u);
       }
@@ -72602,12 +73109,12 @@ var Coral = (function (exports) {
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(TableHead), "observedAttributes", this).concat(['sticky']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['sticky']);
       }
     }]);
 
-    return TableHead;
-  }(BaseTableSection(BaseComponent(HTMLTableSectionElement)));
+    return _class;
+  }(BaseTableSection(BaseComponent(HTMLTableSectionElement))));
 
   var CLASSNAME$1v = '_coral-Table-body';
   /**
@@ -72620,16 +73127,16 @@ var Coral = (function (exports) {
    @extends {BaseTableSection}
    */
 
-  var TableBody = /*#__PURE__*/function (_BaseTableSection) {
-    _inherits(TableBody, _BaseTableSection);
+  var TableBody = Decorator( /*#__PURE__*/function (_BaseTableSection) {
+    _inherits(_class, _BaseTableSection);
 
-    var _super = _createSuper(TableBody);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function TableBody() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, TableBody);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this);
 
@@ -72640,10 +73147,10 @@ var Coral = (function (exports) {
     /** @ignore */
 
 
-    _createClass(TableBody, [{
+    _createClass(_class, [{
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(TableBody.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1v);
 
@@ -72665,8 +73172,8 @@ var Coral = (function (exports) {
 
     }]);
 
-    return TableBody;
-  }(BaseTableSection(BaseComponent(HTMLTableSectionElement)));
+    return _class;
+  }(BaseTableSection(BaseComponent(HTMLTableSectionElement))));
 
   var CLASSNAME$1w = '_coral-Table-foot';
   /**
@@ -72679,30 +73186,30 @@ var Coral = (function (exports) {
    @extends {BaseTableSection}
    */
 
-  var TableFoot = /*#__PURE__*/function (_BaseTableSection) {
-    _inherits(TableFoot, _BaseTableSection);
+  var TableFoot = Decorator( /*#__PURE__*/function (_BaseTableSection) {
+    _inherits(_class, _BaseTableSection);
 
-    var _super = _createSuper(TableFoot);
+    var _super = _createSuper(_class);
 
-    function TableFoot() {
-      _classCallCheck(this, TableFoot);
+    function _class() {
+      _classCallCheck(this, _class);
 
       return _super.apply(this, arguments);
     }
 
-    _createClass(TableFoot, [{
+    _createClass(_class, [{
       key: "render",
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(TableFoot.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1w);
       }
     }]);
 
-    return TableFoot;
-  }(BaseTableSection(BaseComponent(HTMLTableSectionElement)));
+    return _class;
+  }(BaseTableSection(BaseComponent(HTMLTableSectionElement))));
 
   var template$X = function anonymous(data_0) {
     var frag = document.createDocumentFragment();
@@ -72797,16 +73304,16 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var Table = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(Table, _BaseComponent);
+  var Table = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(Table);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function Table() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, Table);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Templates
 
@@ -72912,7 +73419,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(Table, [{
+    _createClass(_class, [{
       key: "_onSelectAll",
 
       /** @private */
@@ -75021,7 +75528,7 @@ var Coral = (function (exports) {
       value: function render() {
         var _this9 = this;
 
-        _get(_getPrototypeOf(Table.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1x); // Wrapper should have role="presentation" because it wraps another table
 
@@ -75599,7 +76106,7 @@ var Coral = (function (exports) {
     }, {
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(Table), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
           labelledby: 'labelledBy'
         });
       }
@@ -75608,12 +76115,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(Table), "observedAttributes", this).concat(['variant', 'selectable', 'orderable', 'labelled', 'labelledby', 'multiple', 'lockable']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['variant', 'selectable', 'orderable', 'labelled', 'labelledby', 'multiple', 'lockable']);
       }
     }]);
 
-    return Table;
-  }(BaseComponent(HTMLTableElement));
+    return _class;
+  }(BaseComponent(HTMLTableElement)));
 
   var CLASSNAME$1y = '_coral-Table-headerCell';
   /**
@@ -75625,16 +76132,16 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var TableHeaderCell = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(TableHeaderCell, _BaseComponent);
+  var TableHeaderCell = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(TableHeaderCell);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function TableHeaderCell() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, TableHeaderCell);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Templates
 
@@ -75658,7 +76165,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(TableHeaderCell, [{
+    _createClass(_class, [{
       key: "_handleMutations",
 
       /** @private */
@@ -75670,7 +76177,7 @@ var Coral = (function (exports) {
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(TableHeaderCell.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1y); // Fetch or create the content zone element
 
@@ -75715,8 +76222,8 @@ var Coral = (function (exports) {
       }
     }]);
 
-    return TableHeaderCell;
-  }(BaseComponent(HTMLTableCellElement));
+    return _class;
+  }(BaseComponent(HTMLTableCellElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -75856,16 +76363,16 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var Tab = /*#__PURE__*/function (_BaseLabellable) {
-    _inherits(Tab, _BaseLabellable);
+  var Tab = Decorator( /*#__PURE__*/function (_BaseLabellable) {
+    _inherits(_class, _BaseLabellable);
 
-    var _super = _createSuper(Tab);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function Tab() {
+    function _class() {
       var _thisSuper, _this;
 
-      _classCallCheck(this, Tab);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Templates
 
@@ -75883,7 +76390,7 @@ var Coral = (function (exports) {
           icon.size = _this._elements.label.textContent.trim().length ? Icon.size.EXTRA_SMALL : Icon.size.SMALL;
         }
 
-        _get((_thisSuper = _assertThisInitialized(_this), _getPrototypeOf(Tab.prototype)), "_toggleIconAriaHidden", _thisSuper).call(_thisSuper);
+        _get((_thisSuper = _assertThisInitialized(_this), _getPrototypeOf(_class.prototype)), "_toggleIconAriaHidden", _thisSuper).call(_thisSuper);
 
         _this.trigger('coral-tab:_sizechanged');
       }); // Watch for changes to the label element
@@ -75903,7 +76410,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(Tab, [{
+    _createClass(_class, [{
       key: "_toggleEllipsis",
       value: function _toggleEllipsis() {
         var _this2 = this;
@@ -75964,7 +76471,7 @@ var Coral = (function (exports) {
 
       /** @ignore */
       value: function connectedCallback() {
-        _get(_getPrototypeOf(Tab.prototype), "connectedCallback", this).call(this); // Query the tab target once the tab item is inserted in the DOM
+        _get(_getPrototypeOf(_class.prototype), "connectedCallback", this).call(this); // Query the tab target once the tab item is inserted in the DOM
 
 
         if (this.selected) {
@@ -75976,7 +76483,7 @@ var Coral = (function (exports) {
     }, {
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(Tab.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1z); // adds the role to support accessibility
 
@@ -76061,7 +76568,7 @@ var Coral = (function (exports) {
               iconElement.size = Icon.size.SMALL;
             }
 
-            _get(_getPrototypeOf(Tab.prototype), "_toggleIconAriaHidden", this).call(this);
+            _get(_getPrototypeOf(_class.prototype), "_toggleIconAriaHidden", this).call(this);
 
             this.insertBefore(iconElement, this.firstChild);
             this.trigger('coral-tab:_sizechanged');
@@ -76199,7 +76706,7 @@ var Coral = (function (exports) {
         (this.label || this).textContent.replace(/\s{2,}/g, ' ').trim() : this._trackingElement;
       },
       set: function set(value) {
-        _set(_getPrototypeOf(Tab.prototype), "trackingElement", value, this, true);
+        _set(_getPrototypeOf(_class.prototype), "trackingElement", value, this, true);
       }
     }, {
       key: "_contentZones",
@@ -76213,12 +76720,12 @@ var Coral = (function (exports) {
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(Tab), "observedAttributes", this).concat(['selected', 'disabled', 'icon', 'invalid', 'target']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['selected', 'disabled', 'icon', 'invalid', 'target']);
       }
     }]);
 
-    return Tab;
-  }(BaseLabellable(BaseComponent(HTMLElement)));
+    return _class;
+  }(BaseLabellable(BaseComponent(HTMLElement))));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -76845,16 +77352,16 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var TabView = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(TabView, _BaseComponent);
+  var TabView = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(TabView);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function TabView() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, TabView);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Prepare templates
 
@@ -76884,7 +77391,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(TabView, [{
+    _createClass(_class, [{
       key: "_onTabListChange",
 
       /**
@@ -76928,7 +77435,7 @@ var Coral = (function (exports) {
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(TabView.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1B); // Default reflected attributes
 
@@ -77038,12 +77545,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(TabView), "observedAttributes", this).concat(['orientation']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['orientation']);
       }
     }]);
 
-    return TabView;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -77210,16 +77717,16 @@ var Coral = (function (exports) {
    */
 
 
-  var Toast = /*#__PURE__*/function (_BaseOverlay) {
-    _inherits(Toast, _BaseOverlay);
+  var Toast = Decorator( /*#__PURE__*/function (_BaseOverlay) {
+    _inherits(_class, _BaseOverlay);
 
-    var _super = _createSuper(Toast);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function Toast() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, Toast);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Debounce wait time in milliseconds
 
@@ -77264,7 +77771,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(Toast, [{
+    _createClass(_class, [{
       key: "_renderVariantIcon",
       value: function _renderVariantIcon() {
         if (this._elements.icon) {
@@ -77363,22 +77870,11 @@ var Coral = (function (exports) {
         unqueue();
       }
     }, {
-      key: "connectedCallback",
-
-      /** @ignore */
-      value: function connectedCallback() {
-        if (this._ignoreConnectedCallback) {
-          return;
-        }
-
-        _get(_getPrototypeOf(Toast.prototype), "connectedCallback", this).call(this);
-      }
-      /** @ignore */
-
-    }, {
       key: "render",
+
+      /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(Toast.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1C); // Default reflected attributes
 
@@ -77432,11 +77928,7 @@ var Coral = (function (exports) {
       value: function disconnectedCallback() {
         var _this4 = this;
 
-        if (this._ignoreConnectedCallback) {
-          return;
-        }
-
-        _get(_getPrototypeOf(Toast.prototype), "disconnectedCallback", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "disconnectedCallback", this).call(this);
 
         if (this._queued) {
           var el = null;
@@ -77510,7 +78002,7 @@ var Coral = (function (exports) {
     }, {
       key: "open",
       get: function get() {
-        return _get(_getPrototypeOf(Toast.prototype), "open", this);
+        return _get(_getPrototypeOf(_class.prototype), "open", this);
       },
       set: function set(value) {
         var _this5 = this;
@@ -77545,7 +78037,7 @@ var Coral = (function (exports) {
           return;
         }
 
-        _set(_getPrototypeOf(Toast.prototype), "open", value, this, true); // Ensure we're in the DOM
+        _set(_getPrototypeOf(_class.prototype), "open", value, this, true); // Ensure we're in the DOM
 
 
         if (this.open) {
@@ -77675,7 +78167,7 @@ var Coral = (function (exports) {
     }, {
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(Toast), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
           autodismiss: 'autoDismiss'
         });
       }
@@ -77684,12 +78176,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(Toast), "observedAttributes", this).concat(['variant', 'placement', 'autodismiss']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['variant', 'placement', 'autodismiss']);
       }
     }]);
 
-    return Toast;
-  }(BaseOverlay(BaseComponent(HTMLElement)));
+    return _class;
+  }(BaseOverlay(BaseComponent(HTMLElement))));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -77801,16 +78293,16 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var TreeItem = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(TreeItem, _BaseComponent);
+  var TreeItem = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(TreeItem);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function TreeItem() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, TreeItem);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Prepare templates
 
@@ -77839,7 +78331,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(TreeItem, [{
+    _createClass(_class, [{
       key: "_filterItem",
 
       /** @private */
@@ -77895,7 +78387,7 @@ var Coral = (function (exports) {
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(TreeItem.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1D);
         var header = this._elements.header;
@@ -78249,12 +78741,12 @@ var Coral = (function (exports) {
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(TreeItem), "observedAttributes", this).concat(['selected', 'disabled', 'variant', 'expanded', 'hidden']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['selected', 'disabled', 'variant', 'expanded', 'hidden']);
       }
     }]);
 
-    return TreeItem;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   var CLASSNAME$1E = '_coral-TreeView';
   /**
@@ -78267,16 +78759,16 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var Tree = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(Tree, _BaseComponent);
+  var Tree = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(Tree);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function Tree() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, Tree);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this); // Attach events
 
@@ -78339,7 +78831,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(Tree, [{
+    _createClass(_class, [{
       key: "_onItemSelectedChanged",
 
       /** @private */
@@ -78787,7 +79279,7 @@ var Coral = (function (exports) {
       value: function render() {
         var _this3 = this;
 
-        _get(_getPrototypeOf(Tree.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1E); // a11y
 
@@ -78889,12 +79381,12 @@ var Coral = (function (exports) {
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(Tree), "observedAttributes", this).concat(['multiple']);
+        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['multiple']);
       }
     }]);
 
-    return Tree;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -78947,16 +79439,16 @@ var Coral = (function (exports) {
    @extends {BaseComponent}
    */
 
-  var WizardView = /*#__PURE__*/function (_BaseComponent) {
-    _inherits(WizardView, _BaseComponent);
+  var WizardView = Decorator( /*#__PURE__*/function (_BaseComponent) {
+    _inherits(_class, _BaseComponent);
 
-    var _super = _createSuper(WizardView);
+    var _super = _createSuper(_class);
 
     /** @ignore */
-    function WizardView() {
+    function _class() {
       var _this;
 
-      _classCallCheck(this, WizardView);
+      _classCallCheck(this, _class);
 
       _this = _super.call(this);
 
@@ -79000,7 +79492,7 @@ var Coral = (function (exports) {
      */
 
 
-    _createClass(WizardView, [{
+    _createClass(_class, [{
       key: "_onItemAdded",
 
       /**
@@ -79261,7 +79753,7 @@ var Coral = (function (exports) {
     }, {
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(WizardView.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1F);
 
@@ -79326,8 +79818,8 @@ var Coral = (function (exports) {
       }
     }]);
 
-    return WizardView;
-  }(BaseComponent(HTMLElement));
+    return _class;
+  }(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -79345,7 +79837,7 @@ var Coral = (function (exports) {
 
   var name = "@adobe/coral-spectrum";
   var description = "Coral Spectrum is a JavaScript library of Web Components following Spectrum design patterns.";
-  var version$1 = "4.10.15";
+  var version$1 = "4.10.16";
   var homepage = "https://github.com/adobe/coral-spectrum#readme";
   var license = "Apache-2.0";
   var repository = {
