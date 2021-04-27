@@ -1,15 +1,15 @@
 window.esdocSearchIndex = [
   [
     "@adobe/coral-spectrum~accordion",
-    "variable/index.html#static-variable-Accordion",
+    "class/coral-spectrum/coral-component-accordion/src/scripts/Accordion.js~Accordion.html",
     "<span>Accordion</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~accordionitem",
-    "variable/index.html#static-variable-AccordionItem",
+    "class/coral-spectrum/coral-component-accordion/src/scripts/AccordionItem.js~AccordionItem.html",
     "<span>AccordionItem</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~accordionitemcontent",
@@ -25,15 +25,15 @@ window.esdocSearchIndex = [
   ],
   [
     "@adobe/coral-spectrum~actionbar",
-    "variable/index.html#static-variable-ActionBar",
+    "class/coral-spectrum/coral-component-actionbar/src/scripts/ActionBar.js~ActionBar.html",
     "<span>ActionBar</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~actionbarcontainer",
-    "variable/index.html#static-variable-ActionBarContainer",
+    "class/coral-spectrum/coral-component-actionbar/src/scripts/ActionBarContainer.js~ActionBarContainer.html",
     "<span>ActionBarContainer</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~actionbarcontainercollection",
@@ -43,27 +43,27 @@ window.esdocSearchIndex = [
   ],
   [
     "@adobe/coral-spectrum~actionbaritem",
-    "variable/index.html#static-variable-ActionBarItem",
+    "class/coral-spectrum/coral-component-actionbar/src/scripts/ActionBarItem.js~ActionBarItem.html",
     "<span>ActionBarItem</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~actionbarprimary",
-    "variable/index.html#static-variable-ActionBarPrimary",
+    "class/coral-spectrum/coral-component-actionbar/src/scripts/ActionBarPrimary.js~ActionBarPrimary.html",
     "<span>ActionBarPrimary</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~actionbarsecondary",
-    "variable/index.html#static-variable-ActionBarSecondary",
+    "class/coral-spectrum/coral-component-actionbar/src/scripts/ActionBarSecondary.js~ActionBarSecondary.html",
     "<span>ActionBarSecondary</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~alert",
-    "variable/index.html#static-variable-Alert",
+    "class/coral-spectrum/coral-component-alert/src/scripts/Alert.js~Alert.html",
     "<span>Alert</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~alertcontent",
@@ -85,9 +85,9 @@ window.esdocSearchIndex = [
   ],
   [
     "@adobe/coral-spectrum~anchorbutton",
-    "variable/index.html#static-variable-AnchorButton",
+    "class/coral-spectrum/coral-component-anchorbutton/src/scripts/AnchorButton.js~AnchorButton.html",
     "<span>AnchorButton</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~anchorbuttonlabel",
@@ -97,33 +97,33 @@ window.esdocSearchIndex = [
   ],
   [
     "@adobe/coral-spectrum~anchorlist",
-    "variable/index.html#static-variable-AnchorList",
+    "class/coral-spectrum/coral-component-list/src/scripts/AnchorList.js~AnchorList.html",
     "<span>AnchorList</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~anchorlistitem",
-    "variable/index.html#static-variable-AnchorListItem",
+    "class/coral-spectrum/coral-component-list/src/scripts/AnchorListItem.js~AnchorListItem.html",
     "<span>AnchorListItem</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~autocomplete",
-    "variable/index.html#static-variable-Autocomplete",
+    "class/coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete.html",
     "<span>Autocomplete</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~autocompleteitem",
-    "variable/index.html#static-variable-AutocompleteItem",
+    "class/coral-spectrum/coral-component-autocomplete/src/scripts/AutocompleteItem.js~AutocompleteItem.html",
     "<span>AutocompleteItem</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~banner",
-    "variable/index.html#static-variable-Banner",
+    "class/coral-spectrum/coral-component-banner/src/scripts/Banner.js~Banner.html",
     "<span>Banner</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~bannercontent",
@@ -205,15 +205,15 @@ window.esdocSearchIndex = [
   ],
   [
     "@adobe/coral-spectrum~button",
-    "variable/index.html#static-variable-Button",
+    "class/coral-spectrum/coral-component-button/src/scripts/Button.js~Button.html",
     "<span>Button</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~buttongroup",
-    "variable/index.html#static-variable-ButtonGroup",
+    "class/coral-spectrum/coral-component-buttongroup/src/scripts/ButtonGroup.js~ButtonGroup.html",
     "<span>ButtonGroup</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~buttonlabel",
@@ -223,27 +223,27 @@ window.esdocSearchIndex = [
   ],
   [
     "@adobe/coral-spectrum~buttonlist",
-    "variable/index.html#static-variable-ButtonList",
+    "class/coral-spectrum/coral-component-list/src/scripts/ButtonList.js~ButtonList.html",
     "<span>ButtonList</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~buttonlistitem",
-    "variable/index.html#static-variable-ButtonListItem",
+    "class/coral-spectrum/coral-component-list/src/scripts/ButtonListItem.js~ButtonListItem.html",
     "<span>ButtonListItem</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~calendar",
-    "variable/index.html#static-variable-Calendar",
+    "class/coral-spectrum/coral-component-calendar/src/scripts/Calendar.js~Calendar.html",
     "<span>Calendar</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~card",
-    "variable/index.html#static-variable-Card",
+    "class/coral-spectrum/coral-component-card/src/scripts/Card.js~Card.html",
     "<span>Card</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~cardasset",
@@ -283,9 +283,9 @@ window.esdocSearchIndex = [
   ],
   [
     "@adobe/coral-spectrum~cardproperty",
-    "variable/index.html#static-variable-CardProperty",
+    "class/coral-spectrum/coral-component-card/src/scripts/CardProperty.js~CardProperty.html",
     "<span>CardProperty</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~cardpropertycontent",
@@ -295,9 +295,9 @@ window.esdocSearchIndex = [
   ],
   [
     "@adobe/coral-spectrum~cardpropertylist",
-    "variable/index.html#static-variable-CardPropertyList",
+    "class/coral-spectrum/coral-component-card/src/scripts/CardPropertyList.js~CardPropertyList.html",
     "<span>CardPropertyList</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~cardsubtitle",
@@ -313,21 +313,21 @@ window.esdocSearchIndex = [
   ],
   [
     "@adobe/coral-spectrum~charactercount",
-    "variable/index.html#static-variable-CharacterCount",
+    "class/coral-spectrum/coral-component-charactercount/src/scripts/CharacterCount.js~CharacterCount.html",
     "<span>CharacterCount</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~checkbox",
-    "variable/index.html#static-variable-Checkbox",
+    "class/coral-spectrum/coral-component-checkbox/src/scripts/Checkbox.js~Checkbox.html",
     "<span>Checkbox</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~checkboxgroup",
-    "variable/index.html#static-variable-CheckboxGroup",
+    "class/coral-spectrum/coral-component-checkboxgroup/src/scripts/CheckboxGroup.js~CheckboxGroup.html",
     "<span>CheckboxGroup</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~checkboxlabel",
@@ -337,15 +337,15 @@ window.esdocSearchIndex = [
   ],
   [
     "@adobe/coral-spectrum~clock",
-    "variable/index.html#static-variable-Clock",
+    "class/coral-spectrum/coral-component-clock/src/scripts/Clock.js~Clock.html",
     "<span>Clock</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~coachmark",
-    "variable/index.html#static-variable-CoachMark",
+    "class/coral-spectrum/coral-component-coachmark/src/scripts/CoachMark.js~CoachMark.html",
     "<span>CoachMark</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~collection",
@@ -361,45 +361,45 @@ window.esdocSearchIndex = [
   ],
   [
     "@adobe/coral-spectrum~colorinput",
-    "variable/index.html#static-variable-ColorInput",
+    "class/coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput.html",
     "<span>ColorInput</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~colorinputcolorproperties",
-    "variable/index.html#static-variable-ColorInputColorProperties",
+    "class/coral-spectrum/coral-component-colorinput/src/scripts/ColorInputColorProperties.js~ColorInputColorProperties.html",
     "<span>ColorInputColorProperties</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~colorinputitem",
-    "variable/index.html#static-variable-ColorInputItem",
+    "class/coral-spectrum/coral-component-colorinput/src/scripts/ColorInputItem.js~ColorInputItem.html",
     "<span>ColorInputItem</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~colorinputslider",
-    "variable/index.html#static-variable-ColorInputSlider",
+    "class/coral-spectrum/coral-component-colorinput/src/scripts/ColorInputSlider.js~ColorInputSlider.html",
     "<span>ColorInputSlider</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~colorinputswatch",
-    "variable/index.html#static-variable-ColorInputSwatch",
+    "class/coral-spectrum/coral-component-colorinput/src/scripts/ColorInputSwatch.js~ColorInputSwatch.html",
     "<span>ColorInputSwatch</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~colorinputswatches",
-    "variable/index.html#static-variable-ColorInputSwatches",
+    "class/coral-spectrum/coral-component-colorinput/src/scripts/ColorInputSwatches.js~ColorInputSwatches.html",
     "<span>ColorInputSwatches</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~columnview",
-    "variable/index.html#static-variable-ColumnView",
+    "class/coral-spectrum/coral-component-columnview/src/scripts/ColumnView.js~ColumnView.html",
     "<span>ColumnView</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~columnviewcollection",
@@ -409,9 +409,9 @@ window.esdocSearchIndex = [
   ],
   [
     "@adobe/coral-spectrum~columnviewcolumn",
-    "variable/index.html#static-variable-ColumnViewColumn",
+    "class/coral-spectrum/coral-component-columnview/src/scripts/ColumnViewColumn.js~ColumnViewColumn.html",
     "<span>ColumnViewColumn</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~columnviewcolumncontent",
@@ -421,9 +421,9 @@ window.esdocSearchIndex = [
   ],
   [
     "@adobe/coral-spectrum~columnviewitem",
-    "variable/index.html#static-variable-ColumnViewItem",
+    "class/coral-spectrum/coral-component-columnview/src/scripts/ColumnViewItem.js~ColumnViewItem.html",
     "<span>ColumnViewItem</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~columnviewitemcontent",
@@ -439,9 +439,9 @@ window.esdocSearchIndex = [
   ],
   [
     "@adobe/coral-spectrum~columnviewpreview",
-    "variable/index.html#static-variable-ColumnViewPreview",
+    "class/coral-spectrum/coral-component-columnview/src/scripts/ColumnViewPreview.js~ColumnViewPreview.html",
     "<span>ColumnViewPreview</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~columnviewpreviewasset",
@@ -481,21 +481,21 @@ window.esdocSearchIndex = [
   ],
   [
     "@adobe/coral-spectrum~cyclebutton",
-    "variable/index.html#static-variable-CycleButton",
+    "class/coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButton.js~CycleButton.html",
     "<span>CycleButton</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~cyclebuttonaction",
-    "variable/index.html#static-variable-CycleButtonAction",
+    "class/coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButtonAction.js~CycleButtonAction.html",
     "<span>CycleButtonAction</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~cyclebuttonitem",
-    "variable/index.html#static-variable-CycleButtonItem",
+    "class/coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButtonItem.js~CycleButtonItem.html",
     "<span>CycleButtonItem</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~datetime",
@@ -505,15 +505,15 @@ window.esdocSearchIndex = [
   ],
   [
     "@adobe/coral-spectrum~datepicker",
-    "variable/index.html#static-variable-Datepicker",
+    "class/coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js~Datepicker.html",
     "<span>Datepicker</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~dialog",
-    "variable/index.html#static-variable-Dialog",
+    "class/coral-spectrum/coral-component-dialog/src/scripts/Dialog.js~Dialog.html",
     "<span>Dialog</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~dialogcontent",
@@ -541,9 +541,9 @@ window.esdocSearchIndex = [
   ],
   [
     "@adobe/coral-spectrum~drawer",
-    "variable/index.html#static-variable-Drawer",
+    "class/coral-spectrum/coral-component-drawer/src/scripts/Drawer.js~Drawer.html",
     "<span>Drawer</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~drawercontent",
@@ -571,9 +571,9 @@ window.esdocSearchIndex = [
   ],
   [
     "@adobe/coral-spectrum~fileupload",
-    "variable/index.html#static-variable-FileUpload",
+    "class/coral-spectrum/coral-component-fileupload/src/scripts/FileUpload.js~FileUpload.html",
     "<span>FileUpload</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~fileuploaditem",
@@ -589,9 +589,9 @@ window.esdocSearchIndex = [
   ],
   [
     "@adobe/coral-spectrum~icon",
-    "variable/index.html#static-variable-Icon",
+    "class/coral-spectrum/coral-component-icon/src/scripts/Icon.js~Icon.html",
     "<span>Icon</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~keys",
@@ -601,21 +601,21 @@ window.esdocSearchIndex = [
   ],
   [
     "@adobe/coral-spectrum~list",
-    "variable/index.html#static-variable-List",
+    "class/coral-spectrum/coral-component-list/src/scripts/List.js~List.html",
     "<span>List</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~listdivider",
-    "variable/index.html#static-variable-ListDivider",
+    "class/coral-spectrum/coral-component-list/src/scripts/ListDivider.js~ListDivider.html",
     "<span>ListDivider</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~listitem",
-    "variable/index.html#static-variable-ListItem",
+    "class/coral-spectrum/coral-component-list/src/scripts/ListItem.js~ListItem.html",
     "<span>ListItem</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~listitemcontent",
@@ -673,9 +673,9 @@ window.esdocSearchIndex = [
   ],
   [
     "@adobe/coral-spectrum~multifield",
-    "variable/index.html#static-variable-Multifield",
+    "class/coral-spectrum/coral-component-multifield/src/scripts/Multifield.js~Multifield.html",
     "<span>Multifield</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~multifieldcollection",
@@ -685,9 +685,9 @@ window.esdocSearchIndex = [
   ],
   [
     "@adobe/coral-spectrum~multifielditem",
-    "variable/index.html#static-variable-MultifieldItem",
+    "class/coral-spectrum/coral-component-multifield/src/scripts/MultifieldItem.js~MultifieldItem.html",
     "<span>MultifieldItem</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~multifielditemcontent",
@@ -697,9 +697,9 @@ window.esdocSearchIndex = [
   ],
   [
     "@adobe/coral-spectrum~numberinput",
-    "variable/index.html#static-variable-NumberInput",
+    "class/coral-spectrum/coral-component-numberinput/src/scripts/NumberInput.js~NumberInput.html",
     "<span>NumberInput</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~overlay",
@@ -709,9 +709,9 @@ window.esdocSearchIndex = [
   ],
   [
     "@adobe/coral-spectrum~panel",
-    "variable/index.html#static-variable-Panel",
+    "class/coral-spectrum/coral-component-panelstack/src/scripts/Panel.js~Panel.html",
     "<span>Panel</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~panelcontent",
@@ -721,15 +721,15 @@ window.esdocSearchIndex = [
   ],
   [
     "@adobe/coral-spectrum~panelstack",
-    "variable/index.html#static-variable-PanelStack",
+    "class/coral-spectrum/coral-component-panelstack/src/scripts/PanelStack.js~PanelStack.html",
     "<span>PanelStack</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~popover",
-    "variable/index.html#static-variable-Popover",
+    "class/coral-spectrum/coral-component-popover/src/scripts/Popover.js~Popover.html",
     "<span>Popover</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~popovercontent",
@@ -751,15 +751,15 @@ window.esdocSearchIndex = [
   ],
   [
     "@adobe/coral-spectrum~popoverseparator",
-    "variable/index.html#static-variable-PopoverSeparator",
+    "class/coral-spectrum/coral-component-popover/src/scripts/PopoverSeparator.js~PopoverSeparator.html",
     "<span>PopoverSeparator</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~progress",
-    "variable/index.html#static-variable-Progress",
+    "class/coral-spectrum/coral-component-progress/src/scripts/Progress.js~Progress.html",
     "<span>Progress</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~progresslabel",
@@ -781,15 +781,15 @@ window.esdocSearchIndex = [
   ],
   [
     "@adobe/coral-spectrum~radio",
-    "variable/index.html#static-variable-Radio",
+    "class/coral-spectrum/coral-component-radio/src/scripts/Radio.js~Radio.html",
     "<span>Radio</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~radiogroup",
-    "variable/index.html#static-variable-RadioGroup",
+    "class/coral-spectrum/coral-component-radiogroup/src/scripts/RadioGroup.js~RadioGroup.html",
     "<span>RadioGroup</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~radiolabel",
@@ -799,9 +799,9 @@ window.esdocSearchIndex = [
   ],
   [
     "@adobe/coral-spectrum~rangedslider",
-    "variable/index.html#static-variable-RangedSlider",
+    "class/coral-spectrum/coral-component-slider/src/scripts/RangedSlider.js~RangedSlider.html",
     "<span>RangedSlider</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~spectrum_css_icons",
@@ -823,39 +823,39 @@ window.esdocSearchIndex = [
   ],
   [
     "@adobe/coral-spectrum~search",
-    "variable/index.html#static-variable-Search",
+    "class/coral-spectrum/coral-component-search/src/scripts/Search.js~Search.html",
     "<span>Search</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~select",
-    "variable/index.html#static-variable-Select",
+    "class/coral-spectrum/coral-component-select/src/scripts/Select.js~Select.html",
     "<span>Select</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~selectitem",
-    "variable/index.html#static-variable-SelectItem",
+    "class/coral-spectrum/coral-component-select/src/scripts/SelectItem.js~SelectItem.html",
     "<span>SelectItem</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~selectlist",
-    "variable/index.html#static-variable-SelectList",
+    "class/coral-spectrum/coral-component-list/src/scripts/SelectList.js~SelectList.html",
     "<span>SelectList</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~selectlistgroup",
-    "variable/index.html#static-variable-SelectListGroup",
+    "class/coral-spectrum/coral-component-list/src/scripts/SelectListGroup.js~SelectListGroup.html",
     "<span>SelectListGroup</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~selectlistitem",
-    "variable/index.html#static-variable-SelectListItem",
+    "class/coral-spectrum/coral-component-list/src/scripts/SelectListItem.js~SelectListItem.html",
     "<span>SelectListItem</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~selectlistitemcontent",
@@ -1039,9 +1039,9 @@ window.esdocSearchIndex = [
   ],
   [
     "@adobe/coral-spectrum~sidenav",
-    "variable/index.html#static-variable-SideNav",
+    "class/coral-spectrum/coral-component-sidenav/src/scripts/SideNav.js~SideNav.html",
     "<span>SideNav</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~sidenavheading",
@@ -1051,9 +1051,9 @@ window.esdocSearchIndex = [
   ],
   [
     "@adobe/coral-spectrum~sidenavitem",
-    "variable/index.html#static-variable-SideNavItem",
+    "class/coral-spectrum/coral-component-sidenav/src/scripts/SideNavItem.js~SideNavItem.html",
     "<span>SideNavItem</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~sidenavitemcontent",
@@ -1063,9 +1063,9 @@ window.esdocSearchIndex = [
   ],
   [
     "@adobe/coral-spectrum~sidenavlevel",
-    "variable/index.html#static-variable-SideNavLevel",
+    "class/coral-spectrum/coral-component-sidenav/src/scripts/SideNavLevel.js~SideNavLevel.html",
     "<span>SideNavLevel</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~slider",
@@ -1081,21 +1081,21 @@ window.esdocSearchIndex = [
   ],
   [
     "@adobe/coral-spectrum~slideritem",
-    "variable/index.html#static-variable-SliderItem",
+    "class/coral-spectrum/coral-component-slider/src/scripts/SliderItem.js~SliderItem.html",
     "<span>SliderItem</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~splitbutton",
-    "variable/index.html#static-variable-SplitButton",
+    "class/coral-spectrum/coral-component-splitbutton/src/scripts/SplitButton.js~SplitButton.html",
     "<span>SplitButton</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~status",
-    "variable/index.html#static-variable-Status",
+    "class/coral-spectrum/coral-component-status/src/scripts/Status.js~Status.html",
     "<span>Status</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~statuslabel",
@@ -1105,9 +1105,9 @@ window.esdocSearchIndex = [
   ],
   [
     "@adobe/coral-spectrum~step",
-    "variable/index.html#static-variable-Step",
+    "class/coral-spectrum/coral-component-steplist/src/scripts/Step.js~Step.html",
     "<span>Step</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~steplabel",
@@ -1117,15 +1117,15 @@ window.esdocSearchIndex = [
   ],
   [
     "@adobe/coral-spectrum~steplist",
-    "variable/index.html#static-variable-StepList",
+    "class/coral-spectrum/coral-component-steplist/src/scripts/StepList.js~StepList.html",
     "<span>StepList</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~switch",
-    "variable/index.html#static-variable-Switch",
+    "class/coral-spectrum/coral-component-switch/src/scripts/Switch.js~Switch.html",
     "<span>Switch</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~switchlabel",
@@ -1135,9 +1135,9 @@ window.esdocSearchIndex = [
   ],
   [
     "@adobe/coral-spectrum~tab",
-    "variable/index.html#static-variable-Tab",
+    "class/coral-spectrum/coral-component-tablist/src/scripts/Tab.js~Tab.html",
     "<span>Tab</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~tablabel",
@@ -1153,51 +1153,51 @@ window.esdocSearchIndex = [
   ],
   [
     "@adobe/coral-spectrum~tabview",
-    "variable/index.html#static-variable-TabView",
+    "class/coral-spectrum/coral-component-tabview/src/scripts/TabView.js~TabView.html",
     "<span>TabView</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~table",
-    "variable/index.html#static-variable-Table",
+    "class/coral-spectrum/coral-component-table/src/scripts/Table.js~Table.html",
     "<span>Table</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~tablebody",
-    "variable/index.html#static-variable-TableBody",
+    "class/coral-spectrum/coral-component-table/src/scripts/TableBody.js~TableBody.html",
     "<span>TableBody</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~tablecell",
-    "variable/index.html#static-variable-TableCell",
+    "class/coral-spectrum/coral-component-table/src/scripts/TableCell.js~TableCell.html",
     "<span>TableCell</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~tablecolumn",
-    "variable/index.html#static-variable-TableColumn",
+    "class/coral-spectrum/coral-component-table/src/scripts/TableColumn.js~TableColumn.html",
     "<span>TableColumn</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~tablefoot",
-    "variable/index.html#static-variable-TableFoot",
+    "class/coral-spectrum/coral-component-table/src/scripts/TableFoot.js~TableFoot.html",
     "<span>TableFoot</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~tablehead",
-    "variable/index.html#static-variable-TableHead",
+    "class/coral-spectrum/coral-component-table/src/scripts/TableHead.js~TableHead.html",
     "<span>TableHead</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~tableheadercell",
-    "variable/index.html#static-variable-TableHeaderCell",
+    "class/coral-spectrum/coral-component-table/src/scripts/TableHeaderCell.js~TableHeaderCell.html",
     "<span>TableHeaderCell</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~tableheadercellcontent",
@@ -1207,15 +1207,15 @@ window.esdocSearchIndex = [
   ],
   [
     "@adobe/coral-spectrum~tablerow",
-    "variable/index.html#static-variable-TableRow",
+    "class/coral-spectrum/coral-component-table/src/scripts/TableRow.js~TableRow.html",
     "<span>TableRow</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~tag",
-    "variable/index.html#static-variable-Tag",
+    "class/coral-spectrum/coral-component-taglist/src/scripts/Tag.js~Tag.html",
     "<span>Tag</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~taglabel",
@@ -1225,27 +1225,27 @@ window.esdocSearchIndex = [
   ],
   [
     "@adobe/coral-spectrum~taglist",
-    "variable/index.html#static-variable-TagList",
+    "class/coral-spectrum/coral-component-taglist/src/scripts/TagList.js~TagList.html",
     "<span>TagList</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~textarea",
-    "variable/index.html#static-variable-Textarea",
+    "class/coral-spectrum/coral-component-textarea/src/scripts/Textarea.js~Textarea.html",
     "<span>Textarea</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~textfield",
-    "variable/index.html#static-variable-Textfield",
+    "class/coral-spectrum/coral-component-textfield/src/scripts/Textfield.js~Textfield.html",
     "<span>Textfield</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~toast",
-    "variable/index.html#static-variable-Toast",
+    "class/coral-spectrum/coral-component-toast/src/scripts/Toast.js~Toast.html",
     "<span>Toast</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~toastcontent",
@@ -1255,9 +1255,9 @@ window.esdocSearchIndex = [
   ],
   [
     "@adobe/coral-spectrum~tooltip",
-    "variable/index.html#static-variable-Tooltip",
+    "class/coral-spectrum/coral-component-tooltip/src/scripts/Tooltip.js~Tooltip.html",
     "<span>Tooltip</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~tooltipcontent",
@@ -1279,15 +1279,15 @@ window.esdocSearchIndex = [
   ],
   [
     "@adobe/coral-spectrum~tree",
-    "variable/index.html#static-variable-Tree",
+    "class/coral-spectrum/coral-component-tree/src/scripts/Tree.js~Tree.html",
     "<span>Tree</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~treeitem",
-    "variable/index.html#static-variable-TreeItem",
+    "class/coral-spectrum/coral-component-tree/src/scripts/TreeItem.js~TreeItem.html",
     "<span>TreeItem</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~treeitemcontent",
@@ -1303,15 +1303,15 @@ window.esdocSearchIndex = [
   ],
   [
     "@adobe/coral-spectrum~wait",
-    "variable/index.html#static-variable-Wait",
+    "class/coral-spectrum/coral-component-wait/src/scripts/Wait.js~Wait.html",
     "<span>Wait</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~wizardview",
-    "variable/index.html#static-variable-WizardView",
+    "class/coral-spectrum/coral-component-wizardview/src/scripts/WizardView.js~WizardView.html",
     "<span>WizardView</span> <span class=\"search-result-import-path\">@adobe/coral-spectrum</span>",
-    "variable"
+    "class"
   ],
   [
     "@adobe/coral-spectrum~commons",
@@ -2238,15 +2238,57 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "coral-spectrum/coral-component-accordion/src/scripts/accordion.js~accordionvariantenum",
-    "typedef/index.html#static-typedef-AccordionVariantEnum",
-    "coral-spectrum/coral-component-accordion/src/scripts/Accordion.js~AccordionVariantEnum",
+    "coral-spectrum/coral-component-accordion/src/scripts/accordion.js~accordion#items",
+    "class/coral-spectrum/coral-component-accordion/src/scripts/Accordion.js~Accordion.html#instance-member-items",
+    "coral-spectrum/coral-component-accordion/src/scripts/Accordion.js~Accordion#items",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-accordion/src/scripts/accordion.js~accordion#level",
+    "class/coral-spectrum/coral-component-accordion/src/scripts/Accordion.js~Accordion.html#instance-member-level",
+    "coral-spectrum/coral-component-accordion/src/scripts/Accordion.js~Accordion#level",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-accordion/src/scripts/accordion.js~accordion#multiple",
+    "class/coral-spectrum/coral-component-accordion/src/scripts/Accordion.js~Accordion.html#instance-member-multiple",
+    "coral-spectrum/coral-component-accordion/src/scripts/Accordion.js~Accordion#multiple",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-accordion/src/scripts/accordion.js~accordion#selecteditem",
+    "class/coral-spectrum/coral-component-accordion/src/scripts/Accordion.js~Accordion.html#instance-member-selectedItem",
+    "coral-spectrum/coral-component-accordion/src/scripts/Accordion.js~Accordion#selectedItem",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-accordion/src/scripts/accordion.js~accordion#selecteditems",
+    "class/coral-spectrum/coral-component-accordion/src/scripts/Accordion.js~Accordion.html#instance-member-selectedItems",
+    "coral-spectrum/coral-component-accordion/src/scripts/Accordion.js~Accordion#selectedItems",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-accordion/src/scripts/accordion.js~accordion#variant",
+    "class/coral-spectrum/coral-component-accordion/src/scripts/Accordion.js~Accordion.html#instance-member-variant",
+    "coral-spectrum/coral-component-accordion/src/scripts/Accordion.js~Accordion#variant",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-accordion/src/scripts/accordion.js~accordion.coral-accordion:change",
+    "typedef/index.html#static-typedef-coral-accordion:change",
+    "coral-spectrum/coral-component-accordion/src/scripts/Accordion.js~Accordion.coral-accordion:change",
     "typedef"
   ],
   [
-    "coral-spectrum/coral-component-accordion/src/scripts/accordion.js~coral-accordion:change",
-    "typedef/index.html#static-typedef-coral-accordion:change",
-    "coral-spectrum/coral-component-accordion/src/scripts/Accordion.js~coral-accordion:change",
+    "coral-spectrum/coral-component-accordion/src/scripts/accordion.js~accordion.variant",
+    "class/coral-spectrum/coral-component-accordion/src/scripts/Accordion.js~Accordion.html#static-member-variant",
+    "coral-spectrum/coral-component-accordion/src/scripts/Accordion.js~Accordion.variant",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-accordion/src/scripts/accordion.js~accordionvariantenum",
+    "typedef/index.html#static-typedef-AccordionVariantEnum",
+    "coral-spectrum/coral-component-accordion/src/scripts/Accordion.js~AccordionVariantEnum",
     "typedef"
   ],
   [
@@ -2254,6 +2296,36 @@ window.esdocSearchIndex = [
     "file/coral-spectrum/coral-component-accordion/src/scripts/AccordionItem.js.html",
     "coral-spectrum/coral-component-accordion/src/scripts/AccordionItem.js",
     "file"
+  ],
+  [
+    "coral-spectrum/coral-component-accordion/src/scripts/accordionitem.js~accordionitem#content",
+    "class/coral-spectrum/coral-component-accordion/src/scripts/AccordionItem.js~AccordionItem.html#instance-member-content",
+    "coral-spectrum/coral-component-accordion/src/scripts/AccordionItem.js~AccordionItem#content",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-accordion/src/scripts/accordionitem.js~accordionitem#disabled",
+    "class/coral-spectrum/coral-component-accordion/src/scripts/AccordionItem.js~AccordionItem.html#instance-member-disabled",
+    "coral-spectrum/coral-component-accordion/src/scripts/AccordionItem.js~AccordionItem#disabled",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-accordion/src/scripts/accordionitem.js~accordionitem#label",
+    "class/coral-spectrum/coral-component-accordion/src/scripts/AccordionItem.js~AccordionItem.html#instance-member-label",
+    "coral-spectrum/coral-component-accordion/src/scripts/AccordionItem.js~AccordionItem#label",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-accordion/src/scripts/accordionitem.js~accordionitem#level",
+    "class/coral-spectrum/coral-component-accordion/src/scripts/AccordionItem.js~AccordionItem.html#instance-member-level",
+    "coral-spectrum/coral-component-accordion/src/scripts/AccordionItem.js~AccordionItem#level",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-accordion/src/scripts/accordionitem.js~accordionitem#selected",
+    "class/coral-spectrum/coral-component-accordion/src/scripts/AccordionItem.js~AccordionItem.html#instance-member-selected",
+    "coral-spectrum/coral-component-accordion/src/scripts/AccordionItem.js~AccordionItem#selected",
+    "member"
   ],
   [
     "coral-spectrum/coral-component-accordion/src/scripts/accordionitemcontent.js",
@@ -2274,10 +2346,28 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "coral-spectrum/coral-component-actionbar/src/scripts/actionbar.js~actionbar#primary",
+    "class/coral-spectrum/coral-component-actionbar/src/scripts/ActionBar.js~ActionBar.html#instance-member-primary",
+    "coral-spectrum/coral-component-actionbar/src/scripts/ActionBar.js~ActionBar#primary",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-actionbar/src/scripts/actionbar.js~actionbar#secondary",
+    "class/coral-spectrum/coral-component-actionbar/src/scripts/ActionBar.js~ActionBar.html#instance-member-secondary",
+    "coral-spectrum/coral-component-actionbar/src/scripts/ActionBar.js~ActionBar#secondary",
+    "member"
+  ],
+  [
     "coral-spectrum/coral-component-actionbar/src/scripts/actionbarcontainer.js",
     "file/coral-spectrum/coral-component-actionbar/src/scripts/ActionBarContainer.js.html",
     "coral-spectrum/coral-component-actionbar/src/scripts/ActionBarContainer.js",
     "file"
+  ],
+  [
+    "coral-spectrum/coral-component-actionbar/src/scripts/actionbarcontainer.js~actionbarcontainer.position",
+    "class/coral-spectrum/coral-component-actionbar/src/scripts/ActionBarContainer.js~ActionBarContainer.html#static-member-position",
+    "coral-spectrum/coral-component-actionbar/src/scripts/ActionBarContainer.js~ActionBarContainer.position",
+    "member"
   ],
   [
     "coral-spectrum/coral-component-actionbar/src/scripts/actionbarcontainer.js~actionbarcontainerpositionenum",
@@ -2308,6 +2398,12 @@ window.esdocSearchIndex = [
     "file/coral-spectrum/coral-component-actionbar/src/scripts/ActionBarItem.js.html",
     "coral-spectrum/coral-component-actionbar/src/scripts/ActionBarItem.js",
     "file"
+  ],
+  [
+    "coral-spectrum/coral-component-actionbar/src/scripts/actionbaritem.js~actionbaritem#content",
+    "class/coral-spectrum/coral-component-actionbar/src/scripts/ActionBarItem.js~ActionBarItem.html#instance-member-content",
+    "coral-spectrum/coral-component-actionbar/src/scripts/ActionBarItem.js~ActionBarItem#content",
+    "member"
   ],
   [
     "coral-spectrum/coral-component-actionbar/src/scripts/actionbarprimary.js",
@@ -2364,6 +2460,54 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "coral-spectrum/coral-component-alert/src/scripts/alert.js~alert#content",
+    "class/coral-spectrum/coral-component-alert/src/scripts/Alert.js~Alert.html#instance-member-content",
+    "coral-spectrum/coral-component-alert/src/scripts/Alert.js~Alert#content",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-alert/src/scripts/alert.js~alert#footer",
+    "class/coral-spectrum/coral-component-alert/src/scripts/Alert.js~Alert.html#instance-member-footer",
+    "coral-spectrum/coral-component-alert/src/scripts/Alert.js~Alert#footer",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-alert/src/scripts/alert.js~alert#header",
+    "class/coral-spectrum/coral-component-alert/src/scripts/Alert.js~Alert.html#instance-member-header",
+    "coral-spectrum/coral-component-alert/src/scripts/Alert.js~Alert#header",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-alert/src/scripts/alert.js~alert#hidden",
+    "class/coral-spectrum/coral-component-alert/src/scripts/Alert.js~Alert.html#instance-member-hidden",
+    "coral-spectrum/coral-component-alert/src/scripts/Alert.js~Alert#hidden",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-alert/src/scripts/alert.js~alert#size",
+    "class/coral-spectrum/coral-component-alert/src/scripts/Alert.js~Alert.html#instance-member-size",
+    "coral-spectrum/coral-component-alert/src/scripts/Alert.js~Alert#size",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-alert/src/scripts/alert.js~alert#variant",
+    "class/coral-spectrum/coral-component-alert/src/scripts/Alert.js~Alert.html#instance-member-variant",
+    "coral-spectrum/coral-component-alert/src/scripts/Alert.js~Alert#variant",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-alert/src/scripts/alert.js~alert.size",
+    "class/coral-spectrum/coral-component-alert/src/scripts/Alert.js~Alert.html#static-member-size",
+    "coral-spectrum/coral-component-alert/src/scripts/Alert.js~Alert.size",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-alert/src/scripts/alert.js~alert.variant",
+    "class/coral-spectrum/coral-component-alert/src/scripts/Alert.js~Alert.html#static-member-variant",
+    "coral-spectrum/coral-component-alert/src/scripts/Alert.js~Alert.variant",
+    "member"
+  ],
+  [
     "coral-spectrum/coral-component-alert/src/scripts/alert.js~alertsizeenum",
     "typedef/index.html#static-typedef-AlertSizeEnum",
     "coral-spectrum/coral-component-alert/src/scripts/Alert.js~AlertSizeEnum",
@@ -2400,6 +2544,12 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "coral-spectrum/coral-component-anchorbutton/src/scripts/anchorbutton.js~anchorbutton#disabled",
+    "class/coral-spectrum/coral-component-anchorbutton/src/scripts/AnchorButton.js~AnchorButton.html#instance-member-disabled",
+    "coral-spectrum/coral-component-anchorbutton/src/scripts/AnchorButton.js~AnchorButton#disabled",
+    "member"
+  ],
+  [
     "coral-spectrum/coral-component-anchorbutton/src/scripts/anchorbuttonlabel.js",
     "file/coral-spectrum/coral-component-anchorbutton/src/scripts/AnchorButtonLabel.js.html",
     "coral-spectrum/coral-component-anchorbutton/src/scripts/AnchorButtonLabel.js",
@@ -2412,15 +2562,201 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "coral-spectrum/coral-component-autocomplete/src/scripts/autocomplete.js~autocompletematchenum",
-    "typedef/index.html#static-typedef-AutocompleteMatchEnum",
-    "coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~AutocompleteMatchEnum",
+    "coral-spectrum/coral-component-autocomplete/src/scripts/autocomplete.js~autocomplete#addsuggestions",
+    "class/coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete.html#instance-method-addSuggestions",
+    "coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete#addSuggestions",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-autocomplete/src/scripts/autocomplete.js~autocomplete#clear",
+    "class/coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete.html#instance-method-clear",
+    "coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete#clear",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-autocomplete/src/scripts/autocomplete.js~autocomplete#clearsuggestions",
+    "class/coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete.html#instance-method-clearSuggestions",
+    "coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete#clearSuggestions",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-autocomplete/src/scripts/autocomplete.js~autocomplete#delay",
+    "class/coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete.html#instance-member-delay",
+    "coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete#delay",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-autocomplete/src/scripts/autocomplete.js~autocomplete#disabled",
+    "class/coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete.html#instance-member-disabled",
+    "coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete#disabled",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-autocomplete/src/scripts/autocomplete.js~autocomplete#hidesuggestions",
+    "class/coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete.html#instance-method-hideSuggestions",
+    "coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete#hideSuggestions",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-autocomplete/src/scripts/autocomplete.js~autocomplete#invalid",
+    "class/coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete.html#instance-member-invalid",
+    "coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete#invalid",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-autocomplete/src/scripts/autocomplete.js~autocomplete#items",
+    "class/coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete.html#instance-member-items",
+    "coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete#items",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-autocomplete/src/scripts/autocomplete.js~autocomplete#labelled",
+    "class/coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete.html#instance-member-labelled",
+    "coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete#labelled",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-autocomplete/src/scripts/autocomplete.js~autocomplete#labelledby",
+    "class/coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete.html#instance-member-labelledBy",
+    "coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete#labelledBy",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-autocomplete/src/scripts/autocomplete.js~autocomplete#loading",
+    "class/coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete.html#instance-member-loading",
+    "coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete#loading",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-autocomplete/src/scripts/autocomplete.js~autocomplete#match",
+    "class/coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete.html#instance-member-match",
+    "coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete#match",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-autocomplete/src/scripts/autocomplete.js~autocomplete#maxlength",
+    "class/coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete.html#instance-member-maxLength",
+    "coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete#maxLength",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-autocomplete/src/scripts/autocomplete.js~autocomplete#multiple",
+    "class/coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete.html#instance-member-multiple",
+    "coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete#multiple",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-autocomplete/src/scripts/autocomplete.js~autocomplete#name",
+    "class/coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete.html#instance-member-name",
+    "coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete#name",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-autocomplete/src/scripts/autocomplete.js~autocomplete#overlay",
+    "class/coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete.html#instance-member-overlay",
+    "coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete#overlay",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-autocomplete/src/scripts/autocomplete.js~autocomplete#placeholder",
+    "class/coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete.html#instance-member-placeholder",
+    "coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete#placeholder",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-autocomplete/src/scripts/autocomplete.js~autocomplete#readonly",
+    "class/coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete.html#instance-member-readOnly",
+    "coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete#readOnly",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-autocomplete/src/scripts/autocomplete.js~autocomplete#render",
+    "class/coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete.html#instance-method-render",
+    "coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete#render",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-autocomplete/src/scripts/autocomplete.js~autocomplete#required",
+    "class/coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete.html#instance-member-required",
+    "coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete#required",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-autocomplete/src/scripts/autocomplete.js~autocomplete#reset",
+    "class/coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete.html#instance-method-reset",
+    "coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete#reset",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-autocomplete/src/scripts/autocomplete.js~autocomplete#selecteditem",
+    "class/coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete.html#instance-member-selectedItem",
+    "coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete#selectedItem",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-autocomplete/src/scripts/autocomplete.js~autocomplete#selecteditems",
+    "class/coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete.html#instance-member-selectedItems",
+    "coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete#selectedItems",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-autocomplete/src/scripts/autocomplete.js~autocomplete#showsuggestions",
+    "class/coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete.html#instance-method-showSuggestions",
+    "coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete#showSuggestions",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-autocomplete/src/scripts/autocomplete.js~autocomplete#value",
+    "class/coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete.html#instance-member-value",
+    "coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete#value",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-autocomplete/src/scripts/autocomplete.js~autocomplete#values",
+    "class/coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete.html#instance-member-values",
+    "coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete#values",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-autocomplete/src/scripts/autocomplete.js~autocomplete#variant",
+    "class/coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete.html#instance-member-variant",
+    "coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete#variant",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-autocomplete/src/scripts/autocomplete.js~autocomplete.autocompletesuggestion",
+    "typedef/index.html#static-typedef-AutocompleteSuggestion",
+    "coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete.AutocompleteSuggestion",
     "typedef"
   ],
   [
-    "coral-spectrum/coral-component-autocomplete/src/scripts/autocomplete.js~autocompletesuggestion",
-    "typedef/index.html#static-typedef-AutocompleteSuggestion",
-    "coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~AutocompleteSuggestion",
+    "coral-spectrum/coral-component-autocomplete/src/scripts/autocomplete.js~autocomplete.coral-autocomplete:hidesuggestions",
+    "typedef/index.html#static-typedef-coral-autocomplete:hidesuggestions",
+    "coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete.coral-autocomplete:hidesuggestions",
+    "typedef"
+  ],
+  [
+    "coral-spectrum/coral-component-autocomplete/src/scripts/autocomplete.js~autocomplete.coral-autocomplete:showsuggestions",
+    "typedef/index.html#static-typedef-coral-autocomplete:showsuggestions",
+    "coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete.coral-autocomplete:showsuggestions",
+    "typedef"
+  ],
+  [
+    "coral-spectrum/coral-component-autocomplete/src/scripts/autocomplete.js~autocomplete.match",
+    "class/coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete.html#static-member-match",
+    "coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete.match",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-autocomplete/src/scripts/autocomplete.js~autocomplete.variant",
+    "class/coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete.html#static-member-variant",
+    "coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~Autocomplete.variant",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-autocomplete/src/scripts/autocomplete.js~autocompletematchenum",
+    "typedef/index.html#static-typedef-AutocompleteMatchEnum",
+    "coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~AutocompleteMatchEnum",
     "typedef"
   ],
   [
@@ -2430,28 +2766,64 @@ window.esdocSearchIndex = [
     "typedef"
   ],
   [
-    "coral-spectrum/coral-component-autocomplete/src/scripts/autocomplete.js~coral-autocomplete:hidesuggestions",
-    "typedef/index.html#static-typedef-coral-autocomplete:hidesuggestions",
-    "coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~coral-autocomplete:hidesuggestions",
-    "typedef"
-  ],
-  [
-    "coral-spectrum/coral-component-autocomplete/src/scripts/autocomplete.js~coral-autocomplete:showsuggestions",
-    "typedef/index.html#static-typedef-coral-autocomplete:showsuggestions",
-    "coral-spectrum/coral-component-autocomplete/src/scripts/Autocomplete.js~coral-autocomplete:showsuggestions",
-    "typedef"
-  ],
-  [
     "coral-spectrum/coral-component-autocomplete/src/scripts/autocompleteitem.js",
     "file/coral-spectrum/coral-component-autocomplete/src/scripts/AutocompleteItem.js.html",
     "coral-spectrum/coral-component-autocomplete/src/scripts/AutocompleteItem.js",
     "file"
   ],
   [
+    "coral-spectrum/coral-component-autocomplete/src/scripts/autocompleteitem.js~autocompleteitem#content",
+    "class/coral-spectrum/coral-component-autocomplete/src/scripts/AutocompleteItem.js~AutocompleteItem.html#instance-member-content",
+    "coral-spectrum/coral-component-autocomplete/src/scripts/AutocompleteItem.js~AutocompleteItem#content",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-autocomplete/src/scripts/autocompleteitem.js~autocompleteitem#disabled",
+    "class/coral-spectrum/coral-component-autocomplete/src/scripts/AutocompleteItem.js~AutocompleteItem.html#instance-member-disabled",
+    "coral-spectrum/coral-component-autocomplete/src/scripts/AutocompleteItem.js~AutocompleteItem#disabled",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-autocomplete/src/scripts/autocompleteitem.js~autocompleteitem#selected",
+    "class/coral-spectrum/coral-component-autocomplete/src/scripts/AutocompleteItem.js~AutocompleteItem.html#instance-member-selected",
+    "coral-spectrum/coral-component-autocomplete/src/scripts/AutocompleteItem.js~AutocompleteItem#selected",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-autocomplete/src/scripts/autocompleteitem.js~autocompleteitem#value",
+    "class/coral-spectrum/coral-component-autocomplete/src/scripts/AutocompleteItem.js~AutocompleteItem.html#instance-member-value",
+    "coral-spectrum/coral-component-autocomplete/src/scripts/AutocompleteItem.js~AutocompleteItem#value",
+    "member"
+  ],
+  [
     "coral-spectrum/coral-component-banner/src/scripts/banner.js",
     "file/coral-spectrum/coral-component-banner/src/scripts/Banner.js.html",
     "coral-spectrum/coral-component-banner/src/scripts/Banner.js",
     "file"
+  ],
+  [
+    "coral-spectrum/coral-component-banner/src/scripts/banner.js~banner#content",
+    "class/coral-spectrum/coral-component-banner/src/scripts/Banner.js~Banner.html#instance-member-content",
+    "coral-spectrum/coral-component-banner/src/scripts/Banner.js~Banner#content",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-banner/src/scripts/banner.js~banner#header",
+    "class/coral-spectrum/coral-component-banner/src/scripts/Banner.js~Banner.html#instance-member-header",
+    "coral-spectrum/coral-component-banner/src/scripts/Banner.js~Banner#header",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-banner/src/scripts/banner.js~banner#variant",
+    "class/coral-spectrum/coral-component-banner/src/scripts/Banner.js~Banner.html#instance-member-variant",
+    "coral-spectrum/coral-component-banner/src/scripts/Banner.js~Banner#variant",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-banner/src/scripts/banner.js~banner.variant",
+    "class/coral-spectrum/coral-component-banner/src/scripts/Banner.js~Banner.html#static-member-variant",
+    "coral-spectrum/coral-component-banner/src/scripts/Banner.js~Banner.variant",
+    "member"
   ],
   [
     "coral-spectrum/coral-component-banner/src/scripts/banner.js~bannervariantenum",
@@ -2490,6 +2862,84 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "coral-spectrum/coral-component-buttongroup/src/scripts/buttongroup.js~buttongroup#disabled",
+    "class/coral-spectrum/coral-component-buttongroup/src/scripts/ButtonGroup.js~ButtonGroup.html#instance-member-disabled",
+    "coral-spectrum/coral-component-buttongroup/src/scripts/ButtonGroup.js~ButtonGroup#disabled",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-buttongroup/src/scripts/buttongroup.js~buttongroup#items",
+    "class/coral-spectrum/coral-component-buttongroup/src/scripts/ButtonGroup.js~ButtonGroup.html#instance-member-items",
+    "coral-spectrum/coral-component-buttongroup/src/scripts/ButtonGroup.js~ButtonGroup#items",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-buttongroup/src/scripts/buttongroup.js~buttongroup#labelledby",
+    "class/coral-spectrum/coral-component-buttongroup/src/scripts/ButtonGroup.js~ButtonGroup.html#instance-member-labelledBy",
+    "coral-spectrum/coral-component-buttongroup/src/scripts/ButtonGroup.js~ButtonGroup#labelledBy",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-buttongroup/src/scripts/buttongroup.js~buttongroup#name",
+    "class/coral-spectrum/coral-component-buttongroup/src/scripts/ButtonGroup.js~ButtonGroup.html#instance-member-name",
+    "coral-spectrum/coral-component-buttongroup/src/scripts/ButtonGroup.js~ButtonGroup#name",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-buttongroup/src/scripts/buttongroup.js~buttongroup#readonly",
+    "class/coral-spectrum/coral-component-buttongroup/src/scripts/ButtonGroup.js~ButtonGroup.html#instance-member-readOnly",
+    "coral-spectrum/coral-component-buttongroup/src/scripts/ButtonGroup.js~ButtonGroup#readOnly",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-buttongroup/src/scripts/buttongroup.js~buttongroup#required",
+    "class/coral-spectrum/coral-component-buttongroup/src/scripts/ButtonGroup.js~ButtonGroup.html#instance-member-required",
+    "coral-spectrum/coral-component-buttongroup/src/scripts/ButtonGroup.js~ButtonGroup#required",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-buttongroup/src/scripts/buttongroup.js~buttongroup#reset",
+    "class/coral-spectrum/coral-component-buttongroup/src/scripts/ButtonGroup.js~ButtonGroup.html#instance-method-reset",
+    "coral-spectrum/coral-component-buttongroup/src/scripts/ButtonGroup.js~ButtonGroup#reset",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-buttongroup/src/scripts/buttongroup.js~buttongroup#selecteditem",
+    "class/coral-spectrum/coral-component-buttongroup/src/scripts/ButtonGroup.js~ButtonGroup.html#instance-member-selectedItem",
+    "coral-spectrum/coral-component-buttongroup/src/scripts/ButtonGroup.js~ButtonGroup#selectedItem",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-buttongroup/src/scripts/buttongroup.js~buttongroup#selecteditems",
+    "class/coral-spectrum/coral-component-buttongroup/src/scripts/ButtonGroup.js~ButtonGroup.html#instance-member-selectedItems",
+    "coral-spectrum/coral-component-buttongroup/src/scripts/ButtonGroup.js~ButtonGroup#selectedItems",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-buttongroup/src/scripts/buttongroup.js~buttongroup#selectionmode",
+    "class/coral-spectrum/coral-component-buttongroup/src/scripts/ButtonGroup.js~ButtonGroup.html#instance-member-selectionMode",
+    "coral-spectrum/coral-component-buttongroup/src/scripts/ButtonGroup.js~ButtonGroup#selectionMode",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-buttongroup/src/scripts/buttongroup.js~buttongroup#value",
+    "class/coral-spectrum/coral-component-buttongroup/src/scripts/ButtonGroup.js~ButtonGroup.html#instance-member-value",
+    "coral-spectrum/coral-component-buttongroup/src/scripts/ButtonGroup.js~ButtonGroup#value",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-buttongroup/src/scripts/buttongroup.js~buttongroup#values",
+    "class/coral-spectrum/coral-component-buttongroup/src/scripts/ButtonGroup.js~ButtonGroup.html#instance-member-values",
+    "coral-spectrum/coral-component-buttongroup/src/scripts/ButtonGroup.js~ButtonGroup#values",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-buttongroup/src/scripts/buttongroup.js~buttongroup.selectionmode",
+    "class/coral-spectrum/coral-component-buttongroup/src/scripts/ButtonGroup.js~ButtonGroup.html#static-member-selectionMode",
+    "coral-spectrum/coral-component-buttongroup/src/scripts/ButtonGroup.js~ButtonGroup.selectionMode",
+    "member"
+  ],
+  [
     "coral-spectrum/coral-component-buttongroup/src/scripts/buttongroup.js~buttongroupselectionmodeenum",
     "typedef/index.html#static-typedef-ButtonGroupSelectionModeEnum",
     "coral-spectrum/coral-component-buttongroup/src/scripts/ButtonGroup.js~ButtonGroupSelectionModeEnum",
@@ -2502,10 +2952,154 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "coral-spectrum/coral-component-calendar/src/scripts/calendar.js~calendar#disabled",
+    "class/coral-spectrum/coral-component-calendar/src/scripts/Calendar.js~Calendar.html#instance-member-disabled",
+    "coral-spectrum/coral-component-calendar/src/scripts/Calendar.js~Calendar#disabled",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-calendar/src/scripts/calendar.js~calendar#focus",
+    "class/coral-spectrum/coral-component-calendar/src/scripts/Calendar.js~Calendar.html#instance-method-focus",
+    "coral-spectrum/coral-component-calendar/src/scripts/Calendar.js~Calendar#focus",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-calendar/src/scripts/calendar.js~calendar#headerformat",
+    "class/coral-spectrum/coral-component-calendar/src/scripts/Calendar.js~Calendar.html#instance-member-headerFormat",
+    "coral-spectrum/coral-component-calendar/src/scripts/Calendar.js~Calendar#headerFormat",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-calendar/src/scripts/calendar.js~calendar#invalid",
+    "class/coral-spectrum/coral-component-calendar/src/scripts/Calendar.js~Calendar.html#instance-member-invalid",
+    "coral-spectrum/coral-component-calendar/src/scripts/Calendar.js~Calendar#invalid",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-calendar/src/scripts/calendar.js~calendar#max",
+    "class/coral-spectrum/coral-component-calendar/src/scripts/Calendar.js~Calendar.html#instance-member-max",
+    "coral-spectrum/coral-component-calendar/src/scripts/Calendar.js~Calendar#max",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-calendar/src/scripts/calendar.js~calendar#min",
+    "class/coral-spectrum/coral-component-calendar/src/scripts/Calendar.js~Calendar.html#instance-member-min",
+    "coral-spectrum/coral-component-calendar/src/scripts/Calendar.js~Calendar#min",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-calendar/src/scripts/calendar.js~calendar#name",
+    "class/coral-spectrum/coral-component-calendar/src/scripts/Calendar.js~Calendar.html#instance-member-name",
+    "coral-spectrum/coral-component-calendar/src/scripts/Calendar.js~Calendar#name",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-calendar/src/scripts/calendar.js~calendar#readonly",
+    "class/coral-spectrum/coral-component-calendar/src/scripts/Calendar.js~Calendar.html#instance-member-readOnly",
+    "coral-spectrum/coral-component-calendar/src/scripts/Calendar.js~Calendar#readOnly",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-calendar/src/scripts/calendar.js~calendar#required",
+    "class/coral-spectrum/coral-component-calendar/src/scripts/Calendar.js~Calendar.html#instance-member-required",
+    "coral-spectrum/coral-component-calendar/src/scripts/Calendar.js~Calendar#required",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-calendar/src/scripts/calendar.js~calendar#startday",
+    "class/coral-spectrum/coral-component-calendar/src/scripts/Calendar.js~Calendar.html#instance-member-startDay",
+    "coral-spectrum/coral-component-calendar/src/scripts/Calendar.js~Calendar#startDay",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-calendar/src/scripts/calendar.js~calendar#value",
+    "class/coral-spectrum/coral-component-calendar/src/scripts/Calendar.js~Calendar.html#instance-member-value",
+    "coral-spectrum/coral-component-calendar/src/scripts/Calendar.js~Calendar#value",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-calendar/src/scripts/calendar.js~calendar#valueasdate",
+    "class/coral-spectrum/coral-component-calendar/src/scripts/Calendar.js~Calendar.html#instance-member-valueAsDate",
+    "coral-spectrum/coral-component-calendar/src/scripts/Calendar.js~Calendar#valueAsDate",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-calendar/src/scripts/calendar.js~calendar#valueformat",
+    "class/coral-spectrum/coral-component-calendar/src/scripts/Calendar.js~Calendar.html#instance-member-valueFormat",
+    "coral-spectrum/coral-component-calendar/src/scripts/Calendar.js~Calendar#valueFormat",
+    "member"
+  ],
+  [
     "coral-spectrum/coral-component-card/src/scripts/card.js",
     "file/coral-spectrum/coral-component-card/src/scripts/Card.js.html",
     "coral-spectrum/coral-component-card/src/scripts/Card.js",
     "file"
+  ],
+  [
+    "coral-spectrum/coral-component-card/src/scripts/card.js~card#asset",
+    "class/coral-spectrum/coral-component-card/src/scripts/Card.js~Card.html#instance-member-asset",
+    "coral-spectrum/coral-component-card/src/scripts/Card.js~Card#asset",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-card/src/scripts/card.js~card#assetheight",
+    "class/coral-spectrum/coral-component-card/src/scripts/Card.js~Card.html#instance-member-assetHeight",
+    "coral-spectrum/coral-component-card/src/scripts/Card.js~Card#assetHeight",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-card/src/scripts/card.js~card#assetwidth",
+    "class/coral-spectrum/coral-component-card/src/scripts/Card.js~Card.html#instance-member-assetWidth",
+    "coral-spectrum/coral-component-card/src/scripts/Card.js~Card#assetWidth",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-card/src/scripts/card.js~card#colorhint",
+    "class/coral-spectrum/coral-component-card/src/scripts/Card.js~Card.html#instance-member-colorHint",
+    "coral-spectrum/coral-component-card/src/scripts/Card.js~Card#colorHint",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-card/src/scripts/card.js~card#content",
+    "class/coral-spectrum/coral-component-card/src/scripts/Card.js~Card.html#instance-member-content",
+    "coral-spectrum/coral-component-card/src/scripts/Card.js~Card#content",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-card/src/scripts/card.js~card#fixedwidth",
+    "class/coral-spectrum/coral-component-card/src/scripts/Card.js~Card.html#instance-member-fixedWidth",
+    "coral-spectrum/coral-component-card/src/scripts/Card.js~Card#fixedWidth",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-card/src/scripts/card.js~card#info",
+    "class/coral-spectrum/coral-component-card/src/scripts/Card.js~Card.html#instance-member-info",
+    "coral-spectrum/coral-component-card/src/scripts/Card.js~Card#info",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-card/src/scripts/card.js~card#overlay",
+    "class/coral-spectrum/coral-component-card/src/scripts/Card.js~Card.html#instance-member-overlay",
+    "coral-spectrum/coral-component-card/src/scripts/Card.js~Card#overlay",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-card/src/scripts/card.js~card#stacked",
+    "class/coral-spectrum/coral-component-card/src/scripts/Card.js~Card.html#instance-member-stacked",
+    "coral-spectrum/coral-component-card/src/scripts/Card.js~Card#stacked",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-card/src/scripts/card.js~card#variant",
+    "class/coral-spectrum/coral-component-card/src/scripts/Card.js~Card.html#instance-member-variant",
+    "coral-spectrum/coral-component-card/src/scripts/Card.js~Card#variant",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-card/src/scripts/card.js~card.variant",
+    "class/coral-spectrum/coral-component-card/src/scripts/Card.js~Card.html#static-member-variant",
+    "coral-spectrum/coral-component-card/src/scripts/Card.js~Card.variant",
+    "member"
   ],
   [
     "coral-spectrum/coral-component-card/src/scripts/card.js~cardvariantenum",
@@ -2556,6 +3150,30 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "coral-spectrum/coral-component-card/src/scripts/cardproperty.js~cardproperty#content",
+    "class/coral-spectrum/coral-component-card/src/scripts/CardProperty.js~CardProperty.html#instance-member-content",
+    "coral-spectrum/coral-component-card/src/scripts/CardProperty.js~CardProperty#content",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-card/src/scripts/cardproperty.js~cardproperty#icon",
+    "class/coral-spectrum/coral-component-card/src/scripts/CardProperty.js~CardProperty.html#instance-member-icon",
+    "coral-spectrum/coral-component-card/src/scripts/CardProperty.js~CardProperty#icon",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-card/src/scripts/cardproperty.js~cardproperty#iconalt",
+    "class/coral-spectrum/coral-component-card/src/scripts/CardProperty.js~CardProperty.html#instance-member-iconAlt",
+    "coral-spectrum/coral-component-card/src/scripts/CardProperty.js~CardProperty#iconAlt",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-card/src/scripts/cardproperty.js~cardproperty#icontitle",
+    "class/coral-spectrum/coral-component-card/src/scripts/CardProperty.js~CardProperty.html#instance-member-iconTitle",
+    "coral-spectrum/coral-component-card/src/scripts/CardProperty.js~CardProperty#iconTitle",
+    "member"
+  ],
+  [
     "coral-spectrum/coral-component-card/src/scripts/cardpropertycontent.js",
     "file/coral-spectrum/coral-component-card/src/scripts/CardPropertyContent.js.html",
     "coral-spectrum/coral-component-card/src/scripts/CardPropertyContent.js",
@@ -2566,6 +3184,12 @@ window.esdocSearchIndex = [
     "file/coral-spectrum/coral-component-card/src/scripts/CardPropertyList.js.html",
     "coral-spectrum/coral-component-card/src/scripts/CardPropertyList.js",
     "file"
+  ],
+  [
+    "coral-spectrum/coral-component-card/src/scripts/cardpropertylist.js~cardpropertylist#textcontent",
+    "class/coral-spectrum/coral-component-card/src/scripts/CardPropertyList.js~CardPropertyList.html#instance-member-textContent",
+    "coral-spectrum/coral-component-card/src/scripts/CardPropertyList.js~CardPropertyList#textContent",
+    "member"
   ],
   [
     "coral-spectrum/coral-component-card/src/scripts/cardsubtitle.js",
@@ -2586,6 +3210,24 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "coral-spectrum/coral-component-charactercount/src/scripts/charactercount.js~charactercount#maxlength",
+    "class/coral-spectrum/coral-component-charactercount/src/scripts/CharacterCount.js~CharacterCount.html#instance-member-maxLength",
+    "coral-spectrum/coral-component-charactercount/src/scripts/CharacterCount.js~CharacterCount#maxLength",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-charactercount/src/scripts/charactercount.js~charactercount#target",
+    "class/coral-spectrum/coral-component-charactercount/src/scripts/CharacterCount.js~CharacterCount.html#instance-member-target",
+    "coral-spectrum/coral-component-charactercount/src/scripts/CharacterCount.js~CharacterCount#target",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-charactercount/src/scripts/charactercount.js~charactercount.target",
+    "class/coral-spectrum/coral-component-charactercount/src/scripts/CharacterCount.js~CharacterCount.html#static-member-target",
+    "coral-spectrum/coral-component-charactercount/src/scripts/CharacterCount.js~CharacterCount.target",
+    "member"
+  ],
+  [
     "coral-spectrum/coral-component-charactercount/src/scripts/charactercount.js~charactercounttargetenum",
     "typedef/index.html#static-typedef-CharacterCountTargetEnum",
     "coral-spectrum/coral-component-charactercount/src/scripts/CharacterCount.js~CharacterCountTargetEnum",
@@ -2596,6 +3238,84 @@ window.esdocSearchIndex = [
     "file/coral-spectrum/coral-component-checkbox/src/scripts/Checkbox.js.html",
     "coral-spectrum/coral-component-checkbox/src/scripts/Checkbox.js",
     "file"
+  ],
+  [
+    "coral-spectrum/coral-component-checkbox/src/scripts/checkbox.js~checkbox#checked",
+    "class/coral-spectrum/coral-component-checkbox/src/scripts/Checkbox.js~Checkbox.html#instance-member-checked",
+    "coral-spectrum/coral-component-checkbox/src/scripts/Checkbox.js~Checkbox#checked",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-checkbox/src/scripts/checkbox.js~checkbox#clear",
+    "class/coral-spectrum/coral-component-checkbox/src/scripts/Checkbox.js~Checkbox.html#instance-method-clear",
+    "coral-spectrum/coral-component-checkbox/src/scripts/Checkbox.js~Checkbox#clear",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-checkbox/src/scripts/checkbox.js~checkbox#disabled",
+    "class/coral-spectrum/coral-component-checkbox/src/scripts/Checkbox.js~Checkbox.html#instance-member-disabled",
+    "coral-spectrum/coral-component-checkbox/src/scripts/Checkbox.js~Checkbox#disabled",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-checkbox/src/scripts/checkbox.js~checkbox#indeterminate",
+    "class/coral-spectrum/coral-component-checkbox/src/scripts/Checkbox.js~Checkbox.html#instance-member-indeterminate",
+    "coral-spectrum/coral-component-checkbox/src/scripts/Checkbox.js~Checkbox#indeterminate",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-checkbox/src/scripts/checkbox.js~checkbox#label",
+    "class/coral-spectrum/coral-component-checkbox/src/scripts/Checkbox.js~Checkbox.html#instance-member-label",
+    "coral-spectrum/coral-component-checkbox/src/scripts/Checkbox.js~Checkbox#label",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-checkbox/src/scripts/checkbox.js~checkbox#labelled",
+    "class/coral-spectrum/coral-component-checkbox/src/scripts/Checkbox.js~Checkbox.html#instance-member-labelled",
+    "coral-spectrum/coral-component-checkbox/src/scripts/Checkbox.js~Checkbox#labelled",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-checkbox/src/scripts/checkbox.js~checkbox#labelledby",
+    "class/coral-spectrum/coral-component-checkbox/src/scripts/Checkbox.js~Checkbox.html#instance-member-labelledBy",
+    "coral-spectrum/coral-component-checkbox/src/scripts/Checkbox.js~Checkbox#labelledBy",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-checkbox/src/scripts/checkbox.js~checkbox#name",
+    "class/coral-spectrum/coral-component-checkbox/src/scripts/Checkbox.js~Checkbox.html#instance-member-name",
+    "coral-spectrum/coral-component-checkbox/src/scripts/Checkbox.js~Checkbox#name",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-checkbox/src/scripts/checkbox.js~checkbox#readonly",
+    "class/coral-spectrum/coral-component-checkbox/src/scripts/Checkbox.js~Checkbox.html#instance-member-readOnly",
+    "coral-spectrum/coral-component-checkbox/src/scripts/Checkbox.js~Checkbox#readOnly",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-checkbox/src/scripts/checkbox.js~checkbox#required",
+    "class/coral-spectrum/coral-component-checkbox/src/scripts/Checkbox.js~Checkbox.html#instance-member-required",
+    "coral-spectrum/coral-component-checkbox/src/scripts/Checkbox.js~Checkbox#required",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-checkbox/src/scripts/checkbox.js~checkbox#reset",
+    "class/coral-spectrum/coral-component-checkbox/src/scripts/Checkbox.js~Checkbox.html#instance-method-reset",
+    "coral-spectrum/coral-component-checkbox/src/scripts/Checkbox.js~Checkbox#reset",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-checkbox/src/scripts/checkbox.js~checkbox#trackingelement",
+    "class/coral-spectrum/coral-component-checkbox/src/scripts/Checkbox.js~Checkbox.html#instance-member-trackingElement",
+    "coral-spectrum/coral-component-checkbox/src/scripts/Checkbox.js~Checkbox#trackingElement",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-checkbox/src/scripts/checkbox.js~checkbox#value",
+    "class/coral-spectrum/coral-component-checkbox/src/scripts/Checkbox.js~Checkbox.html#instance-member-value",
+    "coral-spectrum/coral-component-checkbox/src/scripts/Checkbox.js~Checkbox#value",
+    "member"
   ],
   [
     "coral-spectrum/coral-component-checkbox/src/scripts/checkboxlabel.js",
@@ -2610,10 +3330,94 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "coral-spectrum/coral-component-checkboxgroup/src/scripts/checkboxgroup.js~checkboxgroup#selecteditems",
+    "class/coral-spectrum/coral-component-checkboxgroup/src/scripts/CheckboxGroup.js~CheckboxGroup.html#instance-member-selectedItems",
+    "coral-spectrum/coral-component-checkboxgroup/src/scripts/CheckboxGroup.js~CheckboxGroup#selectedItems",
+    "member"
+  ],
+  [
     "coral-spectrum/coral-component-clock/src/scripts/clock.js",
     "file/coral-spectrum/coral-component-clock/src/scripts/Clock.js.html",
     "coral-spectrum/coral-component-clock/src/scripts/Clock.js",
     "file"
+  ],
+  [
+    "coral-spectrum/coral-component-clock/src/scripts/clock.js~clock#disabled",
+    "class/coral-spectrum/coral-component-clock/src/scripts/Clock.js~Clock.html#instance-member-disabled",
+    "coral-spectrum/coral-component-clock/src/scripts/Clock.js~Clock#disabled",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-clock/src/scripts/clock.js~clock#displayformat",
+    "class/coral-spectrum/coral-component-clock/src/scripts/Clock.js~Clock.html#instance-member-displayFormat",
+    "coral-spectrum/coral-component-clock/src/scripts/Clock.js~Clock#displayFormat",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-clock/src/scripts/clock.js~clock#focus",
+    "class/coral-spectrum/coral-component-clock/src/scripts/Clock.js~Clock.html#instance-method-focus",
+    "coral-spectrum/coral-component-clock/src/scripts/Clock.js~Clock#focus",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-clock/src/scripts/clock.js~clock#invalid",
+    "class/coral-spectrum/coral-component-clock/src/scripts/Clock.js~Clock.html#instance-member-invalid",
+    "coral-spectrum/coral-component-clock/src/scripts/Clock.js~Clock#invalid",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-clock/src/scripts/clock.js~clock#labelledby",
+    "class/coral-spectrum/coral-component-clock/src/scripts/Clock.js~Clock.html#instance-member-labelledBy",
+    "coral-spectrum/coral-component-clock/src/scripts/Clock.js~Clock#labelledBy",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-clock/src/scripts/clock.js~clock#name",
+    "class/coral-spectrum/coral-component-clock/src/scripts/Clock.js~Clock.html#instance-member-name",
+    "coral-spectrum/coral-component-clock/src/scripts/Clock.js~Clock#name",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-clock/src/scripts/clock.js~clock#readonly",
+    "class/coral-spectrum/coral-component-clock/src/scripts/Clock.js~Clock.html#instance-member-readOnly",
+    "coral-spectrum/coral-component-clock/src/scripts/Clock.js~Clock#readOnly",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-clock/src/scripts/clock.js~clock#required",
+    "class/coral-spectrum/coral-component-clock/src/scripts/Clock.js~Clock.html#instance-member-required",
+    "coral-spectrum/coral-component-clock/src/scripts/Clock.js~Clock#required",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-clock/src/scripts/clock.js~clock#value",
+    "class/coral-spectrum/coral-component-clock/src/scripts/Clock.js~Clock.html#instance-member-value",
+    "coral-spectrum/coral-component-clock/src/scripts/Clock.js~Clock#value",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-clock/src/scripts/clock.js~clock#valueasdate",
+    "class/coral-spectrum/coral-component-clock/src/scripts/Clock.js~Clock.html#instance-member-valueAsDate",
+    "coral-spectrum/coral-component-clock/src/scripts/Clock.js~Clock#valueAsDate",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-clock/src/scripts/clock.js~clock#valueformat",
+    "class/coral-spectrum/coral-component-clock/src/scripts/Clock.js~Clock.html#instance-member-valueFormat",
+    "coral-spectrum/coral-component-clock/src/scripts/Clock.js~Clock#valueFormat",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-clock/src/scripts/clock.js~clock#variant",
+    "class/coral-spectrum/coral-component-clock/src/scripts/Clock.js~Clock.html#instance-member-variant",
+    "coral-spectrum/coral-component-clock/src/scripts/Clock.js~Clock#variant",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-clock/src/scripts/clock.js~clock.variant",
+    "class/coral-spectrum/coral-component-clock/src/scripts/Clock.js~Clock.html#static-member-variant",
+    "coral-spectrum/coral-component-clock/src/scripts/Clock.js~Clock.variant",
+    "member"
   ],
   [
     "coral-spectrum/coral-component-clock/src/scripts/clock.js~clockvariantenum",
@@ -2626,6 +3430,36 @@ window.esdocSearchIndex = [
     "file/coral-spectrum/coral-component-coachmark/src/scripts/CoachMark.js.html",
     "coral-spectrum/coral-component-coachmark/src/scripts/CoachMark.js",
     "file"
+  ],
+  [
+    "coral-spectrum/coral-component-coachmark/src/scripts/coachmark.js~coachmark#size",
+    "class/coral-spectrum/coral-component-coachmark/src/scripts/CoachMark.js~CoachMark.html#instance-member-size",
+    "coral-spectrum/coral-component-coachmark/src/scripts/CoachMark.js~CoachMark#size",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-coachmark/src/scripts/coachmark.js~coachmark#target",
+    "class/coral-spectrum/coral-component-coachmark/src/scripts/CoachMark.js~CoachMark.html#instance-member-target",
+    "coral-spectrum/coral-component-coachmark/src/scripts/CoachMark.js~CoachMark#target",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-coachmark/src/scripts/coachmark.js~coachmark#variant",
+    "class/coral-spectrum/coral-component-coachmark/src/scripts/CoachMark.js~CoachMark.html#instance-member-variant",
+    "coral-spectrum/coral-component-coachmark/src/scripts/CoachMark.js~CoachMark#variant",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-coachmark/src/scripts/coachmark.js~coachmark.size",
+    "class/coral-spectrum/coral-component-coachmark/src/scripts/CoachMark.js~CoachMark.html#static-member-size",
+    "coral-spectrum/coral-component-coachmark/src/scripts/CoachMark.js~CoachMark.size",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-coachmark/src/scripts/coachmark.js~coachmark.variant",
+    "class/coral-spectrum/coral-component-coachmark/src/scripts/CoachMark.js~CoachMark.html#static-member-variant",
+    "coral-spectrum/coral-component-coachmark/src/scripts/CoachMark.js~CoachMark.variant",
+    "member"
   ],
   [
     "coral-spectrum/coral-component-coachmark/src/scripts/coachmark.js~coachmarksizeenum",
@@ -2778,6 +3612,138 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "coral-spectrum/coral-component-colorinput/src/scripts/colorinput.js~colorinput#autogeneratecolors",
+    "class/coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput.html#instance-member-autoGenerateColors",
+    "coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput#autoGenerateColors",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-colorinput/src/scripts/colorinput.js~colorinput#disabled",
+    "class/coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput.html#instance-member-disabled",
+    "coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput#disabled",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-colorinput/src/scripts/colorinput.js~colorinput#invalid",
+    "class/coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput.html#instance-member-invalid",
+    "coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput#invalid",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-colorinput/src/scripts/colorinput.js~colorinput#items",
+    "class/coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput.html#instance-member-items",
+    "coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput#items",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-colorinput/src/scripts/colorinput.js~colorinput#labelledby",
+    "class/coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput.html#instance-member-labelledBy",
+    "coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput#labelledBy",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-colorinput/src/scripts/colorinput.js~colorinput#name",
+    "class/coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput.html#instance-member-name",
+    "coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput#name",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-colorinput/src/scripts/colorinput.js~colorinput#overlay",
+    "class/coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput.html#instance-member-overlay",
+    "coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput#overlay",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-colorinput/src/scripts/colorinput.js~colorinput#placeholder",
+    "class/coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput.html#instance-member-placeholder",
+    "coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput#placeholder",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-colorinput/src/scripts/colorinput.js~colorinput#readonly",
+    "class/coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput.html#instance-member-readOnly",
+    "coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput#readOnly",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-colorinput/src/scripts/colorinput.js~colorinput#required",
+    "class/coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput.html#instance-member-required",
+    "coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput#required",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-colorinput/src/scripts/colorinput.js~colorinput#selecteditem",
+    "class/coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput.html#instance-member-selectedItem",
+    "coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput#selectedItem",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-colorinput/src/scripts/colorinput.js~colorinput#showdefaultcolors",
+    "class/coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput.html#instance-member-showDefaultColors",
+    "coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput#showDefaultColors",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-colorinput/src/scripts/colorinput.js~colorinput#showproperties",
+    "class/coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput.html#instance-member-showProperties",
+    "coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput#showProperties",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-colorinput/src/scripts/colorinput.js~colorinput#showswatches",
+    "class/coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput.html#instance-member-showSwatches",
+    "coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput#showSwatches",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-colorinput/src/scripts/colorinput.js~colorinput#value",
+    "class/coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput.html#instance-member-value",
+    "coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput#value",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-colorinput/src/scripts/colorinput.js~colorinput#valueascolor",
+    "class/coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput.html#instance-member-valueAsColor",
+    "coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput#valueAsColor",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-colorinput/src/scripts/colorinput.js~colorinput#variant",
+    "class/coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput.html#instance-member-variant",
+    "coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput#variant",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-colorinput/src/scripts/colorinput.js~colorinput.autogeneratecolors",
+    "class/coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput.html#static-member-autoGenerateColors",
+    "coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput.autoGenerateColors",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-colorinput/src/scripts/colorinput.js~colorinput.showdefaultcolors",
+    "class/coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput.html#static-member-showDefaultColors",
+    "coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput.showDefaultColors",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-colorinput/src/scripts/colorinput.js~colorinput.showproperties",
+    "class/coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput.html#static-member-showProperties",
+    "coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput.showProperties",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-colorinput/src/scripts/colorinput.js~colorinput.showswatches",
+    "class/coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput.html#static-member-showSwatches",
+    "coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput.showSwatches",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-colorinput/src/scripts/colorinput.js~colorinput.variant",
+    "class/coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput.html#static-member-variant",
+    "coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInput.variant",
+    "member"
+  ],
+  [
     "coral-spectrum/coral-component-colorinput/src/scripts/colorinput.js~colorinputautogeneratecolorsenum",
     "typedef/index.html#static-typedef-ColorInputAutoGenerateColorsEnum",
     "coral-spectrum/coral-component-colorinput/src/scripts/ColorInput.js~ColorInputAutoGenerateColorsEnum",
@@ -2820,10 +3786,28 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "coral-spectrum/coral-component-colorinput/src/scripts/colorinputitem.js~colorinputitem#selected",
+    "class/coral-spectrum/coral-component-colorinput/src/scripts/ColorInputItem.js~ColorInputItem.html#instance-member-selected",
+    "coral-spectrum/coral-component-colorinput/src/scripts/ColorInputItem.js~ColorInputItem#selected",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-colorinput/src/scripts/colorinputitem.js~colorinputitem#value",
+    "class/coral-spectrum/coral-component-colorinput/src/scripts/ColorInputItem.js~ColorInputItem.html#instance-member-value",
+    "coral-spectrum/coral-component-colorinput/src/scripts/ColorInputItem.js~ColorInputItem#value",
+    "member"
+  ],
+  [
     "coral-spectrum/coral-component-colorinput/src/scripts/colorinputslider.js",
     "file/coral-spectrum/coral-component-colorinput/src/scripts/ColorInputSlider.js.html",
     "coral-spectrum/coral-component-colorinput/src/scripts/ColorInputSlider.js",
     "file"
+  ],
+  [
+    "coral-spectrum/coral-component-colorinput/src/scripts/colorinputslider.js~colorinputslider#gradient",
+    "class/coral-spectrum/coral-component-colorinput/src/scripts/ColorInputSlider.js~ColorInputSlider.html#instance-member-gradient",
+    "coral-spectrum/coral-component-colorinput/src/scripts/ColorInputSlider.js~ColorInputSlider#gradient",
+    "member"
   ],
   [
     "coral-spectrum/coral-component-colorinput/src/scripts/colorinputswatch.js",
@@ -2832,10 +3816,52 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "coral-spectrum/coral-component-colorinput/src/scripts/colorinputswatch.js~colorinputswatch#disabled",
+    "class/coral-spectrum/coral-component-colorinput/src/scripts/ColorInputSwatch.js~ColorInputSwatch.html#instance-member-disabled",
+    "coral-spectrum/coral-component-colorinput/src/scripts/ColorInputSwatch.js~ColorInputSwatch#disabled",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-colorinput/src/scripts/colorinputswatch.js~colorinputswatch#selected",
+    "class/coral-spectrum/coral-component-colorinput/src/scripts/ColorInputSwatch.js~ColorInputSwatch.html#instance-member-selected",
+    "coral-spectrum/coral-component-colorinput/src/scripts/ColorInputSwatch.js~ColorInputSwatch#selected",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-colorinput/src/scripts/colorinputswatch.js~colorinputswatch#tabindex",
+    "class/coral-spectrum/coral-component-colorinput/src/scripts/ColorInputSwatch.js~ColorInputSwatch.html#instance-member-tabIndex",
+    "coral-spectrum/coral-component-colorinput/src/scripts/ColorInputSwatch.js~ColorInputSwatch#tabIndex",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-colorinput/src/scripts/colorinputswatch.js~colorinputswatch#targetcolor",
+    "class/coral-spectrum/coral-component-colorinput/src/scripts/ColorInputSwatch.js~ColorInputSwatch.html#instance-member-targetColor",
+    "coral-spectrum/coral-component-colorinput/src/scripts/ColorInputSwatch.js~ColorInputSwatch#targetColor",
+    "member"
+  ],
+  [
     "coral-spectrum/coral-component-colorinput/src/scripts/colorinputswatches.js",
     "file/coral-spectrum/coral-component-colorinput/src/scripts/ColorInputSwatches.js.html",
     "coral-spectrum/coral-component-colorinput/src/scripts/ColorInputSwatches.js",
     "file"
+  ],
+  [
+    "coral-spectrum/coral-component-colorinput/src/scripts/colorinputswatches.js~colorinputswatches#items",
+    "class/coral-spectrum/coral-component-colorinput/src/scripts/ColorInputSwatches.js~ColorInputSwatches.html#instance-member-items",
+    "coral-spectrum/coral-component-colorinput/src/scripts/ColorInputSwatches.js~ColorInputSwatches#items",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-colorinput/src/scripts/colorinputswatches.js~colorinputswatches#selecteditem",
+    "class/coral-spectrum/coral-component-colorinput/src/scripts/ColorInputSwatches.js~ColorInputSwatches.html#instance-member-selectedItem",
+    "coral-spectrum/coral-component-colorinput/src/scripts/ColorInputSwatches.js~ColorInputSwatches#selectedItem",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-colorinput/src/scripts/colorinputswatches.js~colorinputswatches#value",
+    "class/coral-spectrum/coral-component-colorinput/src/scripts/ColorInputSwatches.js~ColorInputSwatches.html#instance-member-value",
+    "coral-spectrum/coral-component-colorinput/src/scripts/ColorInputSwatches.js~ColorInputSwatches#value",
+    "member"
   ],
   [
     "coral-spectrum/coral-component-columnview/src/scripts/columnview.js",
@@ -2844,28 +3870,76 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "coral-spectrum/coral-component-columnview/src/scripts/columnview.js~coral-columnview:activeitemchange",
+    "coral-spectrum/coral-component-columnview/src/scripts/columnview.js~columnview#activeitem",
+    "class/coral-spectrum/coral-component-columnview/src/scripts/ColumnView.js~ColumnView.html#instance-member-activeItem",
+    "coral-spectrum/coral-component-columnview/src/scripts/ColumnView.js~ColumnView#activeItem",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-columnview/src/scripts/columnview.js~columnview#columns",
+    "class/coral-spectrum/coral-component-columnview/src/scripts/ColumnView.js~ColumnView.html#instance-member-columns",
+    "coral-spectrum/coral-component-columnview/src/scripts/ColumnView.js~ColumnView#columns",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-columnview/src/scripts/columnview.js~columnview#selecteditem",
+    "class/coral-spectrum/coral-component-columnview/src/scripts/ColumnView.js~ColumnView.html#instance-member-selectedItem",
+    "coral-spectrum/coral-component-columnview/src/scripts/ColumnView.js~ColumnView#selectedItem",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-columnview/src/scripts/columnview.js~columnview#selecteditems",
+    "class/coral-spectrum/coral-component-columnview/src/scripts/ColumnView.js~ColumnView.html#instance-member-selectedItems",
+    "coral-spectrum/coral-component-columnview/src/scripts/ColumnView.js~ColumnView#selectedItems",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-columnview/src/scripts/columnview.js~columnview#selectionmode",
+    "class/coral-spectrum/coral-component-columnview/src/scripts/ColumnView.js~ColumnView.html#instance-member-selectionMode",
+    "coral-spectrum/coral-component-columnview/src/scripts/ColumnView.js~ColumnView#selectionMode",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-columnview/src/scripts/columnview.js~columnview#setnextcolumn",
+    "class/coral-spectrum/coral-component-columnview/src/scripts/ColumnView.js~ColumnView.html#instance-method-setNextColumn",
+    "coral-spectrum/coral-component-columnview/src/scripts/ColumnView.js~ColumnView#setNextColumn",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-columnview/src/scripts/columnview.js~columnview#tabindex",
+    "class/coral-spectrum/coral-component-columnview/src/scripts/ColumnView.js~ColumnView.html#instance-member-tabIndex",
+    "coral-spectrum/coral-component-columnview/src/scripts/ColumnView.js~ColumnView#tabIndex",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-columnview/src/scripts/columnview.js~columnview.coral-columnview:activeitemchange",
     "typedef/index.html#static-typedef-coral-columnview:activeitemchange",
-    "coral-spectrum/coral-component-columnview/src/scripts/ColumnView.js~coral-columnview:activeitemchange",
+    "coral-spectrum/coral-component-columnview/src/scripts/ColumnView.js~ColumnView.coral-columnview:activeitemchange",
     "typedef"
   ],
   [
-    "coral-spectrum/coral-component-columnview/src/scripts/columnview.js~coral-columnview:change",
+    "coral-spectrum/coral-component-columnview/src/scripts/columnview.js~columnview.coral-columnview:change",
     "typedef/index.html#static-typedef-coral-columnview:change",
-    "coral-spectrum/coral-component-columnview/src/scripts/ColumnView.js~coral-columnview:change",
+    "coral-spectrum/coral-component-columnview/src/scripts/ColumnView.js~ColumnView.coral-columnview:change",
     "typedef"
   ],
   [
-    "coral-spectrum/coral-component-columnview/src/scripts/columnview.js~coral-columnview:loaditems",
+    "coral-spectrum/coral-component-columnview/src/scripts/columnview.js~columnview.coral-columnview:loaditems",
     "typedef/index.html#static-typedef-coral-columnview:loaditems",
-    "coral-spectrum/coral-component-columnview/src/scripts/ColumnView.js~coral-columnview:loaditems",
+    "coral-spectrum/coral-component-columnview/src/scripts/ColumnView.js~ColumnView.coral-columnview:loaditems",
     "typedef"
   ],
   [
-    "coral-spectrum/coral-component-columnview/src/scripts/columnview.js~coral-columnview:navigate",
+    "coral-spectrum/coral-component-columnview/src/scripts/columnview.js~columnview.coral-columnview:navigate",
     "typedef/index.html#static-typedef-coral-columnview:navigate",
-    "coral-spectrum/coral-component-columnview/src/scripts/ColumnView.js~coral-columnview:navigate",
+    "coral-spectrum/coral-component-columnview/src/scripts/ColumnView.js~ColumnView.coral-columnview:navigate",
     "typedef"
+  ],
+  [
+    "coral-spectrum/coral-component-columnview/src/scripts/columnview.js~columnview.selectionmode",
+    "class/coral-spectrum/coral-component-columnview/src/scripts/ColumnView.js~ColumnView.html#static-member-selectionMode",
+    "coral-spectrum/coral-component-columnview/src/scripts/ColumnView.js~ColumnView.selectionMode",
+    "member"
   ],
   [
     "coral-spectrum/coral-component-columnview/src/scripts/columnviewcollection.js",
@@ -2880,6 +3954,42 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "coral-spectrum/coral-component-columnview/src/scripts/columnviewcolumn.js~columnviewcolumn#activeitem",
+    "class/coral-spectrum/coral-component-columnview/src/scripts/ColumnViewColumn.js~ColumnViewColumn.html#instance-member-activeItem",
+    "coral-spectrum/coral-component-columnview/src/scripts/ColumnViewColumn.js~ColumnViewColumn#activeItem",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-columnview/src/scripts/columnviewcolumn.js~columnviewcolumn#content",
+    "class/coral-spectrum/coral-component-columnview/src/scripts/ColumnViewColumn.js~ColumnViewColumn.html#instance-member-content",
+    "coral-spectrum/coral-component-columnview/src/scripts/ColumnViewColumn.js~ColumnViewColumn#content",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-columnview/src/scripts/columnviewcolumn.js~columnviewcolumn#id",
+    "class/coral-spectrum/coral-component-columnview/src/scripts/ColumnViewColumn.js~ColumnViewColumn.html#instance-member-id",
+    "coral-spectrum/coral-component-columnview/src/scripts/ColumnViewColumn.js~ColumnViewColumn#id",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-columnview/src/scripts/columnviewcolumn.js~columnviewcolumn#items",
+    "class/coral-spectrum/coral-component-columnview/src/scripts/ColumnViewColumn.js~ColumnViewColumn.html#instance-member-items",
+    "coral-spectrum/coral-component-columnview/src/scripts/ColumnViewColumn.js~ColumnViewColumn#items",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-columnview/src/scripts/columnviewcolumn.js~columnviewcolumn#selecteditem",
+    "class/coral-spectrum/coral-component-columnview/src/scripts/ColumnViewColumn.js~ColumnViewColumn.html#instance-member-selectedItem",
+    "coral-spectrum/coral-component-columnview/src/scripts/ColumnViewColumn.js~ColumnViewColumn#selectedItem",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-columnview/src/scripts/columnviewcolumn.js~columnviewcolumn#selecteditems",
+    "class/coral-spectrum/coral-component-columnview/src/scripts/ColumnViewColumn.js~ColumnViewColumn.html#instance-member-selectedItems",
+    "coral-spectrum/coral-component-columnview/src/scripts/ColumnViewColumn.js~ColumnViewColumn#selectedItems",
+    "member"
+  ],
+  [
     "coral-spectrum/coral-component-columnview/src/scripts/columnviewcolumncontent.js",
     "file/coral-spectrum/coral-component-columnview/src/scripts/ColumnViewColumnContent.js.html",
     "coral-spectrum/coral-component-columnview/src/scripts/ColumnViewColumnContent.js",
@@ -2890,6 +4000,60 @@ window.esdocSearchIndex = [
     "file/coral-spectrum/coral-component-columnview/src/scripts/ColumnViewItem.js.html",
     "coral-spectrum/coral-component-columnview/src/scripts/ColumnViewItem.js",
     "file"
+  ],
+  [
+    "coral-spectrum/coral-component-columnview/src/scripts/columnviewitem.js~columnviewitem#active",
+    "class/coral-spectrum/coral-component-columnview/src/scripts/ColumnViewItem.js~ColumnViewItem.html#instance-member-active",
+    "coral-spectrum/coral-component-columnview/src/scripts/ColumnViewItem.js~ColumnViewItem#active",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-columnview/src/scripts/columnviewitem.js~columnviewitem#content",
+    "class/coral-spectrum/coral-component-columnview/src/scripts/ColumnViewItem.js~ColumnViewItem.html#instance-member-content",
+    "coral-spectrum/coral-component-columnview/src/scripts/ColumnViewItem.js~ColumnViewItem#content",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-columnview/src/scripts/columnviewitem.js~columnviewitem#icon",
+    "class/coral-spectrum/coral-component-columnview/src/scripts/ColumnViewItem.js~ColumnViewItem.html#instance-member-icon",
+    "coral-spectrum/coral-component-columnview/src/scripts/ColumnViewItem.js~ColumnViewItem#icon",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-columnview/src/scripts/columnviewitem.js~columnviewitem#id",
+    "class/coral-spectrum/coral-component-columnview/src/scripts/ColumnViewItem.js~ColumnViewItem.html#instance-member-id",
+    "coral-spectrum/coral-component-columnview/src/scripts/ColumnViewItem.js~ColumnViewItem#id",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-columnview/src/scripts/columnviewitem.js~columnviewitem#selected",
+    "class/coral-spectrum/coral-component-columnview/src/scripts/ColumnViewItem.js~ColumnViewItem.html#instance-member-selected",
+    "coral-spectrum/coral-component-columnview/src/scripts/ColumnViewItem.js~ColumnViewItem#selected",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-columnview/src/scripts/columnviewitem.js~columnviewitem#tabindex",
+    "class/coral-spectrum/coral-component-columnview/src/scripts/ColumnViewItem.js~ColumnViewItem.html#instance-member-tabIndex",
+    "coral-spectrum/coral-component-columnview/src/scripts/ColumnViewItem.js~ColumnViewItem#tabIndex",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-columnview/src/scripts/columnviewitem.js~columnviewitem#thumbnail",
+    "class/coral-spectrum/coral-component-columnview/src/scripts/ColumnViewItem.js~ColumnViewItem.html#instance-member-thumbnail",
+    "coral-spectrum/coral-component-columnview/src/scripts/ColumnViewItem.js~ColumnViewItem#thumbnail",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-columnview/src/scripts/columnviewitem.js~columnviewitem#variant",
+    "class/coral-spectrum/coral-component-columnview/src/scripts/ColumnViewItem.js~ColumnViewItem.html#instance-member-variant",
+    "coral-spectrum/coral-component-columnview/src/scripts/ColumnViewItem.js~ColumnViewItem#variant",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-columnview/src/scripts/columnviewitem.js~columnviewitem.variant",
+    "class/coral-spectrum/coral-component-columnview/src/scripts/ColumnViewItem.js~ColumnViewItem.html#static-member-variant",
+    "coral-spectrum/coral-component-columnview/src/scripts/ColumnViewItem.js~ColumnViewItem.variant",
+    "member"
   ],
   [
     "coral-spectrum/coral-component-columnview/src/scripts/columnviewitem.js~columnviewitemvariantenum",
@@ -2914,6 +4078,18 @@ window.esdocSearchIndex = [
     "file/coral-spectrum/coral-component-columnview/src/scripts/ColumnViewPreview.js.html",
     "coral-spectrum/coral-component-columnview/src/scripts/ColumnViewPreview.js",
     "file"
+  ],
+  [
+    "coral-spectrum/coral-component-columnview/src/scripts/columnviewpreview.js~columnviewpreview#content",
+    "class/coral-spectrum/coral-component-columnview/src/scripts/ColumnViewPreview.js~ColumnViewPreview.html#instance-member-content",
+    "coral-spectrum/coral-component-columnview/src/scripts/ColumnViewPreview.js~ColumnViewPreview#content",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-columnview/src/scripts/columnviewpreview.js~columnviewpreview#id",
+    "class/coral-spectrum/coral-component-columnview/src/scripts/ColumnViewPreview.js~ColumnViewPreview.html#instance-member-id",
+    "coral-spectrum/coral-component-columnview/src/scripts/ColumnViewPreview.js~ColumnViewPreview#id",
+    "member"
   ],
   [
     "coral-spectrum/coral-component-columnview/src/scripts/columnviewpreviewasset.js",
@@ -2970,15 +4146,69 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "coral-spectrum/coral-component-cyclebutton/src/scripts/cyclebutton.js~cyclebuttondisplaymodeenum",
-    "typedef/index.html#static-typedef-CycleButtonDisplayModeEnum",
-    "coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButton.js~CycleButtonDisplayModeEnum",
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/cyclebutton.js~cyclebutton#actions",
+    "class/coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButton.js~CycleButton.html#instance-member-actions",
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButton.js~CycleButton#actions",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/cyclebutton.js~cyclebutton#displaymode",
+    "class/coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButton.js~CycleButton.html#instance-member-displayMode",
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButton.js~CycleButton#displayMode",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/cyclebutton.js~cyclebutton#icon",
+    "class/coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButton.js~CycleButton.html#instance-member-icon",
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButton.js~CycleButton#icon",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/cyclebutton.js~cyclebutton#id",
+    "class/coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButton.js~CycleButton.html#instance-member-id",
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButton.js~CycleButton#id",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/cyclebutton.js~cyclebutton#items",
+    "class/coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButton.js~CycleButton.html#instance-member-items",
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButton.js~CycleButton#items",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/cyclebutton.js~cyclebutton#overlay",
+    "class/coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButton.js~CycleButton.html#instance-member-overlay",
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButton.js~CycleButton#overlay",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/cyclebutton.js~cyclebutton#selecteditem",
+    "class/coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButton.js~CycleButton.html#instance-member-selectedItem",
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButton.js~CycleButton#selectedItem",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/cyclebutton.js~cyclebutton#threshold",
+    "class/coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButton.js~CycleButton.html#instance-member-threshold",
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButton.js~CycleButton#threshold",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/cyclebutton.js~cyclebutton.coral-cyclebutton:change",
+    "typedef/index.html#static-typedef-coral-cyclebutton:change",
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButton.js~CycleButton.coral-cyclebutton:change",
     "typedef"
   ],
   [
-    "coral-spectrum/coral-component-cyclebutton/src/scripts/cyclebutton.js~coral-cyclebutton:change",
-    "typedef/index.html#static-typedef-coral-cyclebutton:change",
-    "coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButton.js~coral-cyclebutton:change",
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/cyclebutton.js~cyclebutton.displaymode",
+    "class/coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButton.js~CycleButton.html#static-member-displayMode",
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButton.js~CycleButton.displayMode",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/cyclebutton.js~cyclebuttondisplaymodeenum",
+    "typedef/index.html#static-typedef-CycleButtonDisplayModeEnum",
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButton.js~CycleButtonDisplayModeEnum",
     "typedef"
   ],
   [
@@ -2988,10 +4218,76 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/cyclebuttonaction.js~cyclebuttonaction#content",
+    "class/coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButtonAction.js~CycleButtonAction.html#instance-member-content",
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButtonAction.js~CycleButtonAction#content",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/cyclebuttonaction.js~cyclebuttonaction#icon",
+    "class/coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButtonAction.js~CycleButtonAction.html#instance-member-icon",
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButtonAction.js~CycleButtonAction#icon",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/cyclebuttonaction.js~cyclebuttonaction#tabindex",
+    "class/coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButtonAction.js~CycleButtonAction.html#instance-member-tabIndex",
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButtonAction.js~CycleButtonAction#tabIndex",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/cyclebuttonaction.js~cyclebuttonaction#trackingelement",
+    "class/coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButtonAction.js~CycleButtonAction.html#instance-member-trackingElement",
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButtonAction.js~CycleButtonAction#trackingElement",
+    "member"
+  ],
+  [
     "coral-spectrum/coral-component-cyclebutton/src/scripts/cyclebuttonitem.js",
     "file/coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButtonItem.js.html",
     "coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButtonItem.js",
     "file"
+  ],
+  [
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/cyclebuttonitem.js~cyclebuttonitem#content",
+    "class/coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButtonItem.js~CycleButtonItem.html#instance-member-content",
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButtonItem.js~CycleButtonItem#content",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/cyclebuttonitem.js~cyclebuttonitem#disabled",
+    "class/coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButtonItem.js~CycleButtonItem.html#instance-member-disabled",
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButtonItem.js~CycleButtonItem#disabled",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/cyclebuttonitem.js~cyclebuttonitem#displaymode",
+    "class/coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButtonItem.js~CycleButtonItem.html#instance-member-displayMode",
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButtonItem.js~CycleButtonItem#displayMode",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/cyclebuttonitem.js~cyclebuttonitem#icon",
+    "class/coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButtonItem.js~CycleButtonItem.html#instance-member-icon",
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButtonItem.js~CycleButtonItem#icon",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/cyclebuttonitem.js~cyclebuttonitem#selected",
+    "class/coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButtonItem.js~CycleButtonItem.html#instance-member-selected",
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButtonItem.js~CycleButtonItem#selected",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/cyclebuttonitem.js~cyclebuttonitem#trackingelement",
+    "class/coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButtonItem.js~CycleButtonItem.html#instance-member-trackingElement",
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButtonItem.js~CycleButtonItem#trackingElement",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/cyclebuttonitem.js~cyclebuttonitem.displaymode",
+    "class/coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButtonItem.js~CycleButtonItem.html#static-member-displayMode",
+    "coral-spectrum/coral-component-cyclebutton/src/scripts/CycleButtonItem.js~CycleButtonItem.displayMode",
+    "member"
   ],
   [
     "coral-spectrum/coral-component-cyclebutton/src/scripts/cyclebuttonitem.js~cyclebuttonitemdisplaymodeenum",
@@ -3004,6 +4300,132 @@ window.esdocSearchIndex = [
     "file/coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js.html",
     "coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js",
     "file"
+  ],
+  [
+    "coral-spectrum/coral-component-datepicker/src/scripts/datepicker.js~datepicker#disabled",
+    "class/coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js~Datepicker.html#instance-member-disabled",
+    "coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js~Datepicker#disabled",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-datepicker/src/scripts/datepicker.js~datepicker#displayformat",
+    "class/coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js~Datepicker.html#instance-member-displayFormat",
+    "coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js~Datepicker#displayFormat",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-datepicker/src/scripts/datepicker.js~datepicker#headerformat",
+    "class/coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js~Datepicker.html#instance-member-headerFormat",
+    "coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js~Datepicker#headerFormat",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-datepicker/src/scripts/datepicker.js~datepicker#invalid",
+    "class/coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js~Datepicker.html#instance-member-invalid",
+    "coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js~Datepicker#invalid",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-datepicker/src/scripts/datepicker.js~datepicker#labelled",
+    "class/coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js~Datepicker.html#instance-member-labelled",
+    "coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js~Datepicker#labelled",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-datepicker/src/scripts/datepicker.js~datepicker#labelledby",
+    "class/coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js~Datepicker.html#instance-member-labelledBy",
+    "coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js~Datepicker#labelledBy",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-datepicker/src/scripts/datepicker.js~datepicker#max",
+    "class/coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js~Datepicker.html#instance-member-max",
+    "coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js~Datepicker#max",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-datepicker/src/scripts/datepicker.js~datepicker#min",
+    "class/coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js~Datepicker.html#instance-member-min",
+    "coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js~Datepicker#min",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-datepicker/src/scripts/datepicker.js~datepicker#name",
+    "class/coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js~Datepicker.html#instance-member-name",
+    "coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js~Datepicker#name",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-datepicker/src/scripts/datepicker.js~datepicker#overlay",
+    "class/coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js~Datepicker.html#instance-member-overlay",
+    "coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js~Datepicker#overlay",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-datepicker/src/scripts/datepicker.js~datepicker#placeholder",
+    "class/coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js~Datepicker.html#instance-member-placeholder",
+    "coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js~Datepicker#placeholder",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-datepicker/src/scripts/datepicker.js~datepicker#readonly",
+    "class/coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js~Datepicker.html#instance-member-readOnly",
+    "coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js~Datepicker#readOnly",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-datepicker/src/scripts/datepicker.js~datepicker#required",
+    "class/coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js~Datepicker.html#instance-member-required",
+    "coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js~Datepicker#required",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-datepicker/src/scripts/datepicker.js~datepicker#startday",
+    "class/coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js~Datepicker.html#instance-member-startDay",
+    "coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js~Datepicker#startDay",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-datepicker/src/scripts/datepicker.js~datepicker#type",
+    "class/coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js~Datepicker.html#instance-member-type",
+    "coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js~Datepicker#type",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-datepicker/src/scripts/datepicker.js~datepicker#value",
+    "class/coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js~Datepicker.html#instance-member-value",
+    "coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js~Datepicker#value",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-datepicker/src/scripts/datepicker.js~datepicker#valueasdate",
+    "class/coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js~Datepicker.html#instance-member-valueAsDate",
+    "coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js~Datepicker#valueAsDate",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-datepicker/src/scripts/datepicker.js~datepicker#valueformat",
+    "class/coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js~Datepicker.html#instance-member-valueFormat",
+    "coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js~Datepicker#valueFormat",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-datepicker/src/scripts/datepicker.js~datepicker#variant",
+    "class/coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js~Datepicker.html#instance-member-variant",
+    "coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js~Datepicker#variant",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-datepicker/src/scripts/datepicker.js~datepicker.type",
+    "class/coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js~Datepicker.html#static-member-type",
+    "coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js~Datepicker.type",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-datepicker/src/scripts/datepicker.js~datepicker.variant",
+    "class/coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js~Datepicker.html#static-member-variant",
+    "coral-spectrum/coral-component-datepicker/src/scripts/Datepicker.js~Datepicker.variant",
+    "member"
   ],
   [
     "coral-spectrum/coral-component-datepicker/src/scripts/datepicker.js~datepickertypeenum",
@@ -3022,6 +4444,108 @@ window.esdocSearchIndex = [
     "file/coral-spectrum/coral-component-dialog/src/scripts/Dialog.js.html",
     "coral-spectrum/coral-component-dialog/src/scripts/Dialog.js",
     "file"
+  ],
+  [
+    "coral-spectrum/coral-component-dialog/src/scripts/dialog.js~dialog#backdrop",
+    "class/coral-spectrum/coral-component-dialog/src/scripts/Dialog.js~Dialog.html#instance-member-backdrop",
+    "coral-spectrum/coral-component-dialog/src/scripts/Dialog.js~Dialog#backdrop",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-dialog/src/scripts/dialog.js~dialog#center",
+    "class/coral-spectrum/coral-component-dialog/src/scripts/Dialog.js~Dialog.html#instance-method-center",
+    "coral-spectrum/coral-component-dialog/src/scripts/Dialog.js~Dialog#center",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-dialog/src/scripts/dialog.js~dialog#closable",
+    "class/coral-spectrum/coral-component-dialog/src/scripts/Dialog.js~Dialog.html#instance-member-closable",
+    "coral-spectrum/coral-component-dialog/src/scripts/Dialog.js~Dialog#closable",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-dialog/src/scripts/dialog.js~dialog#content",
+    "class/coral-spectrum/coral-component-dialog/src/scripts/Dialog.js~Dialog.html#instance-member-content",
+    "coral-spectrum/coral-component-dialog/src/scripts/Dialog.js~Dialog#content",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-dialog/src/scripts/dialog.js~dialog#footer",
+    "class/coral-spectrum/coral-component-dialog/src/scripts/Dialog.js~Dialog.html#instance-member-footer",
+    "coral-spectrum/coral-component-dialog/src/scripts/Dialog.js~Dialog#footer",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-dialog/src/scripts/dialog.js~dialog#fullscreen",
+    "class/coral-spectrum/coral-component-dialog/src/scripts/Dialog.js~Dialog.html#instance-member-fullscreen",
+    "coral-spectrum/coral-component-dialog/src/scripts/Dialog.js~Dialog#fullscreen",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-dialog/src/scripts/dialog.js~dialog#header",
+    "class/coral-spectrum/coral-component-dialog/src/scripts/Dialog.js~Dialog.html#instance-member-header",
+    "coral-spectrum/coral-component-dialog/src/scripts/Dialog.js~Dialog#header",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-dialog/src/scripts/dialog.js~dialog#icon",
+    "class/coral-spectrum/coral-component-dialog/src/scripts/Dialog.js~Dialog.html#instance-member-icon",
+    "coral-spectrum/coral-component-dialog/src/scripts/Dialog.js~Dialog#icon",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-dialog/src/scripts/dialog.js~dialog#interaction",
+    "class/coral-spectrum/coral-component-dialog/src/scripts/Dialog.js~Dialog.html#instance-member-interaction",
+    "coral-spectrum/coral-component-dialog/src/scripts/Dialog.js~Dialog#interaction",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-dialog/src/scripts/dialog.js~dialog#movable",
+    "class/coral-spectrum/coral-component-dialog/src/scripts/Dialog.js~Dialog.html#instance-member-movable",
+    "coral-spectrum/coral-component-dialog/src/scripts/Dialog.js~Dialog#movable",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-dialog/src/scripts/dialog.js~dialog#open",
+    "class/coral-spectrum/coral-component-dialog/src/scripts/Dialog.js~Dialog.html#instance-member-open",
+    "coral-spectrum/coral-component-dialog/src/scripts/Dialog.js~Dialog#open",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-dialog/src/scripts/dialog.js~dialog#trackingelement",
+    "class/coral-spectrum/coral-component-dialog/src/scripts/Dialog.js~Dialog.html#instance-member-trackingElement",
+    "coral-spectrum/coral-component-dialog/src/scripts/Dialog.js~Dialog#trackingElement",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-dialog/src/scripts/dialog.js~dialog#variant",
+    "class/coral-spectrum/coral-component-dialog/src/scripts/Dialog.js~Dialog.html#instance-member-variant",
+    "coral-spectrum/coral-component-dialog/src/scripts/Dialog.js~Dialog#variant",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-dialog/src/scripts/dialog.js~dialog.backdrop",
+    "class/coral-spectrum/coral-component-dialog/src/scripts/Dialog.js~Dialog.html#static-member-backdrop",
+    "coral-spectrum/coral-component-dialog/src/scripts/Dialog.js~Dialog.backdrop",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-dialog/src/scripts/dialog.js~dialog.closable",
+    "class/coral-spectrum/coral-component-dialog/src/scripts/Dialog.js~Dialog.html#static-member-closable",
+    "coral-spectrum/coral-component-dialog/src/scripts/Dialog.js~Dialog.closable",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-dialog/src/scripts/dialog.js~dialog.interaction",
+    "class/coral-spectrum/coral-component-dialog/src/scripts/Dialog.js~Dialog.html#static-member-interaction",
+    "coral-spectrum/coral-component-dialog/src/scripts/Dialog.js~Dialog.interaction",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-dialog/src/scripts/dialog.js~dialog.variant",
+    "class/coral-spectrum/coral-component-dialog/src/scripts/Dialog.js~Dialog.html#static-member-variant",
+    "coral-spectrum/coral-component-dialog/src/scripts/Dialog.js~Dialog.variant",
+    "member"
   ],
   [
     "coral-spectrum/coral-component-dialog/src/scripts/dialog.js~dialogbackdropenum",
@@ -3072,21 +4596,51 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "coral-spectrum/coral-component-drawer/src/scripts/drawer.js~drawer#content",
+    "class/coral-spectrum/coral-component-drawer/src/scripts/Drawer.js~Drawer.html#instance-member-content",
+    "coral-spectrum/coral-component-drawer/src/scripts/Drawer.js~Drawer#content",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-drawer/src/scripts/drawer.js~drawer#direction",
+    "class/coral-spectrum/coral-component-drawer/src/scripts/Drawer.js~Drawer.html#instance-member-direction",
+    "coral-spectrum/coral-component-drawer/src/scripts/Drawer.js~Drawer#direction",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-drawer/src/scripts/drawer.js~drawer#disabled",
+    "class/coral-spectrum/coral-component-drawer/src/scripts/Drawer.js~Drawer.html#instance-member-disabled",
+    "coral-spectrum/coral-component-drawer/src/scripts/Drawer.js~Drawer#disabled",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-drawer/src/scripts/drawer.js~drawer#open",
+    "class/coral-spectrum/coral-component-drawer/src/scripts/Drawer.js~Drawer.html#instance-member-open",
+    "coral-spectrum/coral-component-drawer/src/scripts/Drawer.js~Drawer#open",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-drawer/src/scripts/drawer.js~drawer.coral-drawer:close",
+    "typedef/index.html#static-typedef-coral-drawer:close",
+    "coral-spectrum/coral-component-drawer/src/scripts/Drawer.js~Drawer.coral-drawer:close",
+    "typedef"
+  ],
+  [
+    "coral-spectrum/coral-component-drawer/src/scripts/drawer.js~drawer.coral-drawer:open",
+    "typedef/index.html#static-typedef-coral-drawer:open",
+    "coral-spectrum/coral-component-drawer/src/scripts/Drawer.js~Drawer.coral-drawer:open",
+    "typedef"
+  ],
+  [
+    "coral-spectrum/coral-component-drawer/src/scripts/drawer.js~drawer.direction",
+    "class/coral-spectrum/coral-component-drawer/src/scripts/Drawer.js~Drawer.html#static-member-direction",
+    "coral-spectrum/coral-component-drawer/src/scripts/Drawer.js~Drawer.direction",
+    "member"
+  ],
+  [
     "coral-spectrum/coral-component-drawer/src/scripts/drawer.js~drawerdirectionenum",
     "typedef/index.html#static-typedef-DrawerDirectionEnum",
     "coral-spectrum/coral-component-drawer/src/scripts/Drawer.js~DrawerDirectionEnum",
-    "typedef"
-  ],
-  [
-    "coral-spectrum/coral-component-drawer/src/scripts/drawer.js~coral-drawer:close",
-    "typedef/index.html#static-typedef-coral-drawer:close",
-    "coral-spectrum/coral-component-drawer/src/scripts/Drawer.js~coral-drawer:close",
-    "typedef"
-  ],
-  [
-    "coral-spectrum/coral-component-drawer/src/scripts/drawer.js~coral-drawer:open",
-    "typedef/index.html#static-typedef-coral-drawer:open",
-    "coral-spectrum/coral-component-drawer/src/scripts/Drawer.js~coral-drawer:open",
     "typedef"
   ],
   [
@@ -3100,6 +4654,126 @@ window.esdocSearchIndex = [
     "file/coral-spectrum/coral-component-fileupload/src/scripts/FileUpload.js.html",
     "coral-spectrum/coral-component-fileupload/src/scripts/FileUpload.js",
     "file"
+  ],
+  [
+    "coral-spectrum/coral-component-fileupload/src/scripts/fileupload.js~fileupload#abort",
+    "class/coral-spectrum/coral-component-fileupload/src/scripts/FileUpload.js~FileUpload.html#instance-method-abort",
+    "coral-spectrum/coral-component-fileupload/src/scripts/FileUpload.js~FileUpload#abort",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-fileupload/src/scripts/fileupload.js~fileupload#accept",
+    "class/coral-spectrum/coral-component-fileupload/src/scripts/FileUpload.js~FileUpload.html#instance-member-accept",
+    "coral-spectrum/coral-component-fileupload/src/scripts/FileUpload.js~FileUpload#accept",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-fileupload/src/scripts/fileupload.js~fileupload#action",
+    "class/coral-spectrum/coral-component-fileupload/src/scripts/FileUpload.js~FileUpload.html#instance-member-action",
+    "coral-spectrum/coral-component-fileupload/src/scripts/FileUpload.js~FileUpload#action",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-fileupload/src/scripts/fileupload.js~fileupload#async",
+    "class/coral-spectrum/coral-component-fileupload/src/scripts/FileUpload.js~FileUpload.html#instance-member-async",
+    "coral-spectrum/coral-component-fileupload/src/scripts/FileUpload.js~FileUpload#async",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-fileupload/src/scripts/fileupload.js~fileupload#autostart",
+    "class/coral-spectrum/coral-component-fileupload/src/scripts/FileUpload.js~FileUpload.html#instance-member-autoStart",
+    "coral-spectrum/coral-component-fileupload/src/scripts/FileUpload.js~FileUpload#autoStart",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-fileupload/src/scripts/fileupload.js~fileupload#clear",
+    "class/coral-spectrum/coral-component-fileupload/src/scripts/FileUpload.js~FileUpload.html#instance-method-clear",
+    "coral-spectrum/coral-component-fileupload/src/scripts/FileUpload.js~FileUpload#clear",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-fileupload/src/scripts/fileupload.js~fileupload#disabled",
+    "class/coral-spectrum/coral-component-fileupload/src/scripts/FileUpload.js~FileUpload.html#instance-member-disabled",
+    "coral-spectrum/coral-component-fileupload/src/scripts/FileUpload.js~FileUpload#disabled",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-fileupload/src/scripts/fileupload.js~fileupload#invalid",
+    "class/coral-spectrum/coral-component-fileupload/src/scripts/FileUpload.js~FileUpload.html#instance-member-invalid",
+    "coral-spectrum/coral-component-fileupload/src/scripts/FileUpload.js~FileUpload#invalid",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-fileupload/src/scripts/fileupload.js~fileupload#labelledby",
+    "class/coral-spectrum/coral-component-fileupload/src/scripts/FileUpload.js~FileUpload.html#instance-member-labelledBy",
+    "coral-spectrum/coral-component-fileupload/src/scripts/FileUpload.js~FileUpload#labelledBy",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-fileupload/src/scripts/fileupload.js~fileupload#method",
+    "class/coral-spectrum/coral-component-fileupload/src/scripts/FileUpload.js~FileUpload.html#instance-member-method",
+    "coral-spectrum/coral-component-fileupload/src/scripts/FileUpload.js~FileUpload#method",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-fileupload/src/scripts/fileupload.js~fileupload#multiple",
+    "class/coral-spectrum/coral-component-fileupload/src/scripts/FileUpload.js~FileUpload.html#instance-member-multiple",
+    "coral-spectrum/coral-component-fileupload/src/scripts/FileUpload.js~FileUpload#multiple",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-fileupload/src/scripts/fileupload.js~fileupload#name",
+    "class/coral-spectrum/coral-component-fileupload/src/scripts/FileUpload.js~FileUpload.html#instance-member-name",
+    "coral-spectrum/coral-component-fileupload/src/scripts/FileUpload.js~FileUpload#name",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-fileupload/src/scripts/fileupload.js~fileupload#parameters",
+    "class/coral-spectrum/coral-component-fileupload/src/scripts/FileUpload.js~FileUpload.html#instance-member-parameters",
+    "coral-spectrum/coral-component-fileupload/src/scripts/FileUpload.js~FileUpload#parameters",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-fileupload/src/scripts/fileupload.js~fileupload#readonly",
+    "class/coral-spectrum/coral-component-fileupload/src/scripts/FileUpload.js~FileUpload.html#instance-member-readOnly",
+    "coral-spectrum/coral-component-fileupload/src/scripts/FileUpload.js~FileUpload#readOnly",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-fileupload/src/scripts/fileupload.js~fileupload#required",
+    "class/coral-spectrum/coral-component-fileupload/src/scripts/FileUpload.js~FileUpload.html#instance-member-required",
+    "coral-spectrum/coral-component-fileupload/src/scripts/FileUpload.js~FileUpload#required",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-fileupload/src/scripts/fileupload.js~fileupload#sizelimit",
+    "class/coral-spectrum/coral-component-fileupload/src/scripts/FileUpload.js~FileUpload.html#instance-member-sizeLimit",
+    "coral-spectrum/coral-component-fileupload/src/scripts/FileUpload.js~FileUpload#sizeLimit",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-fileupload/src/scripts/fileupload.js~fileupload#upload",
+    "class/coral-spectrum/coral-component-fileupload/src/scripts/FileUpload.js~FileUpload.html#instance-method-upload",
+    "coral-spectrum/coral-component-fileupload/src/scripts/FileUpload.js~FileUpload#upload",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-fileupload/src/scripts/fileupload.js~fileupload#uploadqueue",
+    "class/coral-spectrum/coral-component-fileupload/src/scripts/FileUpload.js~FileUpload.html#instance-member-uploadQueue",
+    "coral-spectrum/coral-component-fileupload/src/scripts/FileUpload.js~FileUpload#uploadQueue",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-fileupload/src/scripts/fileupload.js~fileupload#value",
+    "class/coral-spectrum/coral-component-fileupload/src/scripts/FileUpload.js~FileUpload.html#instance-member-value",
+    "coral-spectrum/coral-component-fileupload/src/scripts/FileUpload.js~FileUpload#value",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-fileupload/src/scripts/fileupload.js~fileupload#values",
+    "class/coral-spectrum/coral-component-fileupload/src/scripts/FileUpload.js~FileUpload.html#instance-member-values",
+    "coral-spectrum/coral-component-fileupload/src/scripts/FileUpload.js~FileUpload#values",
+    "member"
   ],
   [
     "coral-spectrum/coral-component-fileupload/src/scripts/fileupload.js~fileuploadmethodenum",
@@ -3204,6 +4878,42 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "coral-spectrum/coral-component-icon/src/scripts/icon.js~icon#autoarialabel",
+    "class/coral-spectrum/coral-component-icon/src/scripts/Icon.js~Icon.html#instance-member-autoAriaLabel",
+    "coral-spectrum/coral-component-icon/src/scripts/Icon.js~Icon#autoAriaLabel",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-icon/src/scripts/icon.js~icon#icon",
+    "class/coral-spectrum/coral-component-icon/src/scripts/Icon.js~Icon.html#instance-member-icon",
+    "coral-spectrum/coral-component-icon/src/scripts/Icon.js~Icon#icon",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-icon/src/scripts/icon.js~icon#size",
+    "class/coral-spectrum/coral-component-icon/src/scripts/Icon.js~Icon.html#instance-member-size",
+    "coral-spectrum/coral-component-icon/src/scripts/Icon.js~Icon#size",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-icon/src/scripts/icon.js~icon.autoarialabel",
+    "class/coral-spectrum/coral-component-icon/src/scripts/Icon.js~Icon.html#static-member-autoAriaLabel",
+    "coral-spectrum/coral-component-icon/src/scripts/Icon.js~Icon.autoAriaLabel",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-icon/src/scripts/icon.js~icon.load",
+    "class/coral-spectrum/coral-component-icon/src/scripts/Icon.js~Icon.html#static-method-load",
+    "coral-spectrum/coral-component-icon/src/scripts/Icon.js~Icon.load",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-icon/src/scripts/icon.js~icon.size",
+    "class/coral-spectrum/coral-component-icon/src/scripts/Icon.js~Icon.html#static-member-size",
+    "coral-spectrum/coral-component-icon/src/scripts/Icon.js~Icon.size",
+    "member"
+  ],
+  [
     "coral-spectrum/coral-component-icon/src/scripts/icon.js~iconautoarialabelenum",
     "typedef/index.html#static-typedef-IconAutoAriaLabelEnum",
     "coral-spectrum/coral-component-icon/src/scripts/Icon.js~IconAutoAriaLabelEnum",
@@ -3240,6 +4950,18 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "coral-spectrum/coral-component-list/src/scripts/anchorlistitem.js~anchorlistitem#disabled",
+    "class/coral-spectrum/coral-component-list/src/scripts/AnchorListItem.js~AnchorListItem.html#instance-member-disabled",
+    "coral-spectrum/coral-component-list/src/scripts/AnchorListItem.js~AnchorListItem#disabled",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-list/src/scripts/anchorlistitem.js~anchorlistitem#trackingelement",
+    "class/coral-spectrum/coral-component-list/src/scripts/AnchorListItem.js~AnchorListItem.html#instance-member-trackingElement",
+    "coral-spectrum/coral-component-list/src/scripts/AnchorListItem.js~AnchorListItem#trackingElement",
+    "member"
+  ],
+  [
     "coral-spectrum/coral-component-list/src/scripts/buttonlist.js",
     "file/coral-spectrum/coral-component-list/src/scripts/ButtonList.js.html",
     "coral-spectrum/coral-component-list/src/scripts/ButtonList.js",
@@ -3250,6 +4972,12 @@ window.esdocSearchIndex = [
     "file/coral-spectrum/coral-component-list/src/scripts/ButtonListItem.js.html",
     "coral-spectrum/coral-component-list/src/scripts/ButtonListItem.js",
     "file"
+  ],
+  [
+    "coral-spectrum/coral-component-list/src/scripts/buttonlistitem.js~buttonlistitem#trackingelement",
+    "class/coral-spectrum/coral-component-list/src/scripts/ButtonListItem.js~ButtonListItem.html#instance-member-trackingElement",
+    "coral-spectrum/coral-component-list/src/scripts/ButtonListItem.js~ButtonListItem#trackingElement",
+    "member"
   ],
   [
     "coral-spectrum/coral-component-list/src/scripts/list.js",
@@ -3282,21 +5010,57 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "coral-spectrum/coral-component-list/src/scripts/selectlist.js~coral-selectlist:change",
+    "coral-spectrum/coral-component-list/src/scripts/selectlist.js~selectlist#groups",
+    "class/coral-spectrum/coral-component-list/src/scripts/SelectList.js~SelectList.html#instance-member-groups",
+    "coral-spectrum/coral-component-list/src/scripts/SelectList.js~SelectList#groups",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-list/src/scripts/selectlist.js~selectlist#items",
+    "class/coral-spectrum/coral-component-list/src/scripts/SelectList.js~SelectList.html#instance-member-items",
+    "coral-spectrum/coral-component-list/src/scripts/SelectList.js~SelectList#items",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-list/src/scripts/selectlist.js~selectlist#loading",
+    "class/coral-spectrum/coral-component-list/src/scripts/SelectList.js~SelectList.html#instance-member-loading",
+    "coral-spectrum/coral-component-list/src/scripts/SelectList.js~SelectList#loading",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-list/src/scripts/selectlist.js~selectlist#multiple",
+    "class/coral-spectrum/coral-component-list/src/scripts/SelectList.js~SelectList.html#instance-member-multiple",
+    "coral-spectrum/coral-component-list/src/scripts/SelectList.js~SelectList#multiple",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-list/src/scripts/selectlist.js~selectlist#selecteditem",
+    "class/coral-spectrum/coral-component-list/src/scripts/SelectList.js~SelectList.html#instance-member-selectedItem",
+    "coral-spectrum/coral-component-list/src/scripts/SelectList.js~SelectList#selectedItem",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-list/src/scripts/selectlist.js~selectlist#selecteditems",
+    "class/coral-spectrum/coral-component-list/src/scripts/SelectList.js~SelectList.html#instance-member-selectedItems",
+    "coral-spectrum/coral-component-list/src/scripts/SelectList.js~SelectList#selectedItems",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-list/src/scripts/selectlist.js~selectlist.coral-selectlist:change",
     "typedef/index.html#static-typedef-coral-selectlist:change",
-    "coral-spectrum/coral-component-list/src/scripts/SelectList.js~coral-selectlist:change",
+    "coral-spectrum/coral-component-list/src/scripts/SelectList.js~SelectList.coral-selectlist:change",
     "typedef"
   ],
   [
-    "coral-spectrum/coral-component-list/src/scripts/selectlist.js~coral-selectlist:change",
+    "coral-spectrum/coral-component-list/src/scripts/selectlist.js~selectlist.coral-selectlist:change",
     "typedef/index.html#static-typedef-coral-selectlist:change",
-    "coral-spectrum/coral-component-list/src/scripts/SelectList.js~coral-selectlist:change",
+    "coral-spectrum/coral-component-list/src/scripts/SelectList.js~SelectList.coral-selectlist:change",
     "typedef"
   ],
   [
-    "coral-spectrum/coral-component-list/src/scripts/selectlist.js~coral-selectlist:scrollbottom",
+    "coral-spectrum/coral-component-list/src/scripts/selectlist.js~selectlist.coral-selectlist:scrollbottom",
     "typedef/index.html#static-typedef-coral-selectlist:scrollbottom",
-    "coral-spectrum/coral-component-list/src/scripts/SelectList.js~coral-selectlist:scrollbottom",
+    "coral-spectrum/coral-component-list/src/scripts/SelectList.js~SelectList.coral-selectlist:scrollbottom",
     "typedef"
   ],
   [
@@ -3306,10 +5070,52 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "coral-spectrum/coral-component-list/src/scripts/selectlistgroup.js~selectlistgroup#items",
+    "class/coral-spectrum/coral-component-list/src/scripts/SelectListGroup.js~SelectListGroup.html#instance-member-items",
+    "coral-spectrum/coral-component-list/src/scripts/SelectListGroup.js~SelectListGroup#items",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-list/src/scripts/selectlistgroup.js~selectlistgroup#label",
+    "class/coral-spectrum/coral-component-list/src/scripts/SelectListGroup.js~SelectListGroup.html#instance-member-label",
+    "coral-spectrum/coral-component-list/src/scripts/SelectListGroup.js~SelectListGroup#label",
+    "member"
+  ],
+  [
     "coral-spectrum/coral-component-list/src/scripts/selectlistitem.js",
     "file/coral-spectrum/coral-component-list/src/scripts/SelectListItem.js.html",
     "coral-spectrum/coral-component-list/src/scripts/SelectListItem.js",
     "file"
+  ],
+  [
+    "coral-spectrum/coral-component-list/src/scripts/selectlistitem.js~selectlistitem#content",
+    "class/coral-spectrum/coral-component-list/src/scripts/SelectListItem.js~SelectListItem.html#instance-member-content",
+    "coral-spectrum/coral-component-list/src/scripts/SelectListItem.js~SelectListItem#content",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-list/src/scripts/selectlistitem.js~selectlistitem#disabled",
+    "class/coral-spectrum/coral-component-list/src/scripts/SelectListItem.js~SelectListItem.html#instance-member-disabled",
+    "coral-spectrum/coral-component-list/src/scripts/SelectListItem.js~SelectListItem#disabled",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-list/src/scripts/selectlistitem.js~selectlistitem#icon",
+    "class/coral-spectrum/coral-component-list/src/scripts/SelectListItem.js~SelectListItem.html#instance-member-icon",
+    "coral-spectrum/coral-component-list/src/scripts/SelectListItem.js~SelectListItem#icon",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-list/src/scripts/selectlistitem.js~selectlistitem#selected",
+    "class/coral-spectrum/coral-component-list/src/scripts/SelectListItem.js~SelectListItem.html#instance-member-selected",
+    "coral-spectrum/coral-component-list/src/scripts/SelectListItem.js~SelectListItem#selected",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-list/src/scripts/selectlistitem.js~selectlistitem#value",
+    "class/coral-spectrum/coral-component-list/src/scripts/SelectListItem.js~SelectListItem.html#instance-member-value",
+    "coral-spectrum/coral-component-list/src/scripts/SelectListItem.js~SelectListItem#value",
+    "member"
   ],
   [
     "coral-spectrum/coral-component-list/src/scripts/selectlistitemcontent.js",
@@ -3492,15 +5298,27 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "coral-spectrum/coral-component-multifield/src/scripts/multifield.js~coral-multifield:beforeitemorder",
+    "coral-spectrum/coral-component-multifield/src/scripts/multifield.js~multifield#items",
+    "class/coral-spectrum/coral-component-multifield/src/scripts/Multifield.js~Multifield.html#instance-member-items",
+    "coral-spectrum/coral-component-multifield/src/scripts/Multifield.js~Multifield#items",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-multifield/src/scripts/multifield.js~multifield#template",
+    "class/coral-spectrum/coral-component-multifield/src/scripts/Multifield.js~Multifield.html#instance-member-template",
+    "coral-spectrum/coral-component-multifield/src/scripts/Multifield.js~Multifield#template",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-multifield/src/scripts/multifield.js~multifield.coral-multifield:beforeitemorder",
     "typedef/index.html#static-typedef-coral-multifield:beforeitemorder",
-    "coral-spectrum/coral-component-multifield/src/scripts/Multifield.js~coral-multifield:beforeitemorder",
+    "coral-spectrum/coral-component-multifield/src/scripts/Multifield.js~Multifield.coral-multifield:beforeitemorder",
     "typedef"
   ],
   [
-    "coral-spectrum/coral-component-multifield/src/scripts/multifield.js~coral-multifield:itemorder",
+    "coral-spectrum/coral-component-multifield/src/scripts/multifield.js~multifield.coral-multifield:itemorder",
     "typedef/index.html#static-typedef-coral-multifield:itemorder",
-    "coral-spectrum/coral-component-multifield/src/scripts/Multifield.js~coral-multifield:itemorder",
+    "coral-spectrum/coral-component-multifield/src/scripts/Multifield.js~Multifield.coral-multifield:itemorder",
     "typedef"
   ],
   [
@@ -3522,6 +5340,12 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "coral-spectrum/coral-component-multifield/src/scripts/multifielditem.js~multifielditem#content",
+    "class/coral-spectrum/coral-component-multifield/src/scripts/MultifieldItem.js~MultifieldItem.html#instance-member-content",
+    "coral-spectrum/coral-component-multifield/src/scripts/MultifieldItem.js~MultifieldItem#content",
+    "member"
+  ],
+  [
     "coral-spectrum/coral-component-multifield/src/scripts/multifielditemcontent.js",
     "file/coral-spectrum/coral-component-multifield/src/scripts/MultifieldItemContent.js.html",
     "coral-spectrum/coral-component-multifield/src/scripts/MultifieldItemContent.js",
@@ -3532,6 +5356,102 @@ window.esdocSearchIndex = [
     "file/coral-spectrum/coral-component-numberinput/src/scripts/NumberInput.js.html",
     "coral-spectrum/coral-component-numberinput/src/scripts/NumberInput.js",
     "file"
+  ],
+  [
+    "coral-spectrum/coral-component-numberinput/src/scripts/numberinput.js~numberinput#clear",
+    "class/coral-spectrum/coral-component-numberinput/src/scripts/NumberInput.js~NumberInput.html#instance-method-clear",
+    "coral-spectrum/coral-component-numberinput/src/scripts/NumberInput.js~NumberInput#clear",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-numberinput/src/scripts/numberinput.js~numberinput#disabled",
+    "class/coral-spectrum/coral-component-numberinput/src/scripts/NumberInput.js~NumberInput.html#instance-member-disabled",
+    "coral-spectrum/coral-component-numberinput/src/scripts/NumberInput.js~NumberInput#disabled",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-numberinput/src/scripts/numberinput.js~numberinput#invalid",
+    "class/coral-spectrum/coral-component-numberinput/src/scripts/NumberInput.js~NumberInput.html#instance-member-invalid",
+    "coral-spectrum/coral-component-numberinput/src/scripts/NumberInput.js~NumberInput#invalid",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-numberinput/src/scripts/numberinput.js~numberinput#labelledby",
+    "class/coral-spectrum/coral-component-numberinput/src/scripts/NumberInput.js~NumberInput.html#instance-member-labelledBy",
+    "coral-spectrum/coral-component-numberinput/src/scripts/NumberInput.js~NumberInput#labelledBy",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-numberinput/src/scripts/numberinput.js~numberinput#max",
+    "class/coral-spectrum/coral-component-numberinput/src/scripts/NumberInput.js~NumberInput.html#instance-member-max",
+    "coral-spectrum/coral-component-numberinput/src/scripts/NumberInput.js~NumberInput#max",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-numberinput/src/scripts/numberinput.js~numberinput#min",
+    "class/coral-spectrum/coral-component-numberinput/src/scripts/NumberInput.js~NumberInput.html#instance-member-min",
+    "coral-spectrum/coral-component-numberinput/src/scripts/NumberInput.js~NumberInput#min",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-numberinput/src/scripts/numberinput.js~numberinput#name",
+    "class/coral-spectrum/coral-component-numberinput/src/scripts/NumberInput.js~NumberInput.html#instance-member-name",
+    "coral-spectrum/coral-component-numberinput/src/scripts/NumberInput.js~NumberInput#name",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-numberinput/src/scripts/numberinput.js~numberinput#placeholder",
+    "class/coral-spectrum/coral-component-numberinput/src/scripts/NumberInput.js~NumberInput.html#instance-member-placeholder",
+    "coral-spectrum/coral-component-numberinput/src/scripts/NumberInput.js~NumberInput#placeholder",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-numberinput/src/scripts/numberinput.js~numberinput#readonly",
+    "class/coral-spectrum/coral-component-numberinput/src/scripts/NumberInput.js~NumberInput.html#instance-member-readOnly",
+    "coral-spectrum/coral-component-numberinput/src/scripts/NumberInput.js~NumberInput#readOnly",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-numberinput/src/scripts/numberinput.js~numberinput#required",
+    "class/coral-spectrum/coral-component-numberinput/src/scripts/NumberInput.js~NumberInput.html#instance-member-required",
+    "coral-spectrum/coral-component-numberinput/src/scripts/NumberInput.js~NumberInput#required",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-numberinput/src/scripts/numberinput.js~numberinput#reset",
+    "class/coral-spectrum/coral-component-numberinput/src/scripts/NumberInput.js~NumberInput.html#instance-method-reset",
+    "coral-spectrum/coral-component-numberinput/src/scripts/NumberInput.js~NumberInput#reset",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-numberinput/src/scripts/numberinput.js~numberinput#step",
+    "class/coral-spectrum/coral-component-numberinput/src/scripts/NumberInput.js~NumberInput.html#instance-member-step",
+    "coral-spectrum/coral-component-numberinput/src/scripts/NumberInput.js~NumberInput#step",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-numberinput/src/scripts/numberinput.js~numberinput#stepdown",
+    "class/coral-spectrum/coral-component-numberinput/src/scripts/NumberInput.js~NumberInput.html#instance-method-stepDown",
+    "coral-spectrum/coral-component-numberinput/src/scripts/NumberInput.js~NumberInput#stepDown",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-numberinput/src/scripts/numberinput.js~numberinput#stepup",
+    "class/coral-spectrum/coral-component-numberinput/src/scripts/NumberInput.js~NumberInput.html#instance-method-stepUp",
+    "coral-spectrum/coral-component-numberinput/src/scripts/NumberInput.js~NumberInput#stepUp",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-numberinput/src/scripts/numberinput.js~numberinput#value",
+    "class/coral-spectrum/coral-component-numberinput/src/scripts/NumberInput.js~NumberInput.html#instance-member-value",
+    "coral-spectrum/coral-component-numberinput/src/scripts/NumberInput.js~NumberInput#value",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-numberinput/src/scripts/numberinput.js~numberinput#valueasnumber",
+    "class/coral-spectrum/coral-component-numberinput/src/scripts/NumberInput.js~NumberInput.html#instance-member-valueAsNumber",
+    "coral-spectrum/coral-component-numberinput/src/scripts/NumberInput.js~NumberInput#valueAsNumber",
+    "member"
   ],
   [
     "coral-spectrum/coral-component-overlay/src/scripts/overlay.js",
@@ -3702,6 +5622,18 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "coral-spectrum/coral-component-panelstack/src/scripts/panel.js~panel#content",
+    "class/coral-spectrum/coral-component-panelstack/src/scripts/Panel.js~Panel.html#instance-member-content",
+    "coral-spectrum/coral-component-panelstack/src/scripts/Panel.js~Panel#content",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-panelstack/src/scripts/panel.js~panel#selected",
+    "class/coral-spectrum/coral-component-panelstack/src/scripts/Panel.js~Panel.html#instance-member-selected",
+    "coral-spectrum/coral-component-panelstack/src/scripts/Panel.js~Panel#selected",
+    "member"
+  ],
+  [
     "coral-spectrum/coral-component-panelstack/src/scripts/panelcontent.js",
     "file/coral-spectrum/coral-component-panelstack/src/scripts/PanelContent.js.html",
     "coral-spectrum/coral-component-panelstack/src/scripts/PanelContent.js",
@@ -3714,9 +5646,21 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "coral-spectrum/coral-component-panelstack/src/scripts/panelstack.js~coral-panelstack:change",
+    "coral-spectrum/coral-component-panelstack/src/scripts/panelstack.js~panelstack#items",
+    "class/coral-spectrum/coral-component-panelstack/src/scripts/PanelStack.js~PanelStack.html#instance-member-items",
+    "coral-spectrum/coral-component-panelstack/src/scripts/PanelStack.js~PanelStack#items",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-panelstack/src/scripts/panelstack.js~panelstack#selecteditem",
+    "class/coral-spectrum/coral-component-panelstack/src/scripts/PanelStack.js~PanelStack.html#instance-member-selectedItem",
+    "coral-spectrum/coral-component-panelstack/src/scripts/PanelStack.js~PanelStack#selectedItem",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-panelstack/src/scripts/panelstack.js~panelstack.coral-panelstack:change",
     "typedef/index.html#static-typedef-coral-panelstack:change",
-    "coral-spectrum/coral-component-panelstack/src/scripts/PanelStack.js~coral-panelstack:change",
+    "coral-spectrum/coral-component-panelstack/src/scripts/PanelStack.js~PanelStack.coral-panelstack:change",
     "typedef"
   ],
   [
@@ -3724,6 +5668,66 @@ window.esdocSearchIndex = [
     "file/coral-spectrum/coral-component-popover/src/scripts/Popover.js.html",
     "coral-spectrum/coral-component-popover/src/scripts/Popover.js",
     "file"
+  ],
+  [
+    "coral-spectrum/coral-component-popover/src/scripts/popover.js~popover#[`_${name}observer`]",
+    "class/coral-spectrum/coral-component-popover/src/scripts/Popover.js~Popover.html#instance-member-[`_${name}Observer`]",
+    "coral-spectrum/coral-component-popover/src/scripts/Popover.js~Popover#[`_${name}Observer`]",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-popover/src/scripts/popover.js~popover#closable",
+    "class/coral-spectrum/coral-component-popover/src/scripts/Popover.js~Popover.html#instance-member-closable",
+    "coral-spectrum/coral-component-popover/src/scripts/Popover.js~Popover#closable",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-popover/src/scripts/popover.js~popover#content",
+    "class/coral-spectrum/coral-component-popover/src/scripts/Popover.js~Popover.html#instance-member-content",
+    "coral-spectrum/coral-component-popover/src/scripts/Popover.js~Popover#content",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-popover/src/scripts/popover.js~popover#footer",
+    "class/coral-spectrum/coral-component-popover/src/scripts/Popover.js~Popover.html#instance-member-footer",
+    "coral-spectrum/coral-component-popover/src/scripts/Popover.js~Popover#footer",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-popover/src/scripts/popover.js~popover#header",
+    "class/coral-spectrum/coral-component-popover/src/scripts/Popover.js~Popover.html#instance-member-header",
+    "coral-spectrum/coral-component-popover/src/scripts/Popover.js~Popover#header",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-popover/src/scripts/popover.js~popover#open",
+    "class/coral-spectrum/coral-component-popover/src/scripts/Popover.js~Popover.html#instance-member-open",
+    "coral-spectrum/coral-component-popover/src/scripts/Popover.js~Popover#open",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-popover/src/scripts/popover.js~popover#target",
+    "class/coral-spectrum/coral-component-popover/src/scripts/Popover.js~Popover.html#instance-member-target",
+    "coral-spectrum/coral-component-popover/src/scripts/Popover.js~Popover#target",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-popover/src/scripts/popover.js~popover#variant",
+    "class/coral-spectrum/coral-component-popover/src/scripts/Popover.js~Popover.html#instance-member-variant",
+    "coral-spectrum/coral-component-popover/src/scripts/Popover.js~Popover#variant",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-popover/src/scripts/popover.js~popover.closable",
+    "class/coral-spectrum/coral-component-popover/src/scripts/Popover.js~Popover.html#static-member-closable",
+    "coral-spectrum/coral-component-popover/src/scripts/Popover.js~Popover.closable",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-popover/src/scripts/popover.js~popover.variant",
+    "class/coral-spectrum/coral-component-popover/src/scripts/Popover.js~Popover.html#static-member-variant",
+    "coral-spectrum/coral-component-popover/src/scripts/Popover.js~Popover.variant",
+    "member"
   ],
   [
     "coral-spectrum/coral-component-popover/src/scripts/popover.js~popoverclosableenum",
@@ -3768,6 +5772,60 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "coral-spectrum/coral-component-progress/src/scripts/progress.js~progress#indeterminate",
+    "class/coral-spectrum/coral-component-progress/src/scripts/Progress.js~Progress.html#instance-member-indeterminate",
+    "coral-spectrum/coral-component-progress/src/scripts/Progress.js~Progress#indeterminate",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-progress/src/scripts/progress.js~progress#label",
+    "class/coral-spectrum/coral-component-progress/src/scripts/Progress.js~Progress.html#instance-member-label",
+    "coral-spectrum/coral-component-progress/src/scripts/Progress.js~Progress#label",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-progress/src/scripts/progress.js~progress#labelposition",
+    "class/coral-spectrum/coral-component-progress/src/scripts/Progress.js~Progress.html#instance-member-labelPosition",
+    "coral-spectrum/coral-component-progress/src/scripts/Progress.js~Progress#labelPosition",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-progress/src/scripts/progress.js~progress#showpercent",
+    "class/coral-spectrum/coral-component-progress/src/scripts/Progress.js~Progress.html#instance-member-showPercent",
+    "coral-spectrum/coral-component-progress/src/scripts/Progress.js~Progress#showPercent",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-progress/src/scripts/progress.js~progress#size",
+    "class/coral-spectrum/coral-component-progress/src/scripts/Progress.js~Progress.html#instance-member-size",
+    "coral-spectrum/coral-component-progress/src/scripts/Progress.js~Progress#size",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-progress/src/scripts/progress.js~progress#value",
+    "class/coral-spectrum/coral-component-progress/src/scripts/Progress.js~Progress.html#instance-member-value",
+    "coral-spectrum/coral-component-progress/src/scripts/Progress.js~Progress#value",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-progress/src/scripts/progress.js~progress.coral-progress:change",
+    "typedef/index.html#static-typedef-coral-progress:change",
+    "coral-spectrum/coral-component-progress/src/scripts/Progress.js~Progress.coral-progress:change",
+    "typedef"
+  ],
+  [
+    "coral-spectrum/coral-component-progress/src/scripts/progress.js~progress.labelposition",
+    "class/coral-spectrum/coral-component-progress/src/scripts/Progress.js~Progress.html#static-member-labelPosition",
+    "coral-spectrum/coral-component-progress/src/scripts/Progress.js~Progress.labelPosition",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-progress/src/scripts/progress.js~progress.size",
+    "class/coral-spectrum/coral-component-progress/src/scripts/Progress.js~Progress.html#static-member-size",
+    "coral-spectrum/coral-component-progress/src/scripts/Progress.js~Progress.size",
+    "member"
+  ],
+  [
     "coral-spectrum/coral-component-progress/src/scripts/progress.js~progresslabelpositionenum",
     "typedef/index.html#static-typedef-ProgressLabelPositionEnum",
     "coral-spectrum/coral-component-progress/src/scripts/Progress.js~ProgressLabelPositionEnum",
@@ -3777,12 +5835,6 @@ window.esdocSearchIndex = [
     "coral-spectrum/coral-component-progress/src/scripts/progress.js~progresssizeenum",
     "typedef/index.html#static-typedef-ProgressSizeEnum",
     "coral-spectrum/coral-component-progress/src/scripts/Progress.js~ProgressSizeEnum",
-    "typedef"
-  ],
-  [
-    "coral-spectrum/coral-component-progress/src/scripts/progress.js~coral-progress:change",
-    "typedef/index.html#static-typedef-coral-progress:change",
-    "coral-spectrum/coral-component-progress/src/scripts/Progress.js~coral-progress:change",
     "typedef"
   ],
   [
@@ -3834,6 +5886,72 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "coral-spectrum/coral-component-radio/src/scripts/radio.js~radio#checked",
+    "class/coral-spectrum/coral-component-radio/src/scripts/Radio.js~Radio.html#instance-member-checked",
+    "coral-spectrum/coral-component-radio/src/scripts/Radio.js~Radio#checked",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-radio/src/scripts/radio.js~radio#clear",
+    "class/coral-spectrum/coral-component-radio/src/scripts/Radio.js~Radio.html#instance-method-clear",
+    "coral-spectrum/coral-component-radio/src/scripts/Radio.js~Radio#clear",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-radio/src/scripts/radio.js~radio#disabled",
+    "class/coral-spectrum/coral-component-radio/src/scripts/Radio.js~Radio.html#instance-member-disabled",
+    "coral-spectrum/coral-component-radio/src/scripts/Radio.js~Radio#disabled",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-radio/src/scripts/radio.js~radio#label",
+    "class/coral-spectrum/coral-component-radio/src/scripts/Radio.js~Radio.html#instance-member-label",
+    "coral-spectrum/coral-component-radio/src/scripts/Radio.js~Radio#label",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-radio/src/scripts/radio.js~radio#labelled",
+    "class/coral-spectrum/coral-component-radio/src/scripts/Radio.js~Radio.html#instance-member-labelled",
+    "coral-spectrum/coral-component-radio/src/scripts/Radio.js~Radio#labelled",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-radio/src/scripts/radio.js~radio#name",
+    "class/coral-spectrum/coral-component-radio/src/scripts/Radio.js~Radio.html#instance-member-name",
+    "coral-spectrum/coral-component-radio/src/scripts/Radio.js~Radio#name",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-radio/src/scripts/radio.js~radio#readonly",
+    "class/coral-spectrum/coral-component-radio/src/scripts/Radio.js~Radio.html#instance-member-readOnly",
+    "coral-spectrum/coral-component-radio/src/scripts/Radio.js~Radio#readOnly",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-radio/src/scripts/radio.js~radio#required",
+    "class/coral-spectrum/coral-component-radio/src/scripts/Radio.js~Radio.html#instance-member-required",
+    "coral-spectrum/coral-component-radio/src/scripts/Radio.js~Radio#required",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-radio/src/scripts/radio.js~radio#reset",
+    "class/coral-spectrum/coral-component-radio/src/scripts/Radio.js~Radio.html#instance-method-reset",
+    "coral-spectrum/coral-component-radio/src/scripts/Radio.js~Radio#reset",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-radio/src/scripts/radio.js~radio#trackingelement",
+    "class/coral-spectrum/coral-component-radio/src/scripts/Radio.js~Radio.html#instance-member-trackingElement",
+    "coral-spectrum/coral-component-radio/src/scripts/Radio.js~Radio#trackingElement",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-radio/src/scripts/radio.js~radio#value",
+    "class/coral-spectrum/coral-component-radio/src/scripts/Radio.js~Radio.html#instance-member-value",
+    "coral-spectrum/coral-component-radio/src/scripts/Radio.js~Radio#value",
+    "member"
+  ],
+  [
     "coral-spectrum/coral-component-radio/src/scripts/radiolabel.js",
     "file/coral-spectrum/coral-component-radio/src/scripts/RadioLabel.js.html",
     "coral-spectrum/coral-component-radio/src/scripts/RadioLabel.js",
@@ -3844,6 +5962,18 @@ window.esdocSearchIndex = [
     "file/coral-spectrum/coral-component-radiogroup/src/scripts/RadioGroup.js.html",
     "coral-spectrum/coral-component-radiogroup/src/scripts/RadioGroup.js",
     "file"
+  ],
+  [
+    "coral-spectrum/coral-component-radiogroup/src/scripts/radiogroup.js~radiogroup#orientation",
+    "class/coral-spectrum/coral-component-radiogroup/src/scripts/RadioGroup.js~RadioGroup.html#instance-member-orientation",
+    "coral-spectrum/coral-component-radiogroup/src/scripts/RadioGroup.js~RadioGroup#orientation",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-radiogroup/src/scripts/radiogroup.js~radiogroup.orientation",
+    "class/coral-spectrum/coral-component-radiogroup/src/scripts/RadioGroup.js~RadioGroup.html#static-member-orientation",
+    "coral-spectrum/coral-component-radiogroup/src/scripts/RadioGroup.js~RadioGroup.orientation",
+    "member"
   ],
   [
     "coral-spectrum/coral-component-radiogroup/src/scripts/radiogroup.js~radiogrouporientationenum",
@@ -3858,27 +5988,105 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "coral-spectrum/coral-component-search/src/scripts/search.js~search#clear",
+    "class/coral-spectrum/coral-component-search/src/scripts/Search.js~Search.html#instance-method-clear",
+    "coral-spectrum/coral-component-search/src/scripts/Search.js~Search#clear",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-search/src/scripts/search.js~search#disabled",
+    "class/coral-spectrum/coral-component-search/src/scripts/Search.js~Search.html#instance-member-disabled",
+    "coral-spectrum/coral-component-search/src/scripts/Search.js~Search#disabled",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-search/src/scripts/search.js~search#invalid",
+    "class/coral-spectrum/coral-component-search/src/scripts/Search.js~Search.html#instance-member-invalid",
+    "coral-spectrum/coral-component-search/src/scripts/Search.js~Search#invalid",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-search/src/scripts/search.js~search#labelledby",
+    "class/coral-spectrum/coral-component-search/src/scripts/Search.js~Search.html#instance-member-labelledBy",
+    "coral-spectrum/coral-component-search/src/scripts/Search.js~Search#labelledBy",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-search/src/scripts/search.js~search#maxlength",
+    "class/coral-spectrum/coral-component-search/src/scripts/Search.js~Search.html#instance-member-maxLength",
+    "coral-spectrum/coral-component-search/src/scripts/Search.js~Search#maxLength",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-search/src/scripts/search.js~search#name",
+    "class/coral-spectrum/coral-component-search/src/scripts/Search.js~Search.html#instance-member-name",
+    "coral-spectrum/coral-component-search/src/scripts/Search.js~Search#name",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-search/src/scripts/search.js~search#placeholder",
+    "class/coral-spectrum/coral-component-search/src/scripts/Search.js~Search.html#instance-member-placeholder",
+    "coral-spectrum/coral-component-search/src/scripts/Search.js~Search#placeholder",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-search/src/scripts/search.js~search#readonly",
+    "class/coral-spectrum/coral-component-search/src/scripts/Search.js~Search.html#instance-member-readOnly",
+    "coral-spectrum/coral-component-search/src/scripts/Search.js~Search#readOnly",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-search/src/scripts/search.js~search#required",
+    "class/coral-spectrum/coral-component-search/src/scripts/Search.js~Search.html#instance-member-required",
+    "coral-spectrum/coral-component-search/src/scripts/Search.js~Search#required",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-search/src/scripts/search.js~search#reset",
+    "class/coral-spectrum/coral-component-search/src/scripts/Search.js~Search.html#instance-method-reset",
+    "coral-spectrum/coral-component-search/src/scripts/Search.js~Search#reset",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-search/src/scripts/search.js~search#value",
+    "class/coral-spectrum/coral-component-search/src/scripts/Search.js~Search.html#instance-member-value",
+    "coral-spectrum/coral-component-search/src/scripts/Search.js~Search#value",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-search/src/scripts/search.js~search#variant",
+    "class/coral-spectrum/coral-component-search/src/scripts/Search.js~Search.html#instance-member-variant",
+    "coral-spectrum/coral-component-search/src/scripts/Search.js~Search#variant",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-search/src/scripts/search.js~search.coral-search:clear",
+    "typedef/index.html#static-typedef-coral-search:clear",
+    "coral-spectrum/coral-component-search/src/scripts/Search.js~Search.coral-search:clear",
+    "typedef"
+  ],
+  [
+    "coral-spectrum/coral-component-search/src/scripts/search.js~search.coral-search:input",
+    "typedef/index.html#static-typedef-coral-search:input",
+    "coral-spectrum/coral-component-search/src/scripts/Search.js~Search.coral-search:input",
+    "typedef"
+  ],
+  [
+    "coral-spectrum/coral-component-search/src/scripts/search.js~search.coral-search:submit",
+    "typedef/index.html#static-typedef-coral-search:submit",
+    "coral-spectrum/coral-component-search/src/scripts/Search.js~Search.coral-search:submit",
+    "typedef"
+  ],
+  [
+    "coral-spectrum/coral-component-search/src/scripts/search.js~search.variant",
+    "class/coral-spectrum/coral-component-search/src/scripts/Search.js~Search.html#static-member-variant",
+    "coral-spectrum/coral-component-search/src/scripts/Search.js~Search.variant",
+    "member"
+  ],
+  [
     "coral-spectrum/coral-component-search/src/scripts/search.js~searchvariantenum",
     "typedef/index.html#static-typedef-SearchVariantEnum",
     "coral-spectrum/coral-component-search/src/scripts/Search.js~SearchVariantEnum",
-    "typedef"
-  ],
-  [
-    "coral-spectrum/coral-component-search/src/scripts/search.js~coral-search:clear",
-    "typedef/index.html#static-typedef-coral-search:clear",
-    "coral-spectrum/coral-component-search/src/scripts/Search.js~coral-search:clear",
-    "typedef"
-  ],
-  [
-    "coral-spectrum/coral-component-search/src/scripts/search.js~coral-search:input",
-    "typedef/index.html#static-typedef-coral-search:input",
-    "coral-spectrum/coral-component-search/src/scripts/Search.js~coral-search:input",
-    "typedef"
-  ],
-  [
-    "coral-spectrum/coral-component-search/src/scripts/search.js~coral-search:submit",
-    "typedef/index.html#static-typedef-coral-search:submit",
-    "coral-spectrum/coral-component-search/src/scripts/Search.js~coral-search:submit",
     "typedef"
   ],
   [
@@ -3888,21 +6096,141 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "coral-spectrum/coral-component-select/src/scripts/select.js~select#clear",
+    "class/coral-spectrum/coral-component-select/src/scripts/Select.js~Select.html#instance-method-clear",
+    "coral-spectrum/coral-component-select/src/scripts/Select.js~Select#clear",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-select/src/scripts/select.js~select#disabled",
+    "class/coral-spectrum/coral-component-select/src/scripts/Select.js~Select.html#instance-member-disabled",
+    "coral-spectrum/coral-component-select/src/scripts/Select.js~Select#disabled",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-select/src/scripts/select.js~select#invalid",
+    "class/coral-spectrum/coral-component-select/src/scripts/Select.js~Select.html#instance-member-invalid",
+    "coral-spectrum/coral-component-select/src/scripts/Select.js~Select#invalid",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-select/src/scripts/select.js~select#items",
+    "class/coral-spectrum/coral-component-select/src/scripts/Select.js~Select.html#instance-member-items",
+    "coral-spectrum/coral-component-select/src/scripts/Select.js~Select#items",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-select/src/scripts/select.js~select#labelled",
+    "class/coral-spectrum/coral-component-select/src/scripts/Select.js~Select.html#instance-member-labelled",
+    "coral-spectrum/coral-component-select/src/scripts/Select.js~Select#labelled",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-select/src/scripts/select.js~select#labelledby",
+    "class/coral-spectrum/coral-component-select/src/scripts/Select.js~Select.html#instance-member-labelledBy",
+    "coral-spectrum/coral-component-select/src/scripts/Select.js~Select#labelledBy",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-select/src/scripts/select.js~select#loading",
+    "class/coral-spectrum/coral-component-select/src/scripts/Select.js~Select.html#instance-member-loading",
+    "coral-spectrum/coral-component-select/src/scripts/Select.js~Select#loading",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-select/src/scripts/select.js~select#multiple",
+    "class/coral-spectrum/coral-component-select/src/scripts/Select.js~Select.html#instance-member-multiple",
+    "coral-spectrum/coral-component-select/src/scripts/Select.js~Select#multiple",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-select/src/scripts/select.js~select#name",
+    "class/coral-spectrum/coral-component-select/src/scripts/Select.js~Select.html#instance-member-name",
+    "coral-spectrum/coral-component-select/src/scripts/Select.js~Select#name",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-select/src/scripts/select.js~select#overlay",
+    "class/coral-spectrum/coral-component-select/src/scripts/Select.js~Select.html#instance-member-overlay",
+    "coral-spectrum/coral-component-select/src/scripts/Select.js~Select#overlay",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-select/src/scripts/select.js~select#placeholder",
+    "class/coral-spectrum/coral-component-select/src/scripts/Select.js~Select.html#instance-member-placeholder",
+    "coral-spectrum/coral-component-select/src/scripts/Select.js~Select#placeholder",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-select/src/scripts/select.js~select#readonly",
+    "class/coral-spectrum/coral-component-select/src/scripts/Select.js~Select.html#instance-member-readOnly",
+    "coral-spectrum/coral-component-select/src/scripts/Select.js~Select#readOnly",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-select/src/scripts/select.js~select#required",
+    "class/coral-spectrum/coral-component-select/src/scripts/Select.js~Select.html#instance-member-required",
+    "coral-spectrum/coral-component-select/src/scripts/Select.js~Select#required",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-select/src/scripts/select.js~select#reset",
+    "class/coral-spectrum/coral-component-select/src/scripts/Select.js~Select.html#instance-method-reset",
+    "coral-spectrum/coral-component-select/src/scripts/Select.js~Select#reset",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-select/src/scripts/select.js~select#selecteditem",
+    "class/coral-spectrum/coral-component-select/src/scripts/Select.js~Select.html#instance-member-selectedItem",
+    "coral-spectrum/coral-component-select/src/scripts/Select.js~Select#selectedItem",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-select/src/scripts/select.js~select#selecteditems",
+    "class/coral-spectrum/coral-component-select/src/scripts/Select.js~Select.html#instance-member-selectedItems",
+    "coral-spectrum/coral-component-select/src/scripts/Select.js~Select#selectedItems",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-select/src/scripts/select.js~select#value",
+    "class/coral-spectrum/coral-component-select/src/scripts/Select.js~Select.html#instance-member-value",
+    "coral-spectrum/coral-component-select/src/scripts/Select.js~Select#value",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-select/src/scripts/select.js~select#values",
+    "class/coral-spectrum/coral-component-select/src/scripts/Select.js~Select.html#instance-member-values",
+    "coral-spectrum/coral-component-select/src/scripts/Select.js~Select#values",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-select/src/scripts/select.js~select#variant",
+    "class/coral-spectrum/coral-component-select/src/scripts/Select.js~Select.html#instance-member-variant",
+    "coral-spectrum/coral-component-select/src/scripts/Select.js~Select#variant",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-select/src/scripts/select.js~select.coral-select:hideitems",
+    "typedef/index.html#static-typedef-coral-select:hideitems",
+    "coral-spectrum/coral-component-select/src/scripts/Select.js~Select.coral-select:hideitems",
+    "typedef"
+  ],
+  [
+    "coral-spectrum/coral-component-select/src/scripts/select.js~select.coral-select:showitems",
+    "typedef/index.html#static-typedef-coral-select:showitems",
+    "coral-spectrum/coral-component-select/src/scripts/Select.js~Select.coral-select:showitems",
+    "typedef"
+  ],
+  [
+    "coral-spectrum/coral-component-select/src/scripts/select.js~select.variant",
+    "class/coral-spectrum/coral-component-select/src/scripts/Select.js~Select.html#static-member-variant",
+    "coral-spectrum/coral-component-select/src/scripts/Select.js~Select.variant",
+    "member"
+  ],
+  [
     "coral-spectrum/coral-component-select/src/scripts/select.js~selectvariantenum",
     "typedef/index.html#static-typedef-SelectVariantEnum",
     "coral-spectrum/coral-component-select/src/scripts/Select.js~SelectVariantEnum",
-    "typedef"
-  ],
-  [
-    "coral-spectrum/coral-component-select/src/scripts/select.js~coral-select:hideitems",
-    "typedef/index.html#static-typedef-coral-select:hideitems",
-    "coral-spectrum/coral-component-select/src/scripts/Select.js~coral-select:hideitems",
-    "typedef"
-  ],
-  [
-    "coral-spectrum/coral-component-select/src/scripts/select.js~coral-select:showitems",
-    "typedef/index.html#static-typedef-coral-select:showitems",
-    "coral-spectrum/coral-component-select/src/scripts/Select.js~coral-select:showitems",
     "typedef"
   ],
   [
@@ -3910,6 +6238,36 @@ window.esdocSearchIndex = [
     "file/coral-spectrum/coral-component-select/src/scripts/SelectItem.js.html",
     "coral-spectrum/coral-component-select/src/scripts/SelectItem.js",
     "file"
+  ],
+  [
+    "coral-spectrum/coral-component-select/src/scripts/selectitem.js~selectitem#content",
+    "class/coral-spectrum/coral-component-select/src/scripts/SelectItem.js~SelectItem.html#instance-member-content",
+    "coral-spectrum/coral-component-select/src/scripts/SelectItem.js~SelectItem#content",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-select/src/scripts/selectitem.js~selectitem#disabled",
+    "class/coral-spectrum/coral-component-select/src/scripts/SelectItem.js~SelectItem.html#instance-member-disabled",
+    "coral-spectrum/coral-component-select/src/scripts/SelectItem.js~SelectItem#disabled",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-select/src/scripts/selectitem.js~selectitem#selected",
+    "class/coral-spectrum/coral-component-select/src/scripts/SelectItem.js~SelectItem.html#instance-member-selected",
+    "coral-spectrum/coral-component-select/src/scripts/SelectItem.js~SelectItem#selected",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-select/src/scripts/selectitem.js~selectitem#trackingelement",
+    "class/coral-spectrum/coral-component-select/src/scripts/SelectItem.js~SelectItem.html#instance-member-trackingElement",
+    "coral-spectrum/coral-component-select/src/scripts/SelectItem.js~SelectItem#trackingElement",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-select/src/scripts/selectitem.js~selectitem#value",
+    "class/coral-spectrum/coral-component-select/src/scripts/SelectItem.js~SelectItem.html#instance-member-value",
+    "coral-spectrum/coral-component-select/src/scripts/SelectItem.js~SelectItem#value",
+    "member"
   ],
   [
     "coral-spectrum/coral-component-shell/src/scripts/shell.js",
@@ -4434,15 +6792,39 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "coral-spectrum/coral-component-sidenav/src/scripts/sidenav.js~sidenavvariantenum",
-    "typedef/index.html#static-typedef-SideNavVariantEnum",
-    "coral-spectrum/coral-component-sidenav/src/scripts/SideNav.js~SideNavVariantEnum",
+    "coral-spectrum/coral-component-sidenav/src/scripts/sidenav.js~sidenav#items",
+    "class/coral-spectrum/coral-component-sidenav/src/scripts/SideNav.js~SideNav.html#instance-member-items",
+    "coral-spectrum/coral-component-sidenav/src/scripts/SideNav.js~SideNav#items",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-sidenav/src/scripts/sidenav.js~sidenav#selecteditem",
+    "class/coral-spectrum/coral-component-sidenav/src/scripts/SideNav.js~SideNav.html#instance-member-selectedItem",
+    "coral-spectrum/coral-component-sidenav/src/scripts/SideNav.js~SideNav#selectedItem",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-sidenav/src/scripts/sidenav.js~sidenav#variant",
+    "class/coral-spectrum/coral-component-sidenav/src/scripts/SideNav.js~SideNav.html#instance-member-variant",
+    "coral-spectrum/coral-component-sidenav/src/scripts/SideNav.js~SideNav#variant",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-sidenav/src/scripts/sidenav.js~sidenav.coral-sidenav:change",
+    "typedef/index.html#static-typedef-coral-sidenav:change",
+    "coral-spectrum/coral-component-sidenav/src/scripts/SideNav.js~SideNav.coral-sidenav:change",
     "typedef"
   ],
   [
-    "coral-spectrum/coral-component-sidenav/src/scripts/sidenav.js~coral-sidenav:change",
-    "typedef/index.html#static-typedef-coral-sidenav:change",
-    "coral-spectrum/coral-component-sidenav/src/scripts/SideNav.js~coral-sidenav:change",
+    "coral-spectrum/coral-component-sidenav/src/scripts/sidenav.js~sidenav.variant",
+    "class/coral-spectrum/coral-component-sidenav/src/scripts/SideNav.js~SideNav.html#static-member-variant",
+    "coral-spectrum/coral-component-sidenav/src/scripts/SideNav.js~SideNav.variant",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-sidenav/src/scripts/sidenav.js~sidenavvariantenum",
+    "typedef/index.html#static-typedef-SideNavVariantEnum",
+    "coral-spectrum/coral-component-sidenav/src/scripts/SideNav.js~SideNavVariantEnum",
     "typedef"
   ],
   [
@@ -4458,6 +6840,24 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "coral-spectrum/coral-component-sidenav/src/scripts/sidenavitem.js~sidenavitem#content",
+    "class/coral-spectrum/coral-component-sidenav/src/scripts/SideNavItem.js~SideNavItem.html#instance-member-content",
+    "coral-spectrum/coral-component-sidenav/src/scripts/SideNavItem.js~SideNavItem#content",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-sidenav/src/scripts/sidenavitem.js~sidenavitem#icon",
+    "class/coral-spectrum/coral-component-sidenav/src/scripts/SideNavItem.js~SideNavItem.html#instance-member-icon",
+    "coral-spectrum/coral-component-sidenav/src/scripts/SideNavItem.js~SideNavItem#icon",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-sidenav/src/scripts/sidenavitem.js~sidenavitem#selected",
+    "class/coral-spectrum/coral-component-sidenav/src/scripts/SideNavItem.js~SideNavItem.html#instance-member-selected",
+    "coral-spectrum/coral-component-sidenav/src/scripts/SideNavItem.js~SideNavItem#selected",
+    "member"
+  ],
+  [
     "coral-spectrum/coral-component-sidenav/src/scripts/sidenavitemcontent.js",
     "file/coral-spectrum/coral-component-sidenav/src/scripts/SideNavItemContent.js.html",
     "coral-spectrum/coral-component-sidenav/src/scripts/SideNavItemContent.js",
@@ -4470,10 +6870,58 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "coral-spectrum/coral-component-sidenav/src/scripts/sidenavlevel.js~sidenavlevel#hidden",
+    "class/coral-spectrum/coral-component-sidenav/src/scripts/SideNavLevel.js~SideNavLevel.html#instance-member-hidden",
+    "coral-spectrum/coral-component-sidenav/src/scripts/SideNavLevel.js~SideNavLevel#hidden",
+    "member"
+  ],
+  [
     "coral-spectrum/coral-component-slider/src/scripts/rangedslider.js",
     "file/coral-spectrum/coral-component-slider/src/scripts/RangedSlider.js.html",
     "coral-spectrum/coral-component-slider/src/scripts/RangedSlider.js",
     "file"
+  ],
+  [
+    "coral-spectrum/coral-component-slider/src/scripts/rangedslider.js~rangedslider#clear",
+    "class/coral-spectrum/coral-component-slider/src/scripts/RangedSlider.js~RangedSlider.html#instance-method-clear",
+    "coral-spectrum/coral-component-slider/src/scripts/RangedSlider.js~RangedSlider#clear",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-slider/src/scripts/rangedslider.js~rangedslider#endvalue",
+    "class/coral-spectrum/coral-component-slider/src/scripts/RangedSlider.js~RangedSlider.html#instance-member-endValue",
+    "coral-spectrum/coral-component-slider/src/scripts/RangedSlider.js~RangedSlider#endValue",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-slider/src/scripts/rangedslider.js~rangedslider#filled",
+    "class/coral-spectrum/coral-component-slider/src/scripts/RangedSlider.js~RangedSlider.html#instance-member-filled",
+    "coral-spectrum/coral-component-slider/src/scripts/RangedSlider.js~RangedSlider#filled",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-slider/src/scripts/rangedslider.js~rangedslider#reset",
+    "class/coral-spectrum/coral-component-slider/src/scripts/RangedSlider.js~RangedSlider.html#instance-method-reset",
+    "coral-spectrum/coral-component-slider/src/scripts/RangedSlider.js~RangedSlider#reset",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-slider/src/scripts/rangedslider.js~rangedslider#startvalue",
+    "class/coral-spectrum/coral-component-slider/src/scripts/RangedSlider.js~RangedSlider.html#instance-member-startValue",
+    "coral-spectrum/coral-component-slider/src/scripts/RangedSlider.js~RangedSlider#startValue",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-slider/src/scripts/rangedslider.js~rangedslider#value",
+    "class/coral-spectrum/coral-component-slider/src/scripts/RangedSlider.js~RangedSlider.html#instance-member-value",
+    "coral-spectrum/coral-component-slider/src/scripts/RangedSlider.js~RangedSlider#value",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-slider/src/scripts/rangedslider.js~rangedslider#values",
+    "class/coral-spectrum/coral-component-slider/src/scripts/RangedSlider.js~RangedSlider.html#instance-member-values",
+    "coral-spectrum/coral-component-slider/src/scripts/RangedSlider.js~RangedSlider#values",
+    "member"
   ],
   [
     "coral-spectrum/coral-component-slider/src/scripts/slider.js",
@@ -4596,10 +7044,34 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "coral-spectrum/coral-component-slider/src/scripts/slideritem.js~slideritem#content",
+    "class/coral-spectrum/coral-component-slider/src/scripts/SliderItem.js~SliderItem.html#instance-member-content",
+    "coral-spectrum/coral-component-slider/src/scripts/SliderItem.js~SliderItem#content",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-slider/src/scripts/slideritem.js~slideritem#value",
+    "class/coral-spectrum/coral-component-slider/src/scripts/SliderItem.js~SliderItem.html#instance-member-value",
+    "coral-spectrum/coral-component-slider/src/scripts/SliderItem.js~SliderItem#value",
+    "member"
+  ],
+  [
     "coral-spectrum/coral-component-splitbutton/src/scripts/splitbutton.js",
     "file/coral-spectrum/coral-component-splitbutton/src/scripts/SplitButton.js.html",
     "coral-spectrum/coral-component-splitbutton/src/scripts/SplitButton.js",
     "file"
+  ],
+  [
+    "coral-spectrum/coral-component-splitbutton/src/scripts/splitbutton.js~splitbutton#variant",
+    "class/coral-spectrum/coral-component-splitbutton/src/scripts/SplitButton.js~SplitButton.html#instance-member-variant",
+    "coral-spectrum/coral-component-splitbutton/src/scripts/SplitButton.js~SplitButton#variant",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-splitbutton/src/scripts/splitbutton.js~splitbutton.variant",
+    "class/coral-spectrum/coral-component-splitbutton/src/scripts/SplitButton.js~SplitButton.html#static-member-variant",
+    "coral-spectrum/coral-component-splitbutton/src/scripts/SplitButton.js~SplitButton.variant",
+    "member"
   ],
   [
     "coral-spectrum/coral-component-splitbutton/src/scripts/splitbutton.js~splitbuttonvariantenum",
@@ -4612,6 +7084,42 @@ window.esdocSearchIndex = [
     "file/coral-spectrum/coral-component-status/src/scripts/Status.js.html",
     "coral-spectrum/coral-component-status/src/scripts/Status.js",
     "file"
+  ],
+  [
+    "coral-spectrum/coral-component-status/src/scripts/status.js~status#color",
+    "class/coral-spectrum/coral-component-status/src/scripts/Status.js~Status.html#instance-member-color",
+    "coral-spectrum/coral-component-status/src/scripts/Status.js~Status#color",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-status/src/scripts/status.js~status#disabled",
+    "class/coral-spectrum/coral-component-status/src/scripts/Status.js~Status.html#instance-member-disabled",
+    "coral-spectrum/coral-component-status/src/scripts/Status.js~Status#disabled",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-status/src/scripts/status.js~status#label",
+    "class/coral-spectrum/coral-component-status/src/scripts/Status.js~Status.html#instance-member-label",
+    "coral-spectrum/coral-component-status/src/scripts/Status.js~Status#label",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-status/src/scripts/status.js~status#variant",
+    "class/coral-spectrum/coral-component-status/src/scripts/Status.js~Status.html#instance-member-variant",
+    "coral-spectrum/coral-component-status/src/scripts/Status.js~Status#variant",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-status/src/scripts/status.js~status.color",
+    "class/coral-spectrum/coral-component-status/src/scripts/Status.js~Status.html#static-member-color",
+    "coral-spectrum/coral-component-status/src/scripts/Status.js~Status.color",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-status/src/scripts/status.js~status.variant",
+    "class/coral-spectrum/coral-component-status/src/scripts/Status.js~Status.html#static-member-variant",
+    "coral-spectrum/coral-component-status/src/scripts/Status.js~Status.variant",
+    "member"
   ],
   [
     "coral-spectrum/coral-component-status/src/scripts/status.js~statuscolorenum",
@@ -4638,6 +7146,66 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "coral-spectrum/coral-component-steplist/src/scripts/step.js~step#blur",
+    "class/coral-spectrum/coral-component-steplist/src/scripts/Step.js~Step.html#instance-method-blur",
+    "coral-spectrum/coral-component-steplist/src/scripts/Step.js~Step#blur",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-steplist/src/scripts/step.js~step#describedby",
+    "class/coral-spectrum/coral-component-steplist/src/scripts/Step.js~Step.html#instance-member-describedBy",
+    "coral-spectrum/coral-component-steplist/src/scripts/Step.js~Step#describedBy",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-steplist/src/scripts/step.js~step#disabled",
+    "class/coral-spectrum/coral-component-steplist/src/scripts/Step.js~Step.html#instance-member-disabled",
+    "coral-spectrum/coral-component-steplist/src/scripts/Step.js~Step#disabled",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-steplist/src/scripts/step.js~step#focus",
+    "class/coral-spectrum/coral-component-steplist/src/scripts/Step.js~Step.html#instance-method-focus",
+    "coral-spectrum/coral-component-steplist/src/scripts/Step.js~Step#focus",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-steplist/src/scripts/step.js~step#label",
+    "class/coral-spectrum/coral-component-steplist/src/scripts/Step.js~Step.html#instance-member-label",
+    "coral-spectrum/coral-component-steplist/src/scripts/Step.js~Step#label",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-steplist/src/scripts/step.js~step#labelled",
+    "class/coral-spectrum/coral-component-steplist/src/scripts/Step.js~Step.html#instance-member-labelled",
+    "coral-spectrum/coral-component-steplist/src/scripts/Step.js~Step#labelled",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-steplist/src/scripts/step.js~step#labelledby",
+    "class/coral-spectrum/coral-component-steplist/src/scripts/Step.js~Step.html#instance-member-labelledBy",
+    "coral-spectrum/coral-component-steplist/src/scripts/Step.js~Step#labelledBy",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-steplist/src/scripts/step.js~step#selected",
+    "class/coral-spectrum/coral-component-steplist/src/scripts/Step.js~Step.html#instance-member-selected",
+    "coral-spectrum/coral-component-steplist/src/scripts/Step.js~Step#selected",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-steplist/src/scripts/step.js~step#target",
+    "class/coral-spectrum/coral-component-steplist/src/scripts/Step.js~Step.html#instance-member-target",
+    "coral-spectrum/coral-component-steplist/src/scripts/Step.js~Step#target",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-steplist/src/scripts/step.js~step#trackingelement",
+    "class/coral-spectrum/coral-component-steplist/src/scripts/Step.js~Step.html#instance-member-trackingElement",
+    "coral-spectrum/coral-component-steplist/src/scripts/Step.js~Step#trackingElement",
+    "member"
+  ],
+  [
     "coral-spectrum/coral-component-steplist/src/scripts/steplabel.js",
     "file/coral-spectrum/coral-component-steplist/src/scripts/StepLabel.js.html",
     "coral-spectrum/coral-component-steplist/src/scripts/StepLabel.js",
@@ -4648,6 +7216,66 @@ window.esdocSearchIndex = [
     "file/coral-spectrum/coral-component-steplist/src/scripts/StepList.js.html",
     "coral-spectrum/coral-component-steplist/src/scripts/StepList.js",
     "file"
+  ],
+  [
+    "coral-spectrum/coral-component-steplist/src/scripts/steplist.js~steplist#interaction",
+    "class/coral-spectrum/coral-component-steplist/src/scripts/StepList.js~StepList.html#instance-member-interaction",
+    "coral-spectrum/coral-component-steplist/src/scripts/StepList.js~StepList#interaction",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-steplist/src/scripts/steplist.js~steplist#items",
+    "class/coral-spectrum/coral-component-steplist/src/scripts/StepList.js~StepList.html#instance-member-items",
+    "coral-spectrum/coral-component-steplist/src/scripts/StepList.js~StepList#items",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-steplist/src/scripts/steplist.js~steplist#next",
+    "class/coral-spectrum/coral-component-steplist/src/scripts/StepList.js~StepList.html#instance-method-next",
+    "coral-spectrum/coral-component-steplist/src/scripts/StepList.js~StepList#next",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-steplist/src/scripts/steplist.js~steplist#previous",
+    "class/coral-spectrum/coral-component-steplist/src/scripts/StepList.js~StepList.html#instance-method-previous",
+    "coral-spectrum/coral-component-steplist/src/scripts/StepList.js~StepList#previous",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-steplist/src/scripts/steplist.js~steplist#selecteditem",
+    "class/coral-spectrum/coral-component-steplist/src/scripts/StepList.js~StepList.html#instance-member-selectedItem",
+    "coral-spectrum/coral-component-steplist/src/scripts/StepList.js~StepList#selectedItem",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-steplist/src/scripts/steplist.js~steplist#size",
+    "class/coral-spectrum/coral-component-steplist/src/scripts/StepList.js~StepList.html#instance-member-size",
+    "coral-spectrum/coral-component-steplist/src/scripts/StepList.js~StepList#size",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-steplist/src/scripts/steplist.js~steplist#target",
+    "class/coral-spectrum/coral-component-steplist/src/scripts/StepList.js~StepList.html#instance-member-target",
+    "coral-spectrum/coral-component-steplist/src/scripts/StepList.js~StepList#target",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-steplist/src/scripts/steplist.js~steplist.coral-steplist:change",
+    "typedef/index.html#static-typedef-coral-steplist:change",
+    "coral-spectrum/coral-component-steplist/src/scripts/StepList.js~StepList.coral-steplist:change",
+    "typedef"
+  ],
+  [
+    "coral-spectrum/coral-component-steplist/src/scripts/steplist.js~steplist.interaction",
+    "class/coral-spectrum/coral-component-steplist/src/scripts/StepList.js~StepList.html#static-member-interaction",
+    "coral-spectrum/coral-component-steplist/src/scripts/StepList.js~StepList.interaction",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-steplist/src/scripts/steplist.js~steplist.size",
+    "class/coral-spectrum/coral-component-steplist/src/scripts/StepList.js~StepList.html#static-member-size",
+    "coral-spectrum/coral-component-steplist/src/scripts/StepList.js~StepList.size",
+    "member"
   ],
   [
     "coral-spectrum/coral-component-steplist/src/scripts/steplist.js~steplistinteractionenum",
@@ -4662,12 +7290,6 @@ window.esdocSearchIndex = [
     "typedef"
   ],
   [
-    "coral-spectrum/coral-component-steplist/src/scripts/steplist.js~coral-steplist:change",
-    "typedef/index.html#static-typedef-coral-steplist:change",
-    "coral-spectrum/coral-component-steplist/src/scripts/StepList.js~coral-steplist:change",
-    "typedef"
-  ],
-  [
     "coral-spectrum/coral-component-steplist/src/scripts/gettarget.js",
     "file/coral-spectrum/coral-component-steplist/src/scripts/getTarget.js.html",
     "coral-spectrum/coral-component-steplist/src/scripts/getTarget.js",
@@ -4678,6 +7300,66 @@ window.esdocSearchIndex = [
     "file/coral-spectrum/coral-component-switch/src/scripts/Switch.js.html",
     "coral-spectrum/coral-component-switch/src/scripts/Switch.js",
     "file"
+  ],
+  [
+    "coral-spectrum/coral-component-switch/src/scripts/switch.js~switch#checked",
+    "class/coral-spectrum/coral-component-switch/src/scripts/Switch.js~Switch.html#instance-member-checked",
+    "coral-spectrum/coral-component-switch/src/scripts/Switch.js~Switch#checked",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-switch/src/scripts/switch.js~switch#clear",
+    "class/coral-spectrum/coral-component-switch/src/scripts/Switch.js~Switch.html#instance-method-clear",
+    "coral-spectrum/coral-component-switch/src/scripts/Switch.js~Switch#clear",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-switch/src/scripts/switch.js~switch#disabled",
+    "class/coral-spectrum/coral-component-switch/src/scripts/Switch.js~Switch.html#instance-member-disabled",
+    "coral-spectrum/coral-component-switch/src/scripts/Switch.js~Switch#disabled",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-switch/src/scripts/switch.js~switch#label",
+    "class/coral-spectrum/coral-component-switch/src/scripts/Switch.js~Switch.html#instance-member-label",
+    "coral-spectrum/coral-component-switch/src/scripts/Switch.js~Switch#label",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-switch/src/scripts/switch.js~switch#labelled",
+    "class/coral-spectrum/coral-component-switch/src/scripts/Switch.js~Switch.html#instance-member-labelled",
+    "coral-spectrum/coral-component-switch/src/scripts/Switch.js~Switch#labelled",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-switch/src/scripts/switch.js~switch#name",
+    "class/coral-spectrum/coral-component-switch/src/scripts/Switch.js~Switch.html#instance-member-name",
+    "coral-spectrum/coral-component-switch/src/scripts/Switch.js~Switch#name",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-switch/src/scripts/switch.js~switch#readonly",
+    "class/coral-spectrum/coral-component-switch/src/scripts/Switch.js~Switch.html#instance-member-readOnly",
+    "coral-spectrum/coral-component-switch/src/scripts/Switch.js~Switch#readOnly",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-switch/src/scripts/switch.js~switch#required",
+    "class/coral-spectrum/coral-component-switch/src/scripts/Switch.js~Switch.html#instance-member-required",
+    "coral-spectrum/coral-component-switch/src/scripts/Switch.js~Switch#required",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-switch/src/scripts/switch.js~switch#reset",
+    "class/coral-spectrum/coral-component-switch/src/scripts/Switch.js~Switch.html#instance-method-reset",
+    "coral-spectrum/coral-component-switch/src/scripts/Switch.js~Switch#reset",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-switch/src/scripts/switch.js~switch#value",
+    "class/coral-spectrum/coral-component-switch/src/scripts/Switch.js~Switch.html#instance-member-value",
+    "coral-spectrum/coral-component-switch/src/scripts/Switch.js~Switch#value",
+    "member"
   ],
   [
     "coral-spectrum/coral-component-switch/src/scripts/switchlabel.js",
@@ -4704,69 +7386,177 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "coral-spectrum/coral-component-table/src/scripts/table.js~table#body",
+    "class/coral-spectrum/coral-component-table/src/scripts/Table.js~Table.html#instance-member-body",
+    "coral-spectrum/coral-component-table/src/scripts/Table.js~Table#body",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/table.js~table#columns",
+    "class/coral-spectrum/coral-component-table/src/scripts/Table.js~Table.html#instance-member-columns",
+    "coral-spectrum/coral-component-table/src/scripts/Table.js~Table#columns",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/table.js~table#foot",
+    "class/coral-spectrum/coral-component-table/src/scripts/Table.js~Table.html#instance-member-foot",
+    "coral-spectrum/coral-component-table/src/scripts/Table.js~Table#foot",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/table.js~table#head",
+    "class/coral-spectrum/coral-component-table/src/scripts/Table.js~Table.html#instance-member-head",
+    "coral-spectrum/coral-component-table/src/scripts/Table.js~Table#head",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/table.js~table#id",
+    "class/coral-spectrum/coral-component-table/src/scripts/Table.js~Table.html#instance-member-id",
+    "coral-spectrum/coral-component-table/src/scripts/Table.js~Table#id",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/table.js~table#items",
+    "class/coral-spectrum/coral-component-table/src/scripts/Table.js~Table.html#instance-member-items",
+    "coral-spectrum/coral-component-table/src/scripts/Table.js~Table#items",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/table.js~table#labelled",
+    "class/coral-spectrum/coral-component-table/src/scripts/Table.js~Table.html#instance-member-labelled",
+    "coral-spectrum/coral-component-table/src/scripts/Table.js~Table#labelled",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/table.js~table#labelledby",
+    "class/coral-spectrum/coral-component-table/src/scripts/Table.js~Table.html#instance-member-labelledBy",
+    "coral-spectrum/coral-component-table/src/scripts/Table.js~Table#labelledBy",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/table.js~table#lockable",
+    "class/coral-spectrum/coral-component-table/src/scripts/Table.js~Table.html#instance-member-lockable",
+    "coral-spectrum/coral-component-table/src/scripts/Table.js~Table#lockable",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/table.js~table#multiple",
+    "class/coral-spectrum/coral-component-table/src/scripts/Table.js~Table.html#instance-member-multiple",
+    "coral-spectrum/coral-component-table/src/scripts/Table.js~Table#multiple",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/table.js~table#orderable",
+    "class/coral-spectrum/coral-component-table/src/scripts/Table.js~Table.html#instance-member-orderable",
+    "coral-spectrum/coral-component-table/src/scripts/Table.js~Table#orderable",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/table.js~table#resetlayout",
+    "class/coral-spectrum/coral-component-table/src/scripts/Table.js~Table.html#instance-method-resetLayout",
+    "coral-spectrum/coral-component-table/src/scripts/Table.js~Table#resetLayout",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/table.js~table#selectable",
+    "class/coral-spectrum/coral-component-table/src/scripts/Table.js~Table.html#instance-member-selectable",
+    "coral-spectrum/coral-component-table/src/scripts/Table.js~Table#selectable",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/table.js~table#selecteditem",
+    "class/coral-spectrum/coral-component-table/src/scripts/Table.js~Table.html#instance-member-selectedItem",
+    "coral-spectrum/coral-component-table/src/scripts/Table.js~Table#selectedItem",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/table.js~table#selecteditems",
+    "class/coral-spectrum/coral-component-table/src/scripts/Table.js~Table.html#instance-member-selectedItems",
+    "coral-spectrum/coral-component-table/src/scripts/Table.js~Table#selectedItems",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/table.js~table#variant",
+    "class/coral-spectrum/coral-component-table/src/scripts/Table.js~Table.html#instance-member-variant",
+    "coral-spectrum/coral-component-table/src/scripts/Table.js~Table#variant",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/table.js~table.coral-table:beforecolumndrag",
+    "typedef/index.html#static-typedef-coral-table:beforecolumndrag",
+    "coral-spectrum/coral-component-table/src/scripts/Table.js~Table.coral-table:beforecolumndrag",
+    "typedef"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/table.js~table.coral-table:beforecolumnsort",
+    "typedef/index.html#static-typedef-coral-table:beforecolumnsort",
+    "coral-spectrum/coral-component-table/src/scripts/Table.js~Table.coral-table:beforecolumnsort",
+    "typedef"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/table.js~table.coral-table:beforeroworder",
+    "typedef/index.html#static-typedef-coral-table:beforeroworder",
+    "coral-spectrum/coral-component-table/src/scripts/Table.js~Table.coral-table:beforeroworder",
+    "typedef"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/table.js~table.coral-table:change",
+    "typedef/index.html#static-typedef-coral-table:change",
+    "coral-spectrum/coral-component-table/src/scripts/Table.js~Table.coral-table:change",
+    "typedef"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/table.js~table.coral-table:columndrag",
+    "typedef/index.html#static-typedef-coral-table:columndrag",
+    "coral-spectrum/coral-component-table/src/scripts/Table.js~Table.coral-table:columndrag",
+    "typedef"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/table.js~table.coral-table:columnsort",
+    "typedef/index.html#static-typedef-coral-table:columnsort",
+    "coral-spectrum/coral-component-table/src/scripts/Table.js~Table.coral-table:columnsort",
+    "typedef"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/table.js~table.coral-table:rowchange",
+    "typedef/index.html#static-typedef-coral-table:rowchange",
+    "coral-spectrum/coral-component-table/src/scripts/Table.js~Table.coral-table:rowchange",
+    "typedef"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/table.js~table.coral-table:rowlock",
+    "typedef/index.html#static-typedef-coral-table:rowlock",
+    "coral-spectrum/coral-component-table/src/scripts/Table.js~Table.coral-table:rowlock",
+    "typedef"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/table.js~table.coral-table:roworder",
+    "typedef/index.html#static-typedef-coral-table:roworder",
+    "coral-spectrum/coral-component-table/src/scripts/Table.js~Table.coral-table:roworder",
+    "typedef"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/table.js~table.coral-table:rowunlock",
+    "typedef/index.html#static-typedef-coral-table:rowunlock",
+    "coral-spectrum/coral-component-table/src/scripts/Table.js~Table.coral-table:rowunlock",
+    "typedef"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/table.js~table.divider",
+    "class/coral-spectrum/coral-component-table/src/scripts/Table.js~Table.html#static-member-divider",
+    "coral-spectrum/coral-component-table/src/scripts/Table.js~Table.divider",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/table.js~table.variant",
+    "class/coral-spectrum/coral-component-table/src/scripts/Table.js~Table.html#static-member-variant",
+    "coral-spectrum/coral-component-table/src/scripts/Table.js~Table.variant",
+    "member"
+  ],
+  [
     "coral-spectrum/coral-component-table/src/scripts/table.js~tablevariantenum",
     "typedef/index.html#static-typedef-TableVariantEnum",
     "coral-spectrum/coral-component-table/src/scripts/Table.js~TableVariantEnum",
-    "typedef"
-  ],
-  [
-    "coral-spectrum/coral-component-table/src/scripts/table.js~coral-table:beforecolumndrag",
-    "typedef/index.html#static-typedef-coral-table:beforecolumndrag",
-    "coral-spectrum/coral-component-table/src/scripts/Table.js~coral-table:beforecolumndrag",
-    "typedef"
-  ],
-  [
-    "coral-spectrum/coral-component-table/src/scripts/table.js~coral-table:beforecolumnsort",
-    "typedef/index.html#static-typedef-coral-table:beforecolumnsort",
-    "coral-spectrum/coral-component-table/src/scripts/Table.js~coral-table:beforecolumnsort",
-    "typedef"
-  ],
-  [
-    "coral-spectrum/coral-component-table/src/scripts/table.js~coral-table:beforeroworder",
-    "typedef/index.html#static-typedef-coral-table:beforeroworder",
-    "coral-spectrum/coral-component-table/src/scripts/Table.js~coral-table:beforeroworder",
-    "typedef"
-  ],
-  [
-    "coral-spectrum/coral-component-table/src/scripts/table.js~coral-table:change",
-    "typedef/index.html#static-typedef-coral-table:change",
-    "coral-spectrum/coral-component-table/src/scripts/Table.js~coral-table:change",
-    "typedef"
-  ],
-  [
-    "coral-spectrum/coral-component-table/src/scripts/table.js~coral-table:columndrag",
-    "typedef/index.html#static-typedef-coral-table:columndrag",
-    "coral-spectrum/coral-component-table/src/scripts/Table.js~coral-table:columndrag",
-    "typedef"
-  ],
-  [
-    "coral-spectrum/coral-component-table/src/scripts/table.js~coral-table:columnsort",
-    "typedef/index.html#static-typedef-coral-table:columnsort",
-    "coral-spectrum/coral-component-table/src/scripts/Table.js~coral-table:columnsort",
-    "typedef"
-  ],
-  [
-    "coral-spectrum/coral-component-table/src/scripts/table.js~coral-table:rowchange",
-    "typedef/index.html#static-typedef-coral-table:rowchange",
-    "coral-spectrum/coral-component-table/src/scripts/Table.js~coral-table:rowchange",
-    "typedef"
-  ],
-  [
-    "coral-spectrum/coral-component-table/src/scripts/table.js~coral-table:rowlock",
-    "typedef/index.html#static-typedef-coral-table:rowlock",
-    "coral-spectrum/coral-component-table/src/scripts/Table.js~coral-table:rowlock",
-    "typedef"
-  ],
-  [
-    "coral-spectrum/coral-component-table/src/scripts/table.js~coral-table:roworder",
-    "typedef/index.html#static-typedef-coral-table:roworder",
-    "coral-spectrum/coral-component-table/src/scripts/Table.js~coral-table:roworder",
-    "typedef"
-  ],
-  [
-    "coral-spectrum/coral-component-table/src/scripts/table.js~coral-table:rowunlock",
-    "typedef/index.html#static-typedef-coral-table:rowunlock",
-    "coral-spectrum/coral-component-table/src/scripts/Table.js~coral-table:rowunlock",
     "typedef"
   ],
   [
@@ -4782,10 +7572,94 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "coral-spectrum/coral-component-table/src/scripts/tablecell.js~tablecell#content",
+    "class/coral-spectrum/coral-component-table/src/scripts/TableCell.js~TableCell.html#instance-member-content",
+    "coral-spectrum/coral-component-table/src/scripts/TableCell.js~TableCell#content",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/tablecell.js~tablecell#id",
+    "class/coral-spectrum/coral-component-table/src/scripts/TableCell.js~TableCell.html#instance-member-id",
+    "coral-spectrum/coral-component-table/src/scripts/TableCell.js~TableCell#id",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/tablecell.js~tablecell#selected",
+    "class/coral-spectrum/coral-component-table/src/scripts/TableCell.js~TableCell.html#instance-member-selected",
+    "coral-spectrum/coral-component-table/src/scripts/TableCell.js~TableCell#selected",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/tablecell.js~tablecell#value",
+    "class/coral-spectrum/coral-component-table/src/scripts/TableCell.js~TableCell.html#instance-member-value",
+    "coral-spectrum/coral-component-table/src/scripts/TableCell.js~TableCell#value",
+    "member"
+  ],
+  [
     "coral-spectrum/coral-component-table/src/scripts/tablecolumn.js",
     "file/coral-spectrum/coral-component-table/src/scripts/TableColumn.js.html",
     "coral-spectrum/coral-component-table/src/scripts/TableColumn.js",
     "file"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/tablecolumn.js~tablecolumn#alignment",
+    "class/coral-spectrum/coral-component-table/src/scripts/TableColumn.js~TableColumn.html#instance-member-alignment",
+    "coral-spectrum/coral-component-table/src/scripts/TableColumn.js~TableColumn#alignment",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/tablecolumn.js~tablecolumn#fixedwidth",
+    "class/coral-spectrum/coral-component-table/src/scripts/TableColumn.js~TableColumn.html#instance-member-fixedWidth",
+    "coral-spectrum/coral-component-table/src/scripts/TableColumn.js~TableColumn#fixedWidth",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/tablecolumn.js~tablecolumn#hidden",
+    "class/coral-spectrum/coral-component-table/src/scripts/TableColumn.js~TableColumn.html#instance-member-hidden",
+    "coral-spectrum/coral-component-table/src/scripts/TableColumn.js~TableColumn#hidden",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/tablecolumn.js~tablecolumn#orderable",
+    "class/coral-spectrum/coral-component-table/src/scripts/TableColumn.js~TableColumn.html#instance-member-orderable",
+    "coral-spectrum/coral-component-table/src/scripts/TableColumn.js~TableColumn#orderable",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/tablecolumn.js~tablecolumn#sortable",
+    "class/coral-spectrum/coral-component-table/src/scripts/TableColumn.js~TableColumn.html#instance-member-sortable",
+    "coral-spectrum/coral-component-table/src/scripts/TableColumn.js~TableColumn#sortable",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/tablecolumn.js~tablecolumn#sortabledirection",
+    "class/coral-spectrum/coral-component-table/src/scripts/TableColumn.js~TableColumn.html#instance-member-sortableDirection",
+    "coral-spectrum/coral-component-table/src/scripts/TableColumn.js~TableColumn#sortableDirection",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/tablecolumn.js~tablecolumn#sortabletype",
+    "class/coral-spectrum/coral-component-table/src/scripts/TableColumn.js~TableColumn.html#instance-member-sortableType",
+    "coral-spectrum/coral-component-table/src/scripts/TableColumn.js~TableColumn#sortableType",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/tablecolumn.js~tablecolumn.alignment",
+    "class/coral-spectrum/coral-component-table/src/scripts/TableColumn.js~TableColumn.html#static-member-alignment",
+    "coral-spectrum/coral-component-table/src/scripts/TableColumn.js~TableColumn.alignment",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/tablecolumn.js~tablecolumn.sortabledirection",
+    "class/coral-spectrum/coral-component-table/src/scripts/TableColumn.js~TableColumn.html#static-member-sortableDirection",
+    "coral-spectrum/coral-component-table/src/scripts/TableColumn.js~TableColumn.sortableDirection",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/tablecolumn.js~tablecolumn.sortabletype",
+    "class/coral-spectrum/coral-component-table/src/scripts/TableColumn.js~TableColumn.html#static-member-sortableType",
+    "coral-spectrum/coral-component-table/src/scripts/TableColumn.js~TableColumn.sortableType",
+    "member"
   ],
   [
     "coral-spectrum/coral-component-table/src/scripts/tablecolumn.js~tablecolumnsortabledirectionenum",
@@ -4812,10 +7686,22 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "coral-spectrum/coral-component-table/src/scripts/tablehead.js~tablehead#sticky",
+    "class/coral-spectrum/coral-component-table/src/scripts/TableHead.js~TableHead.html#instance-member-sticky",
+    "coral-spectrum/coral-component-table/src/scripts/TableHead.js~TableHead#sticky",
+    "member"
+  ],
+  [
     "coral-spectrum/coral-component-table/src/scripts/tableheadercell.js",
     "file/coral-spectrum/coral-component-table/src/scripts/TableHeaderCell.js.html",
     "coral-spectrum/coral-component-table/src/scripts/TableHeaderCell.js",
     "file"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/tableheadercell.js~tableheadercell#content",
+    "class/coral-spectrum/coral-component-table/src/scripts/TableHeaderCell.js~TableHeaderCell.html#instance-member-content",
+    "coral-spectrum/coral-component-table/src/scripts/TableHeaderCell.js~TableHeaderCell#content",
+    "member"
   ],
   [
     "coral-spectrum/coral-component-table/src/scripts/tableheadercellcontent.js",
@@ -4828,6 +7714,48 @@ window.esdocSearchIndex = [
     "file/coral-spectrum/coral-component-table/src/scripts/TableRow.js.html",
     "coral-spectrum/coral-component-table/src/scripts/TableRow.js",
     "file"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/tablerow.js~tablerow#items",
+    "class/coral-spectrum/coral-component-table/src/scripts/TableRow.js~TableRow.html#instance-member-items",
+    "coral-spectrum/coral-component-table/src/scripts/TableRow.js~TableRow#items",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/tablerow.js~tablerow#locked",
+    "class/coral-spectrum/coral-component-table/src/scripts/TableRow.js~TableRow.html#instance-member-locked",
+    "coral-spectrum/coral-component-table/src/scripts/TableRow.js~TableRow#locked",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/tablerow.js~tablerow#multiple",
+    "class/coral-spectrum/coral-component-table/src/scripts/TableRow.js~TableRow.html#instance-member-multiple",
+    "coral-spectrum/coral-component-table/src/scripts/TableRow.js~TableRow#multiple",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/tablerow.js~tablerow#selectable",
+    "class/coral-spectrum/coral-component-table/src/scripts/TableRow.js~TableRow.html#instance-member-selectable",
+    "coral-spectrum/coral-component-table/src/scripts/TableRow.js~TableRow#selectable",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/tablerow.js~tablerow#selected",
+    "class/coral-spectrum/coral-component-table/src/scripts/TableRow.js~TableRow.html#instance-member-selected",
+    "coral-spectrum/coral-component-table/src/scripts/TableRow.js~TableRow#selected",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/tablerow.js~tablerow#selecteditem",
+    "class/coral-spectrum/coral-component-table/src/scripts/TableRow.js~TableRow.html#instance-member-selectedItem",
+    "coral-spectrum/coral-component-table/src/scripts/TableRow.js~TableRow#selectedItem",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-table/src/scripts/tablerow.js~tablerow#selecteditems",
+    "class/coral-spectrum/coral-component-table/src/scripts/TableRow.js~TableRow.html#instance-member-selectedItems",
+    "coral-spectrum/coral-component-table/src/scripts/TableRow.js~TableRow#selectedItems",
+    "member"
   ],
   [
     "coral-spectrum/coral-component-table/src/scripts/tableutil.js",
@@ -4852,6 +7780,48 @@ window.esdocSearchIndex = [
     "file/coral-spectrum/coral-component-tablist/src/scripts/Tab.js.html",
     "coral-spectrum/coral-component-tablist/src/scripts/Tab.js",
     "file"
+  ],
+  [
+    "coral-spectrum/coral-component-tablist/src/scripts/tab.js~tab#disabled",
+    "class/coral-spectrum/coral-component-tablist/src/scripts/Tab.js~Tab.html#instance-member-disabled",
+    "coral-spectrum/coral-component-tablist/src/scripts/Tab.js~Tab#disabled",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-tablist/src/scripts/tab.js~tab#icon",
+    "class/coral-spectrum/coral-component-tablist/src/scripts/Tab.js~Tab.html#instance-member-icon",
+    "coral-spectrum/coral-component-tablist/src/scripts/Tab.js~Tab#icon",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-tablist/src/scripts/tab.js~tab#invalid",
+    "class/coral-spectrum/coral-component-tablist/src/scripts/Tab.js~Tab.html#instance-member-invalid",
+    "coral-spectrum/coral-component-tablist/src/scripts/Tab.js~Tab#invalid",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-tablist/src/scripts/tab.js~tab#label",
+    "class/coral-spectrum/coral-component-tablist/src/scripts/Tab.js~Tab.html#instance-member-label",
+    "coral-spectrum/coral-component-tablist/src/scripts/Tab.js~Tab#label",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-tablist/src/scripts/tab.js~tab#selected",
+    "class/coral-spectrum/coral-component-tablist/src/scripts/Tab.js~Tab.html#instance-member-selected",
+    "coral-spectrum/coral-component-tablist/src/scripts/Tab.js~Tab#selected",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-tablist/src/scripts/tab.js~tab#target",
+    "class/coral-spectrum/coral-component-tablist/src/scripts/Tab.js~Tab.html#instance-member-target",
+    "coral-spectrum/coral-component-tablist/src/scripts/Tab.js~Tab#target",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-tablist/src/scripts/tab.js~tab#trackingelement",
+    "class/coral-spectrum/coral-component-tablist/src/scripts/Tab.js~Tab.html#instance-member-trackingElement",
+    "coral-spectrum/coral-component-tablist/src/scripts/Tab.js~Tab#trackingElement",
+    "member"
   ],
   [
     "coral-spectrum/coral-component-tablist/src/scripts/tablabel.js",
@@ -4938,15 +7908,39 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "coral-spectrum/coral-component-tabview/src/scripts/tabview.js~tabvieworientationenum",
-    "typedef/index.html#static-typedef-TabViewOrientationEnum",
-    "coral-spectrum/coral-component-tabview/src/scripts/TabView.js~TabViewOrientationEnum",
+    "coral-spectrum/coral-component-tabview/src/scripts/tabview.js~tabview#orientation",
+    "class/coral-spectrum/coral-component-tabview/src/scripts/TabView.js~TabView.html#instance-member-orientation",
+    "coral-spectrum/coral-component-tabview/src/scripts/TabView.js~TabView#orientation",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-tabview/src/scripts/tabview.js~tabview#panelstack",
+    "class/coral-spectrum/coral-component-tabview/src/scripts/TabView.js~TabView.html#instance-member-panelStack",
+    "coral-spectrum/coral-component-tabview/src/scripts/TabView.js~TabView#panelStack",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-tabview/src/scripts/tabview.js~tabview#tablist",
+    "class/coral-spectrum/coral-component-tabview/src/scripts/TabView.js~TabView.html#instance-member-tabList",
+    "coral-spectrum/coral-component-tabview/src/scripts/TabView.js~TabView#tabList",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-tabview/src/scripts/tabview.js~tabview.coral-tabview:change",
+    "typedef/index.html#static-typedef-coral-tabview:change",
+    "coral-spectrum/coral-component-tabview/src/scripts/TabView.js~TabView.coral-tabview:change",
     "typedef"
   ],
   [
-    "coral-spectrum/coral-component-tabview/src/scripts/tabview.js~coral-tabview:change",
-    "typedef/index.html#static-typedef-coral-tabview:change",
-    "coral-spectrum/coral-component-tabview/src/scripts/TabView.js~coral-tabview:change",
+    "coral-spectrum/coral-component-tabview/src/scripts/tabview.js~tabview.orientation",
+    "class/coral-spectrum/coral-component-tabview/src/scripts/TabView.js~TabView.html#static-member-orientation",
+    "coral-spectrum/coral-component-tabview/src/scripts/TabView.js~TabView.orientation",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-tabview/src/scripts/tabview.js~tabvieworientationenum",
+    "typedef/index.html#static-typedef-TabViewOrientationEnum",
+    "coral-spectrum/coral-component-tabview/src/scripts/TabView.js~TabViewOrientationEnum",
     "typedef"
   ],
   [
@@ -4954,6 +7948,66 @@ window.esdocSearchIndex = [
     "file/coral-spectrum/coral-component-taglist/src/scripts/Tag.js.html",
     "coral-spectrum/coral-component-taglist/src/scripts/Tag.js",
     "file"
+  ],
+  [
+    "coral-spectrum/coral-component-taglist/src/scripts/tag.js~tag#closable",
+    "class/coral-spectrum/coral-component-taglist/src/scripts/Tag.js~Tag.html#instance-member-closable",
+    "coral-spectrum/coral-component-taglist/src/scripts/Tag.js~Tag#closable",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-taglist/src/scripts/tag.js~tag#color",
+    "class/coral-spectrum/coral-component-taglist/src/scripts/Tag.js~Tag.html#instance-member-color",
+    "coral-spectrum/coral-component-taglist/src/scripts/Tag.js~Tag#color",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-taglist/src/scripts/tag.js~tag#label",
+    "class/coral-spectrum/coral-component-taglist/src/scripts/Tag.js~Tag.html#instance-member-label",
+    "coral-spectrum/coral-component-taglist/src/scripts/Tag.js~Tag#label",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-taglist/src/scripts/tag.js~tag#multiline",
+    "class/coral-spectrum/coral-component-taglist/src/scripts/Tag.js~Tag.html#instance-member-multiline",
+    "coral-spectrum/coral-component-taglist/src/scripts/Tag.js~Tag#multiline",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-taglist/src/scripts/tag.js~tag#quiet",
+    "class/coral-spectrum/coral-component-taglist/src/scripts/Tag.js~Tag.html#instance-member-quiet",
+    "coral-spectrum/coral-component-taglist/src/scripts/Tag.js~Tag#quiet",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-taglist/src/scripts/tag.js~tag#size",
+    "class/coral-spectrum/coral-component-taglist/src/scripts/Tag.js~Tag.html#instance-member-size",
+    "coral-spectrum/coral-component-taglist/src/scripts/Tag.js~Tag#size",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-taglist/src/scripts/tag.js~tag#trackingelement",
+    "class/coral-spectrum/coral-component-taglist/src/scripts/Tag.js~Tag.html#instance-member-trackingElement",
+    "coral-spectrum/coral-component-taglist/src/scripts/Tag.js~Tag#trackingElement",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-taglist/src/scripts/tag.js~tag#value",
+    "class/coral-spectrum/coral-component-taglist/src/scripts/Tag.js~Tag.html#instance-member-value",
+    "coral-spectrum/coral-component-taglist/src/scripts/Tag.js~Tag#value",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-taglist/src/scripts/tag.js~tag.color",
+    "class/coral-spectrum/coral-component-taglist/src/scripts/Tag.js~Tag.html#static-member-color",
+    "coral-spectrum/coral-component-taglist/src/scripts/Tag.js~Tag.color",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-taglist/src/scripts/tag.js~tag.size",
+    "class/coral-spectrum/coral-component-taglist/src/scripts/Tag.js~Tag.html#static-member-size",
+    "coral-spectrum/coral-component-taglist/src/scripts/Tag.js~Tag.size",
+    "member"
   ],
   [
     "coral-spectrum/coral-component-taglist/src/scripts/tag.js~tagcolorenum",
@@ -4980,10 +8034,82 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "coral-spectrum/coral-component-taglist/src/scripts/taglist.js~taglist#disabled",
+    "class/coral-spectrum/coral-component-taglist/src/scripts/TagList.js~TagList.html#instance-member-disabled",
+    "coral-spectrum/coral-component-taglist/src/scripts/TagList.js~TagList#disabled",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-taglist/src/scripts/taglist.js~taglist#invalid",
+    "class/coral-spectrum/coral-component-taglist/src/scripts/TagList.js~TagList.html#instance-member-invalid",
+    "coral-spectrum/coral-component-taglist/src/scripts/TagList.js~TagList#invalid",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-taglist/src/scripts/taglist.js~taglist#items",
+    "class/coral-spectrum/coral-component-taglist/src/scripts/TagList.js~TagList.html#instance-member-items",
+    "coral-spectrum/coral-component-taglist/src/scripts/TagList.js~TagList#items",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-taglist/src/scripts/taglist.js~taglist#name",
+    "class/coral-spectrum/coral-component-taglist/src/scripts/TagList.js~TagList.html#instance-member-name",
+    "coral-spectrum/coral-component-taglist/src/scripts/TagList.js~TagList#name",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-taglist/src/scripts/taglist.js~taglist#readonly",
+    "class/coral-spectrum/coral-component-taglist/src/scripts/TagList.js~TagList.html#instance-member-readOnly",
+    "coral-spectrum/coral-component-taglist/src/scripts/TagList.js~TagList#readOnly",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-taglist/src/scripts/taglist.js~taglist#required",
+    "class/coral-spectrum/coral-component-taglist/src/scripts/TagList.js~TagList.html#instance-member-required",
+    "coral-spectrum/coral-component-taglist/src/scripts/TagList.js~TagList#required",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-taglist/src/scripts/taglist.js~taglist#reset",
+    "class/coral-spectrum/coral-component-taglist/src/scripts/TagList.js~TagList.html#instance-method-reset",
+    "coral-spectrum/coral-component-taglist/src/scripts/TagList.js~TagList#reset",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-taglist/src/scripts/taglist.js~taglist#value",
+    "class/coral-spectrum/coral-component-taglist/src/scripts/TagList.js~TagList.html#instance-member-value",
+    "coral-spectrum/coral-component-taglist/src/scripts/TagList.js~TagList#value",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-taglist/src/scripts/taglist.js~taglist#values",
+    "class/coral-spectrum/coral-component-taglist/src/scripts/TagList.js~TagList.html#instance-member-values",
+    "coral-spectrum/coral-component-taglist/src/scripts/TagList.js~TagList#values",
+    "member"
+  ],
+  [
     "coral-spectrum/coral-component-textarea/src/scripts/textarea.js",
     "file/coral-spectrum/coral-component-textarea/src/scripts/Textarea.js.html",
     "coral-spectrum/coral-component-textarea/src/scripts/Textarea.js",
     "file"
+  ],
+  [
+    "coral-spectrum/coral-component-textarea/src/scripts/textarea.js~textarea#reset",
+    "class/coral-spectrum/coral-component-textarea/src/scripts/Textarea.js~Textarea.html#instance-method-reset",
+    "coral-spectrum/coral-component-textarea/src/scripts/Textarea.js~Textarea#reset",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-textarea/src/scripts/textarea.js~textarea#variant",
+    "class/coral-spectrum/coral-component-textarea/src/scripts/Textarea.js~Textarea.html#instance-member-variant",
+    "coral-spectrum/coral-component-textarea/src/scripts/Textarea.js~Textarea#variant",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-textarea/src/scripts/textarea.js~textarea.variant",
+    "class/coral-spectrum/coral-component-textarea/src/scripts/Textarea.js~Textarea.html#static-member-variant",
+    "coral-spectrum/coral-component-textarea/src/scripts/Textarea.js~Textarea.variant",
+    "member"
   ],
   [
     "coral-spectrum/coral-component-textarea/src/scripts/textarea.js~textareavariantenum",
@@ -4998,6 +8124,18 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "coral-spectrum/coral-component-textfield/src/scripts/textfield.js~textfield#variant",
+    "class/coral-spectrum/coral-component-textfield/src/scripts/Textfield.js~Textfield.html#instance-member-variant",
+    "coral-spectrum/coral-component-textfield/src/scripts/Textfield.js~Textfield#variant",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-textfield/src/scripts/textfield.js~textfield.variant",
+    "class/coral-spectrum/coral-component-textfield/src/scripts/Textfield.js~Textfield.html#static-member-variant",
+    "coral-spectrum/coral-component-textfield/src/scripts/Textfield.js~Textfield.variant",
+    "member"
+  ],
+  [
     "coral-spectrum/coral-component-textfield/src/scripts/textfield.js~textfieldvariantenum",
     "typedef/index.html#static-typedef-TextfieldVariantEnum",
     "coral-spectrum/coral-component-textfield/src/scripts/Textfield.js~TextfieldVariantEnum",
@@ -5008,6 +8146,54 @@ window.esdocSearchIndex = [
     "file/coral-spectrum/coral-component-toast/src/scripts/Toast.js.html",
     "coral-spectrum/coral-component-toast/src/scripts/Toast.js",
     "file"
+  ],
+  [
+    "coral-spectrum/coral-component-toast/src/scripts/toast.js~toast#action",
+    "class/coral-spectrum/coral-component-toast/src/scripts/Toast.js~Toast.html#instance-member-action",
+    "coral-spectrum/coral-component-toast/src/scripts/Toast.js~Toast#action",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-toast/src/scripts/toast.js~toast#autodismiss",
+    "class/coral-spectrum/coral-component-toast/src/scripts/Toast.js~Toast.html#instance-member-autoDismiss",
+    "coral-spectrum/coral-component-toast/src/scripts/Toast.js~Toast#autoDismiss",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-toast/src/scripts/toast.js~toast#content",
+    "class/coral-spectrum/coral-component-toast/src/scripts/Toast.js~Toast.html#instance-member-content",
+    "coral-spectrum/coral-component-toast/src/scripts/Toast.js~Toast#content",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-toast/src/scripts/toast.js~toast#open",
+    "class/coral-spectrum/coral-component-toast/src/scripts/Toast.js~Toast.html#instance-member-open",
+    "coral-spectrum/coral-component-toast/src/scripts/Toast.js~Toast#open",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-toast/src/scripts/toast.js~toast#placement",
+    "class/coral-spectrum/coral-component-toast/src/scripts/Toast.js~Toast.html#instance-member-placement",
+    "coral-spectrum/coral-component-toast/src/scripts/Toast.js~Toast#placement",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-toast/src/scripts/toast.js~toast#variant",
+    "class/coral-spectrum/coral-component-toast/src/scripts/Toast.js~Toast.html#instance-member-variant",
+    "coral-spectrum/coral-component-toast/src/scripts/Toast.js~Toast#variant",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-toast/src/scripts/toast.js~toast.placement",
+    "class/coral-spectrum/coral-component-toast/src/scripts/Toast.js~Toast.html#static-member-placement",
+    "coral-spectrum/coral-component-toast/src/scripts/Toast.js~Toast.placement",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-toast/src/scripts/toast.js~toast.variant",
+    "class/coral-spectrum/coral-component-toast/src/scripts/Toast.js~Toast.html#static-member-variant",
+    "coral-spectrum/coral-component-toast/src/scripts/Toast.js~Toast.variant",
+    "member"
   ],
   [
     "coral-spectrum/coral-component-toast/src/scripts/toast.js~toastplacementenum",
@@ -5034,6 +8220,48 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "coral-spectrum/coral-component-tooltip/src/scripts/tooltip.js~tooltip#content",
+    "class/coral-spectrum/coral-component-tooltip/src/scripts/Tooltip.js~Tooltip.html#instance-member-content",
+    "coral-spectrum/coral-component-tooltip/src/scripts/Tooltip.js~Tooltip#content",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-tooltip/src/scripts/tooltip.js~tooltip#delay",
+    "class/coral-spectrum/coral-component-tooltip/src/scripts/Tooltip.js~Tooltip.html#instance-member-delay",
+    "coral-spectrum/coral-component-tooltip/src/scripts/Tooltip.js~Tooltip#delay",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-tooltip/src/scripts/tooltip.js~tooltip#interaction",
+    "class/coral-spectrum/coral-component-tooltip/src/scripts/Tooltip.js~Tooltip.html#instance-member-interaction",
+    "coral-spectrum/coral-component-tooltip/src/scripts/Tooltip.js~Tooltip#interaction",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-tooltip/src/scripts/tooltip.js~tooltip#open",
+    "class/coral-spectrum/coral-component-tooltip/src/scripts/Tooltip.js~Tooltip.html#instance-member-open",
+    "coral-spectrum/coral-component-tooltip/src/scripts/Tooltip.js~Tooltip#open",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-tooltip/src/scripts/tooltip.js~tooltip#target",
+    "class/coral-spectrum/coral-component-tooltip/src/scripts/Tooltip.js~Tooltip.html#instance-member-target",
+    "coral-spectrum/coral-component-tooltip/src/scripts/Tooltip.js~Tooltip#target",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-tooltip/src/scripts/tooltip.js~tooltip#variant",
+    "class/coral-spectrum/coral-component-tooltip/src/scripts/Tooltip.js~Tooltip.html#instance-member-variant",
+    "coral-spectrum/coral-component-tooltip/src/scripts/Tooltip.js~Tooltip#variant",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-tooltip/src/scripts/tooltip.js~tooltip.variant",
+    "class/coral-spectrum/coral-component-tooltip/src/scripts/Tooltip.js~Tooltip.html#static-member-variant",
+    "coral-spectrum/coral-component-tooltip/src/scripts/Tooltip.js~Tooltip.variant",
+    "member"
+  ],
+  [
     "coral-spectrum/coral-component-tooltip/src/scripts/tooltip.js~tooltipvariantenum",
     "typedef/index.html#static-typedef-TooltipVariantEnum",
     "coral-spectrum/coral-component-tooltip/src/scripts/Tooltip.js~TooltipVariantEnum",
@@ -5052,21 +8280,57 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "coral-spectrum/coral-component-tree/src/scripts/tree.js~coral-tree:change",
+    "coral-spectrum/coral-component-tree/src/scripts/tree.js~tree#collapseall",
+    "class/coral-spectrum/coral-component-tree/src/scripts/Tree.js~Tree.html#instance-method-collapseAll",
+    "coral-spectrum/coral-component-tree/src/scripts/Tree.js~Tree#collapseAll",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-tree/src/scripts/tree.js~tree#expandall",
+    "class/coral-spectrum/coral-component-tree/src/scripts/Tree.js~Tree.html#instance-method-expandAll",
+    "coral-spectrum/coral-component-tree/src/scripts/Tree.js~Tree#expandAll",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-tree/src/scripts/tree.js~tree#items",
+    "class/coral-spectrum/coral-component-tree/src/scripts/Tree.js~Tree.html#instance-member-items",
+    "coral-spectrum/coral-component-tree/src/scripts/Tree.js~Tree#items",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-tree/src/scripts/tree.js~tree#multiple",
+    "class/coral-spectrum/coral-component-tree/src/scripts/Tree.js~Tree.html#instance-member-multiple",
+    "coral-spectrum/coral-component-tree/src/scripts/Tree.js~Tree#multiple",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-tree/src/scripts/tree.js~tree#selecteditem",
+    "class/coral-spectrum/coral-component-tree/src/scripts/Tree.js~Tree.html#instance-member-selectedItem",
+    "coral-spectrum/coral-component-tree/src/scripts/Tree.js~Tree#selectedItem",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-tree/src/scripts/tree.js~tree#selecteditems",
+    "class/coral-spectrum/coral-component-tree/src/scripts/Tree.js~Tree.html#instance-member-selectedItems",
+    "coral-spectrum/coral-component-tree/src/scripts/Tree.js~Tree#selectedItems",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-tree/src/scripts/tree.js~tree.coral-tree:change",
     "typedef/index.html#static-typedef-coral-tree:change",
-    "coral-spectrum/coral-component-tree/src/scripts/Tree.js~coral-tree:change",
+    "coral-spectrum/coral-component-tree/src/scripts/Tree.js~Tree.coral-tree:change",
     "typedef"
   ],
   [
-    "coral-spectrum/coral-component-tree/src/scripts/tree.js~coral-tree:collapse",
+    "coral-spectrum/coral-component-tree/src/scripts/tree.js~tree.coral-tree:collapse",
     "typedef/index.html#static-typedef-coral-tree:collapse",
-    "coral-spectrum/coral-component-tree/src/scripts/Tree.js~coral-tree:collapse",
+    "coral-spectrum/coral-component-tree/src/scripts/Tree.js~Tree.coral-tree:collapse",
     "typedef"
   ],
   [
-    "coral-spectrum/coral-component-tree/src/scripts/tree.js~coral-tree:expand",
+    "coral-spectrum/coral-component-tree/src/scripts/tree.js~tree.coral-tree:expand",
     "typedef/index.html#static-typedef-coral-tree:expand",
-    "coral-spectrum/coral-component-tree/src/scripts/Tree.js~coral-tree:expand",
+    "coral-spectrum/coral-component-tree/src/scripts/Tree.js~Tree.coral-tree:expand",
     "typedef"
   ],
   [
@@ -5074,6 +8338,54 @@ window.esdocSearchIndex = [
     "file/coral-spectrum/coral-component-tree/src/scripts/TreeItem.js.html",
     "coral-spectrum/coral-component-tree/src/scripts/TreeItem.js",
     "file"
+  ],
+  [
+    "coral-spectrum/coral-component-tree/src/scripts/treeitem.js~treeitem#content",
+    "class/coral-spectrum/coral-component-tree/src/scripts/TreeItem.js~TreeItem.html#instance-member-content",
+    "coral-spectrum/coral-component-tree/src/scripts/TreeItem.js~TreeItem#content",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-tree/src/scripts/treeitem.js~treeitem#disabled",
+    "class/coral-spectrum/coral-component-tree/src/scripts/TreeItem.js~TreeItem.html#instance-member-disabled",
+    "coral-spectrum/coral-component-tree/src/scripts/TreeItem.js~TreeItem#disabled",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-tree/src/scripts/treeitem.js~treeitem#expanded",
+    "class/coral-spectrum/coral-component-tree/src/scripts/TreeItem.js~TreeItem.html#instance-member-expanded",
+    "coral-spectrum/coral-component-tree/src/scripts/TreeItem.js~TreeItem#expanded",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-tree/src/scripts/treeitem.js~treeitem#items",
+    "class/coral-spectrum/coral-component-tree/src/scripts/TreeItem.js~TreeItem.html#instance-member-items",
+    "coral-spectrum/coral-component-tree/src/scripts/TreeItem.js~TreeItem#items",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-tree/src/scripts/treeitem.js~treeitem#parent",
+    "class/coral-spectrum/coral-component-tree/src/scripts/TreeItem.js~TreeItem.html#instance-member-parent",
+    "coral-spectrum/coral-component-tree/src/scripts/TreeItem.js~TreeItem#parent",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-tree/src/scripts/treeitem.js~treeitem#selected",
+    "class/coral-spectrum/coral-component-tree/src/scripts/TreeItem.js~TreeItem.html#instance-member-selected",
+    "coral-spectrum/coral-component-tree/src/scripts/TreeItem.js~TreeItem#selected",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-tree/src/scripts/treeitem.js~treeitem#variant",
+    "class/coral-spectrum/coral-component-tree/src/scripts/TreeItem.js~TreeItem.html#instance-member-variant",
+    "coral-spectrum/coral-component-tree/src/scripts/TreeItem.js~TreeItem#variant",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-tree/src/scripts/treeitem.js~treeitem.variant",
+    "class/coral-spectrum/coral-component-tree/src/scripts/TreeItem.js~TreeItem.html#static-member-variant",
+    "coral-spectrum/coral-component-tree/src/scripts/TreeItem.js~TreeItem.variant",
+    "member"
   ],
   [
     "coral-spectrum/coral-component-tree/src/scripts/treeitem.js~treeitemvariantenum",
@@ -5094,6 +8406,60 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "coral-spectrum/coral-component-wait/src/scripts/wait.js~wait#centered",
+    "class/coral-spectrum/coral-component-wait/src/scripts/Wait.js~Wait.html#instance-member-centered",
+    "coral-spectrum/coral-component-wait/src/scripts/Wait.js~Wait#centered",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-wait/src/scripts/wait.js~wait#constructor",
+    "class/coral-spectrum/coral-component-wait/src/scripts/Wait.js~Wait.html#instance-constructor-constructor",
+    "coral-spectrum/coral-component-wait/src/scripts/Wait.js~Wait#constructor",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-wait/src/scripts/wait.js~wait#indeterminate",
+    "class/coral-spectrum/coral-component-wait/src/scripts/Wait.js~Wait.html#instance-member-indeterminate",
+    "coral-spectrum/coral-component-wait/src/scripts/Wait.js~Wait#indeterminate",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-wait/src/scripts/wait.js~wait#size",
+    "class/coral-spectrum/coral-component-wait/src/scripts/Wait.js~Wait.html#instance-member-size",
+    "coral-spectrum/coral-component-wait/src/scripts/Wait.js~Wait#size",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-wait/src/scripts/wait.js~wait#value",
+    "class/coral-spectrum/coral-component-wait/src/scripts/Wait.js~Wait.html#instance-member-value",
+    "coral-spectrum/coral-component-wait/src/scripts/Wait.js~Wait#value",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-wait/src/scripts/wait.js~wait#variant",
+    "class/coral-spectrum/coral-component-wait/src/scripts/Wait.js~Wait.html#instance-member-variant",
+    "coral-spectrum/coral-component-wait/src/scripts/Wait.js~Wait#variant",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-wait/src/scripts/wait.js~wait.coral-wait:change",
+    "typedef/index.html#static-typedef-coral-wait:change",
+    "coral-spectrum/coral-component-wait/src/scripts/Wait.js~Wait.coral-wait:change",
+    "typedef"
+  ],
+  [
+    "coral-spectrum/coral-component-wait/src/scripts/wait.js~wait.size",
+    "class/coral-spectrum/coral-component-wait/src/scripts/Wait.js~Wait.html#static-member-size",
+    "coral-spectrum/coral-component-wait/src/scripts/Wait.js~Wait.size",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-wait/src/scripts/wait.js~wait.variant",
+    "class/coral-spectrum/coral-component-wait/src/scripts/Wait.js~Wait.html#static-member-variant",
+    "coral-spectrum/coral-component-wait/src/scripts/Wait.js~Wait.variant",
+    "member"
+  ],
+  [
     "coral-spectrum/coral-component-wait/src/scripts/wait.js~waitsizeenum",
     "typedef/index.html#static-typedef-WaitSizeEnum",
     "coral-spectrum/coral-component-wait/src/scripts/Wait.js~WaitSizeEnum",
@@ -5106,21 +8472,39 @@ window.esdocSearchIndex = [
     "typedef"
   ],
   [
-    "coral-spectrum/coral-component-wait/src/scripts/wait.js~coral-wait:change",
-    "typedef/index.html#static-typedef-coral-wait:change",
-    "coral-spectrum/coral-component-wait/src/scripts/Wait.js~coral-wait:change",
-    "typedef"
-  ],
-  [
     "coral-spectrum/coral-component-wizardview/src/scripts/wizardview.js",
     "file/coral-spectrum/coral-component-wizardview/src/scripts/WizardView.js.html",
     "coral-spectrum/coral-component-wizardview/src/scripts/WizardView.js",
     "file"
   ],
   [
-    "coral-spectrum/coral-component-wizardview/src/scripts/wizardview.js~coral-wizardview:change",
+    "coral-spectrum/coral-component-wizardview/src/scripts/wizardview.js~wizardview#next",
+    "class/coral-spectrum/coral-component-wizardview/src/scripts/WizardView.js~WizardView.html#instance-method-next",
+    "coral-spectrum/coral-component-wizardview/src/scripts/WizardView.js~WizardView#next",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-wizardview/src/scripts/wizardview.js~wizardview#panelstacks",
+    "class/coral-spectrum/coral-component-wizardview/src/scripts/WizardView.js~WizardView.html#instance-member-panelStacks",
+    "coral-spectrum/coral-component-wizardview/src/scripts/WizardView.js~WizardView#panelStacks",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-wizardview/src/scripts/wizardview.js~wizardview#previous",
+    "class/coral-spectrum/coral-component-wizardview/src/scripts/WizardView.js~WizardView.html#instance-method-previous",
+    "coral-spectrum/coral-component-wizardview/src/scripts/WizardView.js~WizardView#previous",
+    "method"
+  ],
+  [
+    "coral-spectrum/coral-component-wizardview/src/scripts/wizardview.js~wizardview#steplists",
+    "class/coral-spectrum/coral-component-wizardview/src/scripts/WizardView.js~WizardView.html#instance-member-stepLists",
+    "coral-spectrum/coral-component-wizardview/src/scripts/WizardView.js~WizardView#stepLists",
+    "member"
+  ],
+  [
+    "coral-spectrum/coral-component-wizardview/src/scripts/wizardview.js~wizardview.coral-wizardview:change",
     "typedef/index.html#static-typedef-coral-wizardview:change",
-    "coral-spectrum/coral-component-wizardview/src/scripts/WizardView.js~coral-wizardview:change",
+    "coral-spectrum/coral-component-wizardview/src/scripts/WizardView.js~WizardView.coral-wizardview:change",
     "typedef"
   ],
   [

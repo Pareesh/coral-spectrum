@@ -12046,74 +12046,6 @@
   };
 
   /**
-   * Copyright 2019 Adobe. All rights reserved.
-   * This file is licensed to you under the Apache License, Version 2.0 (the "License");
-   * you may not use this file except in compliance with the License. You may obtain a copy
-   * of the License at http://www.apache.org/licenses/LICENSE-2.0
-   *
-   * Unless required by applicable law or agreed to in writing, software distributed under
-   * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
-   * OF ANY KIND, either express or implied. See the License for the specific language
-   * governing permissions and limitations under the License.
-   */
-
-  /**
-    Decorator will be used to intercept any call before passing it to actual element.
-    kind of wrapper around each decorated component
-    @private
-   */
-  var Decorator = function Decorator(superClass) {
-    return /*#__PURE__*/function (_superClass) {
-      _inherits(_class, _superClass);
-
-      var _super = _createSuper(_class);
-
-      function _class() {
-        _classCallCheck(this, _class);
-
-        return _super.apply(this, arguments);
-      }
-
-      _createClass(_class, [{
-        key: "_updateCallback",
-
-        /** @ignore */
-        value: function _updateCallback(connected) {
-          _get(_getPrototypeOf(_class.prototype), "_updateCallback", this).call(this, connected);
-        }
-        /** @ignore */
-
-      }, {
-        key: "connectedCallback",
-        value: function connectedCallback() {
-          if (!this.isConnected || this._disconnected === false || this._ignoreConnectedCallback === true) {
-            this._updateCallback(true);
-
-            return;
-          }
-
-          _get(_getPrototypeOf(_class.prototype), "connectedCallback", this).call(this);
-        }
-        /** @ignore */
-
-      }, {
-        key: "disconnectedCallback",
-        value: function disconnectedCallback() {
-          if (this.isConnected || this._disconnected === true || this._ignoreConnectedCallback === true) {
-            this._updateCallback(false);
-
-            return;
-          }
-
-          _get(_getPrototypeOf(_class.prototype), "disconnectedCallback", this).call(this);
-        }
-      }]);
-
-      return _class;
-    }(superClass);
-  };
-
-  /**
    Enumeration for {@link Textfield} variants.
 
    @typedef {Object} TextfieldVariantEnum
@@ -12148,16 +12080,16 @@
    */
 
 
-  var Textfield = Decorator( /*#__PURE__*/function (_BaseFormField) {
-    _inherits(_class, _BaseFormField);
+  var Textfield = /*#__PURE__*/function (_BaseFormField) {
+    _inherits(Textfield, _BaseFormField);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(Textfield);
 
     /** @ignore */
-    function _class() {
+    function Textfield() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, Textfield);
 
       _this = _super.call(this);
 
@@ -12174,12 +12106,12 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(Textfield, [{
       key: "render",
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(Textfield.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME); // Default reflected attributes
 
@@ -12222,12 +12154,12 @@
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "_nativeObservedAttributes", this).concat(['variant']);
+        return _get(_getPrototypeOf(Textfield), "_nativeObservedAttributes", this).concat(['variant']);
       }
     }]);
 
-    return _class;
-  }(BaseFormField(BaseComponent(HTMLInputElement))));
+    return Textfield;
+  }(BaseFormField(BaseComponent(HTMLInputElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -13154,16 +13086,16 @@
    @extends {BaseComponent}
    */
 
-  var Icon = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var Icon = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(Icon, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(Icon);
 
     /** @ignore */
-    function _class() {
+    function Icon() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, Icon);
 
       _this = _super.call(this);
       _this._elements = {};
@@ -13176,7 +13108,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(Icon, [{
       key: "_updateIcon",
       value: function _updateIcon() {
         var iconId = this.icon; // If icon name is passed, we have to build the icon Id based on the icon name
@@ -13304,7 +13236,7 @@
         if (name === 'alt' || name === 'title') {
           this._updateAltText(value);
         } else {
-          _get(_getPrototypeOf(_class.prototype), "attributeChangedCallback", this).call(this, name, oldValue, value);
+          _get(_getPrototypeOf(Icon.prototype), "attributeChangedCallback", this).call(this, name, oldValue, value);
         }
       }
       /** @ignore */
@@ -13312,7 +13244,7 @@
     }, {
       key: "connectedCallback",
       value: function connectedCallback() {
-        _get(_getPrototypeOf(_class.prototype), "connectedCallback", this).call(this); // Contextual icons need to be checked again
+        _get(_getPrototypeOf(Icon.prototype), "connectedCallback", this).call(this); // Contextual icons need to be checked again
 
 
         if (this.hasAttribute('_context')) {
@@ -13324,7 +13256,7 @@
     }, {
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(Icon.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1); // Set default size
 
@@ -13555,7 +13487,7 @@
     }, {
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(Icon), "_attributePropertyMap", this), {
           autoarialabel: 'autoAriaLabel'
         });
       }
@@ -13564,12 +13496,13 @@
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['autoarialabel', 'icon', 'size', 'alt', 'title']);
+        return _get(_getPrototypeOf(Icon), "observedAttributes", this).concat(['autoarialabel', 'icon', 'size', 'alt', 'title']);
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement))); // Load icon collections by default
+    return Icon;
+  }(BaseComponent(HTMLElement)); // Load icon collections by default
+
 
   var iconCollections = [SPECTRUM_ICONS_COLOR];
   var extension = '.svg';
@@ -15218,16 +15151,16 @@
    @extends {BaseButton}
    */
 
-  var Button = Decorator( /*#__PURE__*/function (_BaseButton) {
-    _inherits(_class, _BaseButton);
+  var Button = /*#__PURE__*/function (_BaseButton) {
+    _inherits(Button, _BaseButton);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(Button);
 
     /** @ignore */
-    function _class() {
+    function Button() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, Button);
 
       _this = _super.call(this); // Events
 
@@ -15236,8 +15169,8 @@
       return _this;
     }
 
-    return _class;
-  }(BaseButton(BaseComponent(HTMLButtonElement))));
+    return Button;
+  }(BaseButton(BaseComponent(HTMLButtonElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -15313,16 +15246,16 @@
    */
 
 
-  var Textarea = Decorator( /*#__PURE__*/function (_BaseFormField) {
-    _inherits(_class, _BaseFormField);
+  var Textarea = /*#__PURE__*/function (_BaseFormField) {
+    _inherits(Textarea, _BaseFormField);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(Textarea);
 
     /** @ignore */
-    function _class() {
+    function Textarea() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, Textarea);
 
       _this = _super.call(this);
 
@@ -15341,7 +15274,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(Textarea, [{
       key: "reset",
 
       /**
@@ -15379,7 +15312,7 @@
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(Textarea.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$3, "".concat(CLASSNAME$3, "--multiline")); // Default reflected attributes
 
@@ -15427,12 +15360,12 @@
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "_nativeObservedAttributes", this).concat(['variant']);
+        return _get(_getPrototypeOf(Textarea), "_nativeObservedAttributes", this).concat(['variant']);
       }
     }]);
 
-    return _class;
-  }(BaseFormField(BaseComponent(HTMLTextAreaElement))));
+    return Textarea;
+  }(BaseFormField(BaseComponent(HTMLTextAreaElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -16588,16 +16521,16 @@
    */
 
 
-  var Tag = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var Tag = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(Tag, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(Tag);
 
     /** @ignore */
-    function _class() {
+    function Tag() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, Tag);
 
       _this = _super.call(this); // Attach events
 
@@ -16625,7 +16558,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(Tag, [{
       key: "_toggleTagVariant",
 
       /**
@@ -16723,7 +16656,7 @@
         else if (name === 'role') {
             this._updateAriaLabel();
           } else {
-            _get(_getPrototypeOf(_class.prototype), "attributeChangedCallback", this).call(this, name, oldValue, value);
+            _get(_getPrototypeOf(Tag.prototype), "attributeChangedCallback", this).call(this, name, oldValue, value);
           }
       }
       /** @ignore */
@@ -16731,7 +16664,7 @@
     }, {
       key: "connectedCallback",
       value: function connectedCallback() {
-        _get(_getPrototypeOf(_class.prototype), "connectedCallback", this).call(this); // Used to inform the tag list that it's added
+        _get(_getPrototypeOf(Tag.prototype), "connectedCallback", this).call(this); // Used to inform the tag list that it's added
 
 
         this.trigger('coral-tag:_connected');
@@ -16741,7 +16674,7 @@
     }, {
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this); // Default reflected attributes
+        _get(_getPrototypeOf(Tag.prototype), "render", this).call(this); // Default reflected attributes
 
 
         if (!this._size) {
@@ -16780,7 +16713,7 @@
     }, {
       key: "disconnectedCallback",
       value: function disconnectedCallback() {
-        _get(_getPrototypeOf(_class.prototype), "disconnectedCallback", this).call(this); // Used to inform the tag list that it's removed synchronously
+        _get(_getPrototypeOf(Tag.prototype), "disconnectedCallback", this).call(this); // Used to inform the tag list that it's removed synchronously
 
 
         if (this._host) {
@@ -16968,7 +16901,7 @@
         this.value || (this.label || this).textContent.replace(/\s{2,}/g, ' ').trim() : this._trackingElement;
       },
       set: function set(value) {
-        _set(_getPrototypeOf(_class.prototype), "trackingElement", value, this, true);
+        _set(_getPrototypeOf(Tag.prototype), "trackingElement", value, this, true);
       }
     }, {
       key: "_contentZones",
@@ -17002,12 +16935,12 @@
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['closable', 'value', 'quiet', 'multiline', 'size', 'color', 'disabled', 'role']);
+        return _get(_getPrototypeOf(Tag), "observedAttributes", this).concat(['closable', 'value', 'quiet', 'multiline', 'size', 'color', 'disabled', 'role']);
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return Tag;
+  }(BaseComponent(HTMLElement));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -17057,16 +16990,16 @@
    */
 
 
-  var TagList = Decorator( /*#__PURE__*/function (_BaseFormField) {
-    _inherits(_class, _BaseFormField);
+  var TagList = /*#__PURE__*/function (_BaseFormField) {
+    _inherits(TagList, _BaseFormField);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(TagList);
 
     /** @ignore */
-    function _class() {
+    function TagList() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, TagList);
 
       _this = _super.call(this); // Attach events
 
@@ -17101,7 +17034,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(TagList, [{
       key: "_attachInputToItem",
 
       /** @private */
@@ -17415,7 +17348,7 @@
       value: function render() {
         var _this4 = this;
 
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(TagList.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$5); // adds the role to support accessibility
 
@@ -17571,12 +17504,12 @@
     }, {
       key: "invalid",
       get: function get() {
-        return _get(_getPrototypeOf(_class.prototype), "invalid", this);
+        return _get(_getPrototypeOf(TagList.prototype), "invalid", this);
       },
       set: function set(value) {
         var _this8 = this;
 
-        _set(_getPrototypeOf(_class.prototype), "invalid", value, this, true);
+        _set(_getPrototypeOf(TagList.prototype), "invalid", value, this, true);
 
         this.items.getAll().forEach(function (item) {
           item.classList.toggle('is-invalid', _this8._invalid);
@@ -17627,12 +17560,12 @@
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['closable', 'value', 'quiet', 'multiline', 'size', 'color']);
+        return _get(_getPrototypeOf(TagList), "observedAttributes", this).concat(['closable', 'value', 'quiet', 'multiline', 'size', 'color']);
       }
     }]);
 
-    return _class;
-  }(BaseFormField(BaseComponent(HTMLElement))));
+    return TagList;
+  }(BaseFormField(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -18157,16 +18090,16 @@
    @extends {BaseList}
    */
 
-  var List = Decorator( /*#__PURE__*/function (_BaseList) {
-    _inherits(_class, _BaseList);
+  var List = /*#__PURE__*/function (_BaseList) {
+    _inherits(List, _BaseList);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(List);
 
     /** @ignore */
-    function _class() {
+    function List() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, List);
 
       _this = _super.call(this); // Events
 
@@ -18175,8 +18108,8 @@
       return _this;
     }
 
-    return _class;
-  }(BaseList(BaseComponent(HTMLElement))));
+    return List;
+  }(BaseList(BaseComponent(HTMLElement)));
 
   var CLASSNAME$8 = '_coral-Menu-divider';
   /**
@@ -18187,23 +18120,23 @@
    @extends {BaseComponent}
    */
 
-  var ListDivider = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var ListDivider = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(ListDivider, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(ListDivider);
 
-    function _class() {
-      _classCallCheck(this, _class);
+    function ListDivider() {
+      _classCallCheck(this, ListDivider);
 
       return _super.apply(this, arguments);
     }
 
-    _createClass(_class, [{
+    _createClass(ListDivider, [{
       key: "render",
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(ListDivider.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$8); // a11y
 
@@ -18211,8 +18144,8 @@
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return ListDivider;
+  }(BaseComponent(HTMLElement));
 
   /**
    @class Coral.List.Item
@@ -18223,16 +18156,16 @@
    @extends {BaseListItem}
    */
 
-  var ListItem = Decorator( /*#__PURE__*/function (_BaseListItem) {
-    _inherits(_class, _BaseListItem);
+  var ListItem = /*#__PURE__*/function (_BaseListItem) {
+    _inherits(ListItem, _BaseListItem);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(ListItem);
 
     /** @ignore */
-    function _class() {
+    function ListItem() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, ListItem);
 
       _this = _super.call(this); // Events
 
@@ -18241,8 +18174,8 @@
       return _this;
     }
 
-    return _class;
-  }(BaseListItem(BaseComponent(HTMLElement))));
+    return ListItem;
+  }(BaseListItem(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -18276,16 +18209,16 @@
    @extends {BaseList}
    */
 
-  var AnchorList = Decorator( /*#__PURE__*/function (_BaseList) {
-    _inherits(_class, _BaseList);
+  var AnchorList = /*#__PURE__*/function (_BaseList) {
+    _inherits(AnchorList, _BaseList);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(AnchorList);
 
     /** @ignore */
-    function _class() {
+    function AnchorList() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, AnchorList);
 
       _this = _super.call(this); // Events
 
@@ -18298,7 +18231,7 @@
     /** @private */
 
 
-    _createClass(_class, [{
+    _createClass(AnchorList, [{
       key: "_onItemClick",
       value: function _onItemClick(event) {
         this._trackEvent('click', 'coral-anchorlist-item', event, event.matchedTarget);
@@ -18308,7 +18241,7 @@
     }, {
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(AnchorList.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$9);
       }
@@ -18328,8 +18261,8 @@
       }
     }]);
 
-    return _class;
-  }(BaseList(BaseComponent(HTMLElement))));
+    return AnchorList;
+  }(BaseList(BaseComponent(HTMLElement)));
 
   var CLASSNAME$a = '_coral-AnchorList-item';
   /**
@@ -18341,16 +18274,16 @@
    @extends {BaseListItem}
    */
 
-  var AnchorListItem = Decorator( /*#__PURE__*/function (_BaseListItem) {
-    _inherits(_class, _BaseListItem);
+  var AnchorListItem = /*#__PURE__*/function (_BaseListItem) {
+    _inherits(AnchorListItem, _BaseListItem);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(AnchorListItem);
 
     /** @ignore */
-    function _class() {
+    function AnchorListItem() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, AnchorListItem);
 
       _this = _super.call(this); // Events
 
@@ -18369,7 +18302,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(AnchorListItem, [{
       key: "_onClick",
 
       /** @private */
@@ -18384,17 +18317,17 @@
     }, {
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(AnchorListItem.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$a);
       }
     }, {
       key: "disabled",
       get: function get() {
-        return _get(_getPrototypeOf(_class.prototype), "disabled", this);
+        return _get(_getPrototypeOf(AnchorListItem.prototype), "disabled", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(_class.prototype), "disabled", value, this, true);
+        _set(_getPrototypeOf(AnchorListItem.prototype), "disabled", value, this, true);
 
         if (this.disabled) {
           // It's not tabbable anymore
@@ -18415,12 +18348,12 @@
         (this.content || this).textContent.replace(/\s{2,}/g, ' ').trim() : this._trackingElement;
       },
       set: function set(value) {
-        _set(_getPrototypeOf(_class.prototype), "trackingElement", value, this, true);
+        _set(_getPrototypeOf(AnchorListItem.prototype), "trackingElement", value, this, true);
       }
     }]);
 
-    return _class;
-  }(BaseListItem(BaseComponent(HTMLAnchorElement))));
+    return AnchorListItem;
+  }(BaseListItem(BaseComponent(HTMLAnchorElement)));
 
   var CLASSNAME$b = '_coral-ButtonList';
   /**
@@ -18432,16 +18365,16 @@
    @extends {BaseList}
    */
 
-  var ButtonList = Decorator( /*#__PURE__*/function (_BaseList) {
-    _inherits(_class, _BaseList);
+  var ButtonList = /*#__PURE__*/function (_BaseList) {
+    _inherits(ButtonList, _BaseList);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(ButtonList);
 
     /** @ignore */
-    function _class() {
+    function ButtonList() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, ButtonList);
 
       _this = _super.call(this); // Events
 
@@ -18454,7 +18387,7 @@
     /** @private */
 
 
-    _createClass(_class, [{
+    _createClass(ButtonList, [{
       key: "_onItemClick",
       value: function _onItemClick(event) {
         this._trackEvent('click', 'coral-buttonlist-item', event, event.matchedTarget);
@@ -18464,7 +18397,7 @@
     }, {
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(ButtonList.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$b);
       }
@@ -18484,8 +18417,8 @@
       }
     }]);
 
-    return _class;
-  }(BaseList(BaseComponent(HTMLElement))));
+    return ButtonList;
+  }(BaseList(BaseComponent(HTMLElement)));
 
   var CLASSNAME$c = '_coral-ButtonList-item';
   /**
@@ -18497,23 +18430,23 @@
    @extends {BaseListItem}
    */
 
-  var ButtonListItem = Decorator( /*#__PURE__*/function (_BaseListItem) {
-    _inherits(_class, _BaseListItem);
+  var ButtonListItem = /*#__PURE__*/function (_BaseListItem) {
+    _inherits(ButtonListItem, _BaseListItem);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(ButtonListItem);
 
-    function _class() {
-      _classCallCheck(this, _class);
+    function ButtonListItem() {
+      _classCallCheck(this, ButtonListItem);
 
       return _super.apply(this, arguments);
     }
 
-    _createClass(_class, [{
+    _createClass(ButtonListItem, [{
       key: "render",
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(ButtonListItem.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$c);
       }
@@ -18528,12 +18461,12 @@
         (this.content || this).textContent.replace(/\s{2,}/g, ' ').trim() : this._trackingElement;
       },
       set: function set(value) {
-        _set(_getPrototypeOf(_class.prototype), "trackingElement", value, this, true);
+        _set(_getPrototypeOf(ButtonListItem.prototype), "trackingElement", value, this, true);
       }
     }]);
 
-    return _class;
-  }(BaseListItem(BaseComponent(HTMLButtonElement))));
+    return ButtonListItem;
+  }(BaseListItem(BaseComponent(HTMLButtonElement)));
 
   var template$1 = function anonymous(data_0) {
     var frag = document.createDocumentFragment();
@@ -18638,15 +18571,15 @@
    @extends {BaseComponent}
    */
 
-  var Wait = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var Wait = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(Wait, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(Wait);
 
-    function _class() {
+    function Wait() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, Wait);
 
       _this = _super.call(this); // Prepare templates
 
@@ -18664,7 +18597,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(Wait, [{
       key: "attributeChangedCallback",
 
       /** @ignore */
@@ -18674,14 +18607,14 @@
           this._oldValue = this._value || 0;
         }
 
-        _get(_getPrototypeOf(_class.prototype), "attributeChangedCallback", this).call(this, name, oldValue, value);
+        _get(_getPrototypeOf(Wait.prototype), "attributeChangedCallback", this).call(this, name, oldValue, value);
       }
       /** @ignore */
 
     }, {
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(Wait.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$d); // ARIA
 
@@ -18893,12 +18826,12 @@
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['size', 'centered', 'variant', 'value', 'indeterminate']);
+        return _get(_getPrototypeOf(Wait), "observedAttributes", this).concat(['size', 'centered', 'variant', 'value', 'indeterminate']);
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return Wait;
+  }(BaseComponent(HTMLElement));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -18966,16 +18899,16 @@
    @extends {BaseComponent}
    */
 
-  var SelectList = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var SelectList = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(SelectList, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(SelectList);
 
     /** @ignore */
-    function _class() {
+    function SelectList() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, SelectList);
 
       _this = _super.call(this); // Attach events
 
@@ -19024,7 +18957,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(SelectList, [{
       key: "_toggleItemSelection",
 
       /** @private */
@@ -19540,12 +19473,12 @@
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['loading', 'multiple']);
+        return _get(_getPrototypeOf(SelectList), "observedAttributes", this).concat(['loading', 'multiple']);
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return SelectList;
+  }(BaseComponent(HTMLElement));
 
   var CLASSNAME$f = '_coral-SelectList-group';
   /**
@@ -19556,23 +19489,23 @@
    @extends {BaseComponent}
    */
 
-  var SelectListGroup = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var SelectListGroup = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(SelectListGroup, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(SelectListGroup);
 
-    function _class() {
-      _classCallCheck(this, _class);
+    function SelectListGroup() {
+      _classCallCheck(this, SelectListGroup);
 
       return _super.apply(this, arguments);
     }
 
-    _createClass(_class, [{
+    _createClass(SelectListGroup, [{
       key: "render",
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(SelectListGroup.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$f);
         this.setAttribute('role', 'group');
@@ -19621,12 +19554,12 @@
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['label']);
+        return _get(_getPrototypeOf(SelectListGroup), "observedAttributes", this).concat(['label']);
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return SelectListGroup;
+  }(BaseComponent(HTMLElement));
 
   var template$3 = function anonymous(data_0) {
     var frag = document.createDocumentFragment();
@@ -19659,16 +19592,16 @@
    @extends {BaseComponent}
    */
 
-  var SelectListItem = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var SelectListItem = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(SelectListItem, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(SelectListItem);
 
     /** @ignore */
-    function _class() {
+    function SelectListItem() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, SelectListItem);
 
       _this = _super.call(this); // Templates
 
@@ -19690,7 +19623,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(SelectListItem, [{
       key: "_getIconElement",
       value: function _getIconElement() {
         if (!this._elements.icon) {
@@ -19715,7 +19648,7 @@
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(SelectListItem.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$g);
 
@@ -19895,12 +19828,12 @@
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['selected', 'disabled', 'value']);
+        return _get(_getPrototypeOf(SelectListItem), "observedAttributes", this).concat(['selected', 'disabled', 'value']);
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return SelectListItem;
+  }(BaseComponent(HTMLElement));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -24620,7 +24553,7 @@
     return ExtensibleOverlay;
   }(BaseOverlay(BaseComponent(HTMLElement)));
 
-  var Overlay = Decorator(ExtensibleOverlay);
+  var Overlay = ExtensibleOverlay;
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -25704,16 +25637,16 @@
    */
 
 
-  var Dialog = Decorator( /*#__PURE__*/function (_BaseOverlay) {
-    _inherits(_class, _BaseOverlay);
+  var Dialog = /*#__PURE__*/function (_BaseOverlay) {
+    _inherits(Dialog, _BaseOverlay);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(Dialog);
 
     /** @ignore */
-    function _class() {
+    function Dialog() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, Dialog);
 
       _this = _super.call(this); // Prepare templates
 
@@ -25756,7 +25689,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(Dialog, [{
       key: "_observeHeader",
 
       /** @ignore */
@@ -25915,7 +25848,7 @@
       value: function render() {
         var _this2 = this;
 
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(Dialog.prototype), "render", this).call(this);
 
         this.classList.add("".concat(CLASSNAME$j, "-wrapper")); // Default reflected attributes
 
@@ -26230,12 +26163,12 @@
     }, {
       key: "open",
       get: function get() {
-        return _get(_getPrototypeOf(_class.prototype), "open", this);
+        return _get(_getPrototypeOf(Dialog.prototype), "open", this);
       },
       set: function set(value) {
         var _this3 = this;
 
-        _set(_getPrototypeOf(_class.prototype), "open", value, this, true); // Ensure we're in the DOM
+        _set(_getPrototypeOf(Dialog.prototype), "open", value, this, true); // Ensure we're in the DOM
 
 
         if (this.open) {
@@ -26351,7 +26284,7 @@
         return typeof this._trackingElement === 'undefined' ? this.header && this.header.textContent && this.header.textContent.replace(/\s{2,}/g, ' ').trim() || '' : this._trackingElement;
       },
       set: function set(value) {
-        _set(_getPrototypeOf(_class.prototype), "trackingElement", value, this, true);
+        _set(_getPrototypeOf(Dialog.prototype), "trackingElement", value, this, true);
       }
     }, {
       key: "_contentZones",
@@ -26407,12 +26340,12 @@
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['interaction', 'backdrop', 'variant', 'fullscreen', 'icon', 'closable', 'movable']);
+        return _get(_getPrototypeOf(Dialog), "observedAttributes", this).concat(['interaction', 'backdrop', 'variant', 'fullscreen', 'icon', 'closable', 'movable']);
       }
     }]);
 
-    return _class;
-  }(BaseOverlay(BaseComponent(HTMLElement))));
+    return Dialog;
+  }(BaseOverlay(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -26614,16 +26547,16 @@
    */
 
 
-  var Popover = Decorator( /*#__PURE__*/function (_ExtensibleOverlay) {
-    _inherits(_class, _ExtensibleOverlay);
+  var Popover = /*#__PURE__*/function (_ExtensibleOverlay) {
+    _inherits(Popover, _ExtensibleOverlay);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(Popover);
 
     /** @ignore */
-    function _class() {
+    function Popover() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, Popover);
 
       _this = _super.call(this); // Prepare templates
 
@@ -26669,7 +26602,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(Popover, [{
       key: "_setAriaExpandedOnTarget",
       value: function _setAriaExpandedOnTarget() {
         var _this2 = this;
@@ -26847,7 +26780,7 @@
       value: function render() {
         var _this4 = this;
 
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(Popover.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$k); // ARIA
 
@@ -27074,10 +27007,10 @@
     }, {
       key: "target",
       get: function get() {
-        return _get(_getPrototypeOf(_class.prototype), "target", this);
+        return _get(_getPrototypeOf(Popover.prototype), "target", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(_class.prototype), "target", value, this, true); // Coach Mark specific
+        _set(_getPrototypeOf(Popover.prototype), "target", value, this, true); // Coach Mark specific
 
 
         var target = this._getTarget();
@@ -27095,10 +27028,10 @@
     }, {
       key: "open",
       get: function get() {
-        return _get(_getPrototypeOf(_class.prototype), "open", this);
+        return _get(_getPrototypeOf(Popover.prototype), "open", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(_class.prototype), "open", value, this, true);
+        _set(_getPrototypeOf(Popover.prototype), "open", value, this, true);
 
         var target = this._getTarget();
 
@@ -27159,12 +27092,12 @@
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['closable', 'variant']);
+        return _get(_getPrototypeOf(Popover), "observedAttributes", this).concat(['closable', 'variant']);
       }
     }]);
 
-    return _class;
-  }(ExtensibleOverlay));
+    return Popover;
+  }(ExtensibleOverlay);
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -27241,32 +27174,32 @@
    @extends {BaseComponent}
    */
 
-  var PopoverSeparator = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var PopoverSeparator = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(PopoverSeparator, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(PopoverSeparator);
 
-    function _class() {
-      _classCallCheck(this, _class);
+    function PopoverSeparator() {
+      _classCallCheck(this, PopoverSeparator);
 
       return _super.apply(this, arguments);
     }
 
-    _createClass(_class, [{
+    _createClass(PopoverSeparator, [{
       key: "connectedCallback",
 
       /** @ignore */
       value: function connectedCallback() {
         var _this$classList;
 
-        _get(_getPrototypeOf(_class.prototype), "connectedCallback", this).call(this);
+        _get(_getPrototypeOf(PopoverSeparator.prototype), "connectedCallback", this).call(this);
 
         (_this$classList = this.classList).add.apply(_this$classList, CLASSNAMES);
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return PopoverSeparator;
+  }(BaseComponent(HTMLElement));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -27462,16 +27395,16 @@
    */
 
 
-  var Select = Decorator( /*#__PURE__*/function (_BaseFormField) {
-    _inherits(_class, _BaseFormField);
+  var Select = /*#__PURE__*/function (_BaseFormField) {
+    _inherits(Select, _BaseFormField);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(Select);
 
     /** @ignore */
-    function _class() {
+    function Select() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, Select);
 
       _this = _super.call(this); // Templates
 
@@ -27544,7 +27477,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(Select, [{
       key: "_setName",
 
       /** @ignore */
@@ -28360,7 +28293,7 @@
 
       /** @ignore */
       value: function connectedCallback() {
-        _get(_getPrototypeOf(_class.prototype), "connectedCallback", this).call(this);
+        _get(_getPrototypeOf(Select.prototype), "connectedCallback", this).call(this);
 
         var overlay = this._elements.overlay; // Cannot be open by default when rendered
 
@@ -28377,7 +28310,7 @@
       value: function render() {
         var _this3 = this;
 
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(Select.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$l); // Default reflected attributes
 
@@ -28430,7 +28363,7 @@
     }, {
       key: "disconnectedCallback",
       value: function disconnectedCallback() {
-        _get(_getPrototypeOf(_class.prototype), "disconnectedCallback", this).call(this);
+        _get(_getPrototypeOf(Select.prototype), "disconnectedCallback", this).call(this);
 
         var overlay = this._elements.overlay; // In case it was moved out don't forget to remove it
 
@@ -28741,10 +28674,10 @@
     }, {
       key: "invalid",
       get: function get() {
-        return _get(_getPrototypeOf(_class.prototype), "invalid", this);
+        return _get(_getPrototypeOf(Select.prototype), "invalid", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(_class.prototype), "invalid", value, this, true);
+        _set(_getPrototypeOf(Select.prototype), "invalid", value, this, true);
 
         this.classList.toggle('is-invalid', this.invalid);
 
@@ -28802,10 +28735,10 @@
     }, {
       key: "labelled",
       get: function get() {
-        return _get(_getPrototypeOf(_class.prototype), "labelled", this);
+        return _get(_getPrototypeOf(Select.prototype), "labelled", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(_class.prototype), "labelled", value, this, true);
+        _set(_getPrototypeOf(Select.prototype), "labelled", value, this, true);
 
         if (this.labelled) {
           if (!this.labelledBy) {
@@ -28835,9 +28768,9 @@
         return this._labelledBy;
       },
       set: function set(value) {
-        _set(_getPrototypeOf(_class.prototype), "labelledBy", value, this, true);
+        _set(_getPrototypeOf(Select.prototype), "labelledBy", value, this, true);
 
-        this._labelledBy = _get(_getPrototypeOf(_class.prototype), "labelledBy", this);
+        this._labelledBy = _get(_getPrototypeOf(Select.prototype), "labelledBy", this);
 
         if (this._labelledBy) {
           this._elements.button.setAttribute('aria-labelledby', "".concat(this._labelledBy, " ").concat(this._elements.label.id, " ").concat(this.invalid ? this._elements.invalidIcon.id : ''));
@@ -28928,12 +28861,12 @@
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['variant', 'multiple', 'placeholder', 'loading']);
+        return _get(_getPrototypeOf(Select), "observedAttributes", this).concat(['variant', 'multiple', 'placeholder', 'loading']);
       }
     }]);
 
-    return _class;
-  }(BaseFormField(BaseComponent(HTMLElement))));
+    return Select;
+  }(BaseFormField(BaseComponent(HTMLElement)));
 
   /**
    @class Coral.Select.Item
@@ -28943,16 +28876,16 @@
    @extends {BaseComponent}
    */
 
-  var SelectItem = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var SelectItem = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(SelectItem, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(SelectItem);
 
     /** @ignore */
-    function _class() {
+    function SelectItem() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, SelectItem);
 
       _this = _super.call(this);
       _this._observer = new MutationObserver(_this._handleMutation.bind(_assertThisInitialized(_this)));
@@ -28967,7 +28900,7 @@
     } // @compat
 
 
-    _createClass(_class, [{
+    _createClass(SelectItem, [{
       key: "_handleMutation",
 
       /** @private */
@@ -29087,17 +29020,17 @@
         this.value || this.textContent.replace(/\s{2,}/g, ' ').trim() : this._trackingElement;
       },
       set: function set(value) {
-        _set(_getPrototypeOf(_class.prototype), "trackingElement", value, this, true);
+        _set(_getPrototypeOf(SelectItem.prototype), "trackingElement", value, this, true);
       }
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['selected', 'disabled', 'value']);
+        return _get(_getPrototypeOf(SelectItem), "observedAttributes", this).concat(['selected', 'disabled', 'value']);
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return SelectItem;
+  }(BaseComponent(HTMLElement));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -29237,16 +29170,16 @@
    @extends {BaseFormField}
    */
 
-  var Radio = Decorator( /*#__PURE__*/function (_BaseFormField) {
-    _inherits(_class, _BaseFormField);
+  var Radio = /*#__PURE__*/function (_BaseFormField) {
+    _inherits(Radio, _BaseFormField);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(Radio);
 
     /** @ignore */
-    function _class() {
+    function Radio() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, Radio);
 
       _this = _super.call(this);
 
@@ -29290,7 +29223,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(Radio, [{
       key: "_syncRelatedRadios",
 
       /**
@@ -29384,7 +29317,7 @@
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(Radio.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$m); // Create a fragment
 
@@ -29562,10 +29495,10 @@
     }, {
       key: "labelled",
       get: function get() {
-        return _get(_getPrototypeOf(_class.prototype), "labelled", this);
+        return _get(_getPrototypeOf(Radio.prototype), "labelled", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(_class.prototype), "labelled", value, this, true);
+        _set(_getPrototypeOf(Radio.prototype), "labelled", value, this, true);
 
         this._hideLabelIfEmpty();
       }
@@ -29581,7 +29514,7 @@
         (this.name ? "".concat(this.name, "=").concat(this.value) : '') || (this.label || this).textContent.replace(/\s{2,}/g, ' ').trim() : this._trackingElement;
       },
       set: function set(value) {
-        _set(_getPrototypeOf(_class.prototype), "trackingElement", value, this, true);
+        _set(_getPrototypeOf(Radio.prototype), "trackingElement", value, this, true);
       }
       /*
        Indicates to the formField that the 'checked' property needs to be set in this component.
@@ -29615,12 +29548,12 @@
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['checked']);
+        return _get(_getPrototypeOf(Radio), "observedAttributes", this).concat(['checked']);
       }
     }]);
 
-    return _class;
-  }(BaseFormField(BaseComponent(HTMLElement))));
+    return Radio;
+  }(BaseFormField(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -29822,18 +29755,18 @@
    @extends {BaseFieldGroup}
    */
 
-  var RadioGroup = Decorator( /*#__PURE__*/function (_BaseFieldGroup) {
-    _inherits(_class, _BaseFieldGroup);
+  var RadioGroup = /*#__PURE__*/function (_BaseFieldGroup) {
+    _inherits(RadioGroup, _BaseFieldGroup);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(RadioGroup);
 
-    function _class() {
-      _classCallCheck(this, _class);
+    function RadioGroup() {
+      _classCallCheck(this, RadioGroup);
 
       return _super.apply(this, arguments);
     }
 
-    _createClass(_class, [{
+    _createClass(RadioGroup, [{
       key: "orientation",
 
       /**
@@ -29844,10 +29777,10 @@
        @htmlattributereflected
        */
       get: function get() {
-        return _get(_getPrototypeOf(_class.prototype), "orientation", this);
+        return _get(_getPrototypeOf(RadioGroup.prototype), "orientation", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(_class.prototype), "orientation", value, this, true);
+        _set(_getPrototypeOf(RadioGroup.prototype), "orientation", value, this, true);
 
         this.classList.toggle("coral-RadioGroup--labelsBelow", this._orientation === orientation$1.LABELS_BELOW);
       }
@@ -29871,8 +29804,8 @@
       }
     }]);
 
-    return _class;
-  }(BaseFieldGroup(BaseComponent(HTMLElement))));
+    return RadioGroup;
+  }(BaseFieldGroup(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2020 Adobe. All rights reserved.
@@ -30123,16 +30056,16 @@
    */
 
 
-  var NumberInput = Decorator( /*#__PURE__*/function (_BaseFormField) {
-    _inherits(_class, _BaseFormField);
+  var NumberInput = /*#__PURE__*/function (_BaseFormField) {
+    _inherits(NumberInput, _BaseFormField);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(NumberInput);
 
     /** @ignore */
-    function _class() {
+    function NumberInput() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, NumberInput);
 
       _this = _super.call(this);
 
@@ -30176,7 +30109,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(NumberInput, [{
       key: "reset",
       // overrides the behavior from BaseFormField
       value: function reset() {
@@ -30574,7 +30507,7 @@
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(NumberInput.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$o); // Default reflected attributes
 
@@ -30865,10 +30798,10 @@
     }, {
       key: "invalid",
       get: function get() {
-        return _get(_getPrototypeOf(_class.prototype), "invalid", this);
+        return _get(_getPrototypeOf(NumberInput.prototype), "invalid", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(_class.prototype), "invalid", value, this, true);
+        _set(_getPrototypeOf(NumberInput.prototype), "invalid", value, this, true);
 
         this._elements.input.invalid = this._invalid;
       }
@@ -30879,10 +30812,10 @@
     }, {
       key: "labelledBy",
       get: function get() {
-        return _get(_getPrototypeOf(_class.prototype), "labelledBy", this);
+        return _get(_getPrototypeOf(NumberInput.prototype), "labelledBy", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(_class.prototype), "labelledBy", value, this, true); // in case the user focuses the buttons, he will still get a notion of the usage of the component
+        _set(_getPrototypeOf(NumberInput.prototype), "labelledBy", value, this, true); // in case the user focuses the buttons, he will still get a notion of the usage of the component
 
 
         this[this.labelledBy ? 'setAttribute' : 'removeAttribute']('aria-labelledby', this.labelledBy);
@@ -30910,12 +30843,12 @@
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['min', 'max', 'step', 'placeholder']);
+        return _get(_getPrototypeOf(NumberInput), "observedAttributes", this).concat(['min', 'max', 'step', 'placeholder']);
       }
     }]);
 
-    return _class;
-  }(BaseFormField(BaseComponent(HTMLElement))));
+    return NumberInput;
+  }(BaseFormField(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -31010,16 +30943,16 @@
    */
 
 
-  var Tooltip = Decorator( /*#__PURE__*/function (_ExtensibleOverlay) {
-    _inherits(_class, _ExtensibleOverlay);
+  var Tooltip = /*#__PURE__*/function (_ExtensibleOverlay) {
+    _inherits(Tooltip, _ExtensibleOverlay);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(Tooltip);
 
     /** @ignore */
-    function _class() {
+    function Tooltip() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, Tooltip);
 
       _this = _super.call(this); // Override defaults
 
@@ -31051,7 +30984,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(Tooltip, [{
       key: "_onPositioned",
 
       /** @ignore */
@@ -31231,7 +31164,7 @@
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(Tooltip.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$p); // ARIA
 
@@ -31324,10 +31257,10 @@
     }, {
       key: "open",
       get: function get() {
-        return _get(_getPrototypeOf(_class.prototype), "open", this);
+        return _get(_getPrototypeOf(Tooltip.prototype), "open", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(_class.prototype), "open", value, this, true);
+        _set(_getPrototypeOf(Tooltip.prototype), "open", value, this, true);
 
         if (!this.open) {
           // Stop previous show operations from happening
@@ -31341,10 +31274,10 @@
     }, {
       key: "target",
       get: function get() {
-        return _get(_getPrototypeOf(_class.prototype), "target", this);
+        return _get(_getPrototypeOf(Tooltip.prototype), "target", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(_class.prototype), "target", value, this, true);
+        _set(_getPrototypeOf(Tooltip.prototype), "target", value, this, true);
 
         var target = this._getTarget(value);
 
@@ -31366,10 +31299,10 @@
     }, {
       key: "interaction",
       get: function get() {
-        return _get(_getPrototypeOf(_class.prototype), "interaction", this);
+        return _get(_getPrototypeOf(Tooltip.prototype), "interaction", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(_class.prototype), "interaction", value, this, true);
+        _set(_getPrototypeOf(Tooltip.prototype), "interaction", value, this, true);
 
         var target = this._getTarget();
 
@@ -31403,12 +31336,12 @@
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['variant', 'delay']);
+        return _get(_getPrototypeOf(Tooltip), "observedAttributes", this).concat(['variant', 'delay']);
       }
     }]);
 
-    return _class;
-  }(ExtensibleOverlay));
+    return Tooltip;
+  }(ExtensibleOverlay);
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -31574,16 +31507,16 @@
    @extends {BaseFormField}
    */
 
-  var Checkbox = Decorator( /*#__PURE__*/function (_BaseFormField) {
-    _inherits(_class, _BaseFormField);
+  var Checkbox = /*#__PURE__*/function (_BaseFormField) {
+    _inherits(Checkbox, _BaseFormField);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(Checkbox);
 
     /** @ignore */
-    function _class() {
+    function Checkbox() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, Checkbox);
 
       _this = _super.call(this); // @polyfill ie
 
@@ -31628,7 +31561,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(Checkbox, [{
       key: "_onInputChange",
 
       /** @private */
@@ -31732,7 +31665,7 @@
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(Checkbox.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$q); // Create a fragment
 
@@ -31928,10 +31861,10 @@
     }, {
       key: "labelled",
       get: function get() {
-        return _get(_getPrototypeOf(_class.prototype), "labelled", this);
+        return _get(_getPrototypeOf(Checkbox.prototype), "labelled", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(_class.prototype), "labelled", value, this, true);
+        _set(_getPrototypeOf(Checkbox.prototype), "labelled", value, this, true);
 
         this._hideLabelIfEmpty();
       }
@@ -31942,10 +31875,10 @@
     }, {
       key: "labelledBy",
       get: function get() {
-        return _get(_getPrototypeOf(_class.prototype), "labelledBy", this);
+        return _get(_getPrototypeOf(Checkbox.prototype), "labelledBy", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(_class.prototype), "labelledBy", value, this, true);
+        _set(_getPrototypeOf(Checkbox.prototype), "labelledBy", value, this, true);
 
         this._hideLabelIfEmpty();
       }
@@ -31961,7 +31894,7 @@
         (this.name ? "".concat(this.name, "=").concat(this.value) : '') || (this.label || this).textContent.replace(/\s{2,}/g, ' ').trim() : this._trackingElement;
       },
       set: function set(value) {
-        _set(_getPrototypeOf(_class.prototype), "trackingElement", value, this, true);
+        _set(_getPrototypeOf(Checkbox.prototype), "trackingElement", value, this, true);
       }
       /*
        Indicates to the formField that the 'checked' property needs to be set in this component.
@@ -31995,12 +31928,12 @@
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['indeterminate', 'checked']);
+        return _get(_getPrototypeOf(Checkbox), "observedAttributes", this).concat(['indeterminate', 'checked']);
       }
     }]);
 
-    return _class;
-  }(BaseFormField(BaseComponent(HTMLElement))));
+    return Checkbox;
+  }(BaseFormField(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -32053,18 +31986,18 @@
    @extends {BaseFieldGroup}
    */
 
-  var CheckboxGroup = Decorator( /*#__PURE__*/function (_BaseFieldGroup) {
-    _inherits(_class, _BaseFieldGroup);
+  var CheckboxGroup = /*#__PURE__*/function (_BaseFieldGroup) {
+    _inherits(CheckboxGroup, _BaseFieldGroup);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(CheckboxGroup);
 
-    function _class() {
-      _classCallCheck(this, _class);
+    function CheckboxGroup() {
+      _classCallCheck(this, CheckboxGroup);
 
       return _super.apply(this, arguments);
     }
 
-    _createClass(_class, [{
+    _createClass(CheckboxGroup, [{
       key: "_itemTagName",
 
       /** @private */
@@ -32085,8 +32018,8 @@
       }
     }]);
 
-    return _class;
-  }(BaseFieldGroup(BaseComponent(HTMLElement))));
+    return CheckboxGroup;
+  }(BaseFieldGroup(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2020 Adobe. All rights reserved.
@@ -32595,16 +32528,16 @@
    @extends {BaseComponent}
    */
 
-  var Accordion = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var Accordion = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(Accordion, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(Accordion);
 
     /** @ignore */
-    function _class() {
+    function Accordion() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, Accordion);
 
       _this = _super.call(this); // Attach events
 
@@ -32641,7 +32574,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(Accordion, [{
       key: "_onHomeKey",
 
       /** @private */
@@ -32918,7 +32851,7 @@
       value: function render() {
         var _this4 = this;
 
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(Accordion.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$r); // Default reflected attributes
 
@@ -33078,12 +33011,12 @@
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['variant', 'multiple', 'level']);
+        return _get(_getPrototypeOf(Accordion), "observedAttributes", this).concat(['variant', 'multiple', 'level']);
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return Accordion;
+  }(BaseComponent(HTMLElement));
 
   var template$c = function anonymous(data_0) {
     var frag = document.createDocumentFragment();
@@ -33122,16 +33055,16 @@
    @extends {BaseComponent}
    */
 
-  var AccordionItem = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var AccordionItem = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(AccordionItem, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(AccordionItem);
 
     /** @ignore */
-    function _class() {
+    function AccordionItem() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, AccordionItem);
 
       _this = _super.call(this); // Prepare templates
 
@@ -33152,7 +33085,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(AccordionItem, [{
       key: "_setAria",
       value: function _setAria(button, content) {
         button.id = button.id || commons.getUID();
@@ -33175,7 +33108,7 @@
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(AccordionItem.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$s); // a11y
 
@@ -33388,12 +33321,12 @@
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['selected', 'disabled', 'level']);
+        return _get(_getPrototypeOf(AccordionItem), "observedAttributes", this).concat(['selected', 'disabled', 'level']);
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return AccordionItem;
+  }(BaseComponent(HTMLElement));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -33590,16 +33523,16 @@
    @extends {BaseComponent}
    */
 
-  var ActionBar = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var ActionBar = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(ActionBar, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(ActionBar);
 
     /** @ignore */
-    function _class() {
+    function ActionBar() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, ActionBar);
 
       _this = _super.call(this); // Attach events
 
@@ -33636,7 +33569,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(ActionBar, [{
       key: "_recalculateLayoutOnMutation",
 
       /** @ignore */
@@ -34109,7 +34042,7 @@
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(ActionBar.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$t); // Move direct items into primary content zone
 
@@ -34234,8 +34167,8 @@
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return ActionBar;
+  }(BaseComponent(HTMLElement));
 
   var CLASSNAME$u = '_coral-ActionBar-item';
   /**
@@ -34246,23 +34179,23 @@
    @extends {BaseComponent}
    */
 
-  var ActionBarItem = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var ActionBarItem = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(ActionBarItem, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(ActionBarItem);
 
-    function _class() {
-      _classCallCheck(this, _class);
+    function ActionBarItem() {
+      _classCallCheck(this, ActionBarItem);
 
       return _super.apply(this, arguments);
     }
 
-    _createClass(_class, [{
+    _createClass(ActionBarItem, [{
       key: "render",
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(ActionBarItem.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$u);
       }
@@ -34283,8 +34216,8 @@
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return ActionBarItem;
+  }(BaseComponent(HTMLElement));
 
   /**
    @class Coral.ActionBar.Container.Collection
@@ -34363,16 +34296,16 @@
    @extends {BaseButton}
    */
 
-  var AnchorButton = Decorator( /*#__PURE__*/function (_BaseButton) {
-    _inherits(_class, _BaseButton);
+  var AnchorButton = /*#__PURE__*/function (_BaseButton) {
+    _inherits(AnchorButton, _BaseButton);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(AnchorButton);
 
     /** @ignore */
-    function _class() {
+    function AnchorButton() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, AnchorButton);
 
       _this = _super.call(this); // Events
 
@@ -34395,7 +34328,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(AnchorButton, [{
       key: "_onKeyDown",
 
       /**
@@ -34435,7 +34368,7 @@
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this); // a11y
+        _get(_getPrototypeOf(AnchorButton.prototype), "render", this).call(this); // a11y
 
 
         this.setAttribute('role', 'button');
@@ -34472,12 +34405,12 @@
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['disabled']);
+        return _get(_getPrototypeOf(AnchorButton), "observedAttributes", this).concat(['disabled']);
       }
     }]);
 
-    return _class;
-  }(BaseButton(BaseComponent(HTMLAnchorElement))));
+    return AnchorButton;
+  }(BaseButton(BaseComponent(HTMLAnchorElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -35153,18 +35086,18 @@
    @extends {BaseComponent}
    */
 
-  var ActionBarPrimary = Decorator( /*#__PURE__*/function (_ActionBarContainer) {
-    _inherits(_class, _ActionBarContainer);
+  var ActionBarPrimary = /*#__PURE__*/function (_ActionBarContainer) {
+    _inherits(ActionBarPrimary, _ActionBarContainer);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(ActionBarPrimary);
 
-    function _class() {
-      _classCallCheck(this, _class);
+    function ActionBarPrimary() {
+      _classCallCheck(this, ActionBarPrimary);
 
       return _super.apply(this, arguments);
     }
 
-    _createClass(_class, [{
+    _createClass(ActionBarPrimary, [{
       key: "_returnElementsFromPopover",
 
       /** @ignore */
@@ -35206,7 +35139,7 @@
     }, {
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(ActionBarPrimary.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$v);
 
@@ -35214,8 +35147,8 @@
       }
     }]);
 
-    return _class;
-  }(BaseActionBarContainer(BaseComponent(HTMLElement))));
+    return ActionBarPrimary;
+  }(BaseActionBarContainer(BaseComponent(HTMLElement)));
 
   var CLASSNAME$w = '_coral-ActionBar-secondary';
   /**
@@ -35226,18 +35159,18 @@
    @extends {BaseComponent}
    */
 
-  var ActionBarSecondary = Decorator( /*#__PURE__*/function (_ActionBarContainer) {
-    _inherits(_class, _ActionBarContainer);
+  var ActionBarSecondary = /*#__PURE__*/function (_ActionBarContainer) {
+    _inherits(ActionBarSecondary, _ActionBarContainer);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(ActionBarSecondary);
 
-    function _class() {
-      _classCallCheck(this, _class);
+    function ActionBarSecondary() {
+      _classCallCheck(this, ActionBarSecondary);
 
       return _super.apply(this, arguments);
     }
 
-    _createClass(_class, [{
+    _createClass(ActionBarSecondary, [{
       key: "_returnElementsFromPopover",
 
       /** @ignore */
@@ -35278,7 +35211,7 @@
     }, {
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(ActionBarSecondary.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$w);
 
@@ -35286,8 +35219,8 @@
       }
     }]);
 
-    return _class;
-  }(BaseActionBarContainer(BaseComponent(HTMLElement))));
+    return ActionBarSecondary;
+  }(BaseActionBarContainer(BaseComponent(HTMLElement)));
 
   var CLASSNAME$x = '_coral-ActionBar-container';
   /**
@@ -35318,16 +35251,16 @@
    @deprecated
    */
 
-  var ActionBarContainer = Decorator( /*#__PURE__*/function (_BaseActionBarContain) {
-    _inherits(_class, _BaseActionBarContain);
+  var ActionBarContainer = /*#__PURE__*/function (_BaseActionBarContain) {
+    _inherits(ActionBarContainer, _BaseActionBarContain);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(ActionBarContainer);
 
     /** @ignore */
-    function _class() {
+    function ActionBarContainer() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, ActionBarContainer);
 
       _this = _super.call(this);
 
@@ -35344,7 +35277,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(ActionBarContainer, [{
       key: "_attachMoreButtonToContainer",
 
       /** @ignore */
@@ -35366,7 +35299,7 @@
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(ActionBarContainer.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$x); // Cleanup resize helpers object (cloneNode support)
 
@@ -35427,8 +35360,8 @@
       }
     }]);
 
-    return _class;
-  }(BaseActionBarContainer(BaseComponent(HTMLElement))));
+    return ActionBarContainer;
+  }(BaseActionBarContainer(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -35523,16 +35456,16 @@
    */
 
 
-  var Alert = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var Alert = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(Alert, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(Alert);
 
     /** @ignore */
-    function _class() {
+    function Alert() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, Alert);
 
       _this = _super.call(this); // Prepare templates
 
@@ -35558,7 +35491,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(Alert, [{
       key: "_onCloseClick",
 
       /**
@@ -35599,7 +35532,7 @@
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(Alert.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$y); // a11y
 
@@ -35784,12 +35717,12 @@
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['variant', 'size']);
+        return _get(_getPrototypeOf(Alert), "observedAttributes", this).concat(['variant', 'size']);
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return Alert;
+  }(BaseComponent(HTMLElement));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -36011,16 +35944,16 @@
    @extends {BaseComponent}
    */
 
-  var AutocompleteItem = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var AutocompleteItem = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(AutocompleteItem, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(AutocompleteItem);
 
     /** @ignore */
-    function _class() {
+    function AutocompleteItem() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, AutocompleteItem);
 
       _this = _super.call(this);
       _this._observer = new MutationObserver(_this._handleMutation.bind(_assertThisInitialized(_this)));
@@ -36042,7 +35975,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(AutocompleteItem, [{
       key: "_handleMutation",
 
       /** @private */
@@ -36134,12 +36067,12 @@
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['selected', 'disabled', 'value']);
+        return _get(_getPrototypeOf(AutocompleteItem), "observedAttributes", this).concat(['selected', 'disabled', 'value']);
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return AutocompleteItem;
+  }(BaseComponent(HTMLElement));
 
   var template$g = function anonymous(data_0) {
     var frag = document.createDocumentFragment();
@@ -36310,16 +36243,16 @@
    @extends {BaseFormField}
    */
 
-  var Autocomplete = Decorator( /*#__PURE__*/function (_BaseFormField) {
-    _inherits(_class, _BaseFormField);
+  var Autocomplete = /*#__PURE__*/function (_BaseFormField) {
+    _inherits(Autocomplete, _BaseFormField);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(Autocomplete);
 
     /** @ignore */
-    function _class() {
+    function Autocomplete() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, Autocomplete);
 
       _this = _super.call(this); // Template
 
@@ -36407,7 +36340,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(Autocomplete, [{
       key: "_getName",
 
       /** @private */
@@ -37722,7 +37655,7 @@
 
       /** @ignore */
       value: function connectedCallback() {
-        _get(_getPrototypeOf(_class.prototype), "connectedCallback", this).call(this);
+        _get(_getPrototypeOf(Autocomplete.prototype), "connectedCallback", this).call(this);
 
         var overlay = this._elements.overlay; // Cannot be open by default when rendered
 
@@ -37735,7 +37668,7 @@
     }, {
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(Autocomplete.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$z); // Container role per ARIA Autocomplete
 
@@ -37797,7 +37730,7 @@
     }, {
       key: "disconnectedCallback",
       value: function disconnectedCallback() {
-        _get(_getPrototypeOf(_class.prototype), "disconnectedCallback", this).call(this);
+        _get(_getPrototypeOf(Autocomplete.prototype), "disconnectedCallback", this).call(this);
 
         var overlay = this._elements.overlay; // In case it was moved out don't forget to remove it
 
@@ -38178,10 +38111,10 @@
     }, {
       key: "invalid",
       get: function get() {
-        return _get(_getPrototypeOf(_class.prototype), "invalid", this);
+        return _get(_getPrototypeOf(Autocomplete.prototype), "invalid", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(_class.prototype), "invalid", value, this, true); // Add to outer component
+        _set(_getPrototypeOf(Autocomplete.prototype), "invalid", value, this, true); // Add to outer component
 
 
         this._elements.inputGroup.classList.toggle('is-invalid', this.invalid);
@@ -38271,10 +38204,10 @@
     }, {
       key: "labelled",
       get: function get() {
-        return _get(_getPrototypeOf(_class.prototype), "labelled", this);
+        return _get(_getPrototypeOf(Autocomplete.prototype), "labelled", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(_class.prototype), "labelled", value, this, true);
+        _set(_getPrototypeOf(Autocomplete.prototype), "labelled", value, this, true);
 
         this[this.labelled ? 'setAttribute' : 'removeAttribute']('aria-label', this.labelled);
 
@@ -38293,10 +38226,10 @@
     }, {
       key: "labelledBy",
       get: function get() {
-        return _get(_getPrototypeOf(_class.prototype), "labelledBy", this);
+        return _get(_getPrototypeOf(Autocomplete.prototype), "labelledBy", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(_class.prototype), "labelledBy", value, this, true);
+        _set(_getPrototypeOf(Autocomplete.prototype), "labelledBy", value, this, true);
 
         this[this.labelledBy ? 'setAttribute' : 'removeAttribute']('aria-labelledby', this.labelledBy);
 
@@ -38341,7 +38274,7 @@
     }, {
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(Autocomplete), "_attributePropertyMap", this), {
           forceselection: 'forceSelection',
           maxlength: 'maxLength'
         });
@@ -38351,12 +38284,12 @@
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['multiple', 'delay', 'forceselection', 'placeholder', 'maxlength', 'icon', 'match', 'loading', 'variant']);
+        return _get(_getPrototypeOf(Autocomplete), "observedAttributes", this).concat(['multiple', 'delay', 'forceselection', 'placeholder', 'maxlength', 'icon', 'match', 'loading', 'variant']);
       }
     }]);
 
-    return _class;
-  }(BaseFormField(BaseComponent(HTMLElement))));
+    return Autocomplete;
+  }(BaseFormField(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -38414,16 +38347,16 @@
    */
 
 
-  var Banner = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var Banner = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(Banner, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(Banner);
 
     /** @ignore */
-    function _class() {
+    function Banner() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, Banner);
 
       _this = _super.call(this); // Fetch content zones
 
@@ -38442,12 +38375,12 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(Banner, [{
       key: "render",
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(Banner.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$A); // Default reflected attributes
 
@@ -38562,8 +38495,8 @@
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return Banner;
+  }(BaseComponent(HTMLElement));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -38683,16 +38616,16 @@
    @extends {BaseFormField}
    */
 
-  var ButtonGroup = Decorator( /*#__PURE__*/function (_BaseFormField) {
-    _inherits(_class, _BaseFormField);
+  var ButtonGroup = /*#__PURE__*/function (_BaseFormField) {
+    _inherits(ButtonGroup, _BaseFormField);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(ButtonGroup);
 
     /** @ignore */
-    function _class() {
+    function ButtonGroup() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, ButtonGroup);
 
       _this = _super.call(this); // Store template
 
@@ -38729,7 +38662,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(ButtonGroup, [{
       key: "reset",
 
       /**
@@ -39256,7 +39189,7 @@
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(ButtonGroup.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$B); // Default reflected attributes
 
@@ -39530,10 +39463,10 @@
     }, {
       key: "labelledBy",
       get: function get() {
-        return _get(_getPrototypeOf(_class.prototype), "labelledBy", this);
+        return _get(_getPrototypeOf(ButtonGroup.prototype), "labelledBy", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(_class.prototype), "labelledBy", value, this, true);
+        _set(_getPrototypeOf(ButtonGroup.prototype), "labelledBy", value, this, true);
 
         this._elements.nativeSelect.setAttribute('aria-labelledby', this.labelledBy);
       }
@@ -39545,7 +39478,7 @@
     }, {
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(ButtonGroup), "_attributePropertyMap", this), {
           selectionmode: 'selectionMode'
         });
       }
@@ -39554,12 +39487,12 @@
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['selectionmode', 'selectionMode']);
+        return _get(_getPrototypeOf(ButtonGroup), "observedAttributes", this).concat(['selectionmode', 'selectionMode']);
       }
     }]);
 
-    return _class;
-  }(BaseFormField(BaseComponent(HTMLElement))));
+    return ButtonGroup;
+  }(BaseFormField(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -40206,16 +40139,16 @@
    @extends {BaseFormField}
    */
 
-  var Calendar = Decorator( /*#__PURE__*/function (_BaseFormField) {
-    _inherits(_class, _BaseFormField);
+  var Calendar = /*#__PURE__*/function (_BaseFormField) {
+    _inherits(Calendar, _BaseFormField);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(Calendar);
 
     /** @ignore */
-    function _class() {
+    function Calendar() {
       var _this2;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, Calendar);
 
       _this2 = _super.call(this); // Default value
 
@@ -40271,7 +40204,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(Calendar, [{
       key: "_renderCalendar",
 
       /** @ignore */
@@ -40868,7 +40801,7 @@
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(Calendar.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$C);
         this.setAttribute('role', 'group'); // Default reflected attribute
@@ -41132,10 +41065,10 @@
     }, {
       key: "invalid",
       get: function get() {
-        return _get(_getPrototypeOf(_class.prototype), "invalid", this);
+        return _get(_getPrototypeOf(Calendar.prototype), "invalid", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(_class.prototype), "invalid", value, this, true);
+        _set(_getPrototypeOf(Calendar.prototype), "invalid", value, this, true);
 
         this._renderCalendar();
       }
@@ -41167,7 +41100,7 @@
     }], [{
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(Calendar), "_attributePropertyMap", this), {
           startday: 'startDay',
           headerformat: 'headerFormat',
           valueformat: 'valueFormat'
@@ -41178,12 +41111,12 @@
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['startday', 'headerformat', 'min', 'max', 'valueformat']);
+        return _get(_getPrototypeOf(Calendar), "observedAttributes", this).concat(['startday', 'headerformat', 'min', 'max', 'valueformat']);
       }
     }]);
 
-    return _class;
-  }(BaseFormField(BaseComponent(HTMLElement))));
+    return Calendar;
+  }(BaseFormField(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -41257,16 +41190,16 @@
    */
 
 
-  var Card = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var Card = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(Card, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(Card);
 
     /** @ignore */
-    function _class() {
+    function Card() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, Card);
 
       _this = _super.call(this); // Prepare templates
 
@@ -41292,7 +41225,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(Card, [{
       key: "_onLoad",
 
       /** @ignore */
@@ -41312,7 +41245,7 @@
       value: function render() {
         var _this2 = this;
 
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(Card.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$D); // Default reflected attributes
 
@@ -41619,7 +41552,7 @@
     }, {
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(Card), "_attributePropertyMap", this), {
           assetwidth: 'assetWidth',
           assetheight: 'assetHeight',
           colorhint: 'colorHint',
@@ -41631,12 +41564,12 @@
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['assetwidth', 'assetheight', 'colorhint', 'fixedwidth', 'variant', 'stacked']);
+        return _get(_getPrototypeOf(Card), "observedAttributes", this).concat(['assetwidth', 'assetheight', 'colorhint', 'fixedwidth', 'variant', 'stacked']);
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return Card;
+  }(BaseComponent(HTMLElement));
 
   var template$n = function anonymous(data_0) {
     var frag = document.createDocumentFragment();
@@ -41660,16 +41593,16 @@
    @extends {BaseComponent}
    */
 
-  var CardProperty = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var CardProperty = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(CardProperty, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(CardProperty);
 
     /** @ignore */
-    function _class() {
+    function CardProperty() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, CardProperty);
 
       _this = _super.call(this); // Prepare templates
 
@@ -41686,12 +41619,12 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(CardProperty, [{
       key: "render",
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(CardProperty.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$E, 'coral-Body--small'); // Create a fragment
 
@@ -41799,7 +41732,7 @@
     }], [{
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(CardProperty), "_attributePropertyMap", this), {
           iconalt: 'iconAlt',
           icontitle: 'iconTitle'
         });
@@ -41809,12 +41742,12 @@
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['icon', 'iconalt', 'icontitle']);
+        return _get(_getPrototypeOf(CardProperty), "observedAttributes", this).concat(['icon', 'iconalt', 'icontitle']);
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return CardProperty;
+  }(BaseComponent(HTMLElement));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -42000,23 +41933,23 @@
    @extends {BaseComponent}
    */
 
-  var CardPropertyList = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var CardPropertyList = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(CardPropertyList, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(CardPropertyList);
 
-    function _class() {
-      _classCallCheck(this, _class);
+    function CardPropertyList() {
+      _classCallCheck(this, CardPropertyList);
 
       return _super.apply(this, arguments);
     }
 
-    _createClass(_class, [{
+    _createClass(CardPropertyList, [{
       key: "render",
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(CardPropertyList.prototype), "render", this).call(this);
 
         this.classList.add('u-coral-clearFix'); // Empty it if no items
 
@@ -42026,8 +41959,8 @@
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return CardPropertyList;
+  }(BaseComponent(HTMLElement));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -42105,18 +42038,18 @@
    @extends {BaseComponent}
    */
 
-  var CharacterCount = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var CharacterCount = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(CharacterCount, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(CharacterCount);
 
-    function _class() {
-      _classCallCheck(this, _class);
+    function CharacterCount() {
+      _classCallCheck(this, CharacterCount);
 
       return _super.apply(this, arguments);
     }
 
-    _createClass(_class, [{
+    _createClass(CharacterCount, [{
       key: "_getCharCount",
 
       /** @ignore */
@@ -42157,7 +42090,7 @@
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(CharacterCount.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$F, 'coral-Body--S'); // Set defaults
 
@@ -42235,7 +42168,7 @@
     }, {
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(CharacterCount), "_attributePropertyMap", this), {
           maxlength: 'maxLength'
         });
       }
@@ -42244,12 +42177,12 @@
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['target', 'maxlength']);
+        return _get(_getPrototypeOf(CharacterCount), "observedAttributes", this).concat(['target', 'maxlength']);
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return CharacterCount;
+  }(BaseComponent(HTMLElement));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -42543,16 +42476,16 @@
    */
 
 
-  var Clock = Decorator( /*#__PURE__*/function (_BaseFormField) {
-    _inherits(_class, _BaseFormField);
+  var Clock = /*#__PURE__*/function (_BaseFormField) {
+    _inherits(Clock, _BaseFormField);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(Clock);
 
     /** @ignore */
-    function _class() {
+    function Clock() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, Clock);
 
       _this = _super.call(this); // Default value
 
@@ -42583,7 +42516,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(Clock, [{
       key: "_extractTimeFormat",
 
       /**
@@ -42772,7 +42705,7 @@
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(Clock.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$G); // a11y
 
@@ -42942,10 +42875,10 @@
     }, {
       key: "invalid",
       get: function get() {
-        return _get(_getPrototypeOf(_class.prototype), "invalid", this);
+        return _get(_getPrototypeOf(Clock.prototype), "invalid", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(_class.prototype), "invalid", value, this, true);
+        _set(_getPrototypeOf(Clock.prototype), "invalid", value, this, true);
 
         this._elements.hours.invalid = this._invalid;
         this._elements.minutes.invalid = this._invalid;
@@ -43041,7 +42974,7 @@
         return labelledBy;
       },
       set: function set(value) {
-        _set(_getPrototypeOf(_class.prototype), "labelledBy", value, this, true); // The specified labelledBy property.
+        _set(_getPrototypeOf(Clock.prototype), "labelledBy", value, this, true); // The specified labelledBy property.
 
 
         var labelledBy = this.labelledBy; // An array of element ids to label control, the last being the valueAsText element id.
@@ -43066,7 +42999,7 @@
     }, {
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(Clock), "_attributePropertyMap", this), {
           displayformat: 'displayFormat',
           valueformat: 'valueFormat'
         });
@@ -43076,12 +43009,12 @@
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['displayformat', 'valueformat', 'variant']);
+        return _get(_getPrototypeOf(Clock), "observedAttributes", this).concat(['displayformat', 'valueformat', 'variant']);
       }
     }]);
 
-    return _class;
-  }(BaseFormField(BaseComponent(HTMLElement))));
+    return Clock;
+  }(BaseFormField(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -43163,16 +43096,16 @@
    @extends {BaseComponent}
    */
 
-  var CoachMark = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var CoachMark = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(CoachMark, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(CoachMark);
 
     /** @ignore */
-    function _class() {
+    function CoachMark() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, CoachMark);
 
       _this = _super.call(this); // Templates
 
@@ -43188,12 +43121,12 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(CoachMark, [{
       key: "render",
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(CoachMark.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$H); // Default reflected attributes
 
@@ -43324,12 +43257,12 @@
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['size', 'variant', 'target']);
+        return _get(_getPrototypeOf(CoachMark), "observedAttributes", this).concat(['size', 'variant', 'target']);
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return CoachMark;
+  }(BaseComponent(HTMLElement));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -44736,23 +44669,23 @@
    @extends {BaseComponent}
    */
 
-  var ColorInputItem = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var ColorInputItem = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(ColorInputItem, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(ColorInputItem);
 
-    function _class() {
-      _classCallCheck(this, _class);
+    function ColorInputItem() {
+      _classCallCheck(this, ColorInputItem);
 
       return _super.apply(this, arguments);
     }
 
-    _createClass(_class, [{
+    _createClass(ColorInputItem, [{
       key: "render",
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this); // adds the role to support accessibility
+        _get(_getPrototypeOf(ColorInputItem.prototype), "render", this).call(this); // adds the role to support accessibility
 
 
         this.setAttribute('role', 'option');
@@ -44816,12 +44749,12 @@
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['selected', 'value']);
+        return _get(_getPrototypeOf(ColorInputItem), "observedAttributes", this).concat(['selected', 'value']);
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return ColorInputItem;
+  }(BaseComponent(HTMLElement));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -45963,11 +45896,9 @@
     }]);
 
     return ExtensibleSlider;
-  }(BaseFormField(BaseComponent(HTMLElement))); // decorated slider, extending this would result in two decoration.
-  // Hence for extending ExtensibleSlider should be used
+  }(BaseFormField(BaseComponent(HTMLElement)));
 
-
-  var Slider = Decorator(ExtensibleSlider);
+  var Slider = ExtensibleSlider;
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -46000,23 +45931,23 @@
    @extends {BaseComponent}
    */
 
-  var SliderItem = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var SliderItem = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(SliderItem, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(SliderItem);
 
-    function _class() {
-      _classCallCheck(this, _class);
+    function SliderItem() {
+      _classCallCheck(this, SliderItem);
 
       return _super.apply(this, arguments);
     }
 
-    _createClass(_class, [{
+    _createClass(SliderItem, [{
       key: "render",
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(SliderItem.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$J);
       }
@@ -46051,8 +45982,8 @@
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return SliderItem;
+  }(BaseComponent(HTMLElement));
 
   var template$r = function anonymous(data_0) {
     var frag = document.createDocumentFragment();
@@ -46172,18 +46103,18 @@
    @extends {Slider}
    */
 
-  var RangedSlider = Decorator( /*#__PURE__*/function (_ExtensibleSlider) {
-    _inherits(_class, _ExtensibleSlider);
+  var RangedSlider = /*#__PURE__*/function (_ExtensibleSlider) {
+    _inherits(RangedSlider, _ExtensibleSlider);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(RangedSlider);
 
-    function _class() {
-      _classCallCheck(this, _class);
+    function RangedSlider() {
+      _classCallCheck(this, RangedSlider);
 
       return _super.apply(this, arguments);
     }
 
-    _createClass(_class, [{
+    _createClass(RangedSlider, [{
       key: "_getHighestValue",
 
       /** @private */
@@ -46268,7 +46199,7 @@
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(RangedSlider.prototype), "render", this).call(this);
 
         this.classList.add('_coral-Slider--range'); // Set filled attribute by default
 
@@ -46373,7 +46304,7 @@
     }], [{
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(RangedSlider), "_attributePropertyMap", this), {
           startvalue: 'startValue',
           endvalue: 'endValue'
         });
@@ -46383,12 +46314,12 @@
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['startvalue', 'endvalue']);
+        return _get(_getPrototypeOf(RangedSlider), "observedAttributes", this).concat(['startvalue', 'endvalue']);
       }
     }]);
 
-    return _class;
-  }(ExtensibleSlider));
+    return RangedSlider;
+  }(ExtensibleSlider);
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -46477,18 +46408,18 @@
    @extends {Slider}
    */
 
-  var ColorInputSlider = Decorator( /*#__PURE__*/function (_ExtensibleSlider) {
-    _inherits(_class, _ExtensibleSlider);
+  var ColorInputSlider = /*#__PURE__*/function (_ExtensibleSlider) {
+    _inherits(ColorInputSlider, _ExtensibleSlider);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(ColorInputSlider);
 
-    function _class() {
-      _classCallCheck(this, _class);
+    function ColorInputSlider() {
+      _classCallCheck(this, ColorInputSlider);
 
       return _super.apply(this, arguments);
     }
 
-    _createClass(_class, [{
+    _createClass(ColorInputSlider, [{
       key: "_moveHandles",
       value: function _moveHandles() {
         var _this = this;
@@ -46523,7 +46454,7 @@
       value: function render() {
         var _this$classList;
 
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(ColorInputSlider.prototype), "render", this).call(this);
 
         (_this$classList = this.classList).add.apply(_this$classList, CLASSNAMES$1);
       }
@@ -46570,12 +46501,12 @@
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['gradient']);
+        return _get(_getPrototypeOf(ColorInputSlider), "observedAttributes", this).concat(['gradient']);
       }
     }]);
 
-    return _class;
-  }(ExtensibleSlider));
+    return ColorInputSlider;
+  }(ExtensibleSlider);
 
   var template$t = function anonymous(data_0) {
     var frag = document.createDocumentFragment();
@@ -46830,16 +46761,16 @@
    @extends {BaseColorInputAbstractSubview}
    */
 
-  var ColorInputColorProperties = Decorator( /*#__PURE__*/function (_BaseColorInputAbstra) {
-    _inherits(_class, _BaseColorInputAbstra);
+  var ColorInputColorProperties = /*#__PURE__*/function (_BaseColorInputAbstra) {
+    _inherits(ColorInputColorProperties, _BaseColorInputAbstra);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(ColorInputColorProperties);
 
     /** @ignore */
-    function _class() {
+    function ColorInputColorProperties() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, ColorInputColorProperties);
 
       _this = _super.call(this);
 
@@ -46863,7 +46794,7 @@
     /** @ignore */
 
 
-    _createClass(_class, [{
+    _createClass(ColorInputColorProperties, [{
       key: "_onColorInputChange",
       value: function _onColorInputChange() {
         var newColor = this._colorinput.valueAsColor;
@@ -47034,7 +46965,7 @@
     }, {
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(ColorInputColorProperties.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$K); // Support cloneNode
 
@@ -47048,8 +46979,8 @@
       }
     }]);
 
-    return _class;
-  }(BaseColorInputAbstractSubview(BaseComponent(HTMLElement))));
+    return ColorInputColorProperties;
+  }(BaseColorInputAbstractSubview(BaseComponent(HTMLElement)));
 
   var template$u = function anonymous(data_0) {
     var frag = document.createDocumentFragment();
@@ -47079,16 +47010,16 @@
    @extends {BaseColorInputAbstractSubview}
    */
 
-  var ColorInputSwatch = Decorator( /*#__PURE__*/function (_BaseColorInputAbstra) {
-    _inherits(_class, _BaseColorInputAbstra);
+  var ColorInputSwatch = /*#__PURE__*/function (_BaseColorInputAbstra) {
+    _inherits(ColorInputSwatch, _BaseColorInputAbstra);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(ColorInputSwatch);
 
     /** @ignore */
-    function _class() {
+    function ColorInputSwatch() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, ColorInputSwatch);
 
       _this = _super.call(this); // Events
 
@@ -47108,7 +47039,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(ColorInputSwatch, [{
       key: "_onColorInputChange",
 
       /** @ignore */
@@ -47123,7 +47054,7 @@
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(ColorInputSwatch.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$L, 'u-coral-clearFix'); // adds the role to support accessibility
 
@@ -47246,7 +47177,7 @@
     }], [{
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(ColorInputSwatch), "_attributePropertyMap", this), {
           tabindex: 'tabIndex',
           targetcolor: 'targetColor'
         });
@@ -47256,12 +47187,12 @@
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['selected', 'tabindex', 'disabled', 'targetcolor']);
+        return _get(_getPrototypeOf(ColorInputSwatch), "observedAttributes", this).concat(['selected', 'tabindex', 'disabled', 'targetcolor']);
       }
     }]);
 
-    return _class;
-  }(BaseColorInputAbstractSubview(BaseComponent(HTMLElement))));
+    return ColorInputSwatch;
+  }(BaseColorInputAbstractSubview(BaseComponent(HTMLElement)));
 
   var template$v = function anonymous(data_0) {
     var frag = document.createDocumentFragment();
@@ -47319,16 +47250,16 @@
    @extends {BaseColorInputAbstractSubview}
    */
 
-  var ColorInputSwatches = Decorator( /*#__PURE__*/function (_BaseColorInputAbstra) {
-    _inherits(_class, _BaseColorInputAbstra);
+  var ColorInputSwatches = /*#__PURE__*/function (_BaseColorInputAbstra) {
+    _inherits(ColorInputSwatches, _BaseColorInputAbstra);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(ColorInputSwatches);
 
     /** @ignore */
-    function _class() {
+    function ColorInputSwatches() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, ColorInputSwatches);
 
       _this = _super.call(this); // Events
 
@@ -47360,7 +47291,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(ColorInputSwatches, [{
       key: "_onItemSelectedChanged",
 
       /** @private */
@@ -47623,7 +47554,7 @@
     }, {
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(ColorInputSwatches.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$M); // adds the role to support accessibility
 
@@ -47674,8 +47605,8 @@
       }
     }]);
 
-    return _class;
-  }(BaseColorInputAbstractSubview(BaseComponent(HTMLElement))));
+    return ColorInputSwatches;
+  }(BaseColorInputAbstractSubview(BaseComponent(HTMLElement)));
 
   var template$w = function anonymous(data_0) {
     var frag = document.createDocumentFragment();
@@ -47937,16 +47868,16 @@
    @extends {BaseFormField}
    */
 
-  var ColorInput = Decorator( /*#__PURE__*/function (_BaseFormField) {
-    _inherits(_class, _BaseFormField);
+  var ColorInput = /*#__PURE__*/function (_BaseFormField) {
+    _inherits(ColorInput, _BaseFormField);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(ColorInput);
 
     /** @ignore */
-    function _class() {
+    function ColorInput() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, ColorInput);
 
       _this = _super.call(this); // Prepare templates
 
@@ -47992,7 +47923,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(ColorInput, [{
       key: "_onItemSelectedChanged",
 
       /** @private */
@@ -48321,7 +48252,7 @@
 
       /** @ignore */
       value: function connectedCallback() {
-        _get(_getPrototypeOf(_class.prototype), "connectedCallback", this).call(this);
+        _get(_getPrototypeOf(ColorInput.prototype), "connectedCallback", this).call(this);
 
         var overlay = this._elements.overlay; // Cannot be open by default when rendered
 
@@ -48336,7 +48267,7 @@
     }, {
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(ColorInput.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$N);
         this.setAttribute('role', 'group');
@@ -48380,7 +48311,7 @@
     }, {
       key: "disconnectedCallback",
       value: function disconnectedCallback() {
-        _get(_getPrototypeOf(_class.prototype), "disconnectedCallback", this).call(this);
+        _get(_getPrototypeOf(ColorInput.prototype), "disconnectedCallback", this).call(this);
 
         var overlay = this._elements.overlay; // In case it was moved out don't forget to remove it
 
@@ -48698,10 +48629,10 @@
     }, {
       key: "invalid",
       get: function get() {
-        return _get(_getPrototypeOf(_class.prototype), "invalid", this);
+        return _get(_getPrototypeOf(ColorInput.prototype), "invalid", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(_class.prototype), "invalid", value, this, true);
+        _set(_getPrototypeOf(ColorInput.prototype), "invalid", value, this, true);
 
         this._elements.input.invalid = this.invalid;
       }
@@ -48753,10 +48684,10 @@
     }, {
       key: "labelledBy",
       get: function get() {
-        return _get(_getPrototypeOf(_class.prototype), "labelledBy", this);
+        return _get(_getPrototypeOf(ColorInput.prototype), "labelledBy", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(_class.prototype), "labelledBy", value, this, true); // Sync input aria-labelledby
+        _set(_getPrototypeOf(ColorInput.prototype), "labelledBy", value, this, true); // Sync input aria-labelledby
 
 
         this._elements.input[value ? 'setAttribute' : 'removeAttribute']('aria-labelledby', value); // in case the user focuses the buttons, he will still get a notion of the usage of the component
@@ -48820,7 +48751,7 @@
     }, {
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(ColorInput), "_attributePropertyMap", this), {
           autogeneratecolors: 'autoGenerateColors',
           showswatches: 'showSwatches',
           showproperties: 'showProperties',
@@ -48832,12 +48763,12 @@
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['variant', 'autogeneratecolors', 'showswatches', 'showproperties', 'showdefaultcolors', 'placeholder']);
+        return _get(_getPrototypeOf(ColorInput), "observedAttributes", this).concat(['variant', 'autogeneratecolors', 'showswatches', 'showproperties', 'showdefaultcolors', 'placeholder']);
       }
     }]);
 
-    return _class;
-  }(BaseFormField(BaseComponent(HTMLElement))));
+    return ColorInput;
+  }(BaseFormField(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -49297,16 +49228,16 @@
    */
 
 
-  var ColumnView = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var ColumnView = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(ColumnView, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(ColumnView);
 
     /** @ignore */
-    function _class() {
+    function ColumnView() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, ColumnView);
 
       _this = _super.call(this); // Content zone
 
@@ -49378,7 +49309,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(ColumnView, [{
       key: "_onColumnActiveItemChanged",
 
       /** @private */
@@ -50537,7 +50468,7 @@
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(ColumnView.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$O); // @a11y
 
@@ -50718,7 +50649,7 @@
     }, {
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(ColumnView), "_attributePropertyMap", this), {
           selectionmode: 'selectionMode'
         });
       }
@@ -50727,12 +50658,12 @@
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['selectionmode']);
+        return _get(_getPrototypeOf(ColumnView), "observedAttributes", this).concat(['selectionmode']);
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return ColumnView;
+  }(BaseComponent(HTMLElement));
 
   var CLASSNAME$P = '_coral-MillerColumns-item'; // The number of milliseconds for which scroll events should be debounced.
 
@@ -50752,16 +50683,16 @@
    @extends {BaseComponent}
    */
 
-  var ColumnViewColumn = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var ColumnViewColumn = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(ColumnViewColumn, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(ColumnViewColumn);
 
     /** @ignore */
-    function _class() {
+    function ColumnViewColumn() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, ColumnViewColumn);
 
       _this = _super.call(this); // Events
 
@@ -50808,7 +50739,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(ColumnViewColumn, [{
       key: "_onItemClick",
 
       /** @private */
@@ -51186,7 +51117,7 @@
       value: function render() {
         var _this3 = this;
 
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(ColumnViewColumn.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$P); // @a11y
 
@@ -51355,7 +51286,7 @@
     }], [{
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(ColumnViewColumn), "_attributePropertyMap", this), {
           _selectionmode: '_selectionMode'
         });
       }
@@ -51364,12 +51295,12 @@
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['_selectionmode']);
+        return _get(_getPrototypeOf(ColumnViewColumn), "observedAttributes", this).concat(['_selectionmode']);
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return ColumnViewColumn;
+  }(BaseComponent(HTMLElement));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -51422,16 +51353,16 @@
    @extends {BaseComponent}
    */
 
-  var ColumnViewItem = Decorator( /*#__PURE__*/function (_BaseLabellable) {
-    _inherits(_class, _BaseLabellable);
+  var ColumnViewItem = /*#__PURE__*/function (_BaseLabellable) {
+    _inherits(ColumnViewItem, _BaseLabellable);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(ColumnViewItem);
 
     /** @ignore */
-    function _class() {
+    function ColumnViewItem() {
       var _thisSuper, _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, ColumnViewItem);
 
       _this = _super.call(this); // Content zone
 
@@ -51448,7 +51379,7 @@
         });
       }
 
-      _get((_thisSuper = _assertThisInitialized(_this), _getPrototypeOf(_class.prototype)), "_observeLabel", _thisSuper).call(_thisSuper);
+      _get((_thisSuper = _assertThisInitialized(_this), _getPrototypeOf(ColumnViewItem.prototype)), "_observeLabel", _thisSuper).call(_thisSuper);
 
       return _this;
     }
@@ -51459,7 +51390,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(ColumnViewItem, [{
       key: "attributeChangedCallback",
 
       /** @ignore */
@@ -51488,7 +51419,7 @@
               }
             }
         } else {
-          _get(_getPrototypeOf(_class.prototype), "attributeChangedCallback", this).call(this, name, oldValue, value);
+          _get(_getPrototypeOf(ColumnViewItem.prototype), "attributeChangedCallback", this).call(this, name, oldValue, value);
         }
       }
       /**
@@ -51501,7 +51432,7 @@
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(ColumnViewItem.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$Q); // @a11y
 
@@ -51662,7 +51593,7 @@
           this._elements.thumbnail.appendChild(this._elements.icon);
         }
 
-        _get(_getPrototypeOf(_class.prototype), "_toggleIconAriaHidden", this).call(this);
+        _get(_getPrototypeOf(ColumnViewItem.prototype), "_toggleIconAriaHidden", this).call(this);
       }
       /**
        Whether the item is selected.
@@ -51799,12 +51730,12 @@
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['variant', 'icon', 'selected', 'active', '_selectable']);
+        return _get(_getPrototypeOf(ColumnViewItem), "observedAttributes", this).concat(['variant', 'icon', 'selected', 'active', '_selectable']);
       }
     }]);
 
-    return _class;
-  }(BaseLabellable(BaseComponent(HTMLElement))));
+    return ColumnViewItem;
+  }(BaseLabellable(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -51859,16 +51790,16 @@
    @extends {BaseComponent}
    */
 
-  var ColumnViewPreview = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var ColumnViewPreview = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(ColumnViewPreview, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(ColumnViewPreview);
 
     /** @ignore */
-    function _class() {
+    function ColumnViewPreview() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, ColumnViewPreview);
 
       _this = _super.call(this); // Content zone
 
@@ -51884,12 +51815,12 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(ColumnViewPreview, [{
       key: "render",
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(ColumnViewPreview.prototype), "render", this).call(this);
 
         this.setAttribute('role', 'group');
         this.id = this.id || commons.getUID();
@@ -51982,8 +51913,8 @@
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return ColumnViewPreview;
+  }(BaseComponent(HTMLElement));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -52268,23 +52199,23 @@
    @extends {BaseComponent}
    */
 
-  var CycleButtonItem = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var CycleButtonItem = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(CycleButtonItem, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(CycleButtonItem);
 
-    function _class() {
-      _classCallCheck(this, _class);
+    function CycleButtonItem() {
+      _classCallCheck(this, CycleButtonItem);
 
       return _super.apply(this, arguments);
     }
 
-    _createClass(_class, [{
+    _createClass(CycleButtonItem, [{
       key: "render",
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this); // adds the role to support accessibility
+        _get(_getPrototypeOf(CycleButtonItem.prototype), "render", this).call(this); // adds the role to support accessibility
 
 
         this.setAttribute('role', 'menuitemradio'); // Default reflected attributes
@@ -52437,7 +52368,7 @@
         (this.content || this).textContent.replace(/\s{2,}/g, ' ').trim() || this.icon : this._trackingElement;
       },
       set: function set(value) {
-        _set(_getPrototypeOf(_class.prototype), "trackingElement", value, this, true);
+        _set(_getPrototypeOf(CycleButtonItem.prototype), "trackingElement", value, this, true);
       }
       /**
        Returns {@link CycleButtonItem} display options.
@@ -52452,7 +52383,7 @@
     }, {
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(CycleButtonItem), "_attributePropertyMap", this), {
           displaymode: 'displayMode'
         });
       }
@@ -52461,12 +52392,12 @@
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['selected', 'disabled', 'icon', 'displaymode']);
+        return _get(_getPrototypeOf(CycleButtonItem), "observedAttributes", this).concat(['selected', 'disabled', 'icon', 'displaymode']);
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return CycleButtonItem;
+  }(BaseComponent(HTMLElement));
 
   var template$y = function anonymous(data_0) {
     var frag = document.createDocumentFragment();
@@ -52586,16 +52517,16 @@
    @extends {BaseComponent}
    */
 
-  var CycleButton = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var CycleButton = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(CycleButton, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(CycleButton);
 
     /** @ignore */
-    function _class() {
+    function CycleButton() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, CycleButton);
 
       _this = _super.call(this);
       _this._id = _this.id || commons.getUID(); // Templates
@@ -52656,7 +52587,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(CycleButton, [{
       key: "_hasMenuItemRadioGroup",
 
       /** @private */
@@ -53282,7 +53213,7 @@
               this._elements.selectList[this._hasMenuItemRadioGroup() ? 'setAttribute' : 'removeAttribute']('aria-labelledby', value || this._elements.button.id);
             }
           } else {
-            _get(_getPrototypeOf(_class.prototype), "attributeChangedCallback", this).call(this, name, oldValue, value);
+            _get(_getPrototypeOf(CycleButton.prototype), "attributeChangedCallback", this).call(this, name, oldValue, value);
           }
       }
       /** @ignore */
@@ -53290,7 +53221,7 @@
     }, {
       key: "connectedCallback",
       value: function connectedCallback() {
-        _get(_getPrototypeOf(_class.prototype), "connectedCallback", this).call(this);
+        _get(_getPrototypeOf(CycleButton.prototype), "connectedCallback", this).call(this);
 
         var overlay = this._elements.overlay; // Cannot be open by default when rendered
 
@@ -53307,7 +53238,7 @@
       value: function render() {
         var _this4 = this;
 
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(CycleButton.prototype), "render", this).call(this);
 
         if (!this.id) {
           this.id = this._id;
@@ -53354,7 +53285,7 @@
     }, {
       key: "disconnectedCallback",
       value: function disconnectedCallback() {
-        _get(_getPrototypeOf(_class.prototype), "disconnectedCallback", this).call(this);
+        _get(_getPrototypeOf(CycleButton.prototype), "disconnectedCallback", this).call(this);
 
         var overlay = this._elements.overlay; // In case it was moved out don't forget to remove it
 
@@ -53514,7 +53445,7 @@
     }, {
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(CycleButton), "_attributePropertyMap", this), {
           displaymode: 'displayMode'
         });
       }
@@ -53523,12 +53454,12 @@
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['icon', 'threshold', 'displaymode', 'aria-label', 'aria-labelledby']);
+        return _get(_getPrototypeOf(CycleButton), "observedAttributes", this).concat(['icon', 'threshold', 'displaymode', 'aria-label', 'aria-labelledby']);
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return CycleButton;
+  }(BaseComponent(HTMLElement));
 
   /**
    @class Coral.CycleButton.Action
@@ -53538,23 +53469,23 @@
    @extends {BaseComponent}
    */
 
-  var CycleButtonAction = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var CycleButtonAction = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(CycleButtonAction, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(CycleButtonAction);
 
-    function _class() {
-      _classCallCheck(this, _class);
+    function CycleButtonAction() {
+      _classCallCheck(this, CycleButtonAction);
 
       return _super.apply(this, arguments);
     }
 
-    _createClass(_class, [{
+    _createClass(CycleButtonAction, [{
       key: "render",
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this); // adds the role to support accessibility
+        _get(_getPrototypeOf(CycleButtonAction.prototype), "render", this).call(this); // adds the role to support accessibility
 
 
         this.setAttribute('role', 'menuitem');
@@ -53604,19 +53535,19 @@
         (this.content || this).textContent.replace(/\s{2,}/g, ' ').trim() || this.icon : this._trackingElement;
       },
       set: function set(value) {
-        _set(_getPrototypeOf(_class.prototype), "trackingElement", value, this, true);
+        _set(_getPrototypeOf(CycleButtonAction.prototype), "trackingElement", value, this, true);
       }
       /** @ignore */
 
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['icon']);
+        return _get(_getPrototypeOf(CycleButtonAction), "observedAttributes", this).concat(['icon']);
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return CycleButtonAction;
+  }(BaseComponent(HTMLElement));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -53919,16 +53850,16 @@
    */
 
 
-  var Datepicker = Decorator( /*#__PURE__*/function (_BaseFormField) {
-    _inherits(_class, _BaseFormField);
+  var Datepicker = /*#__PURE__*/function (_BaseFormField) {
+    _inherits(Datepicker, _BaseFormField);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(Datepicker);
 
     /** @ignore */
-    function _class() {
+    function Datepicker() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, Datepicker);
 
       _this = _super.call(this); // Prepare templates
 
@@ -53966,7 +53897,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(Datepicker, [{
       key: "_onPopoverBeforeOpen",
 
       /** @ignore */
@@ -54142,7 +54073,7 @@
 
       /** @ignore */
       value: function connectedCallback() {
-        _get(_getPrototypeOf(_class.prototype), "connectedCallback", this).call(this);
+        _get(_getPrototypeOf(Datepicker.prototype), "connectedCallback", this).call(this);
 
         var overlay = this._elements.overlay; // Cannot be open by default when rendered
 
@@ -54157,7 +54088,7 @@
     }, {
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(Datepicker.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$T); // a11y
 
@@ -54212,7 +54143,7 @@
     }, {
       key: "disconnectedCallback",
       value: function disconnectedCallback() {
-        _get(_getPrototypeOf(_class.prototype), "disconnectedCallback", this).call(this);
+        _get(_getPrototypeOf(Datepicker.prototype), "disconnectedCallback", this).call(this);
 
         var overlay = this._elements.overlay; // In case it was moved out don't forget to remove it
 
@@ -54570,10 +54501,10 @@
     }, {
       key: "invalid",
       get: function get() {
-        return _get(_getPrototypeOf(_class.prototype), "invalid", this);
+        return _get(_getPrototypeOf(Datepicker.prototype), "invalid", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(_class.prototype), "invalid", value, this, true);
+        _set(_getPrototypeOf(Datepicker.prototype), "invalid", value, this, true);
 
         this.classList.toggle('is-invalid', this.invalid);
 
@@ -54634,10 +54565,10 @@
     }, {
       key: "labelled",
       get: function get() {
-        return _get(_getPrototypeOf(_class.prototype), "labelled", this);
+        return _get(_getPrototypeOf(Datepicker.prototype), "labelled", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(_class.prototype), "labelled", value, this, true); // in case the user focuses the buttons, he will still get a notion of the usage of the component
+        _set(_getPrototypeOf(Datepicker.prototype), "labelled", value, this, true); // in case the user focuses the buttons, he will still get a notion of the usage of the component
 
 
         this[this.labelled ? 'setAttribute' : 'removeAttribute']('aria-label', this.labelled);
@@ -54653,10 +54584,10 @@
     }, {
       key: "labelledBy",
       get: function get() {
-        return _get(_getPrototypeOf(_class.prototype), "labelledBy", this);
+        return _get(_getPrototypeOf(Datepicker.prototype), "labelledBy", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(_class.prototype), "labelledBy", value, this, true); // in case the user focuses the buttons, he will still get a notion of the usage of the component
+        _set(_getPrototypeOf(Datepicker.prototype), "labelledBy", value, this, true); // in case the user focuses the buttons, he will still get a notion of the usage of the component
 
 
         this[this.labelledBy ? 'setAttribute' : 'removeAttribute']('aria-labelledby', this.labelledBy);
@@ -54743,7 +54674,7 @@
     }, {
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(Datepicker), "_attributePropertyMap", this), {
           startday: 'startDay',
           headerformat: 'headerFormat',
           displayformat: 'displayFormat',
@@ -54755,12 +54686,12 @@
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['min', 'max', 'type', 'placeholder', 'startday', 'headerFormat', 'displayformat', 'valueformat', 'variant']);
+        return _get(_getPrototypeOf(Datepicker), "observedAttributes", this).concat(['min', 'max', 'type', 'placeholder', 'startday', 'headerFormat', 'displayformat', 'valueformat', 'variant']);
       }
     }]);
 
-    return _class;
-  }(BaseFormField(BaseComponent(HTMLElement))));
+    return Datepicker;
+  }(BaseFormField(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -54932,16 +54863,16 @@
    */
 
 
-  var Drawer = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var Drawer = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(Drawer, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(Drawer);
 
     /** @ignore */
-    function _class() {
+    function Drawer() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, Drawer);
 
       _this = _super.call(this); // Templates
 
@@ -54968,7 +54899,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(Drawer, [{
       key: "_onClick",
 
       /** @private */
@@ -54980,7 +54911,7 @@
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(Drawer.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$U, 'coral-Well'); // Default reflected attributes
 
@@ -55167,12 +55098,12 @@
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['disabled', 'direction', 'open']);
+        return _get(_getPrototypeOf(Drawer), "observedAttributes", this).concat(['disabled', 'direction', 'open']);
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return Drawer;
+  }(BaseComponent(HTMLElement));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -56392,16 +56323,16 @@
    @extends {BaseFormField}
    */
 
-  var FileUpload = Decorator( /*#__PURE__*/function (_BaseFormField) {
-    _inherits(_class, _BaseFormField);
+  var FileUpload = /*#__PURE__*/function (_BaseFormField) {
+    _inherits(FileUpload, _BaseFormField);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(FileUpload);
 
     /** @ignore */
-    function _class() {
+    function FileUpload() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, FileUpload);
 
       _this = _super.call(this); // Events
 
@@ -56459,7 +56390,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(FileUpload, [{
       key: "_onButtonFocusIn",
 
       /** @private */
@@ -57058,7 +56989,7 @@
       value: function render() {
         var _this8 = this;
 
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(FileUpload.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$V);
         var button = this.querySelector('[coral-fileupload-select]');
@@ -57157,10 +57088,10 @@
     }, {
       key: "invalid",
       get: function get() {
-        return _get(_getPrototypeOf(_class.prototype), "invalid", this);
+        return _get(_getPrototypeOf(FileUpload.prototype), "invalid", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(_class.prototype), "invalid", value, this, true);
+        _set(_getPrototypeOf(FileUpload.prototype), "invalid", value, this, true);
 
         this._elements.input.setAttribute('aria-invalid', this.invalid);
 
@@ -57243,10 +57174,10 @@
     }, {
       key: "labelledBy",
       get: function get() {
-        return _get(_getPrototypeOf(_class.prototype), "labelledBy", this);
+        return _get(_getPrototypeOf(FileUpload.prototype), "labelledBy", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(_class.prototype), "labelledBy", value, this, true); // The specified labelledBy property.
+        _set(_getPrototypeOf(FileUpload.prototype), "labelledBy", value, this, true); // The specified labelledBy property.
 
 
         var labelledBy = this.labelledBy; // An array of element ids to label control, the last being the select button element id.
@@ -57492,7 +57423,7 @@
     }], [{
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(FileUpload), "_attributePropertyMap", this), {
           sizelimit: 'sizeLimit',
           autostart: 'autoStart'
         });
@@ -57502,12 +57433,12 @@
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['async', 'action', 'method', 'multiple', 'sizelimit', 'accept', 'autostart']);
+        return _get(_getPrototypeOf(FileUpload), "observedAttributes", this).concat(['async', 'action', 'method', 'multiple', 'sizelimit', 'accept', 'autostart']);
       }
     }]);
 
-    return _class;
-  }(BaseFormField(BaseComponent(HTMLElement))));
+    return FileUpload;
+  }(BaseFormField(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -57834,6 +57765,74 @@
     return Event;
   }();
 
+  /**
+   * Copyright 2019 Adobe. All rights reserved.
+   * This file is licensed to you under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License. You may obtain a copy
+   * of the License at http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software distributed under
+   * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+   * OF ANY KIND, either express or implied. See the License for the specific language
+   * governing permissions and limitations under the License.
+   */
+
+  /**
+    Decorator will be used to intercept any call before passing it to actual element.
+    kind of wrapper around each decorated component
+    @private
+   */
+  var Decorator = function Decorator(superClass) {
+    return /*#__PURE__*/function (_superClass) {
+      _inherits(_class, _superClass);
+
+      var _super = _createSuper(_class);
+
+      function _class() {
+        _classCallCheck(this, _class);
+
+        return _super.apply(this, arguments);
+      }
+
+      _createClass(_class, [{
+        key: "_updateCallback",
+
+        /** @ignore */
+        value: function _updateCallback(connected) {
+          _get(_getPrototypeOf(_class.prototype), "_updateCallback", this).call(this, connected);
+        }
+        /** @ignore */
+
+      }, {
+        key: "connectedCallback",
+        value: function connectedCallback() {
+          if (!this.isConnected || this._disconnected === false || this._ignoreConnectedCallback === true) {
+            this._updateCallback(true);
+
+            return;
+          }
+
+          _get(_getPrototypeOf(_class.prototype), "connectedCallback", this).call(this);
+        }
+        /** @ignore */
+
+      }, {
+        key: "disconnectedCallback",
+        value: function disconnectedCallback() {
+          if (this.isConnected || this._disconnected === true || this._ignoreConnectedCallback === true) {
+            this._updateCallback(false);
+
+            return;
+          }
+
+          _get(_getPrototypeOf(_class.prototype), "disconnectedCallback", this).call(this);
+        }
+      }]);
+
+      return _class;
+    }(superClass);
+  };
+
   var CLASSNAME$W = '_coral-Masonry-item';
   /**
    @class Coral.Masonry.Item
@@ -57865,7 +57864,8 @@
       _this._elements = {};
       template$D.call(_this._elements);
       return _this;
-    }
+    } // @compat
+
 
     _createClass(_class, [{
       key: "_insert",
@@ -58015,26 +58015,7 @@
         this._messenger.disconnect();
       }
     }, {
-      key: "removing",
-
-      /**
-       Specify whether the item is in removing state or not.
-       @type {Boolean}
-       */
-      get: function get() {
-        return this.hasAttribute('_removing');
-      }
-      /**
-       Whether the item is selected.
-        @type {Boolean}
-       @default false
-       @htmlattribute selected
-       @htmlattributereflected
-       */
-
-    }, {
       key: "content",
-      // @compat
       get: function get() {
         return this;
       },
@@ -58063,6 +58044,24 @@
       set: function set(value) {
         this._showRemoveTransition = transform.booleanAttr(value);
       }
+      /**
+       Specify whether the item is in removing state or not.
+       @type {Boolean}
+       */
+
+    }, {
+      key: "removing",
+      get: function get() {
+        return this.hasAttribute('_removing');
+      }
+      /**
+       Whether the item is selected.
+        @type {Boolean}
+       @default false
+       @htmlattribute selected
+       @htmlattributereflected
+       */
+
     }, {
       key: "selected",
       get: function get() {
@@ -60403,16 +60402,16 @@
    @extends {BaseComponent}
    */
 
-  var Multifield = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var Multifield = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(Multifield, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(Multifield);
 
     /** @ignore */
-    function _class() {
+    function Multifield() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, Multifield);
 
       _this = _super.call(this);
 
@@ -60488,7 +60487,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(Multifield, [{
       key: "_handleTemplateSupport",
 
       /** @ignore */
@@ -60943,7 +60942,7 @@
       value: function render() {
         var _this4 = this;
 
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(Multifield.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$Y, 'coral-Well'); // a11y
 
@@ -61032,8 +61031,8 @@
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return Multifield;
+  }(BaseComponent(HTMLElement));
 
   var template$E = function anonymous(data_0) {
     var frag = document.createDocumentFragment();
@@ -61087,16 +61086,16 @@
    @extends {BaseComponent}
    */
 
-  var MultifieldItem = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var MultifieldItem = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(MultifieldItem, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(MultifieldItem);
 
     /** @ignore */
-    function _class() {
+    function MultifieldItem() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, MultifieldItem);
 
       _this = _super.call(this); // Prepare templates
 
@@ -61123,12 +61122,12 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(MultifieldItem, [{
       key: "render",
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(MultifieldItem.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$Z); // a11y
 
@@ -61222,8 +61221,8 @@
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return MultifieldItem;
+  }(BaseComponent(HTMLElement));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -61279,16 +61278,16 @@
    @extends {BaseComponent}
    */
 
-  var PanelStack = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var PanelStack = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(PanelStack, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(PanelStack);
 
     /** @ignore */
-    function _class() {
+    function PanelStack() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, PanelStack);
 
       _this = _super.call(this); // Attach events
 
@@ -61311,7 +61310,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(PanelStack, [{
       key: "_onItemSelectedChanged",
 
       /** @private */
@@ -61367,7 +61366,7 @@
     }, {
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(PanelStack.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$_);
         this.setAttribute('role', 'presentation'); // Don't trigger events once connected
@@ -61418,8 +61417,8 @@
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return PanelStack;
+  }(BaseComponent(HTMLElement));
 
   var CLASSNAME$$ = '_coral-Panel';
   /**
@@ -61430,16 +61429,16 @@
    @extends {BaseComponent}
    */
 
-  var Panel = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var Panel = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(Panel, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(Panel);
 
     /** @ignore */
-    function _class() {
+    function Panel() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, Panel);
 
       _this = _super.call(this); // Templates
 
@@ -61455,12 +61454,12 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(Panel, [{
       key: "render",
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(Panel.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$$); // Adds the role to support accessibility when role is not already defined.
 
@@ -61536,12 +61535,12 @@
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['selected']);
+        return _get(_getPrototypeOf(Panel), "observedAttributes", this).concat(['selected']);
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return Panel;
+  }(BaseComponent(HTMLElement));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -61659,16 +61658,16 @@
    @extends {BaseComponent}
    */
 
-  var Progress = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var Progress = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(Progress, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(Progress);
 
     /** @ignore */
-    function _class() {
+    function Progress() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, Progress);
 
       _this = _super.call(this); // Prepare templates
 
@@ -61698,7 +61697,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(Progress, [{
       key: "_toggleLabelVisibility",
 
       /** @ignore */
@@ -61767,14 +61766,14 @@
           this._oldValue = this._value || 0;
         }
 
-        _get(_getPrototypeOf(_class.prototype), "attributeChangedCallback", this).call(this, name, oldValue, value);
+        _get(_getPrototypeOf(Progress.prototype), "attributeChangedCallback", this).call(this, name, oldValue, value);
       }
       /** @ignore */
 
     }, {
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(Progress.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$10); // Default reflected attributes
 
@@ -62030,7 +62029,7 @@
     }, {
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(Progress), "_attributePropertyMap", this), {
           showpercent: 'showPercent',
           labelposition: 'labelPosition'
         });
@@ -62040,12 +62039,12 @@
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['value', 'indeterminate', 'size', 'showpercent', 'labelposition']);
+        return _get(_getPrototypeOf(Progress), "observedAttributes", this).concat(['value', 'indeterminate', 'size', 'showpercent', 'labelposition']);
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return Progress;
+  }(BaseComponent(HTMLElement));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -64719,16 +64718,16 @@
    @extends {BaseFormField}
    */
 
-  var Search = Decorator( /*#__PURE__*/function (_BaseFormField) {
-    _inherits(_class, _BaseFormField);
+  var Search = /*#__PURE__*/function (_BaseFormField) {
+    _inherits(Search, _BaseFormField);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(Search);
 
     /** @ignore */
-    function _class() {
+    function Search() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, Search);
 
       _this = _super.call(this);
 
@@ -64761,7 +64760,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(Search, [{
       key: "_triggerInputEvent",
 
       /** @ignore */
@@ -64851,7 +64850,7 @@
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(Search.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$15); // Default reflected attributes
 
@@ -64995,10 +64994,10 @@
     }, {
       key: "labelledBy",
       get: function get() {
-        return _get(_getPrototypeOf(_class.prototype), "labelledBy", this);
+        return _get(_getPrototypeOf(Search.prototype), "labelledBy", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(_class.prototype), "labelledBy", value, this, true); // in case the user focuses the buttons, he will still get a notion of the usage of the component
+        _set(_getPrototypeOf(Search.prototype), "labelledBy", value, this, true); // in case the user focuses the buttons, he will still get a notion of the usage of the component
 
 
         this[this.labelledBy ? 'setAttribute' : 'removeAttribute']('aria-labelledby', this.labelledBy);
@@ -65083,10 +65082,10 @@
     }, {
       key: "invalid",
       get: function get() {
-        return _get(_getPrototypeOf(_class.prototype), "invalid", this);
+        return _get(_getPrototypeOf(Search.prototype), "invalid", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(_class.prototype), "invalid", value, this, true);
+        _set(_getPrototypeOf(Search.prototype), "invalid", value, this, true);
       }
     }], [{
       key: "variant",
@@ -65096,7 +65095,7 @@
     }, {
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(Search), "_attributePropertyMap", this), {
           maxlength: 'maxLength'
         });
       }
@@ -65105,12 +65104,12 @@
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['placeholder', 'icon', 'variant', 'maxlength']);
+        return _get(_getPrototypeOf(Search), "observedAttributes", this).concat(['placeholder', 'icon', 'variant', 'maxlength']);
       }
     }]);
 
-    return _class;
-  }(BaseFormField(BaseComponent(HTMLElement))));
+    return Search;
+  }(BaseFormField(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -68374,16 +68373,16 @@
    @extends {BaseComponent}
    */
 
-  var SideNav = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var SideNav = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(SideNav, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(SideNav);
 
     /** @ignore */
-    function _class() {
+    function SideNav() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, SideNav);
 
       _this = _super.call(this); // Attach events
 
@@ -68423,7 +68422,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(SideNav, [{
       key: "_onItemClick",
       value: function _onItemClick(event) {
         var item = event.matchedTarget;
@@ -68612,7 +68611,7 @@
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(SideNav.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1j); // Default reflected attributes
 
@@ -68718,12 +68717,12 @@
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['variant']);
+        return _get(_getPrototypeOf(SideNav), "observedAttributes", this).concat(['variant']);
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return SideNav;
+  }(BaseComponent(HTMLElement));
 
   var template$T = function anonymous(data_0) {
     var frag = document.createDocumentFragment();
@@ -68765,16 +68764,16 @@
    @extends {BaseComponent}
    */
 
-  var SideNavItem = Decorator( /*#__PURE__*/function (_BaseLabellable) {
-    _inherits(_class, _BaseLabellable);
+  var SideNavItem = /*#__PURE__*/function (_BaseLabellable) {
+    _inherits(SideNavItem, _BaseLabellable);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(SideNavItem);
 
     /** @ignore */
-    function _class() {
+    function SideNavItem() {
       var _thisSuper, _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, SideNavItem);
 
       _this = _super.call(this); // Prepare templates
 
@@ -68783,7 +68782,7 @@
       };
       template$T.call(_this._elements);
 
-      _get((_thisSuper = _assertThisInitialized(_this), _getPrototypeOf(_class.prototype)), "_observeLabel", _thisSuper).call(_thisSuper);
+      _get((_thisSuper = _assertThisInitialized(_this), _getPrototypeOf(SideNavItem.prototype)), "_observeLabel", _thisSuper).call(_thisSuper);
 
       return _this;
     }
@@ -68794,12 +68793,12 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(SideNavItem, [{
       key: "render",
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(SideNavItem.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1k); // Create a fragment
 
@@ -68860,7 +68859,7 @@
         this._elements.icon.icon = value;
         this._elements.icon.hidden = this._elements.icon.icon === '';
 
-        _get(_getPrototypeOf(_class.prototype), "_toggleIconAriaHidden", this).call(this);
+        _get(_getPrototypeOf(SideNavItem.prototype), "_toggleIconAriaHidden", this).call(this);
       }
       /**
        Whether the item is selected.
@@ -68895,12 +68894,12 @@
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['selected', 'icon']);
+        return _get(_getPrototypeOf(SideNavItem), "observedAttributes", this).concat(['selected', 'icon']);
       }
     }]);
 
-    return _class;
-  }(BaseLabellable(BaseComponent(HTMLAnchorElement))));
+    return SideNavItem;
+  }(BaseLabellable(BaseComponent(HTMLAnchorElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -68955,18 +68954,18 @@
    @extends {BaseComponent}
    */
 
-  var SideNavLevel = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var SideNavLevel = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(SideNavLevel, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(SideNavLevel);
 
-    function _class() {
-      _classCallCheck(this, _class);
+    function SideNavLevel() {
+      _classCallCheck(this, SideNavLevel);
 
       return _super.apply(this, arguments);
     }
 
-    _createClass(_class, [{
+    _createClass(SideNavLevel, [{
       key: "attributeChangedCallback",
 
       /** @ignore */
@@ -69014,7 +69013,7 @@
             });
           }
         } else {
-          _get(_getPrototypeOf(_class.prototype), "attributeChangedCallback", this).call(this, name, oldValue, value);
+          _get(_getPrototypeOf(SideNavLevel.prototype), "attributeChangedCallback", this).call(this, name, oldValue, value);
         }
       }
       /** @ignore */
@@ -69022,7 +69021,7 @@
     }, {
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(SideNavLevel.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1l); // a11y
 
@@ -69033,12 +69032,12 @@
 
       /** @ignore */
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['_expanded']);
+        return _get(_getPrototypeOf(SideNavLevel), "observedAttributes", this).concat(['_expanded']);
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return SideNavLevel;
+  }(BaseComponent(HTMLElement));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -69098,16 +69097,16 @@
    @extends {BaseComponent}
    */
 
-  var SplitButton = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var SplitButton = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(SplitButton, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(SplitButton);
 
     /** @ignore */
-    function _class() {
+    function SplitButton() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, SplitButton);
 
       _this = _super.call(this); // Watch for inner button changes
 
@@ -69135,7 +69134,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(SplitButton, [{
       key: "_getInnerButtons",
       value: function _getInnerButtons() {
         var action = this.querySelector('[coral-splitbutton-action]');
@@ -69207,7 +69206,7 @@
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(SplitButton.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1m); // a11y
 
@@ -69245,12 +69244,12 @@
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['variant']);
+        return _get(_getPrototypeOf(SplitButton), "observedAttributes", this).concat(['variant']);
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return SplitButton;
+  }(BaseComponent(HTMLElement));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -69345,16 +69344,16 @@
    */
 
 
-  var Status = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var Status = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(Status, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(Status);
 
     /** @ignore */
-    function _class() {
+    function Status() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, Status);
 
       _this = _super.call(this); // Prepare templates
 
@@ -69373,12 +69372,12 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(Status, [{
       key: "render",
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(Status.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1n); // Default reflected attributes
 
@@ -69534,12 +69533,12 @@
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['variant', 'color', 'disabled']);
+        return _get(_getPrototypeOf(Status), "observedAttributes", this).concat(['variant', 'color', 'disabled']);
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return Status;
+  }(BaseComponent(HTMLElement));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -69657,16 +69656,16 @@
    @extends {BaseComponent}
    */
 
-  var StepList = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var StepList = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(StepList, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(StepList);
 
     /** @ignore */
-    function _class() {
+    function StepList() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, StepList);
 
       _this = _super.call(this);
 
@@ -69704,7 +69703,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(StepList, [{
       key: "_syncItemTabIndex",
 
       /** @private */
@@ -69966,7 +69965,7 @@
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(StepList.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1o); // Default reflected attributes
 
@@ -70220,12 +70219,12 @@
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['target', 'size', 'interaction']);
+        return _get(_getPrototypeOf(StepList), "observedAttributes", this).concat(['target', 'size', 'interaction']);
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return StepList;
+  }(BaseComponent(HTMLElement));
 
   var template$U = function anonymous(data_0) {
     var frag = document.createDocumentFragment();
@@ -70288,16 +70287,16 @@
    @extends {BaseComponent}
    */
 
-  var Step = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var Step = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(Step, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(Step);
 
     /** @ignore */
-    function _class() {
+    function Step() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, Step);
 
       _this = _super.call(this); // Fetch or create content zone
 
@@ -70314,7 +70313,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(Step, [{
       key: "_isHybrid",
       value: function _isHybrid() {
         var label = this.label;
@@ -70380,7 +70379,7 @@
 
       /** @ignore */
       value: function connectedCallback() {
-        _get(_getPrototypeOf(_class.prototype), "connectedCallback", this).call(this);
+        _get(_getPrototypeOf(Step.prototype), "connectedCallback", this).call(this);
 
         var overlay = this._elements.overlay; // Cannot be open by default when rendered
 
@@ -70395,7 +70394,7 @@
     }, {
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(Step.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1p); // Generate a unique ID for the Step panel if one isn't already present
         // This will be used for accessibility purposes
@@ -70456,7 +70455,7 @@
     }, {
       key: "disconnectedCallback",
       value: function disconnectedCallback() {
-        _get(_getPrototypeOf(_class.prototype), "disconnectedCallback", this).call(this);
+        _get(_getPrototypeOf(Step.prototype), "disconnectedCallback", this).call(this);
 
         var overlay = this._elements.overlay; // In case it was moved out don't forget to remove it
 
@@ -70685,7 +70684,7 @@
         (this.label || this).textContent.replace(/\s{2,}/g, ' ').trim() : this._trackingElement;
       },
       set: function set(value) {
-        _set(_getPrototypeOf(_class.prototype), "trackingElement", value, this, true);
+        _set(_getPrototypeOf(Step.prototype), "trackingElement", value, this, true);
       }
     }, {
       key: "_contentZones",
@@ -70699,7 +70698,7 @@
     }], [{
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(Step), "_attributePropertyMap", this), {
           labelledby: 'labelledBy',
           describedby: 'describedBy'
         });
@@ -70709,12 +70708,12 @@
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['selected', 'target', 'disabled', 'labelled', 'labelledby', 'describedby']);
+        return _get(_getPrototypeOf(Step), "observedAttributes", this).concat(['selected', 'target', 'disabled', 'labelled', 'labelledby', 'describedby']);
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return Step;
+  }(BaseComponent(HTMLElement));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -71004,16 +71003,16 @@
    @extends {BaseFormField}
    */
 
-  var Switch = Decorator( /*#__PURE__*/function (_BaseFormField) {
-    _inherits(_class, _BaseFormField);
+  var Switch = /*#__PURE__*/function (_BaseFormField) {
+    _inherits(Switch, _BaseFormField);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(Switch);
 
     /** @ignore */
-    function _class() {
+    function Switch() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, Switch);
 
       _this = _super.call(this); // Make sure the events from the FormField are attached
 
@@ -71057,7 +71056,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(Switch, [{
       key: "_hideLabelIfEmpty",
 
       /**
@@ -71107,7 +71106,7 @@
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(Switch.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1q); // Create a fragment
 
@@ -71281,10 +71280,10 @@
     }, {
       key: "labelled",
       get: function get() {
-        return _get(_getPrototypeOf(_class.prototype), "labelled", this);
+        return _get(_getPrototypeOf(Switch.prototype), "labelled", this);
       },
       set: function set(value) {
-        _set(_getPrototypeOf(_class.prototype), "labelled", value, this, true);
+        _set(_getPrototypeOf(Switch.prototype), "labelled", value, this, true);
 
         this._hideLabelIfEmpty();
       }
@@ -71318,12 +71317,12 @@
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['checked']);
+        return _get(_getPrototypeOf(Switch), "observedAttributes", this).concat(['checked']);
       }
     }]);
 
-    return _class;
-  }(BaseFormField(BaseComponent(HTMLElement))));
+    return Switch;
+  }(BaseFormField(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -71776,18 +71775,18 @@
    @extends {BaseComponent}
    */
 
-  var TableColumn = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var TableColumn = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(TableColumn, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(TableColumn);
 
-    function _class() {
-      _classCallCheck(this, _class);
+    function TableColumn() {
+      _classCallCheck(this, TableColumn);
 
       return _super.apply(this, arguments);
     }
 
-    _createClass(_class, [{
+    _createClass(TableColumn, [{
       key: "_sort",
 
       /** @private */
@@ -71827,7 +71826,7 @@
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(TableColumn.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1r); // Default reflected attributes
 
@@ -72098,7 +72097,7 @@
     }, {
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(TableColumn), "_attributePropertyMap", this), {
           fixedwidth: 'fixedWidth',
           sortabletype: 'sortableType',
           sortabledirection: 'sortableDirection'
@@ -72109,12 +72108,12 @@
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['fixedwidth', 'hidden', 'alignment', 'orderable', 'sortable', 'sortabletype', 'sortabledirection']);
+        return _get(_getPrototypeOf(TableColumn), "observedAttributes", this).concat(['fixedwidth', 'hidden', 'alignment', 'orderable', 'sortable', 'sortabletype', 'sortabledirection']);
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLTableColElement)));
+    return TableColumn;
+  }(BaseComponent(HTMLTableColElement));
 
   var CLASSNAME$1s = '_coral-Table-cell';
   /**
@@ -72126,18 +72125,18 @@
    @extends {BaseComponent}
    */
 
-  var TableCell = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var TableCell = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(TableCell, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(TableCell);
 
-    function _class() {
-      _classCallCheck(this, _class);
+    function TableCell() {
+      _classCallCheck(this, TableCell);
 
       return _super.apply(this, arguments);
     }
 
-    _createClass(_class, [{
+    _createClass(TableCell, [{
       key: "_setHandle",
 
       /** @private */
@@ -72213,7 +72212,7 @@
         if (name === '_selectable') {
           this._toggleSelectable(value !== null);
         } else {
-          _get(_getPrototypeOf(_class.prototype), "attributeChangedCallback", this).call(this, name, oldValue, value);
+          _get(_getPrototypeOf(TableCell.prototype), "attributeChangedCallback", this).call(this, name, oldValue, value);
         }
       }
       /** @ignore */
@@ -72221,7 +72220,7 @@
     }, {
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(TableCell.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1s);
         this.id = this.id || commons.getUID();
@@ -72303,12 +72302,12 @@
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['selected', '_selectable']);
+        return _get(_getPrototypeOf(TableCell), "observedAttributes", this).concat(['selected', '_selectable']);
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLTableCellElement)));
+    return TableCell;
+  }(BaseComponent(HTMLTableCellElement));
 
   var template$W = function anonymous(data_0) {
     var frag = document.createDocumentFragment();
@@ -72333,16 +72332,16 @@
    @extends {BaseComponent}
    */
 
-  var TableRow = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var TableRow = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(TableRow, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(TableRow);
 
     /** @ignore */
-    function _class() {
+    function TableRow() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, TableRow);
 
       _this = _super.call(this); // Templates
 
@@ -72377,7 +72376,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(TableRow, [{
       key: "_triggerChangeEvent",
       value: function _triggerChangeEvent() {
         var selectedItems = this.selectedItems;
@@ -72724,7 +72723,7 @@
         } else if (name === '_lockable') {
           this._toggleLockable(value !== null);
         } else {
-          _get(_getPrototypeOf(_class.prototype), "attributeChangedCallback", this).call(this, name, oldValue, value);
+          _get(_getPrototypeOf(TableRow.prototype), "attributeChangedCallback", this).call(this, name, oldValue, value);
         }
       }
       /** @ignore */
@@ -72732,7 +72731,7 @@
     }, {
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(TableRow.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1t);
 
@@ -72906,12 +72905,12 @@
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['locked', 'selected', 'multiple', 'selectable', '_selectable', '_orderable', '_lockable']);
+        return _get(_getPrototypeOf(TableRow), "observedAttributes", this).concat(['locked', 'selected', 'multiple', 'selectable', '_selectable', '_orderable', '_lockable']);
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLTableRowElement)));
+    return TableRow;
+  }(BaseComponent(HTMLTableRowElement));
 
   // divider changes
 
@@ -73042,16 +73041,16 @@
    @extends {BaseTableSection}
    */
 
-  var TableHead = Decorator( /*#__PURE__*/function (_BaseTableSection) {
-    _inherits(_class, _BaseTableSection);
+  var TableHead = /*#__PURE__*/function (_BaseTableSection) {
+    _inherits(TableHead, _BaseTableSection);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(TableHead);
 
     /** @ignore */
-    function _class() {
+    function TableHead() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, TableHead);
 
       _this = _super.call(this);
 
@@ -73071,12 +73070,12 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(TableHead, [{
       key: "render",
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(TableHead.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1u);
       }
@@ -73114,12 +73113,12 @@
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['sticky']);
+        return _get(_getPrototypeOf(TableHead), "observedAttributes", this).concat(['sticky']);
       }
     }]);
 
-    return _class;
-  }(BaseTableSection(BaseComponent(HTMLTableSectionElement))));
+    return TableHead;
+  }(BaseTableSection(BaseComponent(HTMLTableSectionElement)));
 
   var CLASSNAME$1v = '_coral-Table-body';
   /**
@@ -73132,16 +73131,16 @@
    @extends {BaseTableSection}
    */
 
-  var TableBody = Decorator( /*#__PURE__*/function (_BaseTableSection) {
-    _inherits(_class, _BaseTableSection);
+  var TableBody = /*#__PURE__*/function (_BaseTableSection) {
+    _inherits(TableBody, _BaseTableSection);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(TableBody);
 
     /** @ignore */
-    function _class() {
+    function TableBody() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, TableBody);
 
       _this = _super.call(this);
 
@@ -73152,10 +73151,10 @@
     /** @ignore */
 
 
-    _createClass(_class, [{
+    _createClass(TableBody, [{
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(TableBody.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1v);
 
@@ -73177,8 +73176,8 @@
 
     }]);
 
-    return _class;
-  }(BaseTableSection(BaseComponent(HTMLTableSectionElement))));
+    return TableBody;
+  }(BaseTableSection(BaseComponent(HTMLTableSectionElement)));
 
   var CLASSNAME$1w = '_coral-Table-foot';
   /**
@@ -73191,30 +73190,30 @@
    @extends {BaseTableSection}
    */
 
-  var TableFoot = Decorator( /*#__PURE__*/function (_BaseTableSection) {
-    _inherits(_class, _BaseTableSection);
+  var TableFoot = /*#__PURE__*/function (_BaseTableSection) {
+    _inherits(TableFoot, _BaseTableSection);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(TableFoot);
 
-    function _class() {
-      _classCallCheck(this, _class);
+    function TableFoot() {
+      _classCallCheck(this, TableFoot);
 
       return _super.apply(this, arguments);
     }
 
-    _createClass(_class, [{
+    _createClass(TableFoot, [{
       key: "render",
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(TableFoot.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1w);
       }
     }]);
 
-    return _class;
-  }(BaseTableSection(BaseComponent(HTMLTableSectionElement))));
+    return TableFoot;
+  }(BaseTableSection(BaseComponent(HTMLTableSectionElement)));
 
   var template$X = function anonymous(data_0) {
     var frag = document.createDocumentFragment();
@@ -73309,16 +73308,16 @@
    @extends {BaseComponent}
    */
 
-  var Table = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var Table = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(Table, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(Table);
 
     /** @ignore */
-    function _class() {
+    function Table() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, Table);
 
       _this = _super.call(this); // Templates
 
@@ -73424,7 +73423,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(Table, [{
       key: "_onSelectAll",
 
       /** @private */
@@ -75533,7 +75532,7 @@
       value: function render() {
         var _this9 = this;
 
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(Table.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1x); // Wrapper should have role="presentation" because it wraps another table
 
@@ -76111,7 +76110,7 @@
     }, {
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(Table), "_attributePropertyMap", this), {
           labelledby: 'labelledBy'
         });
       }
@@ -76120,12 +76119,12 @@
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['variant', 'selectable', 'orderable', 'labelled', 'labelledby', 'multiple', 'lockable']);
+        return _get(_getPrototypeOf(Table), "observedAttributes", this).concat(['variant', 'selectable', 'orderable', 'labelled', 'labelledby', 'multiple', 'lockable']);
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLTableElement)));
+    return Table;
+  }(BaseComponent(HTMLTableElement));
 
   var CLASSNAME$1y = '_coral-Table-headerCell';
   /**
@@ -76137,16 +76136,16 @@
    @extends {BaseComponent}
    */
 
-  var TableHeaderCell = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var TableHeaderCell = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(TableHeaderCell, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(TableHeaderCell);
 
     /** @ignore */
-    function _class() {
+    function TableHeaderCell() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, TableHeaderCell);
 
       _this = _super.call(this); // Templates
 
@@ -76170,7 +76169,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(TableHeaderCell, [{
       key: "_handleMutations",
 
       /** @private */
@@ -76182,7 +76181,7 @@
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(TableHeaderCell.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1y); // Fetch or create the content zone element
 
@@ -76227,8 +76226,8 @@
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLTableCellElement)));
+    return TableHeaderCell;
+  }(BaseComponent(HTMLTableCellElement));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -76368,16 +76367,16 @@
    @extends {BaseComponent}
    */
 
-  var Tab = Decorator( /*#__PURE__*/function (_BaseLabellable) {
-    _inherits(_class, _BaseLabellable);
+  var Tab = /*#__PURE__*/function (_BaseLabellable) {
+    _inherits(Tab, _BaseLabellable);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(Tab);
 
     /** @ignore */
-    function _class() {
+    function Tab() {
       var _thisSuper, _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, Tab);
 
       _this = _super.call(this); // Templates
 
@@ -76395,7 +76394,7 @@
           icon.size = _this._elements.label.textContent.trim().length ? Icon.size.EXTRA_SMALL : Icon.size.SMALL;
         }
 
-        _get((_thisSuper = _assertThisInitialized(_this), _getPrototypeOf(_class.prototype)), "_toggleIconAriaHidden", _thisSuper).call(_thisSuper);
+        _get((_thisSuper = _assertThisInitialized(_this), _getPrototypeOf(Tab.prototype)), "_toggleIconAriaHidden", _thisSuper).call(_thisSuper);
 
         _this.trigger('coral-tab:_sizechanged');
       }); // Watch for changes to the label element
@@ -76415,7 +76414,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(Tab, [{
       key: "_toggleEllipsis",
       value: function _toggleEllipsis() {
         var _this2 = this;
@@ -76476,7 +76475,7 @@
 
       /** @ignore */
       value: function connectedCallback() {
-        _get(_getPrototypeOf(_class.prototype), "connectedCallback", this).call(this); // Query the tab target once the tab item is inserted in the DOM
+        _get(_getPrototypeOf(Tab.prototype), "connectedCallback", this).call(this); // Query the tab target once the tab item is inserted in the DOM
 
 
         if (this.selected) {
@@ -76488,7 +76487,7 @@
     }, {
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(Tab.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1z); // adds the role to support accessibility
 
@@ -76573,7 +76572,7 @@
               iconElement.size = Icon.size.SMALL;
             }
 
-            _get(_getPrototypeOf(_class.prototype), "_toggleIconAriaHidden", this).call(this);
+            _get(_getPrototypeOf(Tab.prototype), "_toggleIconAriaHidden", this).call(this);
 
             this.insertBefore(iconElement, this.firstChild);
             this.trigger('coral-tab:_sizechanged');
@@ -76711,7 +76710,7 @@
         (this.label || this).textContent.replace(/\s{2,}/g, ' ').trim() : this._trackingElement;
       },
       set: function set(value) {
-        _set(_getPrototypeOf(_class.prototype), "trackingElement", value, this, true);
+        _set(_getPrototypeOf(Tab.prototype), "trackingElement", value, this, true);
       }
     }, {
       key: "_contentZones",
@@ -76725,12 +76724,12 @@
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['selected', 'disabled', 'icon', 'invalid', 'target']);
+        return _get(_getPrototypeOf(Tab), "observedAttributes", this).concat(['selected', 'disabled', 'icon', 'invalid', 'target']);
       }
     }]);
 
-    return _class;
-  }(BaseLabellable(BaseComponent(HTMLElement))));
+    return Tab;
+  }(BaseLabellable(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -77357,16 +77356,16 @@
    @extends {BaseComponent}
    */
 
-  var TabView = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var TabView = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(TabView, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(TabView);
 
     /** @ignore */
-    function _class() {
+    function TabView() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, TabView);
 
       _this = _super.call(this); // Prepare templates
 
@@ -77396,7 +77395,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(TabView, [{
       key: "_onTabListChange",
 
       /**
@@ -77440,7 +77439,7 @@
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(TabView.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1B); // Default reflected attributes
 
@@ -77550,12 +77549,12 @@
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['orientation']);
+        return _get(_getPrototypeOf(TabView), "observedAttributes", this).concat(['orientation']);
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return TabView;
+  }(BaseComponent(HTMLElement));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -77722,16 +77721,16 @@
    */
 
 
-  var Toast = Decorator( /*#__PURE__*/function (_BaseOverlay) {
-    _inherits(_class, _BaseOverlay);
+  var Toast = /*#__PURE__*/function (_BaseOverlay) {
+    _inherits(Toast, _BaseOverlay);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(Toast);
 
     /** @ignore */
-    function _class() {
+    function Toast() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, Toast);
 
       _this = _super.call(this); // Debounce wait time in milliseconds
 
@@ -77776,7 +77775,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(Toast, [{
       key: "_renderVariantIcon",
       value: function _renderVariantIcon() {
         if (this._elements.icon) {
@@ -77879,7 +77878,7 @@
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(Toast.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1C); // Default reflected attributes
 
@@ -77933,7 +77932,7 @@
       value: function disconnectedCallback() {
         var _this4 = this;
 
-        _get(_getPrototypeOf(_class.prototype), "disconnectedCallback", this).call(this);
+        _get(_getPrototypeOf(Toast.prototype), "disconnectedCallback", this).call(this);
 
         if (this._queued) {
           var el = null;
@@ -78007,7 +78006,7 @@
     }, {
       key: "open",
       get: function get() {
-        return _get(_getPrototypeOf(_class.prototype), "open", this);
+        return _get(_getPrototypeOf(Toast.prototype), "open", this);
       },
       set: function set(value) {
         var _this5 = this;
@@ -78042,7 +78041,7 @@
           return;
         }
 
-        _set(_getPrototypeOf(_class.prototype), "open", value, this, true); // Ensure we're in the DOM
+        _set(_getPrototypeOf(Toast.prototype), "open", value, this, true); // Ensure we're in the DOM
 
 
         if (this.open) {
@@ -78172,7 +78171,7 @@
     }, {
       key: "_attributePropertyMap",
       get: function get() {
-        return commons.extend(_get(_getPrototypeOf(_class), "_attributePropertyMap", this), {
+        return commons.extend(_get(_getPrototypeOf(Toast), "_attributePropertyMap", this), {
           autodismiss: 'autoDismiss'
         });
       }
@@ -78181,12 +78180,12 @@
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['variant', 'placement', 'autodismiss']);
+        return _get(_getPrototypeOf(Toast), "observedAttributes", this).concat(['variant', 'placement', 'autodismiss']);
       }
     }]);
 
-    return _class;
-  }(BaseOverlay(BaseComponent(HTMLElement))));
+    return Toast;
+  }(BaseOverlay(BaseComponent(HTMLElement)));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -78298,16 +78297,16 @@
    @extends {BaseComponent}
    */
 
-  var TreeItem = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var TreeItem = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(TreeItem, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(TreeItem);
 
     /** @ignore */
-    function _class() {
+    function TreeItem() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, TreeItem);
 
       _this = _super.call(this); // Prepare templates
 
@@ -78336,7 +78335,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(TreeItem, [{
       key: "_filterItem",
 
       /** @private */
@@ -78392,7 +78391,7 @@
 
       /** @ignore */
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(TreeItem.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1D);
         var header = this._elements.header;
@@ -78746,12 +78745,12 @@
     }, {
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['selected', 'disabled', 'variant', 'expanded', 'hidden']);
+        return _get(_getPrototypeOf(TreeItem), "observedAttributes", this).concat(['selected', 'disabled', 'variant', 'expanded', 'hidden']);
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return TreeItem;
+  }(BaseComponent(HTMLElement));
 
   var CLASSNAME$1E = '_coral-TreeView';
   /**
@@ -78764,16 +78763,16 @@
    @extends {BaseComponent}
    */
 
-  var Tree = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var Tree = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(Tree, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(Tree);
 
     /** @ignore */
-    function _class() {
+    function Tree() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, Tree);
 
       _this = _super.call(this); // Attach events
 
@@ -78836,7 +78835,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(Tree, [{
       key: "_onItemSelectedChanged",
 
       /** @private */
@@ -79284,7 +79283,7 @@
       value: function render() {
         var _this3 = this;
 
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(Tree.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1E); // a11y
 
@@ -79386,12 +79385,12 @@
     }], [{
       key: "observedAttributes",
       get: function get() {
-        return _get(_getPrototypeOf(_class), "observedAttributes", this).concat(['multiple']);
+        return _get(_getPrototypeOf(Tree), "observedAttributes", this).concat(['multiple']);
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return Tree;
+  }(BaseComponent(HTMLElement));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
@@ -79444,16 +79443,16 @@
    @extends {BaseComponent}
    */
 
-  var WizardView = Decorator( /*#__PURE__*/function (_BaseComponent) {
-    _inherits(_class, _BaseComponent);
+  var WizardView = /*#__PURE__*/function (_BaseComponent) {
+    _inherits(WizardView, _BaseComponent);
 
-    var _super = _createSuper(_class);
+    var _super = _createSuper(WizardView);
 
     /** @ignore */
-    function _class() {
+    function WizardView() {
       var _this;
 
-      _classCallCheck(this, _class);
+      _classCallCheck(this, WizardView);
 
       _this = _super.call(this);
 
@@ -79497,7 +79496,7 @@
      */
 
 
-    _createClass(_class, [{
+    _createClass(WizardView, [{
       key: "_onItemAdded",
 
       /**
@@ -79758,7 +79757,7 @@
     }, {
       key: "render",
       value: function render() {
-        _get(_getPrototypeOf(_class.prototype), "render", this).call(this);
+        _get(_getPrototypeOf(WizardView.prototype), "render", this).call(this);
 
         this.classList.add(CLASSNAME$1F);
 
@@ -79823,8 +79822,8 @@
       }
     }]);
 
-    return _class;
-  }(BaseComponent(HTMLElement)));
+    return WizardView;
+  }(BaseComponent(HTMLElement));
 
   /**
    * Copyright 2019 Adobe. All rights reserved.
